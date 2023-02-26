@@ -1,0 +1,1 @@
+SUBSYSTEM=="uio", GROUP="root", MODE="0666"
