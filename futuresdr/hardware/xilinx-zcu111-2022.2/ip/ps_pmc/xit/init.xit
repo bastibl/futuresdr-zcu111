@@ -1,0 +1,60 @@
+source_ipfile xgui/ps_pmc_v1_0.tcl
+set InstName [get_property PARAM_VALUE.Component_Name]
+set test_debug [get_property PARAM_VALUE.PS_USE_DEBUG_TEST]
+set pcie0_en [get_property PARAM_VALUE.CPM_PCIE0_CONTROLLER_ENABLE] 
+set pcie1_en [get_property PARAM_VALUE.CPM_PCIE1_CONTROLLER_ENABLE] 
+set pcie0_ptype [get_property PARAM_VALUE.CPM_PCIE0_PORT_TYPE] 
+set pcie1_ptype [get_property PARAM_VALUE.CPM_PCIE1_PORT_TYPE] 
+set pcie0_width [get_property PARAM_VALUE.CPM_PCIE0_PL_LINK_CAP_MAX_LINK_WIDTH] 
+set pcie1_width [get_property PARAM_VALUE.CPM_PCIE1_PL_LINK_CAP_MAX_LINK_WIDTH] 
+set tandem0_en [get_property PARAM_VALUE.CPM_PCIE0_MCAP_ENABLE] 
+set tandem1_en [get_property PARAM_VALUE.CPM_PCIE1_MCAP_ENABLE] 
+
+set ipfile [add_ipfile -processingOrder early "${InstName}.xdc" ]
+set language [get_project_property PREFHDL]
+set constraint_data [xdc_generate IpView [current_outdir ] ]
+[uninit IpView]
+set static_data [split $constraint_data "\n"]
+puts_ipfile $ipfile "##############################PS/PMC XDC#########################################"
+foreach line $static_data {
+     if { $language == "VHDL" } {
+        regsub -all "inst" $line "U0" line
+     }
+     puts_ipfile $ipfile $line
+}
+if { $test_debug == 1 } {
+puts_ipfile $ipfile "set_property DONT_TOUCH true \[get_cells \"PS9_TEST_inst\"\]"
+} else {
+puts_ipfile $ipfile "set_property DONT_TOUCH true \[get_cells \"PS9_inst\"\]"
+}
+
+if { ($pcie0_en == [expr 1] && $pcie0_ptype == "PCI_Express_Endpoint_device") || ($pcie1_en == [expr 1] && $pcie1_ptype == "PCI_Express_Endpoint_device") } {                
+puts_ipfile $ipfile "set_property HD.TANDEM 1 \[get_cells \"CPM_INST\"\]"
+  if {($pcie0_en == [expr 1] && $pcie0_ptype == "PCI_Express_Endpoint_device")} {
+    if { $pcie0_width == "X16"} {
+      puts_ipfile $ipfile "set_property HD.TANDEM 1 \[get_cells \"XPIPE_QUAD0_inst\"\]"
+      puts_ipfile $ipfile "set_property HD.TANDEM 1 \[get_cells \"XPIPE_QUAD1_inst\"\]"
+      puts_ipfile $ipfile "set_property HD.TANDEM 1 \[get_cells \"XPIPE_QUAD2_inst\"\]"
+      puts_ipfile $ipfile "set_property HD.TANDEM 1 \[get_cells \"XPIPE_QUAD3_inst\"\]"
+    } elseif { $pcie0_width == "X8"}  {
+      puts_ipfile $ipfile "set_property HD.TANDEM 1 \[get_cells \"XPIPE_QUAD0_inst\"\]"
+      puts_ipfile $ipfile "set_property HD.TANDEM 1 \[get_cells \"XPIPE_QUAD1_inst\"\]"
+    } else {
+      puts_ipfile $ipfile "set_property HD.TANDEM 1 \[get_cells \"XPIPE_QUAD0_inst\"\]"
+    }
+  }
+
+  if { $pcie0_width != "X16" && ($pcie1_en == [expr 1] && $pcie1_ptype == "PCI_Express_Endpoint_device")} {
+    if { $pcie1_width == "X8"}  {
+      puts_ipfile $ipfile "set_property HD.TANDEM 1 \[get_cells \"XPIPE_QUAD2_inst\"\]"
+      puts_ipfile $ipfile "set_property HD.TANDEM 1 \[get_cells \"XPIPE_QUAD3_inst\"\]"
+    } else {
+      puts_ipfile $ipfile "set_property HD.TANDEM 1 \[get_cells \"XPIPE_QUAD2_inst\"\]"
+    }
+  }
+
+} 
+ 
+close_ipfile $ipfile
+
+

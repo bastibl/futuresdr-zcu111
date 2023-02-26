@@ -1,0 +1,459 @@
+#-----------------------------------------------------------
+# Vivado v2022.2 (64-bit)
+# SW Build 3671981 on Fri Oct 14 04:59:54 MDT 2022
+# IP Build 3669848 on Fri Oct 14 08:30:02 MDT 2022
+# Start of session at: Fri Oct 14 13:28:27 2022
+# Process ID: 16612
+# Current directory: /tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.runs/project_1_xbar_1_synth_1
+# Command line: vivado -log project_1_xbar_1.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source project_1_xbar_1.tcl
+# Log file: /tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.runs/project_1_xbar_1_synth_1/project_1_xbar_1.vds
+# Journal file: /tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.runs/project_1_xbar_1_synth_1/vivado.jou
+# Running On: xcosswbld17, OS: Linux, CPU Frequency: 3362.977 MHz, CPU Physical cores: 32, Host memory: 404352 MB
+#-----------------------------------------------------------
+INFO: [Common 17-1239] XILINX_LOCAL_USER_DATA is set to 'NO'.
+Sourcing tcl script '/home/xbrbbot/.Xilinx/Vivado/Vivado_init.tcl'
+484 Beta devices matching pattern found, 484 enabled.
+enable_beta_device: Time (s): cpu = 00:00:11 ; elapsed = 00:00:12 . Memory (MB): peak = 2067.527 ; gain = 131.633 ; free physical = 260606 ; free virtual = 339873
+source project_1_xbar_1.tcl -notrace
+INFO: [IP_Flow 19-234] Refreshing IP repositories
+WARNING: [IP_Flow 19-395] Problem validating against XML schema: see 'spirit:vendor' : Mandatory element missing or unexpected element found
+WARNING: [IP_Flow 19-395] Problem validating against XML schema: see 'spirit:vendor' : Mandatory element missing or unexpected element found
+INFO: [IP_Flow 19-1700] Loaded user IP repository '/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/ip'.
+INFO: [IP_Flow 19-2313] Loaded Vivado IP repository '/proj/xbuilds/2022.2_1014_2/installs/lin64/Vivado/2022.2/data/ip'.
+WARNING: [IP_Flow 19-1663] Duplicate IP found for 'xilinx.com:ip:axi_quad_spi:3.2'. The one found in IP location '/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/ip/axi_quad_spi' will take precedence over the same IP in the Xilinx installed IP.
+WARNING: [IP_Flow 19-4830] Duplicate Interface found for 'xilinx.com:display_startup_io:startup_io:1.0'. The one found in location '/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/ip/axi_quad_spi/startup_io.xml' will take precedence over the same Interface in location '/proj/xbuilds/2022.2_1014_2/installs/lin64/Vivado/2022.2/data/ip/xilinx/axi_quad_spi_v3_2/startup_io.xml'
+WARNING: [IP_Flow 19-4830] Duplicate Interface found for 'xilinx.com:display_usp_rf_data_converter:diff_pins:1.0'. The one found in location '/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/ip/usp_rf_data_converter/interfaces/diff_pins.xml' will take precedence over the same Interface in location '/proj/xbuilds/2022.2_1014_2/installs/lin64/Vivado/2022.2/data/ip/xilinx/usp_rf_data_converter_v2_6/interfaces/diff_pins.xml'
+WARNING: [IP_Flow 19-4830] Duplicate Interface found for 'xilinx.com:display_usp_rf_data_converter:rts_pins:1.0'. The one found in location '/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/ip/usp_rf_data_converter/interfaces/rts_pins.xml' will take precedence over the same Interface in location '/proj/xbuilds/2022.2_1014_2/installs/lin64/Vivado/2022.2/data/ip/xilinx/usp_rf_data_converter_v2_6/interfaces/rts_pins.xml'
+WARNING: [IP_Flow 19-4830] Duplicate Interface found for 'xilinx.com:display_usp_rf_data_converter:drp_mon_pins:1.0'. The one found in location '/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/ip/usp_rf_data_converter/interfaces/drp_mon_pins.xml' will take precedence over the same Interface in location '/proj/xbuilds/2022.2_1014_2/installs/lin64/Vivado/2022.2/data/ip/xilinx/usp_rf_data_converter_v2_6/interfaces/drp_mon_pins.xml'
+WARNING: [IP_Flow 19-4830] Duplicate Interface found for 'xilinx.com:display_usp_rf_data_converter:debug_pins:1.0'. The one found in location '/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/ip/usp_rf_data_converter/interfaces/debug_pins.xml' will take precedence over the same Interface in location '/proj/xbuilds/2022.2_1014_2/installs/lin64/Vivado/2022.2/data/ip/xilinx/usp_rf_data_converter_v2_6/interfaces/debug_pins.xml'
+WARNING: [IP_Flow 19-4830] Duplicate Interface found for 'xilinx.com:user:hsams_data_sink_ctrl:1.0'. The one found in location '/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/ip/usp_rf_data_converter/interfaces/hsams_data_sink_ctrl.xml' will take precedence over the same Interface in location '/proj/xbuilds/2022.2_1014_2/installs/lin64/Vivado/2022.2/data/ip/xilinx/usp_rf_data_converter_v2_6/interfaces/hsams_data_sink_ctrl.xml'
+WARNING: [IP_Flow 19-4830] Duplicate Interface found for 'xilinx.com:user:hsams_data_source_ctrl:1.0'. The one found in location '/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/ip/usp_rf_data_converter/interfaces/hsams_data_source_ctrl.xml' will take precedence over the same Interface in location '/proj/xbuilds/2022.2_1014_2/installs/lin64/Vivado/2022.2/data/ip/xilinx/usp_rf_data_converter_v2_6/interfaces/hsams_data_source_ctrl.xml'
+WARNING: [IP_Flow 19-4830] Duplicate Interface found for 'xilinx.com:display_usp_rf_data_converter:cal_freeze_pins:1.0'. The one found in location '/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/ip/usp_rf_data_converter/interfaces/cal_freeze_pins.xml' will take precedence over the same Interface in location '/proj/xbuilds/2022.2_1014_2/installs/lin64/Vivado/2022.2/data/ip/xilinx/usp_rf_data_converter_v2_6/interfaces/cal_freeze_pins.xml'
+WARNING: [IP_Flow 19-4830] Duplicate Interface found for 'xilinx.com:interface:gt_hsclk_debug:1.0'. The one found in location '/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/ip/ps_pmc/interfaces/gt_hsclk_debug_v1_0/gt_hsclk_debug.xml' will take precedence over the same Interface in location '/proj/xbuilds/2022.2_1014_2/installs/lin64/Vivado/2022.2/data/ip/xilinx/gt_quad_base_v1_1/interfaces/gt_hsclk_debug_v1_0/gt_hsclk_debug.xml'
+WARNING: [IP_Flow 19-4830] Duplicate Interface found for 'xilinx.com:display_pcie4:pcie4_cfg_external_msix:1.0'. The one found in location '/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/ip/ps_pmc/interfaces/pcie4_cfg_ext_msix.xml' will take precedence over the same Interface in location '/proj/xbuilds/2022.2_1014_2/installs/lin64/Vivado/2022.2/data/ip/xilinx/pcie4_uscale_plus_v1_3/interfaces/pcie4_cfg_ext_msix.xml'
+WARNING: [IP_Flow 19-4830] Duplicate Interface found for 'xilinx.com:interface:gt_rxmargin_intf:1.0'. The one found in location '/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/ip/ps_pmc/interfaces/gt_rxmargin_intf_v1_0/gt_rxmargin_intf.xml' will take precedence over the same Interface in location '/proj/xbuilds/2022.2_1014_2/installs/lin64/Vivado/2022.2/data/ip/xilinx/gt_quad_base_v1_1/interfaces/gt_rxmargin_intf_v1_0/gt_rxmargin_intf.xml'
+WARNING: [IP_Flow 19-4830] Duplicate Interface found for 'xilinx.com:user:acelite:1.0'. The one found in location '/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/ip/ps_pmc/interfaces/acelite.xml' will take precedence over the same Interface in location '/proj/xbuilds/2022.2_1014_2/installs/lin64/Vivado/2022.2/data/ip/xilinx/pspmc_v1_2/interfaces/acelite.xml'
+WARNING: [IP_Flow 19-4830] Duplicate Interface found for 'xilinx.com:interface:gt_debug:1.0'. The one found in location '/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/ip/ps_pmc/interfaces/gt_debug_v1_0/gt_debug.xml' will take precedence over the same Interface in location '/proj/xbuilds/2022.2_1014_2/installs/lin64/Vivado/2022.2/data/ip/xilinx/gt_quad_base_v1_1/interfaces/gt_debug_v1_0/gt_debug.xml'
+WARNING: [IP_Flow 19-4830] Duplicate Interface found for 'xilinx.com:display_pcie4:pcie4_cfg_mgmt:1.0'. The one found in location '/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/ip/ps_pmc/interfaces/pcie4_cfg_mgmt.xml' will take precedence over the same Interface in location '/proj/xbuilds/2022.2_1014_2/installs/lin64/Vivado/2022.2/data/ip/xilinx/pcie4_uscale_plus_v1_3/interfaces/pcie4_cfg_mgmt.xml'
+WARNING: [IP_Flow 19-4830] Duplicate Interface found for 'xilinx.com:display_pcie4c_uscaleplus:transceiver_debug:1.0'. The one found in location '/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/ip/ps_pmc/interfaces/transceiver_debug.xml' will take precedence over the same Interface in location '/proj/xbuilds/2022.2_1014_2/installs/lin64/Vivado/2022.2/data/ip/xilinx/pcie4c_uscale_plus_v1_0/interfaces/transceiver_debug.xml'
+WARNING: [IP_Flow 19-4830] Duplicate Interface found for 'xilinx.com:display_pcie4:pcie4_cfg_control:1.0'. The one found in location '/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/ip/ps_pmc/interfaces/pcie4_cfg_control.xml' will take precedence over the same Interface in location '/proj/xbuilds/2022.2_1014_2/installs/lin64/Vivado/2022.2/data/ip/xilinx/pcie4_uscale_plus_v1_3/interfaces/pcie4_cfg_control.xml'
+WARNING: [IP_Flow 19-4830] Duplicate Interface found for 'xilinx.com:interface:gt_channel_debug:1.0'. The one found in location '/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/ip/ps_pmc/interfaces/gt_channel_debug_v1_0/gt_channel_debug.xml' will take precedence over the same Interface in location '/proj/xbuilds/2022.2_1014_2/installs/lin64/Vivado/2022.2/data/ip/xilinx/gt_quad_base_v1_1/interfaces/gt_channel_debug_v1_0/gt_channel_debug.xml'
+WARNING: [IP_Flow 19-4830] Duplicate Interface found for 'xilinx.com:interface:gt_bufgt:1.0'. The one found in location '/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/ip/ps_pmc/interfaces/gt_bufgt_v1_0/gt_bufgt.xml' will take precedence over the same Interface in location '/proj/xbuilds/2022.2_1014_2/installs/lin64/Vivado/2022.2/data/ip/xilinx/gt_quad_base_v1_1/interfaces/gt_bufgt_v1_0/gt_bufgt.xml'
+WARNING: [IP_Flow 19-4830] Duplicate Interface found for 'xilinx.com:interface:gt_tx_interface:1.0'. The one found in location '/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/ip/ps_pmc/interfaces/gt_tx_interface_v1_0/gt_tx_interface.xml' will take precedence over the same Interface in location '/proj/xbuilds/2022.2_1014_2/installs/lin64/Vivado/2022.2/data/ip/interfaces/gt_tx_interface_v1_0/gt_tx_interface.xml'
+WARNING: [IP_Flow 19-4830] Duplicate Interface found for 'xilinx.com:display_pcie4:pcie4_cfg_pm:1.0'. The one found in location '/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/ip/ps_pmc/interfaces/pcie4_cfg_pm.xml' will take precedence over the same Interface in location '/proj/xbuilds/2022.2_1014_2/installs/lin64/Vivado/2022.2/data/ip/xilinx/pcie4_uscale_plus_v1_3/interfaces/pcie4_cfg_pm.xml'
+WARNING: [IP_Flow 19-4830] Duplicate Interface found for 'xilinx.com:display_pcie4:pcie4_cfg_status:1.0'. The one found in location '/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/ip/ps_pmc/interfaces/pcie4_cfg_status.xml' will take precedence over the same Interface in location '/proj/xbuilds/2022.2_1014_2/installs/lin64/Vivado/2022.2/data/ip/xilinx/pcie4_uscale_plus_v1_3/interfaces/pcie4_cfg_status.xml'
+WARNING: [IP_Flow 19-4830] Duplicate Interface found for 'xilinx.com:display_pcie4:pcie4_pl:1.0'. The one found in location '/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/ip/ps_pmc/interfaces/pcie4_pl.xml' will take precedence over the same Interface in location '/proj/xbuilds/2022.2_1014_2/installs/lin64/Vivado/2022.2/data/ip/xilinx/pcie4_uscale_plus_v1_3/interfaces/pcie4_pl.xml'
+WARNING: [IP_Flow 19-4830] Duplicate Interface found for 'xilinx.com:user:smmu:1.0'. The one found in location '/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/ip/ps_pmc/interfaces/smmu.xml' will take precedence over the same Interface in location '/proj/xbuilds/2022.2_1014_2/installs/lin64/Vivado/2022.2/data/ip/xilinx/pspmc_v1_2/interfaces/smmu.xml'
+WARNING: [IP_Flow 19-4830] Duplicate Interface found for 'xilinx.com:display_pcie4:pcie4_pcie_id:1.0'. The one found in location '/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/ip/ps_pmc/interfaces/pcie4_pcie_id.xml' will take precedence over the same Interface in location '/proj/xbuilds/2022.2_1014_2/installs/lin64/Vivado/2022.2/data/ip/xilinx/pcie4_uscale_plus_v1_3/interfaces/pcie4_pcie_id.xml'
+WARNING: [IP_Flow 19-4830] Duplicate Interface found for 'xilinx.com:interface:gt_rx_interface:1.0'. The one found in location '/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/ip/ps_pmc/interfaces/gt_rx_interface_v1_0/gt_rx_interface.xml' will take precedence over the same Interface in location '/proj/xbuilds/2022.2_1014_2/installs/lin64/Vivado/2022.2/data/ip/interfaces/gt_rx_interface_v1_0/gt_rx_interface.xml'
+WARNING: [IP_Flow 19-4830] Duplicate Interface found for 'xilinx.com:display_pcie4:pcie4_cfg_msix_external:1.0'. The one found in location '/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/ip/ps_pmc/interfaces/pcie4_cfg_msix.xml' will take precedence over the same Interface in location '/proj/xbuilds/2022.2_1014_2/installs/lin64/Vivado/2022.2/data/ip/xilinx/pcie4_uscale_plus_v1_3/interfaces/pcie4_cfg_msix.xml'
+WARNING: [IP_Flow 19-4830] Duplicate Interface found for 'xilinx.com:display_pcie4:pcie4_cfg_msix_internal:1.0'. The one found in location '/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/ip/ps_pmc/interfaces/pcie4_cfg_msix_int.xml' will take precedence over the same Interface in location '/proj/xbuilds/2022.2_1014_2/installs/lin64/Vivado/2022.2/data/ip/xilinx/pcie4_uscale_plus_v1_3/interfaces/pcie4_cfg_msix_int.xml'
+INFO: [IP_Flow 19-6924] IPCACHE: Running cache check for IP inst: project_1_xbar_1
+Command: synth_design -top project_1_xbar_1 -part xczu28dr-ffvg1517-2-e -incremental_mode off -mode out_of_context
+Starting synth_design
+Attempting to get a license for feature 'Synthesis' and/or device 'xczu28dr'
+INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xczu28dr'
+INFO: [Device 21-403] Loading part xczu28dr-ffvg1517-2-e
+INFO: [Synth 8-7079] Multithreading enabled for synth_design using a maximum of 4 processes.
+INFO: [Synth 8-7078] Launching helper process for spawning children vivado processes
+INFO: [Synth 8-7075] Helper process launched with PID 17287
+INFO: [Synth 8-11241] undeclared symbol 'REGCCE', assumed default net type 'wire' [/proj/xbuilds/2022.2_1014_2/installs/lin64/Vivado/2022.2/data/verilog/src/unimacro/BRAM_SINGLE_MACRO.v:2170]
+---------------------------------------------------------------------------------
+Starting RTL Elaboration : Time (s): cpu = 00:00:05 ; elapsed = 00:00:05 . Memory (MB): peak = 3436.828 ; gain = 318.801 ; free physical = 276086 ; free virtual = 355364
+Synthesis current peak Physical Memory [PSS] (MB): peak = 2655.117; parent = 2517.194; children = 137.923
+Synthesis current peak Virtual Memory [VSS] (MB): peak = 4422.605; parent = 3446.738; children = 975.867
+---------------------------------------------------------------------------------
+INFO: [Synth 8-6157] synthesizing module 'project_1_xbar_1' [/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.gen/sources_1/bd/project_1/ip/project_1_xbar_1/synth/project_1_xbar_1.v:53]
+INFO: [Synth 8-6157] synthesizing module 'axi_crossbar_v2_1_28_axi_crossbar' [/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.gen/sources_1/bd/project_1/ipshared/c40e/hdl/axi_crossbar_v2_1_vl_rfs.v:4883]
+INFO: [Synth 8-6157] synthesizing module 'axi_crossbar_v2_1_28_crossbar_sasd' [/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.gen/sources_1/bd/project_1/ipshared/c40e/hdl/axi_crossbar_v2_1_vl_rfs.v:1239]
+INFO: [Synth 8-6157] synthesizing module 'axi_crossbar_v2_1_28_addr_decoder' [/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.gen/sources_1/bd/project_1/ipshared/c40e/hdl/axi_crossbar_v2_1_vl_rfs.v:793]
+INFO: [Synth 8-6157] synthesizing module 'generic_baseblocks_v2_1_0_comparator_static' [/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.gen/sources_1/bd/project_1/ipshared/b752/hdl/generic_baseblocks_v2_1_vl_rfs.v:2132]
+INFO: [Synth 8-6157] synthesizing module 'generic_baseblocks_v2_1_0_carry_and' [/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.gen/sources_1/bd/project_1/ipshared/b752/hdl/generic_baseblocks_v2_1_vl_rfs.v:61]
+INFO: [Synth 8-6155] done synthesizing module 'generic_baseblocks_v2_1_0_carry_and' (0#1) [/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.gen/sources_1/bd/project_1/ipshared/b752/hdl/generic_baseblocks_v2_1_vl_rfs.v:61]
+INFO: [Synth 8-6155] done synthesizing module 'generic_baseblocks_v2_1_0_comparator_static' (0#1) [/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.gen/sources_1/bd/project_1/ipshared/b752/hdl/generic_baseblocks_v2_1_vl_rfs.v:2132]
+INFO: [Synth 8-6157] synthesizing module 'generic_baseblocks_v2_1_0_comparator_static__parameterized0' [/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.gen/sources_1/bd/project_1/ipshared/b752/hdl/generic_baseblocks_v2_1_vl_rfs.v:2132]
+INFO: [Synth 8-6155] done synthesizing module 'generic_baseblocks_v2_1_0_comparator_static__parameterized0' (0#1) [/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.gen/sources_1/bd/project_1/ipshared/b752/hdl/generic_baseblocks_v2_1_vl_rfs.v:2132]
+INFO: [Synth 8-6157] synthesizing module 'generic_baseblocks_v2_1_0_comparator_static__parameterized1' [/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.gen/sources_1/bd/project_1/ipshared/b752/hdl/generic_baseblocks_v2_1_vl_rfs.v:2132]
+INFO: [Synth 8-6155] done synthesizing module 'generic_baseblocks_v2_1_0_comparator_static__parameterized1' (0#1) [/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.gen/sources_1/bd/project_1/ipshared/b752/hdl/generic_baseblocks_v2_1_vl_rfs.v:2132]
+INFO: [Synth 8-6157] synthesizing module 'generic_baseblocks_v2_1_0_comparator_static__parameterized2' [/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.gen/sources_1/bd/project_1/ipshared/b752/hdl/generic_baseblocks_v2_1_vl_rfs.v:2132]
+INFO: [Synth 8-6155] done synthesizing module 'generic_baseblocks_v2_1_0_comparator_static__parameterized2' (0#1) [/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.gen/sources_1/bd/project_1/ipshared/b752/hdl/generic_baseblocks_v2_1_vl_rfs.v:2132]
+INFO: [Synth 8-6157] synthesizing module 'generic_baseblocks_v2_1_0_comparator_static__parameterized3' [/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.gen/sources_1/bd/project_1/ipshared/b752/hdl/generic_baseblocks_v2_1_vl_rfs.v:2132]
+INFO: [Synth 8-6155] done synthesizing module 'generic_baseblocks_v2_1_0_comparator_static__parameterized3' (0#1) [/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.gen/sources_1/bd/project_1/ipshared/b752/hdl/generic_baseblocks_v2_1_vl_rfs.v:2132]
+INFO: [Synth 8-6157] synthesizing module 'generic_baseblocks_v2_1_0_comparator_static__parameterized4' [/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.gen/sources_1/bd/project_1/ipshared/b752/hdl/generic_baseblocks_v2_1_vl_rfs.v:2132]
+INFO: [Synth 8-6155] done synthesizing module 'generic_baseblocks_v2_1_0_comparator_static__parameterized4' (0#1) [/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.gen/sources_1/bd/project_1/ipshared/b752/hdl/generic_baseblocks_v2_1_vl_rfs.v:2132]
+INFO: [Synth 8-6157] synthesizing module 'generic_baseblocks_v2_1_0_comparator_static__parameterized5' [/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.gen/sources_1/bd/project_1/ipshared/b752/hdl/generic_baseblocks_v2_1_vl_rfs.v:2132]
+INFO: [Synth 8-6155] done synthesizing module 'generic_baseblocks_v2_1_0_comparator_static__parameterized5' (0#1) [/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.gen/sources_1/bd/project_1/ipshared/b752/hdl/generic_baseblocks_v2_1_vl_rfs.v:2132]
+INFO: [Synth 8-6157] synthesizing module 'generic_baseblocks_v2_1_0_comparator_static__parameterized6' [/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.gen/sources_1/bd/project_1/ipshared/b752/hdl/generic_baseblocks_v2_1_vl_rfs.v:2132]
+INFO: [Synth 8-6155] done synthesizing module 'generic_baseblocks_v2_1_0_comparator_static__parameterized6' (0#1) [/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.gen/sources_1/bd/project_1/ipshared/b752/hdl/generic_baseblocks_v2_1_vl_rfs.v:2132]
+INFO: [Synth 8-6157] synthesizing module 'generic_baseblocks_v2_1_0_comparator_static__parameterized7' [/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.gen/sources_1/bd/project_1/ipshared/b752/hdl/generic_baseblocks_v2_1_vl_rfs.v:2132]
+INFO: [Synth 8-6155] done synthesizing module 'generic_baseblocks_v2_1_0_comparator_static__parameterized7' (0#1) [/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.gen/sources_1/bd/project_1/ipshared/b752/hdl/generic_baseblocks_v2_1_vl_rfs.v:2132]
+INFO: [Synth 8-6157] synthesizing module 'generic_baseblocks_v2_1_0_comparator_static__parameterized8' [/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.gen/sources_1/bd/project_1/ipshared/b752/hdl/generic_baseblocks_v2_1_vl_rfs.v:2132]
+INFO: [Synth 8-6155] done synthesizing module 'generic_baseblocks_v2_1_0_comparator_static__parameterized8' (0#1) [/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.gen/sources_1/bd/project_1/ipshared/b752/hdl/generic_baseblocks_v2_1_vl_rfs.v:2132]
+INFO: [Synth 8-6157] synthesizing module 'generic_baseblocks_v2_1_0_comparator_static__parameterized9' [/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.gen/sources_1/bd/project_1/ipshared/b752/hdl/generic_baseblocks_v2_1_vl_rfs.v:2132]
+INFO: [Synth 8-6155] done synthesizing module 'generic_baseblocks_v2_1_0_comparator_static__parameterized9' (0#1) [/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.gen/sources_1/bd/project_1/ipshared/b752/hdl/generic_baseblocks_v2_1_vl_rfs.v:2132]
+INFO: [Synth 8-6155] done synthesizing module 'axi_crossbar_v2_1_28_addr_decoder' (0#1) [/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.gen/sources_1/bd/project_1/ipshared/c40e/hdl/axi_crossbar_v2_1_vl_rfs.v:793]
+INFO: [Synth 8-6157] synthesizing module 'axi_crossbar_v2_1_28_decerr_slave' [/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.gen/sources_1/bd/project_1/ipshared/c40e/hdl/axi_crossbar_v2_1_vl_rfs.v:3500]
+INFO: [Synth 8-6155] done synthesizing module 'axi_crossbar_v2_1_28_decerr_slave' (0#1) [/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.gen/sources_1/bd/project_1/ipshared/c40e/hdl/axi_crossbar_v2_1_vl_rfs.v:3500]
+INFO: [Synth 8-6157] synthesizing module 'axi_crossbar_v2_1_28_addr_arbiter_sasd' [/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.gen/sources_1/bd/project_1/ipshared/c40e/hdl/axi_crossbar_v2_1_vl_rfs.v:64]
+INFO: [Synth 8-6155] done synthesizing module 'axi_crossbar_v2_1_28_addr_arbiter_sasd' (0#1) [/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.gen/sources_1/bd/project_1/ipshared/c40e/hdl/axi_crossbar_v2_1_vl_rfs.v:64]
+INFO: [Synth 8-6157] synthesizing module 'axi_crossbar_v2_1_28_splitter' [/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.gen/sources_1/bd/project_1/ipshared/c40e/hdl/axi_crossbar_v2_1_vl_rfs.v:4460]
+INFO: [Synth 8-6155] done synthesizing module 'axi_crossbar_v2_1_28_splitter' (0#1) [/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.gen/sources_1/bd/project_1/ipshared/c40e/hdl/axi_crossbar_v2_1_vl_rfs.v:4460]
+INFO: [Synth 8-6157] synthesizing module 'axi_crossbar_v2_1_28_splitter__parameterized0' [/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.gen/sources_1/bd/project_1/ipshared/c40e/hdl/axi_crossbar_v2_1_vl_rfs.v:4460]
+INFO: [Synth 8-6155] done synthesizing module 'axi_crossbar_v2_1_28_splitter__parameterized0' (0#1) [/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.gen/sources_1/bd/project_1/ipshared/c40e/hdl/axi_crossbar_v2_1_vl_rfs.v:4460]
+INFO: [Synth 8-6157] synthesizing module 'generic_baseblocks_v2_1_0_mux_enc' [/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.gen/sources_1/bd/project_1/ipshared/b752/hdl/generic_baseblocks_v2_1_vl_rfs.v:2451]
+INFO: [Synth 8-6155] done synthesizing module 'generic_baseblocks_v2_1_0_mux_enc' (0#1) [/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.gen/sources_1/bd/project_1/ipshared/b752/hdl/generic_baseblocks_v2_1_vl_rfs.v:2451]
+INFO: [Synth 8-6157] synthesizing module 'generic_baseblocks_v2_1_0_mux_enc__parameterized0' [/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.gen/sources_1/bd/project_1/ipshared/b752/hdl/generic_baseblocks_v2_1_vl_rfs.v:2451]
+INFO: [Synth 8-6155] done synthesizing module 'generic_baseblocks_v2_1_0_mux_enc__parameterized0' (0#1) [/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.gen/sources_1/bd/project_1/ipshared/b752/hdl/generic_baseblocks_v2_1_vl_rfs.v:2451]
+INFO: [Synth 8-6157] synthesizing module 'generic_baseblocks_v2_1_0_mux_enc__parameterized1' [/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.gen/sources_1/bd/project_1/ipshared/b752/hdl/generic_baseblocks_v2_1_vl_rfs.v:2451]
+INFO: [Synth 8-6155] done synthesizing module 'generic_baseblocks_v2_1_0_mux_enc__parameterized1' (0#1) [/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.gen/sources_1/bd/project_1/ipshared/b752/hdl/generic_baseblocks_v2_1_vl_rfs.v:2451]
+INFO: [Synth 8-6157] synthesizing module 'axi_register_slice_v2_1_27_axic_register_slice' [/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.gen/sources_1/bd/project_1/ipshared/f0b4/hdl/axi_register_slice_v2_1_vl_rfs.v:1497]
+INFO: [Synth 8-6155] done synthesizing module 'axi_register_slice_v2_1_27_axic_register_slice' (0#1) [/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.gen/sources_1/bd/project_1/ipshared/f0b4/hdl/axi_register_slice_v2_1_vl_rfs.v:1497]
+INFO: [Synth 8-6157] synthesizing module 'generic_baseblocks_v2_1_0_mux_enc__parameterized2' [/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.gen/sources_1/bd/project_1/ipshared/b752/hdl/generic_baseblocks_v2_1_vl_rfs.v:2451]
+INFO: [Synth 8-6155] done synthesizing module 'generic_baseblocks_v2_1_0_mux_enc__parameterized2' (0#1) [/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.gen/sources_1/bd/project_1/ipshared/b752/hdl/generic_baseblocks_v2_1_vl_rfs.v:2451]
+INFO: [Synth 8-6155] done synthesizing module 'axi_crossbar_v2_1_28_crossbar_sasd' (0#1) [/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.gen/sources_1/bd/project_1/ipshared/c40e/hdl/axi_crossbar_v2_1_vl_rfs.v:1239]
+INFO: [Synth 8-6155] done synthesizing module 'axi_crossbar_v2_1_28_axi_crossbar' (0#1) [/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.gen/sources_1/bd/project_1/ipshared/c40e/hdl/axi_crossbar_v2_1_vl_rfs.v:4883]
+INFO: [Synth 8-6155] done synthesizing module 'project_1_xbar_1' (0#1) [/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.gen/sources_1/bd/project_1/ip/project_1_xbar_1/synth/project_1_xbar_1.v:53]
+WARNING: [Synth 8-6014] Unused sequential element gen_debug_trans_seq.debug_aw_trans_seq_i_reg was removed.  [/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.gen/sources_1/bd/project_1/ipshared/c40e/hdl/axi_crossbar_v2_1_vl_rfs.v:2056]
+WARNING: [Synth 8-6014] Unused sequential element gen_debug_trans_seq.debug_ar_trans_seq_i_reg was removed.  [/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.gen/sources_1/bd/project_1/ipshared/c40e/hdl/axi_crossbar_v2_1_vl_rfs.v:2067]
+WARNING: [Synth 8-6014] Unused sequential element gen_debug_trans_seq.debug_w_beat_cnt_i_reg was removed.  [/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.gen/sources_1/bd/project_1/ipshared/c40e/hdl/axi_crossbar_v2_1_vl_rfs.v:2078]
+WARNING: [Synth 8-6014] Unused sequential element gen_debug_trans_seq.debug_r_beat_cnt_i_reg was removed.  [/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.gen/sources_1/bd/project_1/ipshared/c40e/hdl/axi_crossbar_v2_1_vl_rfs.v:2091]
+WARNING: [Synth 8-7129] Port S[0] in module generic_baseblocks_v2_1_0_mux_enc__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port S_AXI_AWID[0] in module axi_crossbar_v2_1_28_decerr_slave is either unconnected or has no load
+WARNING: [Synth 8-7129] Port S_AXI_WLAST in module axi_crossbar_v2_1_28_decerr_slave is either unconnected or has no load
+WARNING: [Synth 8-7129] Port S_AXI_ARID[0] in module axi_crossbar_v2_1_28_decerr_slave is either unconnected or has no load
+WARNING: [Synth 8-7129] Port S_AXI_ARLEN[7] in module axi_crossbar_v2_1_28_decerr_slave is either unconnected or has no load
+WARNING: [Synth 8-7129] Port S_AXI_ARLEN[6] in module axi_crossbar_v2_1_28_decerr_slave is either unconnected or has no load
+WARNING: [Synth 8-7129] Port S_AXI_ARLEN[5] in module axi_crossbar_v2_1_28_decerr_slave is either unconnected or has no load
+WARNING: [Synth 8-7129] Port S_AXI_ARLEN[4] in module axi_crossbar_v2_1_28_decerr_slave is either unconnected or has no load
+WARNING: [Synth 8-7129] Port S_AXI_ARLEN[3] in module axi_crossbar_v2_1_28_decerr_slave is either unconnected or has no load
+WARNING: [Synth 8-7129] Port S_AXI_ARLEN[2] in module axi_crossbar_v2_1_28_decerr_slave is either unconnected or has no load
+WARNING: [Synth 8-7129] Port S_AXI_ARLEN[1] in module axi_crossbar_v2_1_28_decerr_slave is either unconnected or has no load
+WARNING: [Synth 8-7129] Port S_AXI_ARLEN[0] in module axi_crossbar_v2_1_28_decerr_slave is either unconnected or has no load
+WARNING: [Synth 8-7129] Port ADDR[1] in module axi_crossbar_v2_1_28_addr_decoder is either unconnected or has no load
+WARNING: [Synth 8-7129] Port ADDR[0] in module axi_crossbar_v2_1_28_addr_decoder is either unconnected or has no load
+WARNING: [Synth 8-7129] Port M_AXI_BID[10] in module axi_crossbar_v2_1_28_crossbar_sasd is either unconnected or has no load
+WARNING: [Synth 8-7129] Port M_AXI_BID[9] in module axi_crossbar_v2_1_28_crossbar_sasd is either unconnected or has no load
+WARNING: [Synth 8-7129] Port M_AXI_BID[8] in module axi_crossbar_v2_1_28_crossbar_sasd is either unconnected or has no load
+WARNING: [Synth 8-7129] Port M_AXI_BID[7] in module axi_crossbar_v2_1_28_crossbar_sasd is either unconnected or has no load
+WARNING: [Synth 8-7129] Port M_AXI_BID[6] in module axi_crossbar_v2_1_28_crossbar_sasd is either unconnected or has no load
+WARNING: [Synth 8-7129] Port M_AXI_BID[5] in module axi_crossbar_v2_1_28_crossbar_sasd is either unconnected or has no load
+WARNING: [Synth 8-7129] Port M_AXI_BID[4] in module axi_crossbar_v2_1_28_crossbar_sasd is either unconnected or has no load
+WARNING: [Synth 8-7129] Port M_AXI_BID[3] in module axi_crossbar_v2_1_28_crossbar_sasd is either unconnected or has no load
+WARNING: [Synth 8-7129] Port M_AXI_BID[2] in module axi_crossbar_v2_1_28_crossbar_sasd is either unconnected or has no load
+WARNING: [Synth 8-7129] Port M_AXI_BID[1] in module axi_crossbar_v2_1_28_crossbar_sasd is either unconnected or has no load
+WARNING: [Synth 8-7129] Port M_AXI_BID[0] in module axi_crossbar_v2_1_28_crossbar_sasd is either unconnected or has no load
+WARNING: [Synth 8-7129] Port M_AXI_RID[10] in module axi_crossbar_v2_1_28_crossbar_sasd is either unconnected or has no load
+WARNING: [Synth 8-7129] Port M_AXI_RID[9] in module axi_crossbar_v2_1_28_crossbar_sasd is either unconnected or has no load
+WARNING: [Synth 8-7129] Port M_AXI_RID[8] in module axi_crossbar_v2_1_28_crossbar_sasd is either unconnected or has no load
+WARNING: [Synth 8-7129] Port M_AXI_RID[7] in module axi_crossbar_v2_1_28_crossbar_sasd is either unconnected or has no load
+WARNING: [Synth 8-7129] Port M_AXI_RID[6] in module axi_crossbar_v2_1_28_crossbar_sasd is either unconnected or has no load
+WARNING: [Synth 8-7129] Port M_AXI_RID[5] in module axi_crossbar_v2_1_28_crossbar_sasd is either unconnected or has no load
+WARNING: [Synth 8-7129] Port M_AXI_RID[4] in module axi_crossbar_v2_1_28_crossbar_sasd is either unconnected or has no load
+WARNING: [Synth 8-7129] Port M_AXI_RID[3] in module axi_crossbar_v2_1_28_crossbar_sasd is either unconnected or has no load
+WARNING: [Synth 8-7129] Port M_AXI_RID[2] in module axi_crossbar_v2_1_28_crossbar_sasd is either unconnected or has no load
+WARNING: [Synth 8-7129] Port M_AXI_RID[1] in module axi_crossbar_v2_1_28_crossbar_sasd is either unconnected or has no load
+WARNING: [Synth 8-7129] Port M_AXI_RID[0] in module axi_crossbar_v2_1_28_crossbar_sasd is either unconnected or has no load
+WARNING: [Synth 8-7129] Port s_axi_awid[0] in module axi_crossbar_v2_1_28_axi_crossbar is either unconnected or has no load
+WARNING: [Synth 8-7129] Port s_axi_awlen[7] in module axi_crossbar_v2_1_28_axi_crossbar is either unconnected or has no load
+WARNING: [Synth 8-7129] Port s_axi_awlen[6] in module axi_crossbar_v2_1_28_axi_crossbar is either unconnected or has no load
+WARNING: [Synth 8-7129] Port s_axi_awlen[5] in module axi_crossbar_v2_1_28_axi_crossbar is either unconnected or has no load
+WARNING: [Synth 8-7129] Port s_axi_awlen[4] in module axi_crossbar_v2_1_28_axi_crossbar is either unconnected or has no load
+WARNING: [Synth 8-7129] Port s_axi_awlen[3] in module axi_crossbar_v2_1_28_axi_crossbar is either unconnected or has no load
+WARNING: [Synth 8-7129] Port s_axi_awlen[2] in module axi_crossbar_v2_1_28_axi_crossbar is either unconnected or has no load
+WARNING: [Synth 8-7129] Port s_axi_awlen[1] in module axi_crossbar_v2_1_28_axi_crossbar is either unconnected or has no load
+WARNING: [Synth 8-7129] Port s_axi_awlen[0] in module axi_crossbar_v2_1_28_axi_crossbar is either unconnected or has no load
+WARNING: [Synth 8-7129] Port s_axi_awsize[2] in module axi_crossbar_v2_1_28_axi_crossbar is either unconnected or has no load
+WARNING: [Synth 8-7129] Port s_axi_awsize[1] in module axi_crossbar_v2_1_28_axi_crossbar is either unconnected or has no load
+WARNING: [Synth 8-7129] Port s_axi_awsize[0] in module axi_crossbar_v2_1_28_axi_crossbar is either unconnected or has no load
+WARNING: [Synth 8-7129] Port s_axi_awburst[1] in module axi_crossbar_v2_1_28_axi_crossbar is either unconnected or has no load
+WARNING: [Synth 8-7129] Port s_axi_awburst[0] in module axi_crossbar_v2_1_28_axi_crossbar is either unconnected or has no load
+WARNING: [Synth 8-7129] Port s_axi_awlock[0] in module axi_crossbar_v2_1_28_axi_crossbar is either unconnected or has no load
+WARNING: [Synth 8-7129] Port s_axi_awcache[3] in module axi_crossbar_v2_1_28_axi_crossbar is either unconnected or has no load
+WARNING: [Synth 8-7129] Port s_axi_awcache[2] in module axi_crossbar_v2_1_28_axi_crossbar is either unconnected or has no load
+WARNING: [Synth 8-7129] Port s_axi_awcache[1] in module axi_crossbar_v2_1_28_axi_crossbar is either unconnected or has no load
+WARNING: [Synth 8-7129] Port s_axi_awcache[0] in module axi_crossbar_v2_1_28_axi_crossbar is either unconnected or has no load
+WARNING: [Synth 8-7129] Port s_axi_awqos[3] in module axi_crossbar_v2_1_28_axi_crossbar is either unconnected or has no load
+WARNING: [Synth 8-7129] Port s_axi_awqos[2] in module axi_crossbar_v2_1_28_axi_crossbar is either unconnected or has no load
+WARNING: [Synth 8-7129] Port s_axi_awqos[1] in module axi_crossbar_v2_1_28_axi_crossbar is either unconnected or has no load
+WARNING: [Synth 8-7129] Port s_axi_awqos[0] in module axi_crossbar_v2_1_28_axi_crossbar is either unconnected or has no load
+WARNING: [Synth 8-7129] Port s_axi_awuser[0] in module axi_crossbar_v2_1_28_axi_crossbar is either unconnected or has no load
+WARNING: [Synth 8-7129] Port s_axi_wid[0] in module axi_crossbar_v2_1_28_axi_crossbar is either unconnected or has no load
+WARNING: [Synth 8-7129] Port s_axi_wlast[0] in module axi_crossbar_v2_1_28_axi_crossbar is either unconnected or has no load
+WARNING: [Synth 8-7129] Port s_axi_wuser[0] in module axi_crossbar_v2_1_28_axi_crossbar is either unconnected or has no load
+WARNING: [Synth 8-7129] Port s_axi_arid[0] in module axi_crossbar_v2_1_28_axi_crossbar is either unconnected or has no load
+WARNING: [Synth 8-7129] Port s_axi_arlen[7] in module axi_crossbar_v2_1_28_axi_crossbar is either unconnected or has no load
+WARNING: [Synth 8-7129] Port s_axi_arlen[6] in module axi_crossbar_v2_1_28_axi_crossbar is either unconnected or has no load
+WARNING: [Synth 8-7129] Port s_axi_arlen[5] in module axi_crossbar_v2_1_28_axi_crossbar is either unconnected or has no load
+WARNING: [Synth 8-7129] Port s_axi_arlen[4] in module axi_crossbar_v2_1_28_axi_crossbar is either unconnected or has no load
+WARNING: [Synth 8-7129] Port s_axi_arlen[3] in module axi_crossbar_v2_1_28_axi_crossbar is either unconnected or has no load
+WARNING: [Synth 8-7129] Port s_axi_arlen[2] in module axi_crossbar_v2_1_28_axi_crossbar is either unconnected or has no load
+WARNING: [Synth 8-7129] Port s_axi_arlen[1] in module axi_crossbar_v2_1_28_axi_crossbar is either unconnected or has no load
+WARNING: [Synth 8-7129] Port s_axi_arlen[0] in module axi_crossbar_v2_1_28_axi_crossbar is either unconnected or has no load
+WARNING: [Synth 8-7129] Port s_axi_arsize[2] in module axi_crossbar_v2_1_28_axi_crossbar is either unconnected or has no load
+WARNING: [Synth 8-7129] Port s_axi_arsize[1] in module axi_crossbar_v2_1_28_axi_crossbar is either unconnected or has no load
+WARNING: [Synth 8-7129] Port s_axi_arsize[0] in module axi_crossbar_v2_1_28_axi_crossbar is either unconnected or has no load
+WARNING: [Synth 8-7129] Port s_axi_arburst[1] in module axi_crossbar_v2_1_28_axi_crossbar is either unconnected or has no load
+WARNING: [Synth 8-7129] Port s_axi_arburst[0] in module axi_crossbar_v2_1_28_axi_crossbar is either unconnected or has no load
+WARNING: [Synth 8-7129] Port s_axi_arlock[0] in module axi_crossbar_v2_1_28_axi_crossbar is either unconnected or has no load
+WARNING: [Synth 8-7129] Port s_axi_arcache[3] in module axi_crossbar_v2_1_28_axi_crossbar is either unconnected or has no load
+WARNING: [Synth 8-7129] Port s_axi_arcache[2] in module axi_crossbar_v2_1_28_axi_crossbar is either unconnected or has no load
+WARNING: [Synth 8-7129] Port s_axi_arcache[1] in module axi_crossbar_v2_1_28_axi_crossbar is either unconnected or has no load
+WARNING: [Synth 8-7129] Port s_axi_arcache[0] in module axi_crossbar_v2_1_28_axi_crossbar is either unconnected or has no load
+WARNING: [Synth 8-7129] Port s_axi_arqos[3] in module axi_crossbar_v2_1_28_axi_crossbar is either unconnected or has no load
+WARNING: [Synth 8-7129] Port s_axi_arqos[2] in module axi_crossbar_v2_1_28_axi_crossbar is either unconnected or has no load
+WARNING: [Synth 8-7129] Port s_axi_arqos[1] in module axi_crossbar_v2_1_28_axi_crossbar is either unconnected or has no load
+WARNING: [Synth 8-7129] Port s_axi_arqos[0] in module axi_crossbar_v2_1_28_axi_crossbar is either unconnected or has no load
+WARNING: [Synth 8-7129] Port s_axi_aruser[0] in module axi_crossbar_v2_1_28_axi_crossbar is either unconnected or has no load
+WARNING: [Synth 8-7129] Port m_axi_bid[10] in module axi_crossbar_v2_1_28_axi_crossbar is either unconnected or has no load
+WARNING: [Synth 8-7129] Port m_axi_bid[9] in module axi_crossbar_v2_1_28_axi_crossbar is either unconnected or has no load
+WARNING: [Synth 8-7129] Port m_axi_bid[8] in module axi_crossbar_v2_1_28_axi_crossbar is either unconnected or has no load
+WARNING: [Synth 8-7129] Port m_axi_bid[7] in module axi_crossbar_v2_1_28_axi_crossbar is either unconnected or has no load
+WARNING: [Synth 8-7129] Port m_axi_bid[6] in module axi_crossbar_v2_1_28_axi_crossbar is either unconnected or has no load
+WARNING: [Synth 8-7129] Port m_axi_bid[5] in module axi_crossbar_v2_1_28_axi_crossbar is either unconnected or has no load
+WARNING: [Synth 8-7129] Port m_axi_bid[4] in module axi_crossbar_v2_1_28_axi_crossbar is either unconnected or has no load
+WARNING: [Synth 8-7129] Port m_axi_bid[3] in module axi_crossbar_v2_1_28_axi_crossbar is either unconnected or has no load
+WARNING: [Synth 8-7129] Port m_axi_bid[2] in module axi_crossbar_v2_1_28_axi_crossbar is either unconnected or has no load
+WARNING: [Synth 8-7129] Port m_axi_bid[1] in module axi_crossbar_v2_1_28_axi_crossbar is either unconnected or has no load
+WARNING: [Synth 8-7129] Port m_axi_bid[0] in module axi_crossbar_v2_1_28_axi_crossbar is either unconnected or has no load
+WARNING: [Synth 8-7129] Port m_axi_buser[10] in module axi_crossbar_v2_1_28_axi_crossbar is either unconnected or has no load
+WARNING: [Synth 8-7129] Port m_axi_buser[9] in module axi_crossbar_v2_1_28_axi_crossbar is either unconnected or has no load
+INFO: [Common 17-14] Message 'Synth 8-7129' appears 100 times and further instances of the messages will be disabled. Use the Tcl command set_msg_config to change the current settings.
+---------------------------------------------------------------------------------
+Finished RTL Elaboration : Time (s): cpu = 00:00:09 ; elapsed = 00:00:11 . Memory (MB): peak = 3602.703 ; gain = 484.676 ; free physical = 276162 ; free virtual = 355443
+Synthesis current peak Physical Memory [PSS] (MB): peak = 2839.969; parent = 2700.055; children = 139.914
+Synthesis current peak Virtual Memory [VSS] (MB): peak = 4578.574; parent = 3602.707; children = 975.867
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Handling Custom Attributes
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:09 ; elapsed = 00:00:11 . Memory (MB): peak = 3620.516 ; gain = 502.488 ; free physical = 276115 ; free virtual = 355396
+Synthesis current peak Physical Memory [PSS] (MB): peak = 2839.969; parent = 2700.055; children = 139.914
+Synthesis current peak Virtual Memory [VSS] (MB): peak = 4596.387; parent = 3620.520; children = 975.867
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:09 ; elapsed = 00:00:11 . Memory (MB): peak = 3620.516 ; gain = 502.488 ; free physical = 276127 ; free virtual = 355408
+Synthesis current peak Physical Memory [PSS] (MB): peak = 2839.969; parent = 2700.055; children = 139.914
+Synthesis current peak Virtual Memory [VSS] (MB): peak = 4596.387; parent = 3620.520; children = 975.867
+---------------------------------------------------------------------------------
+Netlist sorting complete. Time (s): cpu = 00:00:00.02 ; elapsed = 00:00:00.02 . Memory (MB): peak = 3620.516 ; gain = 0.000 ; free physical = 276105 ; free virtual = 355387
+INFO: [Project 1-570] Preparing netlist for logic optimization
+
+Processing XDC Constraints
+Initializing timing engine
+Parsing XDC File [/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.gen/sources_1/bd/project_1/ip/project_1_xbar_1/project_1_xbar_1_ooc.xdc] for cell 'inst'
+Finished Parsing XDC File [/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.gen/sources_1/bd/project_1/ip/project_1_xbar_1/project_1_xbar_1_ooc.xdc] for cell 'inst'
+Parsing XDC File [/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.runs/project_1_xbar_1_synth_1/dont_touch.xdc]
+Finished Parsing XDC File [/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.runs/project_1_xbar_1_synth_1/dont_touch.xdc]
+Completed Processing XDC Constraints
+
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 3717.172 ; gain = 0.000 ; free physical = 275716 ; free virtual = 354997
+INFO: [Project 1-111] Unisim Transformation Summary:
+No Unisim elements were transformed.
+
+Constraint Validation Runtime : Time (s): cpu = 00:00:00.12 ; elapsed = 00:00:00.08 . Memory (MB): peak = 3717.172 ; gain = 0.000 ; free physical = 275717 ; free virtual = 354999
+INFO: [Designutils 20-5008] Incremental synthesis strategy off
+INFO: [Synth 8-11241] undeclared symbol 'REGCCE', assumed default net type 'wire' [/proj/xbuilds/2022.2_1014_2/installs/lin64/Vivado/2022.2/data/verilog/src/unimacro/BRAM_SINGLE_MACRO.v:2170]
+---------------------------------------------------------------------------------
+Finished Constraint Validation : Time (s): cpu = 00:00:20 ; elapsed = 00:00:22 . Memory (MB): peak = 3717.172 ; gain = 599.145 ; free physical = 275778 ; free virtual = 355062
+Synthesis current peak Physical Memory [PSS] (MB): peak = 2839.969; parent = 2700.055; children = 139.914
+Synthesis current peak Virtual Memory [VSS] (MB): peak = 4693.043; parent = 3717.176; children = 975.867
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Loading Part and Timing Information
+---------------------------------------------------------------------------------
+Loading part: xczu28dr-ffvg1517-2-e
+INFO: [Synth 8-6742] Reading net delay rules and data
+---------------------------------------------------------------------------------
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:20 ; elapsed = 00:00:22 . Memory (MB): peak = 3717.172 ; gain = 599.145 ; free physical = 275780 ; free virtual = 355064
+Synthesis current peak Physical Memory [PSS] (MB): peak = 2839.969; parent = 2700.055; children = 139.914
+Synthesis current peak Virtual Memory [VSS] (MB): peak = 4693.043; parent = 3717.176; children = 975.867
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Applying 'set_property' XDC Constraints
+---------------------------------------------------------------------------------
+Applied set_property KEEP_HIERARCHY = SOFT for inst. (constraint file  /tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.runs/project_1_xbar_1_synth_1/dont_touch.xdc, line 9).
+---------------------------------------------------------------------------------
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:20 ; elapsed = 00:00:23 . Memory (MB): peak = 3717.172 ; gain = 599.145 ; free physical = 275793 ; free virtual = 355077
+Synthesis current peak Physical Memory [PSS] (MB): peak = 2839.969; parent = 2700.055; children = 139.914
+Synthesis current peak Virtual Memory [VSS] (MB): peak = 4693.043; parent = 3717.176; children = 975.867
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:20 ; elapsed = 00:00:23 . Memory (MB): peak = 3717.172 ; gain = 599.145 ; free physical = 275796 ; free virtual = 355081
+Synthesis current peak Physical Memory [PSS] (MB): peak = 2839.969; parent = 2700.055; children = 139.914
+Synthesis current peak Virtual Memory [VSS] (MB): peak = 4693.043; parent = 3717.176; children = 975.867
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start RTL Component Statistics 
+---------------------------------------------------------------------------------
+Detailed RTL Component Info : 
++---Registers : 
+	               72 Bit    Registers := 1     
+	               36 Bit    Registers := 2     
+	               12 Bit    Registers := 1     
+	                4 Bit    Registers := 1     
+	                3 Bit    Registers := 1     
+	                2 Bit    Registers := 2     
+	                1 Bit    Registers := 14    
++---Muxes : 
+	   2 Input   72 Bit        Muxes := 1     
+	   2 Input   36 Bit        Muxes := 2     
+	   2 Input   12 Bit        Muxes := 1     
+	   2 Input   11 Bit        Muxes := 1     
+	   2 Input    4 Bit        Muxes := 2     
+	   2 Input    1 Bit        Muxes := 92    
+---------------------------------------------------------------------------------
+Finished RTL Component Statistics 
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Part Resource Summary
+---------------------------------------------------------------------------------
+Part Resources:
+DSPs: 4272 (col length:192)
+BRAMs: 2160 (col length: RAMB18 192 RAMB36 96)
+---------------------------------------------------------------------------------
+Finished Part Resource Summary
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Cross Boundary and Area Optimization
+---------------------------------------------------------------------------------
+WARNING: [Synth 8-7080] Parallel synthesis criteria is not met
+INFO: [Synth 8-3936] Found unconnected internal register 'gen_sasd.crossbar_sasd_0/reg_slice_r/m_payload_i_reg' and it is trimmed from '36' to '35' bits. [/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.gen/sources_1/bd/project_1/ipshared/f0b4/hdl/axi_register_slice_v2_1_vl_rfs.v:1731]
+---------------------------------------------------------------------------------
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:23 ; elapsed = 00:00:26 . Memory (MB): peak = 3717.172 ; gain = 599.145 ; free physical = 275818 ; free virtual = 355148
+Synthesis current peak Physical Memory [PSS] (MB): peak = 2839.969; parent = 2700.055; children = 139.914
+Synthesis current peak Virtual Memory [VSS] (MB): peak = 4693.043; parent = 3717.176; children = 975.867
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Applying XDC Timing Constraints
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:31 ; elapsed = 00:00:36 . Memory (MB): peak = 3930.211 ; gain = 812.184 ; free physical = 278108 ; free virtual = 357421
+Synthesis current peak Physical Memory [PSS] (MB): peak = 3123.544; parent = 2977.421; children = 146.133
+Synthesis current peak Virtual Memory [VSS] (MB): peak = 4906.082; parent = 3930.215; children = 975.867
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Timing Optimization
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Timing Optimization : Time (s): cpu = 00:00:33 ; elapsed = 00:00:38 . Memory (MB): peak = 3972.242 ; gain = 854.215 ; free physical = 278104 ; free virtual = 357418
+Synthesis current peak Physical Memory [PSS] (MB): peak = 3141.503; parent = 2995.380; children = 146.133
+Synthesis current peak Virtual Memory [VSS] (MB): peak = 4948.113; parent = 3972.246; children = 975.867
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Technology Mapping
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Technology Mapping : Time (s): cpu = 00:00:33 ; elapsed = 00:00:38 . Memory (MB): peak = 3988.258 ; gain = 870.230 ; free physical = 278067 ; free virtual = 357382
+Synthesis current peak Physical Memory [PSS] (MB): peak = 3141.896; parent = 2995.773; children = 146.133
+Synthesis current peak Virtual Memory [VSS] (MB): peak = 4964.129; parent = 3988.262; children = 975.867
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished IO Insertion : Time (s): cpu = 00:00:36 ; elapsed = 00:00:42 . Memory (MB): peak = 3988.258 ; gain = 870.230 ; free physical = 278074 ; free virtual = 357403
+Synthesis current peak Physical Memory [PSS] (MB): peak = 3142.263; parent = 2996.140; children = 146.133
+Synthesis current peak Virtual Memory [VSS] (MB): peak = 4964.129; parent = 3988.262; children = 975.867
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Instances
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Instances : Time (s): cpu = 00:00:36 ; elapsed = 00:00:42 . Memory (MB): peak = 3988.258 ; gain = 870.230 ; free physical = 278075 ; free virtual = 357404
+Synthesis current peak Physical Memory [PSS] (MB): peak = 3142.267; parent = 2996.144; children = 146.133
+Synthesis current peak Virtual Memory [VSS] (MB): peak = 4964.129; parent = 3988.262; children = 975.867
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Rebuilding User Hierarchy
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:36 ; elapsed = 00:00:42 . Memory (MB): peak = 3988.258 ; gain = 870.230 ; free physical = 278080 ; free virtual = 357409
+Synthesis current peak Physical Memory [PSS] (MB): peak = 3142.294; parent = 2996.171; children = 146.133
+Synthesis current peak Virtual Memory [VSS] (MB): peak = 4964.129; parent = 3988.262; children = 975.867
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Ports
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Ports : Time (s): cpu = 00:00:36 ; elapsed = 00:00:42 . Memory (MB): peak = 3988.258 ; gain = 870.230 ; free physical = 278080 ; free virtual = 357409
+Synthesis current peak Physical Memory [PSS] (MB): peak = 3142.294; parent = 2996.171; children = 146.133
+Synthesis current peak Virtual Memory [VSS] (MB): peak = 4964.129; parent = 3988.262; children = 975.867
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Handling Custom Attributes
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:36 ; elapsed = 00:00:42 . Memory (MB): peak = 3988.258 ; gain = 870.230 ; free physical = 278080 ; free virtual = 357409
+Synthesis current peak Physical Memory [PSS] (MB): peak = 3142.294; parent = 2996.171; children = 146.133
+Synthesis current peak Virtual Memory [VSS] (MB): peak = 4964.129; parent = 3988.262; children = 975.867
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Nets
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Nets : Time (s): cpu = 00:00:36 ; elapsed = 00:00:42 . Memory (MB): peak = 3988.258 ; gain = 870.230 ; free physical = 278080 ; free virtual = 357408
+Synthesis current peak Physical Memory [PSS] (MB): peak = 3142.298; parent = 2996.175; children = 146.133
+Synthesis current peak Virtual Memory [VSS] (MB): peak = 4964.129; parent = 3988.262; children = 975.867
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Writing Synthesis Report
+---------------------------------------------------------------------------------
+
+Report BlackBoxes: 
++-+--------------+----------+
+| |BlackBox name |Instances |
++-+--------------+----------+
++-+--------------+----------+
+
+Report Cell Usage: 
++------+-----+------+
+|      |Cell |Count |
++------+-----+------+
+|1     |LUT1 |     3|
+|2     |LUT2 |    28|
+|3     |LUT3 |    42|
+|4     |LUT4 |    88|
+|5     |LUT5 |    95|
+|6     |LUT6 |   231|
+|7     |FDRE |   149|
++------+-----+------+
+---------------------------------------------------------------------------------
+Finished Writing Synthesis Report : Time (s): cpu = 00:00:36 ; elapsed = 00:00:42 . Memory (MB): peak = 3988.258 ; gain = 870.230 ; free physical = 278078 ; free virtual = 357407
+Synthesis current peak Physical Memory [PSS] (MB): peak = 3142.298; parent = 2996.175; children = 146.133
+Synthesis current peak Virtual Memory [VSS] (MB): peak = 4964.129; parent = 3988.262; children = 975.867
+---------------------------------------------------------------------------------
+Synthesis finished with 0 errors, 0 critical warnings and 107 warnings.
+Synthesis Optimization Runtime : Time (s): cpu = 00:00:30 ; elapsed = 00:00:36 . Memory (MB): peak = 3988.258 ; gain = 773.574 ; free physical = 278087 ; free virtual = 357416
+Synthesis Optimization Complete : Time (s): cpu = 00:00:37 ; elapsed = 00:00:43 . Memory (MB): peak = 3988.266 ; gain = 870.230 ; free physical = 278065 ; free virtual = 357394
+INFO: [Project 1-571] Translating synthesized netlist
+Netlist sorting complete. Time (s): cpu = 00:00:00.01 ; elapsed = 00:00:00.01 . Memory (MB): peak = 3996.258 ; gain = 0.000 ; free physical = 278195 ; free virtual = 357524
+INFO: [Project 1-570] Preparing netlist for logic optimization
+INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 4020.039 ; gain = 0.000 ; free physical = 278137 ; free virtual = 357466
+INFO: [Project 1-111] Unisim Transformation Summary:
+No Unisim elements were transformed.
+
+Synth Design complete, checksum: d5a2a7bd
+INFO: [Common 17-83] Releasing license: Synthesis
+72 Infos, 135 Warnings, 0 Critical Warnings and 0 Errors encountered.
+synth_design completed successfully
+synth_design: Time (s): cpu = 00:00:52 ; elapsed = 00:00:58 . Memory (MB): peak = 4020.039 ; gain = 1851.699 ; free physical = 278306 ; free virtual = 357636
+INFO: [Common 17-1381] The checkpoint '/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.runs/project_1_xbar_1_synth_1/project_1_xbar_1.dcp' has been generated.
+INFO: [Coretcl 2-1648] Added synthesis output to IP cache for IP project_1_xbar_1, cache-ID = 919ba3084bbb38da
+INFO: [Coretcl 2-1174] Renamed 7 cell refs.
+INFO: [Common 17-1381] The checkpoint '/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.runs/project_1_xbar_1_synth_1/project_1_xbar_1.dcp' has been generated.
+INFO: [runtcl-4] Executing : report_utilization -file project_1_xbar_1_utilization_synth.rpt -pb project_1_xbar_1_utilization_synth.pb
+INFO: [Common 17-206] Exiting Vivado at Fri Oct 14 13:29:54 2022...

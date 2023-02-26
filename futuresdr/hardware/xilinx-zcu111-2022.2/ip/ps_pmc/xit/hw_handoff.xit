@@ -1,0 +1,13 @@
+source_ipfile xgui/ps_pmc_v1_0.tcl
+set InstName [get_property PARAM_VALUE.Component_Name]
+set HW_HANDOFF [add_ipfile -usedIn hw_handoff "hdl//${InstName}.hwdef"]
+set pmccdo   [add_ipfile -usedIn hw_handoff "pmc_data.cdo"] 
+set pmcinitc [add_ipfile -usedIn hw_handoff "pmc_init.c"]
+set pmcinith [add_ipfile -usedIn hw_handoff "pmc_init.h"]
+
+set pscdo   [add_ipfile -usedIn hw_handoff "ps_data.cdo"] 
+set psinitc [add_ipfile -usedIn hw_handoff "ps_init.c"]
+set psinith [add_ipfile -usedIn hw_handoff "ps_init.h"]
+[reg_generate IpView [current_outdir ] ]
+[uninit IpView]
+

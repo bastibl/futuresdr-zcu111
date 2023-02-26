@@ -1,3 +1,6 @@
 [submodule "xilinx-zcu111-2022.2/components/ext_source/meta-rust"]
 	path = xilinx-zcu111-2022.2/components/ext_source/meta-rust
 	url = https://github.com/meta-rust/meta-rust.git
+[submodule "futuresdr/components/ext_source/meta-rust"]
+	path = futuresdr/components/ext_source/meta-rust
+	url = https://github.com/meta-rust/meta-rust.git

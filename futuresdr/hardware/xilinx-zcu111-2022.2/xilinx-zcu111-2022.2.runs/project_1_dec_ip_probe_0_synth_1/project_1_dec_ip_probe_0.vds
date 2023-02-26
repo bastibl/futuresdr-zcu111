@@ -1,0 +1,282 @@
+#-----------------------------------------------------------
+# Vivado v2022.2 (64-bit)
+# SW Build 3671981 on Fri Oct 14 04:59:54 MDT 2022
+# IP Build 3669848 on Fri Oct 14 08:30:02 MDT 2022
+# Start of session at: Fri Oct 14 13:26:49 2022
+# Process ID: 51327
+# Current directory: /tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.runs/project_1_dec_ip_probe_0_synth_1
+# Command line: vivado -log project_1_dec_ip_probe_0.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source project_1_dec_ip_probe_0.tcl
+# Log file: /tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.runs/project_1_dec_ip_probe_0_synth_1/project_1_dec_ip_probe_0.vds
+# Journal file: /tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.runs/project_1_dec_ip_probe_0_synth_1/vivado.jou
+# Running On: xcosswbld17, OS: Linux, CPU Frequency: 1090.402 MHz, CPU Physical cores: 32, Host memory: 404352 MB
+#-----------------------------------------------------------
+INFO: [Common 17-1239] XILINX_LOCAL_USER_DATA is set to 'NO'.
+Sourcing tcl script '/home/xbrbbot/.Xilinx/Vivado/Vivado_init.tcl'
+484 Beta devices matching pattern found, 484 enabled.
+enable_beta_device: Time (s): cpu = 00:00:16 ; elapsed = 00:00:18 . Memory (MB): peak = 2067.719 ; gain = 131.633 ; free physical = 250508 ; free virtual = 329537
+source project_1_dec_ip_probe_0.tcl -notrace
+INFO: [IP_Flow 19-234] Refreshing IP repositories
+WARNING: [IP_Flow 19-395] Problem validating against XML schema: see 'spirit:vendor' : Mandatory element missing or unexpected element found
+WARNING: [IP_Flow 19-395] Problem validating against XML schema: see 'spirit:vendor' : Mandatory element missing or unexpected element found
+INFO: [IP_Flow 19-1700] Loaded user IP repository '/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/ip'.
+INFO: [IP_Flow 19-2313] Loaded Vivado IP repository '/proj/xbuilds/2022.2_1014_2/installs/lin64/Vivado/2022.2/data/ip'.
+WARNING: [IP_Flow 19-1663] Duplicate IP found for 'xilinx.com:ip:axi_quad_spi:3.2'. The one found in IP location '/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/ip/axi_quad_spi' will take precedence over the same IP in the Xilinx installed IP.
+WARNING: [IP_Flow 19-4830] Duplicate Interface found for 'xilinx.com:display_startup_io:startup_io:1.0'. The one found in location '/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/ip/axi_quad_spi/startup_io.xml' will take precedence over the same Interface in location '/proj/xbuilds/2022.2_1014_2/installs/lin64/Vivado/2022.2/data/ip/xilinx/axi_quad_spi_v3_2/startup_io.xml'
+WARNING: [IP_Flow 19-4830] Duplicate Interface found for 'xilinx.com:display_usp_rf_data_converter:diff_pins:1.0'. The one found in location '/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/ip/usp_rf_data_converter/interfaces/diff_pins.xml' will take precedence over the same Interface in location '/proj/xbuilds/2022.2_1014_2/installs/lin64/Vivado/2022.2/data/ip/xilinx/usp_rf_data_converter_v2_6/interfaces/diff_pins.xml'
+WARNING: [IP_Flow 19-4830] Duplicate Interface found for 'xilinx.com:display_usp_rf_data_converter:rts_pins:1.0'. The one found in location '/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/ip/usp_rf_data_converter/interfaces/rts_pins.xml' will take precedence over the same Interface in location '/proj/xbuilds/2022.2_1014_2/installs/lin64/Vivado/2022.2/data/ip/xilinx/usp_rf_data_converter_v2_6/interfaces/rts_pins.xml'
+WARNING: [IP_Flow 19-4830] Duplicate Interface found for 'xilinx.com:display_usp_rf_data_converter:drp_mon_pins:1.0'. The one found in location '/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/ip/usp_rf_data_converter/interfaces/drp_mon_pins.xml' will take precedence over the same Interface in location '/proj/xbuilds/2022.2_1014_2/installs/lin64/Vivado/2022.2/data/ip/xilinx/usp_rf_data_converter_v2_6/interfaces/drp_mon_pins.xml'
+WARNING: [IP_Flow 19-4830] Duplicate Interface found for 'xilinx.com:display_usp_rf_data_converter:debug_pins:1.0'. The one found in location '/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/ip/usp_rf_data_converter/interfaces/debug_pins.xml' will take precedence over the same Interface in location '/proj/xbuilds/2022.2_1014_2/installs/lin64/Vivado/2022.2/data/ip/xilinx/usp_rf_data_converter_v2_6/interfaces/debug_pins.xml'
+WARNING: [IP_Flow 19-4830] Duplicate Interface found for 'xilinx.com:user:hsams_data_sink_ctrl:1.0'. The one found in location '/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/ip/usp_rf_data_converter/interfaces/hsams_data_sink_ctrl.xml' will take precedence over the same Interface in location '/proj/xbuilds/2022.2_1014_2/installs/lin64/Vivado/2022.2/data/ip/xilinx/usp_rf_data_converter_v2_6/interfaces/hsams_data_sink_ctrl.xml'
+WARNING: [IP_Flow 19-4830] Duplicate Interface found for 'xilinx.com:user:hsams_data_source_ctrl:1.0'. The one found in location '/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/ip/usp_rf_data_converter/interfaces/hsams_data_source_ctrl.xml' will take precedence over the same Interface in location '/proj/xbuilds/2022.2_1014_2/installs/lin64/Vivado/2022.2/data/ip/xilinx/usp_rf_data_converter_v2_6/interfaces/hsams_data_source_ctrl.xml'
+WARNING: [IP_Flow 19-4830] Duplicate Interface found for 'xilinx.com:display_usp_rf_data_converter:cal_freeze_pins:1.0'. The one found in location '/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/ip/usp_rf_data_converter/interfaces/cal_freeze_pins.xml' will take precedence over the same Interface in location '/proj/xbuilds/2022.2_1014_2/installs/lin64/Vivado/2022.2/data/ip/xilinx/usp_rf_data_converter_v2_6/interfaces/cal_freeze_pins.xml'
+WARNING: [IP_Flow 19-4830] Duplicate Interface found for 'xilinx.com:interface:gt_hsclk_debug:1.0'. The one found in location '/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/ip/ps_pmc/interfaces/gt_hsclk_debug_v1_0/gt_hsclk_debug.xml' will take precedence over the same Interface in location '/proj/xbuilds/2022.2_1014_2/installs/lin64/Vivado/2022.2/data/ip/xilinx/gt_quad_base_v1_1/interfaces/gt_hsclk_debug_v1_0/gt_hsclk_debug.xml'
+WARNING: [IP_Flow 19-4830] Duplicate Interface found for 'xilinx.com:display_pcie4:pcie4_cfg_external_msix:1.0'. The one found in location '/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/ip/ps_pmc/interfaces/pcie4_cfg_ext_msix.xml' will take precedence over the same Interface in location '/proj/xbuilds/2022.2_1014_2/installs/lin64/Vivado/2022.2/data/ip/xilinx/pcie4_uscale_plus_v1_3/interfaces/pcie4_cfg_ext_msix.xml'
+WARNING: [IP_Flow 19-4830] Duplicate Interface found for 'xilinx.com:interface:gt_rxmargin_intf:1.0'. The one found in location '/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/ip/ps_pmc/interfaces/gt_rxmargin_intf_v1_0/gt_rxmargin_intf.xml' will take precedence over the same Interface in location '/proj/xbuilds/2022.2_1014_2/installs/lin64/Vivado/2022.2/data/ip/xilinx/gt_quad_base_v1_1/interfaces/gt_rxmargin_intf_v1_0/gt_rxmargin_intf.xml'
+WARNING: [IP_Flow 19-4830] Duplicate Interface found for 'xilinx.com:user:acelite:1.0'. The one found in location '/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/ip/ps_pmc/interfaces/acelite.xml' will take precedence over the same Interface in location '/proj/xbuilds/2022.2_1014_2/installs/lin64/Vivado/2022.2/data/ip/xilinx/pspmc_v1_2/interfaces/acelite.xml'
+WARNING: [IP_Flow 19-4830] Duplicate Interface found for 'xilinx.com:interface:gt_debug:1.0'. The one found in location '/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/ip/ps_pmc/interfaces/gt_debug_v1_0/gt_debug.xml' will take precedence over the same Interface in location '/proj/xbuilds/2022.2_1014_2/installs/lin64/Vivado/2022.2/data/ip/xilinx/gt_quad_base_v1_1/interfaces/gt_debug_v1_0/gt_debug.xml'
+WARNING: [IP_Flow 19-4830] Duplicate Interface found for 'xilinx.com:display_pcie4:pcie4_cfg_mgmt:1.0'. The one found in location '/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/ip/ps_pmc/interfaces/pcie4_cfg_mgmt.xml' will take precedence over the same Interface in location '/proj/xbuilds/2022.2_1014_2/installs/lin64/Vivado/2022.2/data/ip/xilinx/pcie4_uscale_plus_v1_3/interfaces/pcie4_cfg_mgmt.xml'
+WARNING: [IP_Flow 19-4830] Duplicate Interface found for 'xilinx.com:display_pcie4c_uscaleplus:transceiver_debug:1.0'. The one found in location '/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/ip/ps_pmc/interfaces/transceiver_debug.xml' will take precedence over the same Interface in location '/proj/xbuilds/2022.2_1014_2/installs/lin64/Vivado/2022.2/data/ip/xilinx/pcie4c_uscale_plus_v1_0/interfaces/transceiver_debug.xml'
+WARNING: [IP_Flow 19-4830] Duplicate Interface found for 'xilinx.com:display_pcie4:pcie4_cfg_control:1.0'. The one found in location '/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/ip/ps_pmc/interfaces/pcie4_cfg_control.xml' will take precedence over the same Interface in location '/proj/xbuilds/2022.2_1014_2/installs/lin64/Vivado/2022.2/data/ip/xilinx/pcie4_uscale_plus_v1_3/interfaces/pcie4_cfg_control.xml'
+WARNING: [IP_Flow 19-4830] Duplicate Interface found for 'xilinx.com:interface:gt_channel_debug:1.0'. The one found in location '/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/ip/ps_pmc/interfaces/gt_channel_debug_v1_0/gt_channel_debug.xml' will take precedence over the same Interface in location '/proj/xbuilds/2022.2_1014_2/installs/lin64/Vivado/2022.2/data/ip/xilinx/gt_quad_base_v1_1/interfaces/gt_channel_debug_v1_0/gt_channel_debug.xml'
+WARNING: [IP_Flow 19-4830] Duplicate Interface found for 'xilinx.com:interface:gt_bufgt:1.0'. The one found in location '/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/ip/ps_pmc/interfaces/gt_bufgt_v1_0/gt_bufgt.xml' will take precedence over the same Interface in location '/proj/xbuilds/2022.2_1014_2/installs/lin64/Vivado/2022.2/data/ip/xilinx/gt_quad_base_v1_1/interfaces/gt_bufgt_v1_0/gt_bufgt.xml'
+WARNING: [IP_Flow 19-4830] Duplicate Interface found for 'xilinx.com:interface:gt_tx_interface:1.0'. The one found in location '/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/ip/ps_pmc/interfaces/gt_tx_interface_v1_0/gt_tx_interface.xml' will take precedence over the same Interface in location '/proj/xbuilds/2022.2_1014_2/installs/lin64/Vivado/2022.2/data/ip/interfaces/gt_tx_interface_v1_0/gt_tx_interface.xml'
+WARNING: [IP_Flow 19-4830] Duplicate Interface found for 'xilinx.com:display_pcie4:pcie4_cfg_pm:1.0'. The one found in location '/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/ip/ps_pmc/interfaces/pcie4_cfg_pm.xml' will take precedence over the same Interface in location '/proj/xbuilds/2022.2_1014_2/installs/lin64/Vivado/2022.2/data/ip/xilinx/pcie4_uscale_plus_v1_3/interfaces/pcie4_cfg_pm.xml'
+WARNING: [IP_Flow 19-4830] Duplicate Interface found for 'xilinx.com:display_pcie4:pcie4_cfg_status:1.0'. The one found in location '/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/ip/ps_pmc/interfaces/pcie4_cfg_status.xml' will take precedence over the same Interface in location '/proj/xbuilds/2022.2_1014_2/installs/lin64/Vivado/2022.2/data/ip/xilinx/pcie4_uscale_plus_v1_3/interfaces/pcie4_cfg_status.xml'
+WARNING: [IP_Flow 19-4830] Duplicate Interface found for 'xilinx.com:display_pcie4:pcie4_pl:1.0'. The one found in location '/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/ip/ps_pmc/interfaces/pcie4_pl.xml' will take precedence over the same Interface in location '/proj/xbuilds/2022.2_1014_2/installs/lin64/Vivado/2022.2/data/ip/xilinx/pcie4_uscale_plus_v1_3/interfaces/pcie4_pl.xml'
+WARNING: [IP_Flow 19-4830] Duplicate Interface found for 'xilinx.com:user:smmu:1.0'. The one found in location '/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/ip/ps_pmc/interfaces/smmu.xml' will take precedence over the same Interface in location '/proj/xbuilds/2022.2_1014_2/installs/lin64/Vivado/2022.2/data/ip/xilinx/pspmc_v1_2/interfaces/smmu.xml'
+WARNING: [IP_Flow 19-4830] Duplicate Interface found for 'xilinx.com:display_pcie4:pcie4_pcie_id:1.0'. The one found in location '/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/ip/ps_pmc/interfaces/pcie4_pcie_id.xml' will take precedence over the same Interface in location '/proj/xbuilds/2022.2_1014_2/installs/lin64/Vivado/2022.2/data/ip/xilinx/pcie4_uscale_plus_v1_3/interfaces/pcie4_pcie_id.xml'
+WARNING: [IP_Flow 19-4830] Duplicate Interface found for 'xilinx.com:interface:gt_rx_interface:1.0'. The one found in location '/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/ip/ps_pmc/interfaces/gt_rx_interface_v1_0/gt_rx_interface.xml' will take precedence over the same Interface in location '/proj/xbuilds/2022.2_1014_2/installs/lin64/Vivado/2022.2/data/ip/interfaces/gt_rx_interface_v1_0/gt_rx_interface.xml'
+WARNING: [IP_Flow 19-4830] Duplicate Interface found for 'xilinx.com:display_pcie4:pcie4_cfg_msix_external:1.0'. The one found in location '/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/ip/ps_pmc/interfaces/pcie4_cfg_msix.xml' will take precedence over the same Interface in location '/proj/xbuilds/2022.2_1014_2/installs/lin64/Vivado/2022.2/data/ip/xilinx/pcie4_uscale_plus_v1_3/interfaces/pcie4_cfg_msix.xml'
+WARNING: [IP_Flow 19-4830] Duplicate Interface found for 'xilinx.com:display_pcie4:pcie4_cfg_msix_internal:1.0'. The one found in location '/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/ip/ps_pmc/interfaces/pcie4_cfg_msix_int.xml' will take precedence over the same Interface in location '/proj/xbuilds/2022.2_1014_2/installs/lin64/Vivado/2022.2/data/ip/xilinx/pcie4_uscale_plus_v1_3/interfaces/pcie4_cfg_msix_int.xml'
+INFO: [IP_Flow 19-6924] IPCACHE: Running cache check for IP inst: project_1_dec_ip_probe_0
+Command: synth_design -top project_1_dec_ip_probe_0 -part xczu28dr-ffvg1517-2-e -incremental_mode off -mode out_of_context
+Starting synth_design
+Attempting to get a license for feature 'Synthesis' and/or device 'xczu28dr'
+INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xczu28dr'
+INFO: [Device 21-403] Loading part xczu28dr-ffvg1517-2-e
+INFO: [Synth 8-7079] Multithreading enabled for synth_design using a maximum of 4 processes.
+INFO: [Synth 8-7078] Launching helper process for spawning children vivado processes
+INFO: [Synth 8-7075] Helper process launched with PID 56260
+INFO: [Synth 8-11241] undeclared symbol 'REGCCE', assumed default net type 'wire' [/proj/xbuilds/2022.2_1014_2/installs/lin64/Vivado/2022.2/data/verilog/src/unimacro/BRAM_SINGLE_MACRO.v:2170]
+---------------------------------------------------------------------------------
+Starting RTL Elaboration : Time (s): cpu = 00:00:05 ; elapsed = 00:00:05 . Memory (MB): peak = 3425.645 ; gain = 320.801 ; free physical = 216270 ; free virtual = 295400
+Synthesis current peak Physical Memory [PSS] (MB): peak = 2585.254; parent = 2466.432; children = 118.822
+Synthesis current peak Virtual Memory [VSS] (MB): peak = 4437.488; parent = 3431.586; children = 1005.902
+---------------------------------------------------------------------------------
+INFO: [Synth 8-638] synthesizing module 'project_1_dec_ip_probe_0' [/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.gen/sources_1/bd/project_1/ip/project_1_dec_ip_probe_0/synth/project_1_dec_ip_probe_0.vhd:68]
+INFO: [Synth 8-3491] module 'axis_probe' declared at '/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.gen/sources_1/bd/project_1/ipshared/1196/axis_probe.vhd:6' bound to instance 'U0' of component 'axis_probe' [/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.gen/sources_1/bd/project_1/ip/project_1_dec_ip_probe_0/synth/project_1_dec_ip_probe_0.vhd:99]
+INFO: [Synth 8-638] synthesizing module 'axis_probe' [/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.gen/sources_1/bd/project_1/ipshared/1196/axis_probe.vhd:20]
+INFO: [Synth 8-256] done synthesizing module 'axis_probe' (0#1) [/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.gen/sources_1/bd/project_1/ipshared/1196/axis_probe.vhd:20]
+INFO: [Synth 8-256] done synthesizing module 'project_1_dec_ip_probe_0' (0#1) [/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.gen/sources_1/bd/project_1/ip/project_1_dec_ip_probe_0/synth/project_1_dec_ip_probe_0.vhd:68]
+WARNING: [Synth 8-7129] Port clk in module axis_probe is either unconnected or has no load
+---------------------------------------------------------------------------------
+Finished RTL Elaboration : Time (s): cpu = 00:00:06 ; elapsed = 00:00:07 . Memory (MB): peak = 3483.551 ; gain = 378.707 ; free physical = 213908 ; free virtual = 293042
+Synthesis current peak Physical Memory [PSS] (MB): peak = 2585.254; parent = 2466.432; children = 118.822
+Synthesis current peak Virtual Memory [VSS] (MB): peak = 4489.457; parent = 3483.555; children = 1005.902
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Handling Custom Attributes
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:06 ; elapsed = 00:00:07 . Memory (MB): peak = 3501.363 ; gain = 396.520 ; free physical = 213743 ; free virtual = 292878
+Synthesis current peak Physical Memory [PSS] (MB): peak = 2585.254; parent = 2466.432; children = 118.822
+Synthesis current peak Virtual Memory [VSS] (MB): peak = 4507.270; parent = 3501.367; children = 1005.902
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:06 ; elapsed = 00:00:07 . Memory (MB): peak = 3501.363 ; gain = 396.520 ; free physical = 213669 ; free virtual = 292803
+Synthesis current peak Physical Memory [PSS] (MB): peak = 2585.254; parent = 2466.432; children = 118.822
+Synthesis current peak Virtual Memory [VSS] (MB): peak = 4507.270; parent = 3501.367; children = 1005.902
+---------------------------------------------------------------------------------
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 3501.363 ; gain = 0.000 ; free physical = 213553 ; free virtual = 292688
+INFO: [Project 1-570] Preparing netlist for logic optimization
+
+Processing XDC Constraints
+Initializing timing engine
+Completed Processing XDC Constraints
+
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 3532.238 ; gain = 0.000 ; free physical = 211352 ; free virtual = 290478
+INFO: [Project 1-111] Unisim Transformation Summary:
+No Unisim elements were transformed.
+
+Constraint Validation Runtime : Time (s): cpu = 00:00:00.01 ; elapsed = 00:00:00.02 . Memory (MB): peak = 3542.145 ; gain = 9.906 ; free physical = 211306 ; free virtual = 290435
+INFO: [Designutils 20-5008] Incremental synthesis strategy off
+INFO: [Synth 8-11241] undeclared symbol 'REGCCE', assumed default net type 'wire' [/proj/xbuilds/2022.2_1014_2/installs/lin64/Vivado/2022.2/data/verilog/src/unimacro/BRAM_SINGLE_MACRO.v:2170]
+---------------------------------------------------------------------------------
+Finished Constraint Validation : Time (s): cpu = 00:00:14 ; elapsed = 00:00:16 . Memory (MB): peak = 3542.145 ; gain = 437.301 ; free physical = 207440 ; free virtual = 286587
+Synthesis current peak Physical Memory [PSS] (MB): peak = 2585.254; parent = 2466.432; children = 118.822
+Synthesis current peak Virtual Memory [VSS] (MB): peak = 4548.051; parent = 3542.148; children = 1005.902
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Loading Part and Timing Information
+---------------------------------------------------------------------------------
+Loading part: xczu28dr-ffvg1517-2-e
+INFO: [Synth 8-6742] Reading net delay rules and data
+---------------------------------------------------------------------------------
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:14 ; elapsed = 00:00:16 . Memory (MB): peak = 3542.145 ; gain = 437.301 ; free physical = 207725 ; free virtual = 286873
+Synthesis current peak Physical Memory [PSS] (MB): peak = 2585.254; parent = 2466.432; children = 118.822
+Synthesis current peak Virtual Memory [VSS] (MB): peak = 4548.051; parent = 3542.148; children = 1005.902
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Applying 'set_property' XDC Constraints
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:14 ; elapsed = 00:00:16 . Memory (MB): peak = 3542.145 ; gain = 437.301 ; free physical = 207725 ; free virtual = 286876
+Synthesis current peak Physical Memory [PSS] (MB): peak = 2585.254; parent = 2466.432; children = 118.822
+Synthesis current peak Virtual Memory [VSS] (MB): peak = 4548.051; parent = 3542.148; children = 1005.902
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:14 ; elapsed = 00:00:17 . Memory (MB): peak = 3542.145 ; gain = 437.301 ; free physical = 207449 ; free virtual = 286592
+Synthesis current peak Physical Memory [PSS] (MB): peak = 2585.254; parent = 2466.432; children = 118.822
+Synthesis current peak Virtual Memory [VSS] (MB): peak = 4548.051; parent = 3542.148; children = 1005.902
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start RTL Component Statistics 
+---------------------------------------------------------------------------------
+Detailed RTL Component Info : 
+---------------------------------------------------------------------------------
+Finished RTL Component Statistics 
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Part Resource Summary
+---------------------------------------------------------------------------------
+Part Resources:
+DSPs: 4272 (col length:192)
+BRAMs: 2160 (col length: RAMB18 192 RAMB36 96)
+---------------------------------------------------------------------------------
+Finished Part Resource Summary
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Cross Boundary and Area Optimization
+---------------------------------------------------------------------------------
+WARNING: [Synth 8-7080] Parallel synthesis criteria is not met
+WARNING: [Synth 8-3330] design project_1_dec_ip_probe_0 has an empty top module
+WARNING: [Synth 8-7129] Port clk in module project_1_dec_ip_probe_0 is either unconnected or has no load
+---------------------------------------------------------------------------------
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:17 ; elapsed = 00:00:19 . Memory (MB): peak = 3542.145 ; gain = 437.301 ; free physical = 206266 ; free virtual = 285432
+Synthesis current peak Physical Memory [PSS] (MB): peak = 2585.254; parent = 2466.432; children = 118.822
+Synthesis current peak Virtual Memory [VSS] (MB): peak = 4548.051; parent = 3542.148; children = 1005.902
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Applying XDC Timing Constraints
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:28 ; elapsed = 00:00:32 . Memory (MB): peak = 3894.230 ; gain = 789.387 ; free physical = 200369 ; free virtual = 279658
+Synthesis current peak Physical Memory [PSS] (MB): peak = 3004.272; parent = 2886.041; children = 118.822
+Synthesis current peak Virtual Memory [VSS] (MB): peak = 4900.137; parent = 3894.234; children = 1005.902
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Timing Optimization
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Timing Optimization : Time (s): cpu = 00:00:28 ; elapsed = 00:00:32 . Memory (MB): peak = 3894.230 ; gain = 789.387 ; free physical = 200378 ; free virtual = 279671
+Synthesis current peak Physical Memory [PSS] (MB): peak = 3004.294; parent = 2886.063; children = 118.822
+Synthesis current peak Virtual Memory [VSS] (MB): peak = 4900.137; parent = 3894.234; children = 1005.902
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Technology Mapping
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Technology Mapping : Time (s): cpu = 00:00:28 ; elapsed = 00:00:32 . Memory (MB): peak = 3913.262 ; gain = 808.418 ; free physical = 200298 ; free virtual = 279594
+Synthesis current peak Physical Memory [PSS] (MB): peak = 3004.489; parent = 2886.263; children = 118.822
+Synthesis current peak Virtual Memory [VSS] (MB): peak = 4919.168; parent = 3913.266; children = 1005.902
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished IO Insertion : Time (s): cpu = 00:00:32 ; elapsed = 00:00:36 . Memory (MB): peak = 3919.199 ; gain = 814.355 ; free physical = 202411 ; free virtual = 281715
+Synthesis current peak Physical Memory [PSS] (MB): peak = 3005.577; parent = 2886.854; children = 118.822
+Synthesis current peak Virtual Memory [VSS] (MB): peak = 4925.105; parent = 3919.203; children = 1005.902
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Instances
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Instances : Time (s): cpu = 00:00:32 ; elapsed = 00:00:37 . Memory (MB): peak = 3919.199 ; gain = 814.355 ; free physical = 202403 ; free virtual = 281705
+Synthesis current peak Physical Memory [PSS] (MB): peak = 3005.577; parent = 2886.854; children = 118.822
+Synthesis current peak Virtual Memory [VSS] (MB): peak = 4925.105; parent = 3919.203; children = 1005.902
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Rebuilding User Hierarchy
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:32 ; elapsed = 00:00:37 . Memory (MB): peak = 3919.199 ; gain = 814.355 ; free physical = 202349 ; free virtual = 281654
+Synthesis current peak Physical Memory [PSS] (MB): peak = 3005.589; parent = 2886.865; children = 118.822
+Synthesis current peak Virtual Memory [VSS] (MB): peak = 4925.105; parent = 3919.203; children = 1005.902
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Ports
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Ports : Time (s): cpu = 00:00:32 ; elapsed = 00:00:37 . Memory (MB): peak = 3919.199 ; gain = 814.355 ; free physical = 202338 ; free virtual = 281646
+Synthesis current peak Physical Memory [PSS] (MB): peak = 3005.589; parent = 2886.865; children = 118.822
+Synthesis current peak Virtual Memory [VSS] (MB): peak = 4925.105; parent = 3919.203; children = 1005.902
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Handling Custom Attributes
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:32 ; elapsed = 00:00:37 . Memory (MB): peak = 3919.199 ; gain = 814.355 ; free physical = 202311 ; free virtual = 281624
+Synthesis current peak Physical Memory [PSS] (MB): peak = 3005.780; parent = 2886.970; children = 118.822
+Synthesis current peak Virtual Memory [VSS] (MB): peak = 4925.105; parent = 3919.203; children = 1005.902
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Nets
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Nets : Time (s): cpu = 00:00:32 ; elapsed = 00:00:37 . Memory (MB): peak = 3919.199 ; gain = 814.355 ; free physical = 202312 ; free virtual = 281615
+Synthesis current peak Physical Memory [PSS] (MB): peak = 3005.784; parent = 2886.980; children = 118.822
+Synthesis current peak Virtual Memory [VSS] (MB): peak = 4925.105; parent = 3919.203; children = 1005.902
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Writing Synthesis Report
+---------------------------------------------------------------------------------
+
+Report BlackBoxes: 
++-+--------------+----------+
+| |BlackBox name |Instances |
++-+--------------+----------+
++-+--------------+----------+
+
+Report Cell Usage: 
++-+-----+------+
+| |Cell |Count |
++-+-----+------+
++-+-----+------+
+---------------------------------------------------------------------------------
+Finished Writing Synthesis Report : Time (s): cpu = 00:00:32 ; elapsed = 00:00:37 . Memory (MB): peak = 3919.199 ; gain = 814.355 ; free physical = 202311 ; free virtual = 281614
+Synthesis current peak Physical Memory [PSS] (MB): peak = 3005.793; parent = 2886.994; children = 118.822
+Synthesis current peak Virtual Memory [VSS] (MB): peak = 4925.105; parent = 3919.203; children = 1005.902
+---------------------------------------------------------------------------------
+Synthesis finished with 0 errors, 0 critical warnings and 3 warnings.
+Synthesis Optimization Runtime : Time (s): cpu = 00:00:30 ; elapsed = 00:00:35 . Memory (MB): peak = 3919.199 ; gain = 773.574 ; free physical = 202402 ; free virtual = 281705
+Synthesis Optimization Complete : Time (s): cpu = 00:00:32 ; elapsed = 00:00:38 . Memory (MB): peak = 3919.207 ; gain = 814.355 ; free physical = 202442 ; free virtual = 281753
+INFO: [Project 1-571] Translating synthesized netlist
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 3919.207 ; gain = 0.000 ; free physical = 202455 ; free virtual = 281766
+INFO: [Project 1-570] Preparing netlist for logic optimization
+INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 3966.793 ; gain = 0.000 ; free physical = 202315 ; free virtual = 281607
+INFO: [Project 1-111] Unisim Transformation Summary:
+No Unisim elements were transformed.
+
+Synth Design complete, checksum: dbd023e2
+INFO: [Common 17-83] Releasing license: Synthesis
+25 Infos, 34 Warnings, 0 Critical Warnings and 0 Errors encountered.
+synth_design completed successfully
+synth_design: Time (s): cpu = 00:00:55 ; elapsed = 00:01:00 . Memory (MB): peak = 3966.793 ; gain = 1800.262 ; free physical = 202333 ; free virtual = 281624
+INFO: [Common 17-1381] The checkpoint '/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.runs/project_1_dec_ip_probe_0_synth_1/project_1_dec_ip_probe_0.dcp' has been generated.
+INFO: [Common 17-1381] The checkpoint '/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.runs/project_1_dec_ip_probe_0_synth_1/project_1_dec_ip_probe_0.dcp' has been generated.
+INFO: [runtcl-4] Executing : report_utilization -file project_1_dec_ip_probe_0_utilization_synth.rpt -pb project_1_dec_ip_probe_0_utilization_synth.pb
+INFO: [Common 17-206] Exiting Vivado at Fri Oct 14 13:28:25 2022...

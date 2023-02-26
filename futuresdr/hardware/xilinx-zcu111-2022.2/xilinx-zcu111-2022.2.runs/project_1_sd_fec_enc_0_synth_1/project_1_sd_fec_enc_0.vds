@@ -1,0 +1,450 @@
+#-----------------------------------------------------------
+# Vivado v2022.2 (64-bit)
+# SW Build 3671981 on Fri Oct 14 04:59:54 MDT 2022
+# IP Build 3669848 on Fri Oct 14 08:30:02 MDT 2022
+# Start of session at: Fri Oct 14 13:24:39 2022
+# Process ID: 44998
+# Current directory: /tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.runs/project_1_sd_fec_enc_0_synth_1
+# Command line: vivado -log project_1_sd_fec_enc_0.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source project_1_sd_fec_enc_0.tcl
+# Log file: /tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.runs/project_1_sd_fec_enc_0_synth_1/project_1_sd_fec_enc_0.vds
+# Journal file: /tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.runs/project_1_sd_fec_enc_0_synth_1/vivado.jou
+# Running On: xcosswbld17, OS: Linux, CPU Frequency: 1153.068 MHz, CPU Physical cores: 32, Host memory: 404352 MB
+#-----------------------------------------------------------
+INFO: [Common 17-1239] XILINX_LOCAL_USER_DATA is set to 'NO'.
+Sourcing tcl script '/home/xbrbbot/.Xilinx/Vivado/Vivado_init.tcl'
+484 Beta devices matching pattern found, 484 enabled.
+enable_beta_device: Time (s): cpu = 00:00:19 ; elapsed = 00:00:37 . Memory (MB): peak = 2067.238 ; gain = 130.633 ; free physical = 248734 ; free virtual = 327686
+source project_1_sd_fec_enc_0.tcl -notrace
+INFO: [IP_Flow 19-234] Refreshing IP repositories
+WARNING: [IP_Flow 19-395] Problem validating against XML schema: see 'spirit:vendor' : Mandatory element missing or unexpected element found
+WARNING: [IP_Flow 19-395] Problem validating against XML schema: see 'spirit:vendor' : Mandatory element missing or unexpected element found
+INFO: [IP_Flow 19-1700] Loaded user IP repository '/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/ip'.
+INFO: [IP_Flow 19-2313] Loaded Vivado IP repository '/proj/xbuilds/2022.2_1014_2/installs/lin64/Vivado/2022.2/data/ip'.
+WARNING: [IP_Flow 19-1663] Duplicate IP found for 'xilinx.com:ip:axi_quad_spi:3.2'. The one found in IP location '/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/ip/axi_quad_spi' will take precedence over the same IP in the Xilinx installed IP.
+WARNING: [IP_Flow 19-4830] Duplicate Interface found for 'xilinx.com:display_startup_io:startup_io:1.0'. The one found in location '/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/ip/axi_quad_spi/startup_io.xml' will take precedence over the same Interface in location '/proj/xbuilds/2022.2_1014_2/installs/lin64/Vivado/2022.2/data/ip/xilinx/axi_quad_spi_v3_2/startup_io.xml'
+WARNING: [IP_Flow 19-4830] Duplicate Interface found for 'xilinx.com:display_usp_rf_data_converter:diff_pins:1.0'. The one found in location '/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/ip/usp_rf_data_converter/interfaces/diff_pins.xml' will take precedence over the same Interface in location '/proj/xbuilds/2022.2_1014_2/installs/lin64/Vivado/2022.2/data/ip/xilinx/usp_rf_data_converter_v2_6/interfaces/diff_pins.xml'
+WARNING: [IP_Flow 19-4830] Duplicate Interface found for 'xilinx.com:display_usp_rf_data_converter:rts_pins:1.0'. The one found in location '/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/ip/usp_rf_data_converter/interfaces/rts_pins.xml' will take precedence over the same Interface in location '/proj/xbuilds/2022.2_1014_2/installs/lin64/Vivado/2022.2/data/ip/xilinx/usp_rf_data_converter_v2_6/interfaces/rts_pins.xml'
+WARNING: [IP_Flow 19-4830] Duplicate Interface found for 'xilinx.com:display_usp_rf_data_converter:drp_mon_pins:1.0'. The one found in location '/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/ip/usp_rf_data_converter/interfaces/drp_mon_pins.xml' will take precedence over the same Interface in location '/proj/xbuilds/2022.2_1014_2/installs/lin64/Vivado/2022.2/data/ip/xilinx/usp_rf_data_converter_v2_6/interfaces/drp_mon_pins.xml'
+WARNING: [IP_Flow 19-4830] Duplicate Interface found for 'xilinx.com:display_usp_rf_data_converter:debug_pins:1.0'. The one found in location '/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/ip/usp_rf_data_converter/interfaces/debug_pins.xml' will take precedence over the same Interface in location '/proj/xbuilds/2022.2_1014_2/installs/lin64/Vivado/2022.2/data/ip/xilinx/usp_rf_data_converter_v2_6/interfaces/debug_pins.xml'
+WARNING: [IP_Flow 19-4830] Duplicate Interface found for 'xilinx.com:user:hsams_data_sink_ctrl:1.0'. The one found in location '/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/ip/usp_rf_data_converter/interfaces/hsams_data_sink_ctrl.xml' will take precedence over the same Interface in location '/proj/xbuilds/2022.2_1014_2/installs/lin64/Vivado/2022.2/data/ip/xilinx/usp_rf_data_converter_v2_6/interfaces/hsams_data_sink_ctrl.xml'
+WARNING: [IP_Flow 19-4830] Duplicate Interface found for 'xilinx.com:user:hsams_data_source_ctrl:1.0'. The one found in location '/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/ip/usp_rf_data_converter/interfaces/hsams_data_source_ctrl.xml' will take precedence over the same Interface in location '/proj/xbuilds/2022.2_1014_2/installs/lin64/Vivado/2022.2/data/ip/xilinx/usp_rf_data_converter_v2_6/interfaces/hsams_data_source_ctrl.xml'
+WARNING: [IP_Flow 19-4830] Duplicate Interface found for 'xilinx.com:display_usp_rf_data_converter:cal_freeze_pins:1.0'. The one found in location '/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/ip/usp_rf_data_converter/interfaces/cal_freeze_pins.xml' will take precedence over the same Interface in location '/proj/xbuilds/2022.2_1014_2/installs/lin64/Vivado/2022.2/data/ip/xilinx/usp_rf_data_converter_v2_6/interfaces/cal_freeze_pins.xml'
+WARNING: [IP_Flow 19-4830] Duplicate Interface found for 'xilinx.com:interface:gt_hsclk_debug:1.0'. The one found in location '/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/ip/ps_pmc/interfaces/gt_hsclk_debug_v1_0/gt_hsclk_debug.xml' will take precedence over the same Interface in location '/proj/xbuilds/2022.2_1014_2/installs/lin64/Vivado/2022.2/data/ip/xilinx/gt_quad_base_v1_1/interfaces/gt_hsclk_debug_v1_0/gt_hsclk_debug.xml'
+WARNING: [IP_Flow 19-4830] Duplicate Interface found for 'xilinx.com:display_pcie4:pcie4_cfg_external_msix:1.0'. The one found in location '/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/ip/ps_pmc/interfaces/pcie4_cfg_ext_msix.xml' will take precedence over the same Interface in location '/proj/xbuilds/2022.2_1014_2/installs/lin64/Vivado/2022.2/data/ip/xilinx/pcie4_uscale_plus_v1_3/interfaces/pcie4_cfg_ext_msix.xml'
+WARNING: [IP_Flow 19-4830] Duplicate Interface found for 'xilinx.com:interface:gt_rxmargin_intf:1.0'. The one found in location '/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/ip/ps_pmc/interfaces/gt_rxmargin_intf_v1_0/gt_rxmargin_intf.xml' will take precedence over the same Interface in location '/proj/xbuilds/2022.2_1014_2/installs/lin64/Vivado/2022.2/data/ip/xilinx/gt_quad_base_v1_1/interfaces/gt_rxmargin_intf_v1_0/gt_rxmargin_intf.xml'
+WARNING: [IP_Flow 19-4830] Duplicate Interface found for 'xilinx.com:user:acelite:1.0'. The one found in location '/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/ip/ps_pmc/interfaces/acelite.xml' will take precedence over the same Interface in location '/proj/xbuilds/2022.2_1014_2/installs/lin64/Vivado/2022.2/data/ip/xilinx/pspmc_v1_2/interfaces/acelite.xml'
+WARNING: [IP_Flow 19-4830] Duplicate Interface found for 'xilinx.com:interface:gt_debug:1.0'. The one found in location '/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/ip/ps_pmc/interfaces/gt_debug_v1_0/gt_debug.xml' will take precedence over the same Interface in location '/proj/xbuilds/2022.2_1014_2/installs/lin64/Vivado/2022.2/data/ip/xilinx/gt_quad_base_v1_1/interfaces/gt_debug_v1_0/gt_debug.xml'
+WARNING: [IP_Flow 19-4830] Duplicate Interface found for 'xilinx.com:display_pcie4:pcie4_cfg_mgmt:1.0'. The one found in location '/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/ip/ps_pmc/interfaces/pcie4_cfg_mgmt.xml' will take precedence over the same Interface in location '/proj/xbuilds/2022.2_1014_2/installs/lin64/Vivado/2022.2/data/ip/xilinx/pcie4_uscale_plus_v1_3/interfaces/pcie4_cfg_mgmt.xml'
+WARNING: [IP_Flow 19-4830] Duplicate Interface found for 'xilinx.com:display_pcie4c_uscaleplus:transceiver_debug:1.0'. The one found in location '/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/ip/ps_pmc/interfaces/transceiver_debug.xml' will take precedence over the same Interface in location '/proj/xbuilds/2022.2_1014_2/installs/lin64/Vivado/2022.2/data/ip/xilinx/pcie4c_uscale_plus_v1_0/interfaces/transceiver_debug.xml'
+WARNING: [IP_Flow 19-4830] Duplicate Interface found for 'xilinx.com:display_pcie4:pcie4_cfg_control:1.0'. The one found in location '/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/ip/ps_pmc/interfaces/pcie4_cfg_control.xml' will take precedence over the same Interface in location '/proj/xbuilds/2022.2_1014_2/installs/lin64/Vivado/2022.2/data/ip/xilinx/pcie4_uscale_plus_v1_3/interfaces/pcie4_cfg_control.xml'
+WARNING: [IP_Flow 19-4830] Duplicate Interface found for 'xilinx.com:interface:gt_channel_debug:1.0'. The one found in location '/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/ip/ps_pmc/interfaces/gt_channel_debug_v1_0/gt_channel_debug.xml' will take precedence over the same Interface in location '/proj/xbuilds/2022.2_1014_2/installs/lin64/Vivado/2022.2/data/ip/xilinx/gt_quad_base_v1_1/interfaces/gt_channel_debug_v1_0/gt_channel_debug.xml'
+WARNING: [IP_Flow 19-4830] Duplicate Interface found for 'xilinx.com:interface:gt_bufgt:1.0'. The one found in location '/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/ip/ps_pmc/interfaces/gt_bufgt_v1_0/gt_bufgt.xml' will take precedence over the same Interface in location '/proj/xbuilds/2022.2_1014_2/installs/lin64/Vivado/2022.2/data/ip/xilinx/gt_quad_base_v1_1/interfaces/gt_bufgt_v1_0/gt_bufgt.xml'
+WARNING: [IP_Flow 19-4830] Duplicate Interface found for 'xilinx.com:interface:gt_tx_interface:1.0'. The one found in location '/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/ip/ps_pmc/interfaces/gt_tx_interface_v1_0/gt_tx_interface.xml' will take precedence over the same Interface in location '/proj/xbuilds/2022.2_1014_2/installs/lin64/Vivado/2022.2/data/ip/interfaces/gt_tx_interface_v1_0/gt_tx_interface.xml'
+WARNING: [IP_Flow 19-4830] Duplicate Interface found for 'xilinx.com:display_pcie4:pcie4_cfg_pm:1.0'. The one found in location '/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/ip/ps_pmc/interfaces/pcie4_cfg_pm.xml' will take precedence over the same Interface in location '/proj/xbuilds/2022.2_1014_2/installs/lin64/Vivado/2022.2/data/ip/xilinx/pcie4_uscale_plus_v1_3/interfaces/pcie4_cfg_pm.xml'
+WARNING: [IP_Flow 19-4830] Duplicate Interface found for 'xilinx.com:display_pcie4:pcie4_cfg_status:1.0'. The one found in location '/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/ip/ps_pmc/interfaces/pcie4_cfg_status.xml' will take precedence over the same Interface in location '/proj/xbuilds/2022.2_1014_2/installs/lin64/Vivado/2022.2/data/ip/xilinx/pcie4_uscale_plus_v1_3/interfaces/pcie4_cfg_status.xml'
+WARNING: [IP_Flow 19-4830] Duplicate Interface found for 'xilinx.com:display_pcie4:pcie4_pl:1.0'. The one found in location '/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/ip/ps_pmc/interfaces/pcie4_pl.xml' will take precedence over the same Interface in location '/proj/xbuilds/2022.2_1014_2/installs/lin64/Vivado/2022.2/data/ip/xilinx/pcie4_uscale_plus_v1_3/interfaces/pcie4_pl.xml'
+WARNING: [IP_Flow 19-4830] Duplicate Interface found for 'xilinx.com:user:smmu:1.0'. The one found in location '/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/ip/ps_pmc/interfaces/smmu.xml' will take precedence over the same Interface in location '/proj/xbuilds/2022.2_1014_2/installs/lin64/Vivado/2022.2/data/ip/xilinx/pspmc_v1_2/interfaces/smmu.xml'
+WARNING: [IP_Flow 19-4830] Duplicate Interface found for 'xilinx.com:display_pcie4:pcie4_pcie_id:1.0'. The one found in location '/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/ip/ps_pmc/interfaces/pcie4_pcie_id.xml' will take precedence over the same Interface in location '/proj/xbuilds/2022.2_1014_2/installs/lin64/Vivado/2022.2/data/ip/xilinx/pcie4_uscale_plus_v1_3/interfaces/pcie4_pcie_id.xml'
+WARNING: [IP_Flow 19-4830] Duplicate Interface found for 'xilinx.com:interface:gt_rx_interface:1.0'. The one found in location '/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/ip/ps_pmc/interfaces/gt_rx_interface_v1_0/gt_rx_interface.xml' will take precedence over the same Interface in location '/proj/xbuilds/2022.2_1014_2/installs/lin64/Vivado/2022.2/data/ip/interfaces/gt_rx_interface_v1_0/gt_rx_interface.xml'
+WARNING: [IP_Flow 19-4830] Duplicate Interface found for 'xilinx.com:display_pcie4:pcie4_cfg_msix_external:1.0'. The one found in location '/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/ip/ps_pmc/interfaces/pcie4_cfg_msix.xml' will take precedence over the same Interface in location '/proj/xbuilds/2022.2_1014_2/installs/lin64/Vivado/2022.2/data/ip/xilinx/pcie4_uscale_plus_v1_3/interfaces/pcie4_cfg_msix.xml'
+WARNING: [IP_Flow 19-4830] Duplicate Interface found for 'xilinx.com:display_pcie4:pcie4_cfg_msix_internal:1.0'. The one found in location '/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/ip/ps_pmc/interfaces/pcie4_cfg_msix_int.xml' will take precedence over the same Interface in location '/proj/xbuilds/2022.2_1014_2/installs/lin64/Vivado/2022.2/data/ip/xilinx/pcie4_uscale_plus_v1_3/interfaces/pcie4_cfg_msix_int.xml'
+INFO: [IP_Flow 19-6924] IPCACHE: Running cache check for IP inst: project_1_sd_fec_enc_0
+Command: synth_design -top project_1_sd_fec_enc_0 -part xczu28dr-ffvg1517-2-e -incremental_mode off -mode out_of_context
+Starting synth_design
+Attempting to get a license for feature 'Synthesis' and/or device 'xczu28dr'
+INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xczu28dr'
+INFO: [Device 21-403] Loading part xczu28dr-ffvg1517-2-e
+INFO: [Synth 8-7079] Multithreading enabled for synth_design using a maximum of 4 processes.
+INFO: [Synth 8-7078] Launching helper process for spawning children vivado processes
+INFO: [Synth 8-7075] Helper process launched with PID 46924
+INFO: [Synth 8-11241] undeclared symbol 'REGCCE', assumed default net type 'wire' [/proj/xbuilds/2022.2_1014_2/installs/lin64/Vivado/2022.2/data/verilog/src/unimacro/BRAM_SINGLE_MACRO.v:2170]
+INFO: [Synth 8-11241] undeclared symbol 'rdata', assumed default net type 'wire' [/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.gen/sources_1/bd/project_1/ipshared/bed3/hdl/fec_5g_common_v1_1_rfs.sv:1691]
+WARNING: [Synth 8-11067] parameter 'TYPE' declared inside package 'sd_fec_v1_1_10_pkg' shall be treated as localparam [/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.gen/sources_1/bd/project_1/ipshared/b80b/hdl/sd_fec_v1_1_rfs.sv:341]
+WARNING: [Synth 8-11067] parameter 'P32' declared inside package 'sd_fec_v1_1_10_pkg' shall be treated as localparam [/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.gen/sources_1/bd/project_1/ipshared/b80b/hdl/sd_fec_v1_1_rfs.sv:352]
+WARNING: [Synth 8-11067] parameter 'P64' declared inside package 'sd_fec_v1_1_10_pkg' shall be treated as localparam [/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.gen/sources_1/bd/project_1/ipshared/b80b/hdl/sd_fec_v1_1_rfs.sv:353]
+WARNING: [Synth 8-11067] parameter 'P128' declared inside package 'sd_fec_v1_1_10_pkg' shall be treated as localparam [/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.gen/sources_1/bd/project_1/ipshared/b80b/hdl/sd_fec_v1_1_rfs.sv:354]
+WARNING: [Synth 8-11067] parameter 'P256' declared inside package 'sd_fec_v1_1_10_pkg' shall be treated as localparam [/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.gen/sources_1/bd/project_1/ipshared/b80b/hdl/sd_fec_v1_1_rfs.sv:355]
+WARNING: [Synth 8-11067] parameter 'P384' declared inside package 'sd_fec_v1_1_10_pkg' shall be treated as localparam [/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.gen/sources_1/bd/project_1/ipshared/b80b/hdl/sd_fec_v1_1_rfs.sv:356]
+WARNING: [Synth 8-11067] parameter 'BG1_NMQC' declared inside package 'sd_fec_v1_1_10_pkg' shall be treated as localparam [/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.gen/sources_1/bd/project_1/ipshared/b80b/hdl/sd_fec_v1_1_rfs.sv:357]
+WARNING: [Synth 8-11067] parameter 'BG2KB10_NMQC' declared inside package 'sd_fec_v1_1_10_pkg' shall be treated as localparam [/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.gen/sources_1/bd/project_1/ipshared/b80b/hdl/sd_fec_v1_1_rfs.sv:358]
+WARNING: [Synth 8-11067] parameter 'BG2KB9_NMQC' declared inside package 'sd_fec_v1_1_10_pkg' shall be treated as localparam [/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.gen/sources_1/bd/project_1/ipshared/b80b/hdl/sd_fec_v1_1_rfs.sv:359]
+WARNING: [Synth 8-11067] parameter 'BG2KB8_NMQC' declared inside package 'sd_fec_v1_1_10_pkg' shall be treated as localparam [/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.gen/sources_1/bd/project_1/ipshared/b80b/hdl/sd_fec_v1_1_rfs.sv:360]
+WARNING: [Synth 8-11067] parameter 'BG2KB6_NMQC' declared inside package 'sd_fec_v1_1_10_pkg' shall be treated as localparam [/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.gen/sources_1/bd/project_1/ipshared/b80b/hdl/sd_fec_v1_1_rfs.sv:361]
+WARNING: [Synth 8-11067] parameter 'WR_LATENCY' declared inside package 'sd_fec_v1_1_10_pkg' shall be treated as localparam [/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.gen/sources_1/bd/project_1/ipshared/b80b/hdl/sd_fec_v1_1_rfs.sv:362]
+WARNING: [Synth 8-11067] parameter 'RD_LATENCY' declared inside package 'sd_fec_v1_1_10_pkg' shall be treated as localparam [/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.gen/sources_1/bd/project_1/ipshared/b80b/hdl/sd_fec_v1_1_rfs.sv:363]
+WARNING: [Synth 8-11067] parameter 'ECC_ENABLE' declared inside package 'sd_fec_v1_1_10_pkg' shall be treated as localparam [/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.gen/sources_1/bd/project_1/ipshared/b80b/hdl/sd_fec_v1_1_rfs.sv:364]
+WARNING: [Synth 8-11067] parameter 'NO_PACKING' declared inside package 'sd_fec_v1_1_10_pkg' shall be treated as localparam [/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.gen/sources_1/bd/project_1/ipshared/b80b/hdl/sd_fec_v1_1_rfs.sv:365]
+WARNING: [Synth 8-11067] parameter 'MAX_SCHEDULE' declared inside package 'sd_fec_v1_1_10_pkg' shall be treated as localparam [/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.gen/sources_1/bd/project_1/ipshared/b80b/hdl/sd_fec_v1_1_rfs.sv:366]
+WARNING: [Synth 8-11067] parameter 'NO_FINAL_PARITY_CHECK' declared inside package 'sd_fec_v1_1_10_pkg' shall be treated as localparam [/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.gen/sources_1/bd/project_1/ipshared/b80b/hdl/sd_fec_v1_1_rfs.sv:367]
+WARNING: [Synth 8-11067] parameter 'SPECIAL_QC' declared inside package 'sd_fec_v1_1_10_pkg' shall be treated as localparam [/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.gen/sources_1/bd/project_1/ipshared/b80b/hdl/sd_fec_v1_1_rfs.sv:368]
+WARNING: [Synth 8-11067] parameter 'NORM_TYPE' declared inside package 'sd_fec_v1_1_10_pkg' shall be treated as localparam [/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.gen/sources_1/bd/project_1/ipshared/b80b/hdl/sd_fec_v1_1_rfs.sv:369]
+WARNING: [Synth 8-11067] parameter 'REF_CODE_TABLE_WEN_WIDTH' declared inside package 'sd_fec_v1_1_10_pkg' shall be treated as localparam [/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.gen/sources_1/bd/project_1/ipshared/b80b/hdl/sd_fec_v1_1_rfs.sv:378]
+WARNING: [Synth 8-11067] parameter 'REF_CODE_TABLE_WADDR_WIDTH' declared inside package 'sd_fec_v1_1_10_pkg' shall be treated as localparam [/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.gen/sources_1/bd/project_1/ipshared/b80b/hdl/sd_fec_v1_1_rfs.sv:379]
+WARNING: [Synth 8-11067] parameter 'REF_CODE_TABLE_WDATA_WIDTH' declared inside package 'sd_fec_v1_1_10_pkg' shall be treated as localparam [/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.gen/sources_1/bd/project_1/ipshared/b80b/hdl/sd_fec_v1_1_rfs.sv:380]
+WARNING: [Synth 8-11067] parameter 'REF_CODE_TABLE_REN_WIDTH' declared inside package 'sd_fec_v1_1_10_pkg' shall be treated as localparam [/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.gen/sources_1/bd/project_1/ipshared/b80b/hdl/sd_fec_v1_1_rfs.sv:381]
+WARNING: [Synth 8-11067] parameter 'REF_CODE_TABLE_RADDR_WIDTH' declared inside package 'sd_fec_v1_1_10_pkg' shall be treated as localparam [/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.gen/sources_1/bd/project_1/ipshared/b80b/hdl/sd_fec_v1_1_rfs.sv:382]
+WARNING: [Synth 8-11067] parameter 'REF_CODE_TABLE_RDATA_WIDTH' declared inside package 'sd_fec_v1_1_10_pkg' shall be treated as localparam [/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.gen/sources_1/bd/project_1/ipshared/b80b/hdl/sd_fec_v1_1_rfs.sv:383]
+WARNING: [Synth 8-11067] parameter 'MAXCODES' declared inside package 'sd_fec_v1_1_10_pkg' shall be treated as localparam [/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.gen/sources_1/bd/project_1/ipshared/b80b/hdl/sd_fec_v1_1_rfs.sv:385]
+WARNING: [Synth 8-11067] parameter 'OFFSET_QC_TABLE_BG1_SET0' declared inside package 'sd_fec_v1_1_10_pkg' shall be treated as localparam [/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.gen/sources_1/bd/project_1/ipshared/b80b/hdl/sd_fec_v1_1_rfs.sv:397]
+WARNING: [Synth 8-11067] parameter 'OFFSET_QC_TABLE_BG1_SET1' declared inside package 'sd_fec_v1_1_10_pkg' shall be treated as localparam [/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.gen/sources_1/bd/project_1/ipshared/b80b/hdl/sd_fec_v1_1_rfs.sv:398]
+WARNING: [Synth 8-11067] parameter 'OFFSET_QC_TABLE_BG1_SET2' declared inside package 'sd_fec_v1_1_10_pkg' shall be treated as localparam [/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.gen/sources_1/bd/project_1/ipshared/b80b/hdl/sd_fec_v1_1_rfs.sv:399]
+WARNING: [Synth 8-11067] parameter 'OFFSET_QC_TABLE_BG1_SET3' declared inside package 'sd_fec_v1_1_10_pkg' shall be treated as localparam [/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.gen/sources_1/bd/project_1/ipshared/b80b/hdl/sd_fec_v1_1_rfs.sv:400]
+WARNING: [Synth 8-11067] parameter 'OFFSET_QC_TABLE_BG1_SET4' declared inside package 'sd_fec_v1_1_10_pkg' shall be treated as localparam [/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.gen/sources_1/bd/project_1/ipshared/b80b/hdl/sd_fec_v1_1_rfs.sv:401]
+WARNING: [Synth 8-11067] parameter 'OFFSET_QC_TABLE_BG1_SET5' declared inside package 'sd_fec_v1_1_10_pkg' shall be treated as localparam [/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.gen/sources_1/bd/project_1/ipshared/b80b/hdl/sd_fec_v1_1_rfs.sv:402]
+WARNING: [Synth 8-11067] parameter 'OFFSET_QC_TABLE_BG1_SET6' declared inside package 'sd_fec_v1_1_10_pkg' shall be treated as localparam [/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.gen/sources_1/bd/project_1/ipshared/b80b/hdl/sd_fec_v1_1_rfs.sv:403]
+WARNING: [Synth 8-11067] parameter 'OFFSET_QC_TABLE_BG1_SET7' declared inside package 'sd_fec_v1_1_10_pkg' shall be treated as localparam [/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.gen/sources_1/bd/project_1/ipshared/b80b/hdl/sd_fec_v1_1_rfs.sv:404]
+WARNING: [Synth 8-11067] parameter 'OFFSET_QC_TABLE_BG2KB10_SET0' declared inside package 'sd_fec_v1_1_10_pkg' shall be treated as localparam [/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.gen/sources_1/bd/project_1/ipshared/b80b/hdl/sd_fec_v1_1_rfs.sv:405]
+WARNING: [Synth 8-11067] parameter 'OFFSET_QC_TABLE_BG2KB10_SET1' declared inside package 'sd_fec_v1_1_10_pkg' shall be treated as localparam [/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.gen/sources_1/bd/project_1/ipshared/b80b/hdl/sd_fec_v1_1_rfs.sv:406]
+WARNING: [Synth 8-11067] parameter 'OFFSET_QC_TABLE_BG2KB10_SET2' declared inside package 'sd_fec_v1_1_10_pkg' shall be treated as localparam [/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.gen/sources_1/bd/project_1/ipshared/b80b/hdl/sd_fec_v1_1_rfs.sv:407]
+WARNING: [Synth 8-11067] parameter 'OFFSET_QC_TABLE_BG2KB10_SET3' declared inside package 'sd_fec_v1_1_10_pkg' shall be treated as localparam [/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.gen/sources_1/bd/project_1/ipshared/b80b/hdl/sd_fec_v1_1_rfs.sv:408]
+WARNING: [Synth 8-11067] parameter 'OFFSET_QC_TABLE_BG2KB10_SET4' declared inside package 'sd_fec_v1_1_10_pkg' shall be treated as localparam [/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.gen/sources_1/bd/project_1/ipshared/b80b/hdl/sd_fec_v1_1_rfs.sv:409]
+WARNING: [Synth 8-11067] parameter 'OFFSET_QC_TABLE_BG2KB10_SET5' declared inside package 'sd_fec_v1_1_10_pkg' shall be treated as localparam [/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.gen/sources_1/bd/project_1/ipshared/b80b/hdl/sd_fec_v1_1_rfs.sv:410]
+WARNING: [Synth 8-11067] parameter 'OFFSET_QC_TABLE_BG2KB10_SET6' declared inside package 'sd_fec_v1_1_10_pkg' shall be treated as localparam [/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.gen/sources_1/bd/project_1/ipshared/b80b/hdl/sd_fec_v1_1_rfs.sv:411]
+WARNING: [Synth 8-11067] parameter 'OFFSET_QC_TABLE_BG2KB10_SET7' declared inside package 'sd_fec_v1_1_10_pkg' shall be treated as localparam [/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.gen/sources_1/bd/project_1/ipshared/b80b/hdl/sd_fec_v1_1_rfs.sv:412]
+WARNING: [Synth 8-11067] parameter 'OFFSET_QC_TABLE_BG2KB9_SET0' declared inside package 'sd_fec_v1_1_10_pkg' shall be treated as localparam [/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.gen/sources_1/bd/project_1/ipshared/b80b/hdl/sd_fec_v1_1_rfs.sv:413]
+WARNING: [Synth 8-11067] parameter 'OFFSET_QC_TABLE_BG2KB9_SET1' declared inside package 'sd_fec_v1_1_10_pkg' shall be treated as localparam [/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.gen/sources_1/bd/project_1/ipshared/b80b/hdl/sd_fec_v1_1_rfs.sv:414]
+WARNING: [Synth 8-11067] parameter 'OFFSET_QC_TABLE_BG2KB9_SET2' declared inside package 'sd_fec_v1_1_10_pkg' shall be treated as localparam [/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.gen/sources_1/bd/project_1/ipshared/b80b/hdl/sd_fec_v1_1_rfs.sv:415]
+WARNING: [Synth 8-11067] parameter 'OFFSET_QC_TABLE_BG2KB9_SET3' declared inside package 'sd_fec_v1_1_10_pkg' shall be treated as localparam [/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.gen/sources_1/bd/project_1/ipshared/b80b/hdl/sd_fec_v1_1_rfs.sv:416]
+WARNING: [Synth 8-11067] parameter 'OFFSET_QC_TABLE_BG2KB9_SET4' declared inside package 'sd_fec_v1_1_10_pkg' shall be treated as localparam [/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.gen/sources_1/bd/project_1/ipshared/b80b/hdl/sd_fec_v1_1_rfs.sv:417]
+WARNING: [Synth 8-11067] parameter 'OFFSET_QC_TABLE_BG2KB9_SET5' declared inside package 'sd_fec_v1_1_10_pkg' shall be treated as localparam [/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.gen/sources_1/bd/project_1/ipshared/b80b/hdl/sd_fec_v1_1_rfs.sv:418]
+WARNING: [Synth 8-11067] parameter 'OFFSET_QC_TABLE_BG2KB9_SET6' declared inside package 'sd_fec_v1_1_10_pkg' shall be treated as localparam [/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.gen/sources_1/bd/project_1/ipshared/b80b/hdl/sd_fec_v1_1_rfs.sv:419]
+WARNING: [Synth 8-11067] parameter 'OFFSET_QC_TABLE_BG2KB9_SET7' declared inside package 'sd_fec_v1_1_10_pkg' shall be treated as localparam [/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.gen/sources_1/bd/project_1/ipshared/b80b/hdl/sd_fec_v1_1_rfs.sv:420]
+WARNING: [Synth 8-11067] parameter 'OFFSET_QC_TABLE_BG2KB8_SET0' declared inside package 'sd_fec_v1_1_10_pkg' shall be treated as localparam [/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.gen/sources_1/bd/project_1/ipshared/b80b/hdl/sd_fec_v1_1_rfs.sv:421]
+WARNING: [Synth 8-11067] parameter 'OFFSET_QC_TABLE_BG2KB8_SET1' declared inside package 'sd_fec_v1_1_10_pkg' shall be treated as localparam [/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.gen/sources_1/bd/project_1/ipshared/b80b/hdl/sd_fec_v1_1_rfs.sv:422]
+WARNING: [Synth 8-11067] parameter 'OFFSET_QC_TABLE_BG2KB8_SET2' declared inside package 'sd_fec_v1_1_10_pkg' shall be treated as localparam [/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.gen/sources_1/bd/project_1/ipshared/b80b/hdl/sd_fec_v1_1_rfs.sv:423]
+WARNING: [Synth 8-11067] parameter 'OFFSET_QC_TABLE_BG2KB8_SET3' declared inside package 'sd_fec_v1_1_10_pkg' shall be treated as localparam [/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.gen/sources_1/bd/project_1/ipshared/b80b/hdl/sd_fec_v1_1_rfs.sv:424]
+WARNING: [Synth 8-11067] parameter 'OFFSET_QC_TABLE_BG2KB8_SET4' declared inside package 'sd_fec_v1_1_10_pkg' shall be treated as localparam [/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.gen/sources_1/bd/project_1/ipshared/b80b/hdl/sd_fec_v1_1_rfs.sv:425]
+WARNING: [Synth 8-11067] parameter 'OFFSET_QC_TABLE_BG2KB8_SET5' declared inside package 'sd_fec_v1_1_10_pkg' shall be treated as localparam [/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.gen/sources_1/bd/project_1/ipshared/b80b/hdl/sd_fec_v1_1_rfs.sv:426]
+WARNING: [Synth 8-11067] parameter 'OFFSET_QC_TABLE_BG2KB8_SET6' declared inside package 'sd_fec_v1_1_10_pkg' shall be treated as localparam [/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.gen/sources_1/bd/project_1/ipshared/b80b/hdl/sd_fec_v1_1_rfs.sv:427]
+WARNING: [Synth 8-11067] parameter 'OFFSET_QC_TABLE_BG2KB8_SET7' declared inside package 'sd_fec_v1_1_10_pkg' shall be treated as localparam [/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.gen/sources_1/bd/project_1/ipshared/b80b/hdl/sd_fec_v1_1_rfs.sv:428]
+WARNING: [Synth 8-11067] parameter 'OFFSET_QC_TABLE_BG2KB6_SET0' declared inside package 'sd_fec_v1_1_10_pkg' shall be treated as localparam [/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.gen/sources_1/bd/project_1/ipshared/b80b/hdl/sd_fec_v1_1_rfs.sv:429]
+WARNING: [Synth 8-11067] parameter 'OFFSET_QC_TABLE_BG2KB6_SET1' declared inside package 'sd_fec_v1_1_10_pkg' shall be treated as localparam [/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.gen/sources_1/bd/project_1/ipshared/b80b/hdl/sd_fec_v1_1_rfs.sv:430]
+WARNING: [Synth 8-11067] parameter 'OFFSET_QC_TABLE_BG2KB6_SET2' declared inside package 'sd_fec_v1_1_10_pkg' shall be treated as localparam [/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.gen/sources_1/bd/project_1/ipshared/b80b/hdl/sd_fec_v1_1_rfs.sv:431]
+WARNING: [Synth 8-11067] parameter 'OFFSET_QC_TABLE_BG2KB6_SET3' declared inside package 'sd_fec_v1_1_10_pkg' shall be treated as localparam [/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.gen/sources_1/bd/project_1/ipshared/b80b/hdl/sd_fec_v1_1_rfs.sv:432]
+WARNING: [Synth 8-11067] parameter 'OFFSET_QC_TABLE_BG2KB6_SET4' declared inside package 'sd_fec_v1_1_10_pkg' shall be treated as localparam [/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.gen/sources_1/bd/project_1/ipshared/b80b/hdl/sd_fec_v1_1_rfs.sv:433]
+WARNING: [Synth 8-11067] parameter 'OFFSET_QC_TABLE_BG2KB6_SET5' declared inside package 'sd_fec_v1_1_10_pkg' shall be treated as localparam [/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.gen/sources_1/bd/project_1/ipshared/b80b/hdl/sd_fec_v1_1_rfs.sv:434]
+WARNING: [Synth 8-11067] parameter 'OFFSET_QC_TABLE_BG2KB6_SET6' declared inside package 'sd_fec_v1_1_10_pkg' shall be treated as localparam [/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.gen/sources_1/bd/project_1/ipshared/b80b/hdl/sd_fec_v1_1_rfs.sv:435]
+WARNING: [Synth 8-11067] parameter 'OFFSET_QC_TABLE_BG2KB6_SET7' declared inside package 'sd_fec_v1_1_10_pkg' shall be treated as localparam [/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.gen/sources_1/bd/project_1/ipshared/b80b/hdl/sd_fec_v1_1_rfs.sv:436]
+WARNING: [Synth 8-11067] parameter 'OFFSET_LA_TABLE_BG1_P32' declared inside package 'sd_fec_v1_1_10_pkg' shall be treated as localparam [/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.gen/sources_1/bd/project_1/ipshared/b80b/hdl/sd_fec_v1_1_rfs.sv:440]
+WARNING: [Synth 8-11067] parameter 'OFFSET_LA_TABLE_BG1_P64' declared inside package 'sd_fec_v1_1_10_pkg' shall be treated as localparam [/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.gen/sources_1/bd/project_1/ipshared/b80b/hdl/sd_fec_v1_1_rfs.sv:441]
+WARNING: [Synth 8-11067] parameter 'OFFSET_LA_TABLE_BG1_P128' declared inside package 'sd_fec_v1_1_10_pkg' shall be treated as localparam [/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.gen/sources_1/bd/project_1/ipshared/b80b/hdl/sd_fec_v1_1_rfs.sv:442]
+WARNING: [Synth 8-11067] parameter 'OFFSET_LA_TABLE_BG1_P256' declared inside package 'sd_fec_v1_1_10_pkg' shall be treated as localparam [/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.gen/sources_1/bd/project_1/ipshared/b80b/hdl/sd_fec_v1_1_rfs.sv:443]
+WARNING: [Synth 8-11067] parameter 'OFFSET_LA_TABLE_BG1_P384' declared inside package 'sd_fec_v1_1_10_pkg' shall be treated as localparam [/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.gen/sources_1/bd/project_1/ipshared/b80b/hdl/sd_fec_v1_1_rfs.sv:444]
+WARNING: [Synth 8-11067] parameter 'OFFSET_LA_TABLE_BG2_P32' declared inside package 'sd_fec_v1_1_10_pkg' shall be treated as localparam [/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.gen/sources_1/bd/project_1/ipshared/b80b/hdl/sd_fec_v1_1_rfs.sv:445]
+WARNING: [Synth 8-11067] parameter 'OFFSET_LA_TABLE_BG2_P64' declared inside package 'sd_fec_v1_1_10_pkg' shall be treated as localparam [/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.gen/sources_1/bd/project_1/ipshared/b80b/hdl/sd_fec_v1_1_rfs.sv:446]
+WARNING: [Synth 8-11067] parameter 'OFFSET_LA_TABLE_BG2_P128' declared inside package 'sd_fec_v1_1_10_pkg' shall be treated as localparam [/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.gen/sources_1/bd/project_1/ipshared/b80b/hdl/sd_fec_v1_1_rfs.sv:447]
+WARNING: [Synth 8-11067] parameter 'OFFSET_LA_TABLE_BG2_P256' declared inside package 'sd_fec_v1_1_10_pkg' shall be treated as localparam [/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.gen/sources_1/bd/project_1/ipshared/b80b/hdl/sd_fec_v1_1_rfs.sv:448]
+WARNING: [Synth 8-11067] parameter 'OFFSET_LA_TABLE_BG2_P384' declared inside package 'sd_fec_v1_1_10_pkg' shall be treated as localparam [/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.gen/sources_1/bd/project_1/ipshared/b80b/hdl/sd_fec_v1_1_rfs.sv:449]
+WARNING: [Synth 8-11067] parameter 'OFFSET_LA_TABLE_BG1' declared inside package 'sd_fec_v1_1_10_pkg' shall be treated as localparam [/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.gen/sources_1/bd/project_1/ipshared/b80b/hdl/sd_fec_v1_1_rfs.sv:451]
+WARNING: [Synth 8-11067] parameter 'OFFSET_LA_TABLE_BG2KB10' declared inside package 'sd_fec_v1_1_10_pkg' shall be treated as localparam [/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.gen/sources_1/bd/project_1/ipshared/b80b/hdl/sd_fec_v1_1_rfs.sv:452]
+WARNING: [Synth 8-11067] parameter 'OFFSET_LA_TABLE_BG2KB9' declared inside package 'sd_fec_v1_1_10_pkg' shall be treated as localparam [/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.gen/sources_1/bd/project_1/ipshared/b80b/hdl/sd_fec_v1_1_rfs.sv:453]
+WARNING: [Synth 8-11067] parameter 'OFFSET_LA_TABLE_BG2KB8' declared inside package 'sd_fec_v1_1_10_pkg' shall be treated as localparam [/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.gen/sources_1/bd/project_1/ipshared/b80b/hdl/sd_fec_v1_1_rfs.sv:454]
+WARNING: [Synth 8-11067] parameter 'OFFSET_LA_TABLE_BG2KB6' declared inside package 'sd_fec_v1_1_10_pkg' shall be treated as localparam [/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.gen/sources_1/bd/project_1/ipshared/b80b/hdl/sd_fec_v1_1_rfs.sv:455]
+WARNING: [Synth 8-11067] parameter 'ONLY_5G' declared inside package 'sd_fec_v1_1_10_pkg' shall be treated as localparam [/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.gen/sources_1/bd/project_1/ipshared/b80b/hdl/sd_fec_v1_1_rfs.sv:461]
+WARNING: [Synth 8-11067] parameter 'REF_LA_TABLE_DEPTH' declared inside package 'sd_fec_v1_1_10_pkg' shall be treated as localparam [/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.gen/sources_1/bd/project_1/ipshared/b80b/hdl/sd_fec_v1_1_rfs.sv:462]
+WARNING: [Synth 8-11067] parameter 'REF_LA_TABLE_WEN_WIDTH' declared inside package 'sd_fec_v1_1_10_pkg' shall be treated as localparam [/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.gen/sources_1/bd/project_1/ipshared/b80b/hdl/sd_fec_v1_1_rfs.sv:463]
+WARNING: [Synth 8-11067] parameter 'REF_LA_TABLE_WADDR_WIDTH' declared inside package 'sd_fec_v1_1_10_pkg' shall be treated as localparam [/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.gen/sources_1/bd/project_1/ipshared/b80b/hdl/sd_fec_v1_1_rfs.sv:464]
+WARNING: [Synth 8-11067] parameter 'REF_LA_TABLE_WDATA_WIDTH' declared inside package 'sd_fec_v1_1_10_pkg' shall be treated as localparam [/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.gen/sources_1/bd/project_1/ipshared/b80b/hdl/sd_fec_v1_1_rfs.sv:465]
+WARNING: [Synth 8-11067] parameter 'REF_LA_TABLE_REN_WIDTH' declared inside package 'sd_fec_v1_1_10_pkg' shall be treated as localparam [/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.gen/sources_1/bd/project_1/ipshared/b80b/hdl/sd_fec_v1_1_rfs.sv:466]
+WARNING: [Synth 8-11067] parameter 'REF_LA_TABLE_RADDR_WIDTH' declared inside package 'sd_fec_v1_1_10_pkg' shall be treated as localparam [/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.gen/sources_1/bd/project_1/ipshared/b80b/hdl/sd_fec_v1_1_rfs.sv:467]
+WARNING: [Synth 8-11067] parameter 'REF_LA_TABLE_RDATA_WIDTH' declared inside package 'sd_fec_v1_1_10_pkg' shall be treated as localparam [/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.gen/sources_1/bd/project_1/ipshared/b80b/hdl/sd_fec_v1_1_rfs.sv:468]
+WARNING: [Synth 8-11067] parameter 'REF_QC_TABLE_DEPTH' declared inside package 'sd_fec_v1_1_10_pkg' shall be treated as localparam [/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.gen/sources_1/bd/project_1/ipshared/b80b/hdl/sd_fec_v1_1_rfs.sv:469]
+WARNING: [Synth 8-11067] parameter 'REF_QC_TABLE_WEN_WIDTH' declared inside package 'sd_fec_v1_1_10_pkg' shall be treated as localparam [/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.gen/sources_1/bd/project_1/ipshared/b80b/hdl/sd_fec_v1_1_rfs.sv:470]
+WARNING: [Synth 8-11067] parameter 'REF_QC_TABLE_WADDR_WIDTH' declared inside package 'sd_fec_v1_1_10_pkg' shall be treated as localparam [/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.gen/sources_1/bd/project_1/ipshared/b80b/hdl/sd_fec_v1_1_rfs.sv:471]
+WARNING: [Synth 8-11067] parameter 'REF_QC_TABLE_WDATA_WIDTH' declared inside package 'sd_fec_v1_1_10_pkg' shall be treated as localparam [/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.gen/sources_1/bd/project_1/ipshared/b80b/hdl/sd_fec_v1_1_rfs.sv:472]
+WARNING: [Synth 8-11067] parameter 'REF_QC_TABLE_REN_WIDTH' declared inside package 'sd_fec_v1_1_10_pkg' shall be treated as localparam [/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.gen/sources_1/bd/project_1/ipshared/b80b/hdl/sd_fec_v1_1_rfs.sv:473]
+WARNING: [Synth 8-11067] parameter 'REF_QC_TABLE_RADDR_WIDTH' declared inside package 'sd_fec_v1_1_10_pkg' shall be treated as localparam [/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.gen/sources_1/bd/project_1/ipshared/b80b/hdl/sd_fec_v1_1_rfs.sv:474]
+WARNING: [Synth 8-11067] parameter 'REF_QC_TABLE_RDATA_WIDTH' declared inside package 'sd_fec_v1_1_10_pkg' shall be treated as localparam [/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.gen/sources_1/bd/project_1/ipshared/b80b/hdl/sd_fec_v1_1_rfs.sv:475]
+WARNING: [Synth 8-11067] parameter 'REF_SC_TABLE_DEPTH' declared inside package 'sd_fec_v1_1_10_pkg' shall be treated as localparam [/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.gen/sources_1/bd/project_1/ipshared/b80b/hdl/sd_fec_v1_1_rfs.sv:478]
+WARNING: [Synth 8-11067] parameter 'REF_SC_TABLE_WEN_WIDTH' declared inside package 'sd_fec_v1_1_10_pkg' shall be treated as localparam [/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.gen/sources_1/bd/project_1/ipshared/b80b/hdl/sd_fec_v1_1_rfs.sv:479]
+WARNING: [Synth 8-11067] parameter 'REF_SC_TABLE_WADDR_WIDTH' declared inside package 'sd_fec_v1_1_10_pkg' shall be treated as localparam [/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.gen/sources_1/bd/project_1/ipshared/b80b/hdl/sd_fec_v1_1_rfs.sv:480]
+WARNING: [Synth 8-11067] parameter 'REF_SC_TABLE_WDATA_WIDTH' declared inside package 'sd_fec_v1_1_10_pkg' shall be treated as localparam [/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.gen/sources_1/bd/project_1/ipshared/b80b/hdl/sd_fec_v1_1_rfs.sv:481]
+INFO: [Common 17-14] Message 'Synth 8-11067' appears 100 times and further instances of the messages will be disabled. Use the Tcl command set_msg_config to change the current settings.
+INFO: [Synth 8-11241] undeclared symbol 'data_prog_empty', assumed default net type 'wire' [/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.gen/sources_1/bd/project_1/ipshared/b80b/hdl/sd_fec_v1_1_rfs.sv:6029]
+INFO: [Synth 8-11241] undeclared symbol 'axi_sbiterr', assumed default net type 'wire' [/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.gen/sources_1/bd/project_1/ipshared/b80b/hdl/sd_fec_v1_1_rfs.sv:6036]
+INFO: [Synth 8-11241] undeclared symbol 'axi_dbiterr', assumed default net type 'wire' [/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.gen/sources_1/bd/project_1/ipshared/b80b/hdl/sd_fec_v1_1_rfs.sv:6037]
+INFO: [Synth 8-11241] undeclared symbol 'agent1_rreq', assumed default net type 'wire' [/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.gen/sources_1/bd/project_1/ipshared/b80b/hdl/sd_fec_v1_1_rfs.sv:6557]
+INFO: [Synth 8-11241] undeclared symbol 'axi_ctrl_rd_valid', assumed default net type 'wire' [/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.gen/sources_1/bd/project_1/ipshared/b80b/hdl/sd_fec_v1_1_rfs.sv:6852]
+INFO: [Synth 8-11241] undeclared symbol 'axi_status_empty', assumed default net type 'wire' [/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.gen/sources_1/bd/project_1/ipshared/b80b/hdl/sd_fec_v1_1_rfs.sv:6906]
+INFO: [Synth 8-11241] undeclared symbol 's_axi_araddr', assumed default net type 'wire' [/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.gen/sources_1/bd/project_1/ipshared/b80b/hdl/sd_fec_v1_1_rfs.sv:8359]
+INFO: [Synth 8-11241] undeclared symbol 's_axi_arvalid', assumed default net type 'wire' [/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.gen/sources_1/bd/project_1/ipshared/b80b/hdl/sd_fec_v1_1_rfs.sv:8360]
+INFO: [Synth 8-11241] undeclared symbol 's_axi_rready', assumed default net type 'wire' [/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.gen/sources_1/bd/project_1/ipshared/b80b/hdl/sd_fec_v1_1_rfs.sv:8361]
+INFO: [Synth 8-11241] undeclared symbol 's_axi_bready', assumed default net type 'wire' [/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.gen/sources_1/bd/project_1/ipshared/b80b/hdl/sd_fec_v1_1_rfs.sv:8362]
+INFO: [Synth 8-11241] undeclared symbol 'data_prog_empty', assumed default net type 'wire' [/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.gen/sources_1/bd/project_1/ipshared/b80b/hdl/sd_fec_v1_1_rfs.sv:8598]
+INFO: [Synth 8-11241] undeclared symbol 'axi_sbiterr', assumed default net type 'wire' [/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.gen/sources_1/bd/project_1/ipshared/b80b/hdl/sd_fec_v1_1_rfs.sv:8605]
+INFO: [Synth 8-11241] undeclared symbol 'axi_dbiterr', assumed default net type 'wire' [/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.gen/sources_1/bd/project_1/ipshared/b80b/hdl/sd_fec_v1_1_rfs.sv:8606]
+INFO: [Synth 8-11241] undeclared symbol 's_axi_araddr', assumed default net type 'wire' [/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.gen/sources_1/bd/project_1/ipshared/b80b/hdl/sd_fec_v1_1_rfs.sv:8793]
+INFO: [Synth 8-11241] undeclared symbol 's_axi_arvalid', assumed default net type 'wire' [/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.gen/sources_1/bd/project_1/ipshared/b80b/hdl/sd_fec_v1_1_rfs.sv:8794]
+INFO: [Synth 8-11241] undeclared symbol 's_axi_rready', assumed default net type 'wire' [/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.gen/sources_1/bd/project_1/ipshared/b80b/hdl/sd_fec_v1_1_rfs.sv:8795]
+INFO: [Synth 8-11241] undeclared symbol 's_axi_bready', assumed default net type 'wire' [/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.gen/sources_1/bd/project_1/ipshared/b80b/hdl/sd_fec_v1_1_rfs.sv:8796]
+---------------------------------------------------------------------------------
+Starting RTL Elaboration : Time (s): cpu = 00:00:05 ; elapsed = 00:00:05 . Memory (MB): peak = 3431.957 ; gain = 318.801 ; free physical = 207492 ; free virtual = 286456
+Synthesis current peak Physical Memory [PSS] (MB): peak = 2589.534; parent = 2471.301; children = 118.233
+Synthesis current peak Virtual Memory [VSS] (MB): peak = 4414.766; parent = 3438.898; children = 975.867
+---------------------------------------------------------------------------------
+INFO: [Synth 8-6157] synthesizing module 'project_1_sd_fec_enc_0' [/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.gen/sources_1/bd/project_1/ip/project_1_sd_fec_enc_0/synth/project_1_sd_fec_enc_0.sv:53]
+INFO: [Synth 8-6157] synthesizing module 'FE' [/proj/xbuilds/2022.2_1014_2/installs/lin64/Vivado/2022.2/scripts/rt/data/unisim_comp_diablo.v:38903]
+INFO: [Synth 8-6155] done synthesizing module 'FE' (0#1) [/proj/xbuilds/2022.2_1014_2/installs/lin64/Vivado/2022.2/scripts/rt/data/unisim_comp_diablo.v:38903]
+INFO: [Synth 8-6155] done synthesizing module 'project_1_sd_fec_enc_0' (0#1) [/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.gen/sources_1/bd/project_1/ip/project_1_sd_fec_enc_0/synth/project_1_sd_fec_enc_0.sv:53]
+WARNING: [Synth 8-7129] Port s_axis_din_words_aclk in module sd_fec_v1_1_10_non_5g is either unconnected or has no load
+WARNING: [Synth 8-7129] Port s_axis_din_words_tvalid in module sd_fec_v1_1_10_non_5g is either unconnected or has no load
+WARNING: [Synth 8-7129] Port s_axis_din_words_tlast in module sd_fec_v1_1_10_non_5g is either unconnected or has no load
+WARNING: [Synth 8-7129] Port s_axis_din_words_tdata[7] in module sd_fec_v1_1_10_non_5g is either unconnected or has no load
+WARNING: [Synth 8-7129] Port s_axis_din_words_tdata[6] in module sd_fec_v1_1_10_non_5g is either unconnected or has no load
+WARNING: [Synth 8-7129] Port s_axis_din_words_tdata[5] in module sd_fec_v1_1_10_non_5g is either unconnected or has no load
+WARNING: [Synth 8-7129] Port s_axis_din_words_tdata[4] in module sd_fec_v1_1_10_non_5g is either unconnected or has no load
+WARNING: [Synth 8-7129] Port s_axis_din_words_tdata[3] in module sd_fec_v1_1_10_non_5g is either unconnected or has no load
+WARNING: [Synth 8-7129] Port s_axis_din_words_tdata[2] in module sd_fec_v1_1_10_non_5g is either unconnected or has no load
+WARNING: [Synth 8-7129] Port s_axis_din_words_tdata[1] in module sd_fec_v1_1_10_non_5g is either unconnected or has no load
+WARNING: [Synth 8-7129] Port s_axis_din_words_tdata[0] in module sd_fec_v1_1_10_non_5g is either unconnected or has no load
+WARNING: [Synth 8-7129] Port s_axis_ctrl_tdata[13] in module sd_fec_v1_1_10_non_5g is either unconnected or has no load
+WARNING: [Synth 8-7129] Port s_axis_dout_words_aclk in module sd_fec_v1_1_10_non_5g is either unconnected or has no load
+WARNING: [Synth 8-7129] Port s_axis_dout_words_tvalid in module sd_fec_v1_1_10_non_5g is either unconnected or has no load
+WARNING: [Synth 8-7129] Port s_axis_dout_words_tlast in module sd_fec_v1_1_10_non_5g is either unconnected or has no load
+WARNING: [Synth 8-7129] Port s_axis_dout_words_tdata[7] in module sd_fec_v1_1_10_non_5g is either unconnected or has no load
+WARNING: [Synth 8-7129] Port s_axis_dout_words_tdata[6] in module sd_fec_v1_1_10_non_5g is either unconnected or has no load
+WARNING: [Synth 8-7129] Port s_axis_dout_words_tdata[5] in module sd_fec_v1_1_10_non_5g is either unconnected or has no load
+WARNING: [Synth 8-7129] Port s_axis_dout_words_tdata[4] in module sd_fec_v1_1_10_non_5g is either unconnected or has no load
+WARNING: [Synth 8-7129] Port s_axis_dout_words_tdata[3] in module sd_fec_v1_1_10_non_5g is either unconnected or has no load
+WARNING: [Synth 8-7129] Port s_axis_dout_words_tdata[2] in module sd_fec_v1_1_10_non_5g is either unconnected or has no load
+WARNING: [Synth 8-7129] Port s_axis_dout_words_tdata[1] in module sd_fec_v1_1_10_non_5g is either unconnected or has no load
+WARNING: [Synth 8-7129] Port s_axis_dout_words_tdata[0] in module sd_fec_v1_1_10_non_5g is either unconnected or has no load
+---------------------------------------------------------------------------------
+Finished RTL Elaboration : Time (s): cpu = 00:00:07 ; elapsed = 00:00:08 . Memory (MB): peak = 3491.863 ; gain = 378.707 ; free physical = 205361 ; free virtual = 284339
+Synthesis current peak Physical Memory [PSS] (MB): peak = 2589.534; parent = 2471.301; children = 118.233
+Synthesis current peak Virtual Memory [VSS] (MB): peak = 4467.734; parent = 3491.867; children = 975.867
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Handling Custom Attributes
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:07 ; elapsed = 00:00:08 . Memory (MB): peak = 3509.676 ; gain = 396.520 ; free physical = 205222 ; free virtual = 284195
+Synthesis current peak Physical Memory [PSS] (MB): peak = 2589.534; parent = 2471.301; children = 118.233
+Synthesis current peak Virtual Memory [VSS] (MB): peak = 4485.547; parent = 3509.680; children = 975.867
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:07 ; elapsed = 00:00:08 . Memory (MB): peak = 3509.676 ; gain = 396.520 ; free physical = 205335 ; free virtual = 284307
+Synthesis current peak Physical Memory [PSS] (MB): peak = 2589.534; parent = 2471.301; children = 118.233
+Synthesis current peak Virtual Memory [VSS] (MB): peak = 4485.547; parent = 3509.680; children = 975.867
+---------------------------------------------------------------------------------
+Netlist sorting complete. Time (s): cpu = 00:00:00.01 ; elapsed = 00:00:00.01 . Memory (MB): peak = 3515.613 ; gain = 0.000 ; free physical = 205026 ; free virtual = 283999
+INFO: [Project 1-570] Preparing netlist for logic optimization
+
+Processing XDC Constraints
+Initializing timing engine
+Parsing XDC File [/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.gen/sources_1/bd/project_1/ip/project_1_sd_fec_enc_0/project_1_sd_fec_enc_0_ooc.xdc] for cell 'inst'
+Finished Parsing XDC File [/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.gen/sources_1/bd/project_1/ip/project_1_sd_fec_enc_0/project_1_sd_fec_enc_0_ooc.xdc] for cell 'inst'
+Parsing XDC File [/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.runs/project_1_sd_fec_enc_0_synth_1/dont_touch.xdc]
+Finished Parsing XDC File [/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.runs/project_1_sd_fec_enc_0_synth_1/dont_touch.xdc]
+Completed Processing XDC Constraints
+
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 3558.395 ; gain = 0.000 ; free physical = 204171 ; free virtual = 283182
+INFO: [Project 1-111] Unisim Transformation Summary:
+No Unisim elements were transformed.
+
+Constraint Validation Runtime : Time (s): cpu = 00:00:00.03 ; elapsed = 00:00:00.03 . Memory (MB): peak = 3558.395 ; gain = 0.000 ; free physical = 204157 ; free virtual = 283168
+INFO: [Designutils 20-5008] Incremental synthesis strategy off
+INFO: [Synth 8-11241] undeclared symbol 'REGCCE', assumed default net type 'wire' [/proj/xbuilds/2022.2_1014_2/installs/lin64/Vivado/2022.2/data/verilog/src/unimacro/BRAM_SINGLE_MACRO.v:2170]
+---------------------------------------------------------------------------------
+Finished Constraint Validation : Time (s): cpu = 00:00:19 ; elapsed = 00:00:21 . Memory (MB): peak = 3558.395 ; gain = 445.238 ; free physical = 202167 ; free virtual = 281269
+Synthesis current peak Physical Memory [PSS] (MB): peak = 2589.534; parent = 2471.301; children = 118.233
+Synthesis current peak Virtual Memory [VSS] (MB): peak = 4534.266; parent = 3558.398; children = 975.867
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Loading Part and Timing Information
+---------------------------------------------------------------------------------
+Loading part: xczu28dr-ffvg1517-2-e
+INFO: [Synth 8-6742] Reading net delay rules and data
+---------------------------------------------------------------------------------
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:19 ; elapsed = 00:00:21 . Memory (MB): peak = 3558.395 ; gain = 445.238 ; free physical = 202036 ; free virtual = 281139
+Synthesis current peak Physical Memory [PSS] (MB): peak = 2589.534; parent = 2471.301; children = 118.233
+Synthesis current peak Virtual Memory [VSS] (MB): peak = 4534.266; parent = 3558.398; children = 975.867
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Applying 'set_property' XDC Constraints
+---------------------------------------------------------------------------------
+Applied set_property KEEP_HIERARCHY = SOFT for inst. (constraint file  /tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.runs/project_1_sd_fec_enc_0_synth_1/dont_touch.xdc, line 9).
+---------------------------------------------------------------------------------
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:19 ; elapsed = 00:00:21 . Memory (MB): peak = 3558.395 ; gain = 445.238 ; free physical = 201899 ; free virtual = 281002
+Synthesis current peak Physical Memory [PSS] (MB): peak = 2589.534; parent = 2471.301; children = 118.233
+Synthesis current peak Virtual Memory [VSS] (MB): peak = 4534.266; parent = 3558.398; children = 975.867
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:19 ; elapsed = 00:00:22 . Memory (MB): peak = 3558.395 ; gain = 445.238 ; free physical = 201876 ; free virtual = 280979
+Synthesis current peak Physical Memory [PSS] (MB): peak = 2589.534; parent = 2471.301; children = 118.233
+Synthesis current peak Virtual Memory [VSS] (MB): peak = 4534.266; parent = 3558.398; children = 975.867
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start RTL Component Statistics 
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished RTL Component Statistics 
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Part Resource Summary
+---------------------------------------------------------------------------------
+Part Resources:
+DSPs: 4272 (col length:192)
+BRAMs: 2160 (col length: RAMB18 192 RAMB36 96)
+---------------------------------------------------------------------------------
+Finished Part Resource Summary
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Cross Boundary and Area Optimization
+---------------------------------------------------------------------------------
+WARNING: [Synth 8-7080] Parallel synthesis criteria is not met
+WARNING: [Synth 8-7129] Port s_axis_din_words_aclk in module sd_fec_v1_1_10 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port s_axis_din_words_tvalid in module sd_fec_v1_1_10 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port s_axis_din_words_tlast in module sd_fec_v1_1_10 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port s_axis_din_words_tdata[7] in module sd_fec_v1_1_10 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port s_axis_din_words_tdata[6] in module sd_fec_v1_1_10 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port s_axis_din_words_tdata[5] in module sd_fec_v1_1_10 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port s_axis_din_words_tdata[4] in module sd_fec_v1_1_10 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port s_axis_din_words_tdata[3] in module sd_fec_v1_1_10 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port s_axis_din_words_tdata[2] in module sd_fec_v1_1_10 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port s_axis_din_words_tdata[1] in module sd_fec_v1_1_10 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port s_axis_din_words_tdata[0] in module sd_fec_v1_1_10 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port s_axis_ctrl_tdata[13] in module sd_fec_v1_1_10 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port s_axis_dout_words_aclk in module sd_fec_v1_1_10 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port s_axis_dout_words_tvalid in module sd_fec_v1_1_10 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port s_axis_dout_words_tlast in module sd_fec_v1_1_10 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port s_axis_dout_words_tdata[7] in module sd_fec_v1_1_10 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port s_axis_dout_words_tdata[6] in module sd_fec_v1_1_10 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port s_axis_dout_words_tdata[5] in module sd_fec_v1_1_10 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port s_axis_dout_words_tdata[4] in module sd_fec_v1_1_10 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port s_axis_dout_words_tdata[3] in module sd_fec_v1_1_10 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port s_axis_dout_words_tdata[2] in module sd_fec_v1_1_10 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port s_axis_dout_words_tdata[1] in module sd_fec_v1_1_10 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port s_axis_dout_words_tdata[0] in module sd_fec_v1_1_10 is either unconnected or has no load
+---------------------------------------------------------------------------------
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:20 ; elapsed = 00:00:23 . Memory (MB): peak = 3558.395 ; gain = 445.238 ; free physical = 201795 ; free virtual = 280912
+Synthesis current peak Physical Memory [PSS] (MB): peak = 2589.534; parent = 2471.301; children = 118.233
+Synthesis current peak Virtual Memory [VSS] (MB): peak = 4534.266; parent = 3558.398; children = 975.867
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Applying XDC Timing Constraints
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:30 ; elapsed = 00:00:34 . Memory (MB): peak = 3958.543 ; gain = 845.387 ; free physical = 196345 ; free virtual = 275522
+Synthesis current peak Physical Memory [PSS] (MB): peak = 3065.941; parent = 2947.582; children = 118.359
+Synthesis current peak Virtual Memory [VSS] (MB): peak = 4934.414; parent = 3958.547; children = 975.867
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Timing Optimization
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Timing Optimization : Time (s): cpu = 00:00:30 ; elapsed = 00:00:34 . Memory (MB): peak = 3975.551 ; gain = 862.395 ; free physical = 196271 ; free virtual = 275448
+Synthesis current peak Physical Memory [PSS] (MB): peak = 3075.726; parent = 2957.372; children = 118.359
+Synthesis current peak Virtual Memory [VSS] (MB): peak = 4951.422; parent = 3975.555; children = 975.867
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Technology Mapping
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Technology Mapping : Time (s): cpu = 00:00:30 ; elapsed = 00:00:35 . Memory (MB): peak = 3991.566 ; gain = 878.410 ; free physical = 196508 ; free virtual = 275684
+Synthesis current peak Physical Memory [PSS] (MB): peak = 3075.985; parent = 2957.634; children = 118.359
+Synthesis current peak Virtual Memory [VSS] (MB): peak = 4967.438; parent = 3991.570; children = 975.867
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished IO Insertion : Time (s): cpu = 00:00:34 ; elapsed = 00:00:38 . Memory (MB): peak = 3994.535 ; gain = 881.379 ; free physical = 197385 ; free virtual = 276600
+Synthesis current peak Physical Memory [PSS] (MB): peak = 3077.006; parent = 2958.132; children = 118.874
+Synthesis current peak Virtual Memory [VSS] (MB): peak = 4970.406; parent = 3994.539; children = 975.867
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Instances
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Instances : Time (s): cpu = 00:00:34 ; elapsed = 00:00:38 . Memory (MB): peak = 3994.535 ; gain = 881.379 ; free physical = 197276 ; free virtual = 276486
+Synthesis current peak Physical Memory [PSS] (MB): peak = 3077.028; parent = 2958.154; children = 118.874
+Synthesis current peak Virtual Memory [VSS] (MB): peak = 4970.406; parent = 3994.539; children = 975.867
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Rebuilding User Hierarchy
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:34 ; elapsed = 00:00:39 . Memory (MB): peak = 3994.535 ; gain = 881.379 ; free physical = 197123 ; free virtual = 276337
+Synthesis current peak Physical Memory [PSS] (MB): peak = 3077.081; parent = 2958.209; children = 118.874
+Synthesis current peak Virtual Memory [VSS] (MB): peak = 4970.406; parent = 3994.539; children = 975.867
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Ports
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Ports : Time (s): cpu = 00:00:34 ; elapsed = 00:00:39 . Memory (MB): peak = 3994.535 ; gain = 881.379 ; free physical = 197138 ; free virtual = 276279
+Synthesis current peak Physical Memory [PSS] (MB): peak = 3077.081; parent = 2958.209; children = 118.874
+Synthesis current peak Virtual Memory [VSS] (MB): peak = 4970.406; parent = 3994.539; children = 975.867
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Handling Custom Attributes
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:34 ; elapsed = 00:00:39 . Memory (MB): peak = 3994.535 ; gain = 881.379 ; free physical = 197145 ; free virtual = 276146
+Synthesis current peak Physical Memory [PSS] (MB): peak = 3077.081; parent = 2958.209; children = 118.874
+Synthesis current peak Virtual Memory [VSS] (MB): peak = 4970.406; parent = 3994.539; children = 975.867
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Nets
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Nets : Time (s): cpu = 00:00:34 ; elapsed = 00:00:39 . Memory (MB): peak = 3994.535 ; gain = 881.379 ; free physical = 197132 ; free virtual = 276141
+Synthesis current peak Physical Memory [PSS] (MB): peak = 3077.088; parent = 2958.215; children = 118.874
+Synthesis current peak Virtual Memory [VSS] (MB): peak = 4970.406; parent = 3994.539; children = 975.867
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Writing Synthesis Report
+---------------------------------------------------------------------------------
+
+Report BlackBoxes: 
++-+--------------+----------+
+| |BlackBox name |Instances |
++-+--------------+----------+
++-+--------------+----------+
+
+Report Cell Usage: 
++------+-----+------+
+|      |Cell |Count |
++------+-----+------+
+|1     |FE   |     1|
++------+-----+------+
+---------------------------------------------------------------------------------
+Finished Writing Synthesis Report : Time (s): cpu = 00:00:34 ; elapsed = 00:00:39 . Memory (MB): peak = 3994.535 ; gain = 881.379 ; free physical = 197068 ; free virtual = 276081
+Synthesis current peak Physical Memory [PSS] (MB): peak = 3077.093; parent = 2958.222; children = 118.874
+Synthesis current peak Virtual Memory [VSS] (MB): peak = 4970.406; parent = 3994.539; children = 975.867
+---------------------------------------------------------------------------------
+Synthesis finished with 0 errors, 0 critical warnings and 24 warnings.
+Synthesis Optimization Runtime : Time (s): cpu = 00:00:27 ; elapsed = 00:00:32 . Memory (MB): peak = 3994.535 ; gain = 832.660 ; free physical = 196993 ; free virtual = 276009
+Synthesis Optimization Complete : Time (s): cpu = 00:00:34 ; elapsed = 00:00:39 . Memory (MB): peak = 3994.543 ; gain = 881.379 ; free physical = 196934 ; free virtual = 275949
+INFO: [Project 1-571] Translating synthesized netlist
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 3994.543 ; gain = 0.000 ; free physical = 196906 ; free virtual = 275923
+INFO: [Project 1-570] Preparing netlist for logic optimization
+INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 4041.160 ; gain = 0.000 ; free physical = 197151 ; free virtual = 276200
+INFO: [Project 1-111] Unisim Transformation Summary:
+No Unisim elements were transformed.
+
+Synth Design complete, checksum: 75f79b9a
+INFO: [Common 17-83] Releasing license: Synthesis
+43 Infos, 177 Warnings, 0 Critical Warnings and 0 Errors encountered.
+synth_design completed successfully
+synth_design: Time (s): cpu = 00:00:56 ; elapsed = 00:01:01 . Memory (MB): peak = 4041.160 ; gain = 1872.316 ; free physical = 197372 ; free virtual = 276429
+INFO: [Common 17-1381] The checkpoint '/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.runs/project_1_sd_fec_enc_0_synth_1/project_1_sd_fec_enc_0.dcp' has been generated.
+INFO: [Coretcl 2-1648] Added synthesis output to IP cache for IP project_1_sd_fec_enc_0, cache-ID = 9487435e6150774a
+INFO: [Coretcl 2-1174] Renamed 2 cell refs.
+INFO: [Common 17-1381] The checkpoint '/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.runs/project_1_sd_fec_enc_0_synth_1/project_1_sd_fec_enc_0.dcp' has been generated.
+INFO: [runtcl-4] Executing : report_utilization -file project_1_sd_fec_enc_0_utilization_synth.rpt -pb project_1_sd_fec_enc_0_utilization_synth.pb
+INFO: [Common 17-206] Exiting Vivado at Fri Oct 14 13:26:38 2022...

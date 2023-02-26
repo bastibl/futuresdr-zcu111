@@ -1,0 +1,655 @@
+<: set ComponentName [getComponentNameString] :>
+<: setOutputDirectory [ttcl_string_concat $ComponentName "/example_design"] :>
+<: setFileName [ttcl_string_concat $ComponentName "_exdes_tb"] :>
+<: set C_USE_STARTUP  [get_property PARAM_VALUE.C_USE_STARTUP ] :>
+<: set C_NUM_SS_BITS      [get_property PARAM_VALUE.C_NUM_SS_BITS ] :>
+<: set SLAVES [expr {$C_NUM_SS_BITS - 1}] :>
+<: if {$SLAVES > 0} { :>
+<: set EXTSLAVES [expr {$SLAVES - 1}] :>
+<: } else { :>	
+<: set EXTSLAVES [expr {$SLAVES - 0}] :>
+<: } :>
+<: set C_AXI4  [get_property PARAM_VALUE.C_TYPE_OF_AXI4_INTERFACE ] :>
+<: set C_SPI_MODE    [get_property PARAM_VALUE.C_SPI_MODE ] :>
+<: set C_XIP_MODE  [get_property PARAM_VALUE.C_XIP_MODE ] :>
+<: set Master_mode  [get_property PARAM_VALUE.Master_mode ] :>
+<: set C_FIFO_DEPTH  [get_property PARAM_VALUE.C_FIFO_DEPTH ] :>
+<: set lsb_stup  [get_property MODELPARAM_VALUE.C_LSB_STUP ] :>
+<: set C_ADDR_WIDTH  [get_property MODELPARAM_VALUE.C_SPI_MEM_ADDR_BITS ] :>
+<: set UC_FAMILY [get_property PARAM_VALUE.UC_FAMILY ] :>
+<: set C_DATA_WIDTH  [get_property PARAM_VALUE.C_NUM_TRANSFER_BITS ] :>
+<: set C_USE_STARTUP_EXT  [get_property MODELPARAM_VALUE.C_USE_STARTUP_EXT ] :>
+<: set C_S_AXI4_ID_WIDTH  [get_property PARAM_VALUE.C_S_AXI4_ID_WIDTH ] :>
+<: set C_DUAL_QUAD_MODE    [get_property PARAM_VALUE.C_DUAL_QUAD_MODE ] :>
+<: set C_SPI_MEMORY  [get_property PARAM_VALUE.C_SPI_MEMORY ] :>
+<: if {$C_SPI_MEMORY == 0} { :>
+<: set SPI_MODE 0 :>
+<: } else { :>
+<: set SPI_MODE $C_SPI_MODE :>
+<: } :>
+<: set wd [ file dirname [ get_property xml_file_name [ current_ipbom ] ] ] :>
+<: setFileExtension ".vhd" :>
+-- 
+-- (c) Copyright 2008 - 2013 Xilinx, Inc. All rights reserved.
+-- 
+-- This file contains confidential and proprietary information
+-- of Xilinx, Inc. and is protected under U.S. and
+-- international copyright and other intellectual property
+-- laws.
+-- 
+-- DISCLAIMER
+-- This disclaimer is not a license and does not grant any
+-- rights to the materials distributed herewith. Except as
+-- otherwise provided in a valid license issued to you by
+-- Xilinx, and to the maximum extent permitted by applicable
+-- law: (1) THESE MATERIALS ARE MADE AVAILABLE "AS IS" AND
+-- WITH ALL FAULTS, AND XILINX HEREBY DISCLAIMS ALL WARRANTIES
+-- AND CONDITIONS, EXPRESS, IMPLIED, OR STATUTORY, INCLUDING
+-- BUT NOT LIMITED TO WARRANTIES OF MERCHANTABILITY, NON-
+-- INFRINGEMENT, OR FITNESS FOR ANY PARTICULAR PURPOSE; and
+-- (2) Xilinx shall not be liable (whether in contract or tort,
+-- including negligence, or under any other theory of
+-- liability) for any loss or damage of any kind or nature
+-- related to, arising under or in connection with these
+-- materials, including for any direct, or any indirect,
+-- special, incidental, or consequential loss or damage
+-- (including loss of data, profits, goodwill, or any type of
+-- loss or damage suffered as a result of any action brought
+-- by a third party) even if such damage or loss was
+-- reasonably foreseeable or Xilinx had been advised of the
+-- possibility of the same.
+-- 
+-- CRITICAL APPLICATIONS
+-- Xilinx products are not designed or intended to be fail-
+-- safe, or for use in any application requiring fail-safe
+-- performance, such as life-support or safety devices or
+-- systems, Class III medical devices, nuclear facilities,
+-- applications related to the deployment of airbags, or any
+-- other applications that could lead to death, personal
+-- injury, or severe property or environmental damage
+-- (individually and collectively, "Critical
+-- Applications"). Customer assumes the sole risk and
+-- liability of any use of Xilinx products in Critical
+-- Applications, subject only to applicable laws and
+-- regulations governing limitations on product liability.
+-- 
+-- THIS COPYRIGHT NOTICE AND DISCLAIMER MUST BE RETAINED AS
+-- PART OF THIS FILE AT ALL TIMES.
+-- 
+------------------------------------------------------------------------------
+-- User entered comments
+------------------------------------------------------------------------------
+-- This is a self-desigined Test bench developed for QSPI Example Design
+--
+------------------------------------------------------------------------------
+
+
+library ieee;
+use ieee.std_logic_1164.all;
+use ieee.numeric_std.all;
+use ieee.std_logic_misc.all;
+use ieee.std_logic_arith.all;
+use ieee.std_logic_unsigned.all;
+
+
+library unisim;
+use unisim.vcomponents.all;
+library work;
+
+entity <=:$ComponentName:>_exdes_tb is
+end entity;
+
+architecture tb of <=: ComponentName:>_exdes_tb is
+  COMPONENT <=:$ComponentName:>_exdes is
+ PORT (
+    clk_p       : in std_logic;
+    clk_n       : in std_logic;
+    reset       : in std_logic;
+	atg_done    : OUT STD_LOGIC;
+      axi_clk_out    : out std_logic;
+      axi_aresetn_out    : out std_logic;
+    IO0_IO     : inout STD_LOGIC;
+    IO1_IO     : inout STD_LOGIC;
+<: if {$C_SPI_MODE == 2} { :>	
+    IO2_IO     : inout STD_LOGIC;
+    IO3_IO     : inout STD_LOGIC;
+<: } :>
+<: if {$C_USE_STARTUP == 1 && $UC_FAMILY == 1 && $C_DUAL_QUAD_MODE == 1 && $C_USE_STARTUP_EXT == 0} { :>	
+    IO0_1_IO     : inout STD_LOGIC;
+    IO1_1_IO     : inout STD_LOGIC;
+    IO2_1_IO     : inout STD_LOGIC;
+    IO3_1_IO     : inout STD_LOGIC;
+    SS_1_IO     : inout STD_LOGIC;
+<: } :>
+	
+<: if {$Master_mode == 1} { :>
+<: if {($UC_FAMILY == 0) || ($UC_FAMILY == 1 && $C_USE_STARTUP == 0)} { :>
+    SS_IO     : inout STD_LOGIC_VECTOR(<=:$SLAVES:> DOWNTO 0);
+<: } else { :>
+--<: if {$C_DUAL_QUAD_MODE == 1 && $C_USE_STARTUP_EXT == 1} { :>
+--    SS_IO     : inout STD_LOGIC;
+--<: } :>
+<: if {$C_NUM_SS_BITS > 1} { :>
+    SS_IO     : inout STD_LOGIC_VECTOR(<=:$SLAVES:> DOWNTO 1);
+<: } :>
+<: } :>
+<: } :>
+	
+<: if {$C_USE_STARTUP == 0 || ($C_USE_STARTUP_EXT == 1 && $C_DUAL_QUAD_MODE == 1)} { :>	
+    SCK_IO     : inout STD_LOGIC;
+<: } :>	
+<: if {$Master_mode == 0 } { :>
+    SPISEL            : in STD_LOGIC;
+    SS_IO_Master      : inout STD_LOGIC;
+    IO0_IO_Master     : inout STD_LOGIC;
+    IO1_IO_Master     : inout STD_LOGIC;
+<: if {$C_SPI_MODE == 2} { :>	
+    IO2_IO_Master     : inout STD_LOGIC;
+    IO3_IO_Master     : inout STD_LOGIC;
+<: } :>	
+<: if {$C_USE_STARTUP == 0} { :>	
+    SCK_IO_Master     : inout STD_LOGIC;
+<: } :>	
+<: } :>	
+	atg_status  : OUT STD_LOGIC_VECTOR(31 DOWNTO 0)
+  );
+
+  end COMPONENT;
+
+<: if {$Master_mode == 1 } { :>
+ <: if {$C_XIP_MODE == 1 && $C_USE_STARTUP_EXT == 0} { :>
+COMPONENT memory
+ generic
+  (
+    C_FIFO_DEPTH          : integer              := 256;-- allowed 0,16,256.
+    C_ADDR_WIDTH          : integer              := 256;-- allowed 0,16,256.
+	C_SPI_MODE            : integer range 0 to 2 := 0; -- used for differentiating
+                                                             -- Standard, Dual or Quad mode
+                                                             -- in Ports as well as internal
+                                                             -- functionality
+	C_DATA_WIDTH          : integer               := 8       -- allowed 8,32.
+    );
+ port
+  (
+    MODEL_CLK            : in  std_logic;
+    MODEL_RESET          : in  std_logic;
+    Core_Clk             : in std_logic;
+    Chip_Selectn         : in std_logic;
+	
+    -------------------------------
+       --*SPI port interface      * --
+       -------------------------------
+       io0_i          : in std_logic;  -- MOSI signal in standard SPI
+       io0_o          : out std_logic;
+       io0_t          : out std_logic;
+       -------------------------------
+       io1_i          : in std_logic;  -- MISO signal in standard SPI
+       io1_o          : out std_logic;
+       io1_t          : out std_logic;
+       -----------------
+       -- quad mode pins
+       -----------------
+       io2_i          : in std_logic;
+       io2_o          : out std_logic;
+       io2_t          : out std_logic;
+       ---------------
+       io3_i          : in std_logic;
+       io3_o          : out std_logic;
+       io3_t          : out std_logic
+       ---------------------------------
+
+);
+END COMPONENT;
+<: } :>
+<: if {$C_XIP_MODE == 0 && $C_USE_STARTUP_EXT == 0} { :>
+-----------------------Model Component-----------------
+COMPONENT memory_model 
+ generic
+  (
+    C_FIFO_DEPTH          : integer              := 256;-- allowed 0,16,256.
+	C_SPI_MODE            : integer range 0 to 2 := 0; -- used for differentiating
+                                                             -- Standard, Dual or Quad mode
+                                                             -- in Ports as well as internal
+                                                             -- functionality
+	C_DATA_WIDTH          : integer               := 8       -- allowed 8,32.
+    );
+ port
+  (
+    MODEL_CLK            : in  std_logic;
+    MODEL_RESET          : in  std_logic;
+    Core_Clk             : in std_logic;
+    Chip_Selectn         : in std_logic;
+	
+    -------------------------------
+       --*SPI port interface      * --
+       -------------------------------
+       io0_i          : in std_logic;  -- MOSI signal in standard SPI
+       io0_o          : out std_logic;
+       io0_t          : out std_logic;
+       -------------------------------
+       io1_i          : in std_logic;  -- MISO signal in standard SPI
+       io1_o          : out std_logic;
+       io1_t          : out std_logic;
+       -----------------
+       -- quad mode pins
+       -----------------
+       io2_i          : in std_logic;
+       io2_o          : out std_logic;
+       io2_t          : out std_logic;
+       ---------------
+       io3_i          : in std_logic;
+       io3_o          : out std_logic;
+       io3_t          : out std_logic
+       ---------------------------------
+
+);
+END COMPONENT;
+<: } :>
+<: } :>
+<: if {$C_USE_STARTUP == 1 && $UC_FAMILY == 1 && $C_DUAL_QUAD_MODE == 1} { :>	
+    signal IO0_1_IO     : STD_LOGIC:= '0';
+    signal IO1_1_IO     : STD_LOGIC:= '0';
+    signal IO2_1_IO     : STD_LOGIC:= '0';
+    signal IO3_1_IO     : STD_LOGIC:= '0';
+    signal SS_1_IO     :  STD_LOGIC:= '0';
+<: } :>
+
+
+<: if {$Master_mode == 1 } { :>
+  signal   IO0_IO_mem :  STD_LOGIC:= '0';
+  signal   IO1_IO_mem : STD_LOGIC:= '0';
+  signal   IO2_IO_mem : STD_LOGIC:= '0';
+  signal   IO3_IO_mem : STD_LOGIC:= '0';
+  signal   SCK_IO_mem : STD_LOGIC:= '0';
+  signal   SS_IO_mem : STD_LOGIC_VECTOR(<=:$SLAVES:> DOWNTO 0):=(others => '0');
+  signal   SS_IO_one : STD_LOGIC;
+--<: if {$C_USE_STARTUP_EXT == 1} { :>	
+--  signal   SS_IO_multiple : STD_LOGIC_VECTOR(<=:$EXTSLAVES:> DOWNTO 0):=(others => '0');
+--<: } else { :>	
+--<: if { $C_USE_STARTUP_EXT == 0 && $C_USE_STARTUP == 1 && $UC_FAMILY == 1} { :>	
+--  signal   SS_IO_multiple : STD_LOGIC_VECTOR(<=:$SLAVES:> DOWNTO 1):=(others => '0');
+--<: } else { :>	
+--  signal   SS_IO_multiple : STD_LOGIC_VECTOR(<=:$SLAVES:> DOWNTO 0):=(others => '0');
+--<: } :>
+--<: } :>
+<: if {($UC_FAMILY == 0) || ($UC_FAMILY == 1 && $C_USE_STARTUP == 0)} { :>
+  signal   SS_IO_multiple : STD_LOGIC_VECTOR(<=:$SLAVES:> DOWNTO 0):=(others => '0');
+<: } else { :>
+<: if {$C_NUM_SS_BITS > 1} { :>
+  signal   SS_IO_multiple : STD_LOGIC_VECTOR(<=:$SLAVES:> DOWNTO 1):=(others => '0');
+<: } :>
+<: } :>
+
+  signal   sio0_i : STD_LOGIC:= '0';
+  signal   sio0_t : STD_LOGIC_VECTOR(<=:$SLAVES:> DOWNTO 0):=(others => '1');
+  signal   sio0_o : STD_LOGIC_VECTOR(<=:$SLAVES:> DOWNTO 0):=(others => '0');
+  signal   sio1_i :STD_LOGIC:= '0';
+  signal   sio1_t :STD_LOGIC:= '0';
+  signal   sio1_o : STD_LOGIC_VECTOR(<=:$SLAVES:> DOWNTO 0):=(others => '0');
+  signal   sio2_i : STD_LOGIC:= '0';
+  signal   sio2_t : STD_LOGIC:= '0';
+  signal   sio2_o : STD_LOGIC_VECTOR(<=:$SLAVES:> DOWNTO 0):=(others => '0');
+  signal   sio3_i :STD_LOGIC:= '0';
+  signal   sio3_t :STD_LOGIC:= '0';
+  signal   sio3_o : STD_LOGIC_VECTOR(<=:$SLAVES:> DOWNTO 0):=(others => '0');
+  signal   Mem_Clk : STD_LOGIC:= '0';
+  
+  signal   CS : STD_LOGIC_VECTOR(<=:$SLAVES:> DOWNTO 0):=(others => '0');
+<: } :>
+  signal   axi_clk : STD_LOGIC:= '0';
+  signal   axi_aresetn : STD_LOGIC:= '0';
+  signal   sio0_o_red : STD_LOGIC:= '0';
+  signal   sio1_o_red : STD_LOGIC:= '0';
+  signal   sio2_o_red : STD_LOGIC:= '0';
+  signal   sio3_o_red : STD_LOGIC:= '0';
+  signal   sio_t_red : STD_LOGIC:= '1';
+  signal   IO0_IO :  STD_LOGIC:= '0';
+  signal   IO1_IO : STD_LOGIC:= '0';
+  signal   IO2_IO : STD_LOGIC:= '0';
+  signal   IO3_IO : STD_LOGIC:= '0';
+  signal   SCK_IO : STD_LOGIC:= '0';
+  signal   SS_IO : STD_LOGIC_VECTOR(<=:$SLAVES:> DOWNTO <=:$lsb_stup:>):=(others => '0');
+  signal   IO0_IO_Master :  STD_LOGIC:= '0';
+  signal   IO1_IO_Master : STD_LOGIC:= '0';
+  signal   IO2_IO_Master : STD_LOGIC:= '0';
+  signal   IO3_IO_Master : STD_LOGIC:= '0';
+  signal   SCK_IO_Master : STD_LOGIC:= '0';
+  signal   SS_IO_Master : STD_LOGIC;
+
+signal local_clk_p : std_logic := '0';
+signal local_clk_n : std_logic := '1';
+signal local_reset : std_logic := '1';
+signal local_atg_done : std_logic;
+signal local_atg_status : std_logic_vector(31 downto 0);
+-----
+begin
+-----
+<: if {$C_USE_STARTUP == 1} { :>
+process 
+-----
+begin
+-----       
+            report "EXAMPLE DESIGN NOT SUPPORTED WHEN STARTUP = 1,Test Completed Successfully" severity FAILURE;
+			wait;
+end process;
+<: } :>	
+
+-----
+----------------------------------------------
+-- PROCESS_CLK_GEN_P: generate the clock with 100 Mhz
+PROCESS_CLK_GEN_P: process
+-----
+begin
+-----
+    wait for 2.5 ns;
+    local_clk_p <= not local_clk_p;
+end process PROCESS_CLK_GEN_P;
+
+------------------------------------------------------------------
+----------------------------------------------
+-- PROCESS_CLK_GEN_N: generate the clock with 100 Mhz
+PROCESS_CLK_GEN_N: process
+-----
+begin
+-----
+    wait for 2.5 ns;
+    local_clk_n <= not local_clk_n;
+end process PROCESS_CLK_GEN_N;
+
+------------------------------------------------
+--assert not (C_USE_STARTUP = 1)
+  --report "Example Design is not supported with the STARTUPE2 block is included in the design"
+ -- severity ERROR;
+------------------------------------------------------------------
+----------------------------------------------
+-- PROCESS_RST_GEN: generate the clock with 100 Mhz
+PROCESS_RST_GEN: process
+-----
+begin
+-----
+    wait for 25 ns;
+    local_reset <= '1';
+    wait for 70 ns;
+    local_reset <= '0';
+    wait;
+end process PROCESS_RST_GEN;
+
+------------------------------------------------------------------
+process (local_atg_done)
+-----
+begin
+-----
+        if (local_atg_done'event and local_atg_done = '1') then
+          if (local_atg_status(1 downto 0) = "01") then
+            report "Test Completed Successfully" severity FAILURE;
+          elsif (local_atg_status(1 downto 0) = "10") then
+            report "Test Failure" severity FAILURE;
+          elsif (local_atg_status(1 downto 0) = "11") then
+            report "Test Hanged" severity FAILURE;
+          end if;
+        end if;
+end process;
+
+<: if {$Master_mode == 1 } { :>
+<:proc EvalSubstituting {parameters procedure {numlevels 1}} { :>
+<:    set paramlist {} :>
+<:    if {[string index $numlevels 0]!="#"} { :>
+<:        set numlevels [expr $numlevels+1] :>
+<:    } :>
+<:    foreach parameter $parameters { :>
+<:        upvar 1 $parameter $parameter\_value :>
+<:        tcl::lappend paramlist \$$parameter [set $parameter\_value] :>
+<:    } :>
+<:    uplevel $numlevels [string map $paramlist $procedure] :>
+<:} :>
+<: if { $C_USE_STARTUP_EXT == 0 && $C_USE_STARTUP == 1 && $UC_FAMILY == 1} { :>	
+<: set kkk 1 :>
+<: } else { :>
+<: set kkk 0 :>
+<:} :>
+<: for {set i $kkk} {$i <= $SLAVES} {incr i} { :>
+<: EvalSubstituting {i} { :>
+
+<: if {$C_XIP_MODE == 0  && $C_USE_STARTUP_EXT == 0} { :>
+  INST_Memory_Model_<=:$i:>: memory_model 
+ generic map
+  (
+    C_FIFO_DEPTH           => <=:$C_FIFO_DEPTH:>,-- allowed 0,16,256.
+	C_SPI_MODE             => <=:$SPI_MODE:>, -- used for differentiating
+                                                             -- Standard, Dual or Quad mode
+                                                             -- in Ports as well as internal
+                                                             -- functionality
+	C_DATA_WIDTH           => <=:$C_DATA_WIDTH:>       -- allowed 8,32.
+    )
+ port map
+  (
+    MODEL_CLK             => axi_clk,
+    MODEL_RESET           => axi_aresetn,
+    Core_Clk              => Mem_Clk,
+    Chip_Selectn     => SS_IO_multiple(<=:$i:>),
+    -------------------------------
+       --*SPI port interface      * --
+       -------------------------------
+       io0_i           => sio0_i,  -- MOSI signal in standard SPI
+       io0_o           => sio0_o(<=:$i:>),
+       io0_t           => sio0_t(<=:$i:>),
+       -------------------------------
+       io1_i           => sio1_i,  -- MISO signal in standard SPI
+       io1_o           => sio1_o(<=:$i:>),
+       io1_t           => sio1_t,
+       -----------------
+       -- quad mode pins
+       -----------------
+       io2_i           => sio2_i,
+       io2_o           => sio2_o(<=:$i:>),
+       io2_t           => sio2_t,
+       ---------------
+       io3_i           => sio3_i,
+       io3_o           => sio3_o(<=:$i:>),
+       io3_t           => sio3_t
+       ---------------------------------
+
+);
+<: } else { :>
+<: if {$C_USE_STARTUP_EXT == 0} { :>
+  INST_Memory_<=:$i:>: memory 
+ generic map
+  (
+    C_FIFO_DEPTH           => <=:$C_FIFO_DEPTH:>,-- allowed 0,16,256.
+	C_SPI_MODE             => <=:$C_SPI_MODE:>, -- used for differentiating
+    C_ADDR_WIDTH             => <=:$C_ADDR_WIDTH:>,  -- Standard, Dual or Quad mode
+                                                             -- in Ports as well as internal
+                                                             -- functionality
+	C_DATA_WIDTH           => <=:$C_DATA_WIDTH:>       -- allowed 8,32.
+    )
+ port map
+  (
+    MODEL_CLK             => axi_clk,
+    MODEL_RESET           => axi_aresetn,
+    Core_Clk              => Mem_Clk,
+    Chip_Selectn     => SS_IO_multiple(<=:$i:>),
+    -------------------------------
+       --*SPI port interface      * --
+       -------------------------------
+       io0_i           => sio0_i,  -- MOSI signal in standard SPI
+       io0_o           => sio0_o(<=:$i:>),
+       io0_t           => sio0_t(<=:$i:>),
+       -------------------------------
+       io1_i           => sio1_i,  -- MISO signal in standard SPI
+       io1_o           => sio1_o(<=:$i:>),
+       io1_t           => sio1_t,
+       -----------------
+       -- quad mode pins
+       -----------------
+       io2_i           => sio2_i,
+       io2_o           => sio2_o(<=:$i:>),
+       io2_t           => sio2_t,
+       ---------------
+       io3_i           => sio3_i,
+       io3_o           => sio3_o(<=:$i:>),
+       io3_t           => sio3_t
+       ---------------------------------
+);
+<:} :>
+<:} :>
+<: } 0 :>
+<: } :>
+<: if {$C_USE_STARTUP_EXT == 0} { :>	
+sio0_o_red  <= or_reduce(sio0_o);
+sio1_o_red  <= or_reduce(sio1_o);
+sio2_o_red  <= or_reduce(sio2_o);
+sio3_o_red  <= or_reduce(sio3_o);
+sio_t_red  <= and_reduce(sio0_t);
+
+QSPI_IO0_mem: IOBUF
+   port map (
+      O  => sio0_i,
+      IO => IO0_IO_mem,
+      I  => sio0_o_red,
+      T  => sio_t_red
+   );
+           
+QSPI_IO1_mem: IOBUF
+   port map (
+      O  => sio1_i,
+      IO => IO1_IO_mem,
+      I  => sio1_o_red,
+      T  => sio1_t
+   );
+<: if {$C_SPI_MODE == 2 && $C_USE_STARTUP_EXT == 0} { :>	
+          
+QSPI_IO2_mem: IOBUF
+   port map (
+      O  => sio2_i,
+      IO => IO2_IO_mem,
+      I  => sio2_o_red,
+      T  => sio2_t
+   );
+           
+QSPI_IO3_mem: IOBUF
+   port map (
+      O  => sio3_i,
+      IO => IO3_IO_mem,
+      I  => sio3_o_red,
+      T  => sio3_t
+   );
+<: } :>
+<: } :>
+EXDES: <=:$ComponentName:>_exdes
+  port map (
+       clk_p       => local_clk_p,
+       clk_n       => local_clk_n,
+       reset       => local_reset,
+       atg_done    => local_atg_done,
+       axi_aresetn_out    => axi_aresetn,
+       axi_clk_out    => axi_clk,
+<: if {$C_USE_STARTUP_EXT == 0} { :>	
+       IO0_IO     => IO0_IO_mem,
+       IO1_IO     => IO1_IO_mem,
+<: if {$C_USE_STARTUP == 1 && $UC_FAMILY == 1 && $C_DUAL_QUAD_MODE == 1 && $C_USE_STARTUP_EXT == 0} { :>	
+    IO0_1_IO    =>     IO0_1_IO   ,
+    IO1_1_IO    =>     IO1_1_IO   ,
+    IO2_1_IO    =>     IO2_1_IO   ,
+    IO3_1_IO    =>     IO3_1_IO   ,
+    SS_1_IO    =>     SS_1_IO   ,
+<: } :>
+<: if {$C_SPI_MODE == 2} { :>	
+       IO2_IO     => IO2_IO_mem,
+       IO3_IO     => IO3_IO_mem,
+<: } :>	
+<: } :>	
+--<: if {$Master_mode == 1 } { :>
+--<: if {$SLAVES == 0 } { :>
+--<: if {$C_USE_STARTUP == 1 && $UC_FAMILY == 1 && $C_NUM_SS_BITS == 1} { :>	
+--<: } else { :>	
+--
+--    SS_IO     => SS_IO_one,
+--<: } :>	
+--<: } else { :>
+--<: if {$C_USE_STARTUP == 1 && $UC_FAMILY == 1 && ($C_NUM_SS_BITS == 1 || ($C_USE_STARTUP_EXT == 0 && $C_DUAL_QUAD_MODE == 1))} { :>	
+--<: } else { :>	
+--<: if {$C_USE_STARTUP_EXT == 0} { :>
+--    SS_IO     => SS_IO_multiple,
+--<: } else { :>	
+--<: if {$C_NUM_SS_BITS > 1} { :>
+--<: if {$C_USE_STARTUP_EXT == 1 && $C_DUAL_QUAD_MODE == 1} { :>	
+--    SS_IO     => SS_IO_one,
+--<: } else { :>
+--    SS_IO     => SS_IO_multiple,
+--<: } :>	
+--<: } :>	
+--<: } :>	
+--<: } :>	
+--<: } :>	
+--<: } :>
+<: if {$Master_mode == 1} { :>
+<: if {($UC_FAMILY == 0) || ($UC_FAMILY == 1 && $C_USE_STARTUP == 0)} { :>
+    SS_IO     => SS_IO_multiple,
+<: } else { :>
+--<: if {$C_DUAL_QUAD_MODE == 1 && $C_USE_STARTUP_EXT == 1} { :>
+--    SS_IO     => SS_IO_one,
+--<: } :>
+<: if {$C_NUM_SS_BITS > 1} { :>
+    SS_IO     => SS_IO_multiple,
+<: } :>
+<: } :>
+<: } :>
+
+<: if {$C_USE_STARTUP == 0} { :>	
+       SCK_IO     => Mem_Clk,
+<: } :>	
+<: if {$Master_mode == 0  && $C_USE_STARTUP_EXT == 0} { :>
+       SPISEL            => IO0_IO_Master,
+       IO0_IO_Master     => IO0_IO_Master,
+       IO1_IO_Master     => IO1_IO_Master,
+<: if {$C_SPI_MODE == 2 && $C_USE_STARTUP_EXT == 0} { :>	
+       IO2_IO_Master     => IO2_IO_Master,
+       IO3_IO_Master     => IO3_IO_Master,
+<: } :>	
+<: } :>	
+       atg_status  => local_atg_status
+  );
+  
+<: } else { :>
+EXDES: <=:$ComponentName:>_exdes
+  port map (
+       clk_p       => local_clk_p,
+       clk_n       => local_clk_n,
+       reset       => local_reset,
+       atg_done    => local_atg_done,
+       axi_aresetn_out    => axi_aresetn,
+       axi_clk_out    => axi_clk,
+       IO0_IO     => IO0_IO_Master,
+       IO1_IO     => IO1_IO_Master,
+<: if {$C_SPI_MODE == 2 && $C_USE_STARTUP_EXT == 0} { :>	
+       IO2_IO     => IO2_IO_Master,
+       IO3_IO     => IO3_IO_Master,
+<: } :>	
+<: if {$Master_mode == 1  && $C_USE_STARTUP_EXT == 0} { :>
+<: if {$SLAVES == 0 } { :>
+    SS_IO     => SS_IO_one,
+<: } else { :>
+    SS_IO     => SS_IO_multiple,
+<: } :>	
+<: } :>	
+<: if {$C_USE_STARTUP == 0 && $C_USE_STARTUP_EXT == 0} { :>	
+       SCK_IO     => SCK_IO_Master,
+	   SCK_IO_Master => SCK_IO_Master,
+<: } :>	
+<: if {$Master_mode == 0 && $C_USE_STARTUP_EXT == 0} { :>
+       SPISEL            => SS_IO_Master,
+       SS_IO_Master      => SS_IO_Master,
+       IO0_IO_Master     => IO0_IO_Master,
+       IO1_IO_Master     => IO1_IO_Master,
+<: if {$C_SPI_MODE == 2} { :>	
+       IO2_IO_Master     => IO2_IO_Master,
+       IO3_IO_Master     => IO3_IO_Master,
+<: } :>	
+<: } :>	
+       atg_status  => local_atg_status
+  );
+
+<: } :>
+------------------------------------------------------------------
+
+end tb;

@@ -1,0 +1,82 @@
+<: setOutputDirectory "./" :>
+<: setFileName "top_set" :>
+<: setFileExtension ".tcl" :>
+<: set C_XIP_MODE  [get_property PARAM_VALUE.C_XIP_MODE ] :>
+<: set FIFO_EXISTS  [get_property PARAM_VALUE.FIFO_INCLUDED ] :>
+<: set C_DATA_WIDTH  [get_property PARAM_VALUE.C_NUM_TRANSFER_BITS ] :>
+<: set C_AXI4  [get_property PARAM_VALUE.C_TYPE_OF_AXI4_INTERFACE ] :>
+<: set C_SCK_RATIO  [get_property PARAM_VALUE.C_SCK_RATIO ] :>
+<: set C_ID_WIDTH  [get_property PARAM_VALUE.C_S_AXI4_ID_WIDTH ] :>
+<: if {$C_ID_WIDTH == 0} { :>
+<: set C_S_AXI4_ID_WIDTH 1 :>
+<: } else { :>
+<: set C_S_AXI4_ID_WIDTH $C_ID_WIDTH :>
+<: } :>
+<: set START_UP  [get_property MODELPARAM_VALUE.C_USE_STARTUP ] :>
+<: set Master_mode  [get_property PARAM_VALUE.Master_mode ] :>
+<: set family [getStringValue "C_FAMILY"] :>
+<: set wd [ file dirname [ get_property xml_file_name [ current_ipbom ] ] ] :>
+##set_property target_language Verilog [current_project]
+
+set qspi_addr_1 [lindex [get_property name [get_files *qspi_addr_1.coe]] 0 ]
+set qspi_data_1 [lindex [get_property name [get_files *qspi_data_1.coe]] 0 ]
+set qspi_mask_1 [lindex [get_property name [get_files *qspi_mask_1.coe]] 0 ]
+set qspi_ctrl_1 [lindex [get_property name [get_files *qspi_ctrl_1.coe]] 0 ]
+<: if {$Master_mode == 1 } { :>
+set qspi_addr_2 [lindex [get_property name [get_files *qspi_addr_2.coe]] 0 ]
+set qspi_data_2 [lindex [get_property name [get_files *qspi_data_2.coe]] 0 ]
+set qspi_mask_2 [lindex [get_property name [get_files *qspi_mask_2.coe]] 0 ]
+set qspi_ctrl_2 [lindex [get_property name [get_files *qspi_ctrl_2.coe]] 0 ]
+
+set qspi_addr_3 [lindex [get_property name [get_files *qspi_addr_3.coe]] 0 ]
+set qspi_data_3 [lindex [get_property name [get_files *qspi_data_3.coe]] 0 ]
+set qspi_mask_3 [lindex [get_property name [get_files *qspi_mask_3.coe]] 0 ]
+set qspi_ctrl_3 [lindex [get_property name [get_files *qspi_ctrl_3.coe]] 0 ]
+
+#set init_data [lindex [get_property name [get_files *init_data.coe]] 0 ]
+<: } :>
+<: if {[string first "everest" $family] == -1} { :>
+create_ip -name clk_wiz  -vendor xilinx.com -library ip -module_name clk_wiz_0
+set_property -dict [list CONFIG.PRIM_SOURCE {Differential_clock_capable_pin} CONFIG.PRIM_IN_FREQ {200.000} CONFIG.CLKOUT1_REQUESTED_OUT_FREQ {50.000}] [get_ips clk_wiz_0]
+generate_target all [get_ips clk_wiz_0]
+<: } else { :>
+create_ip -name clk_wizard -vendor xilinx.com -library ip -module_name clk_wiz_0
+set_property -dict [list CONFIG.USE_RESET {true} CONFIG.USE_LOCKED {true} CONFIG.PRIM_IN_FREQ {200.000} CONFIG.PRIM_SOURCE {Differential_clock_capable_pin} CONFIG.CLKOUT_USED {true,false,false,false,false,false,false} CONFIG.CLKOUT_PORT {clk_out1,clk_out2,clk_out3,clk_out4,clk_out5,clk_out6,clk_out7} CONFIG.CLKOUT_REQUESTED_OUT_FREQUENCY {50.000,50.000,60.000,100.000,100.000,100.000,100.000}] [get_ips clk_wiz_0]
+generate_target all [get_ips clk_wiz_0]
+<: } :>
+<: if {$Master_mode == 1 } { :>
+create_ip -name axi_traffic_gen -vendor xilinx.com -library ip -module_name axi_traffic_gen_1
+set_property -dict [list CONFIG.ATG_OPTIONS {Custom} CONFIG.C_ATG_MODE {AXI4-Lite} CONFIG.C_ATG_SYSTEM_CMD_MAX_RETRY {200024} CONFIG.C_ATG_MIF_DATA_DEPTH {256} CONFIG.C_ATG_SYSINIT_MODES {System_Test} CONFIG.C_ATG_SYSTEM_INIT_ADDR_MIF $qspi_addr_1 CONFIG.C_ATG_SYSTEM_INIT_DATA_MIF $qspi_data_1 CONFIG.C_ATG_SYSTEM_INIT_MASK_MIF $qspi_mask_1 CONFIG.C_ATG_SYSTEM_INIT_CTRL_MIF $qspi_ctrl_1 CONFIG.C_ATG_SYSTEM_TEST_MAX_CLKS {200000000}] [get_ips axi_traffic_gen_1]
+generate_target all [get_ips axi_traffic_gen_1]
+
+<: if {$C_XIP_MODE == 0 } { :>
+create_ip -name axi_traffic_gen -vendor xilinx.com -library ip -module_name axi_traffic_gen_2
+set_property -dict [list CONFIG.ATG_OPTIONS {Custom} CONFIG.C_ATG_MODE {AXI4-Lite} CONFIG.C_ATG_SYSTEM_CMD_MAX_RETRY {200024} CONFIG.C_ATG_MIF_DATA_DEPTH {256} CONFIG.C_ATG_SYSINIT_MODES {System_Test} CONFIG.C_ATG_SYSTEM_INIT_ADDR_MIF $qspi_addr_2 CONFIG.C_ATG_SYSTEM_INIT_DATA_MIF $qspi_data_2 CONFIG.C_ATG_SYSTEM_INIT_MASK_MIF $qspi_mask_2 CONFIG.C_ATG_SYSTEM_INIT_CTRL_MIF $qspi_ctrl_2 CONFIG.C_ATG_SYSTEM_TEST_MAX_CLKS {200000000}] [get_ips axi_traffic_gen_2]
+generate_target all [get_ips axi_traffic_gen_2]
+
+create_ip -name axi_traffic_gen -vendor xilinx.com -library ip -module_name axi_traffic_gen_3
+set_property -dict [list CONFIG.ATG_OPTIONS {Custom} CONFIG.C_ATG_MODE {AXI4-Lite} CONFIG.C_ATG_SYSTEM_CMD_MAX_RETRY {200024} CONFIG.C_ATG_MIF_DATA_DEPTH {256} CONFIG.C_ATG_SYSINIT_MODES {System_Test} CONFIG.C_ATG_SYSTEM_INIT_ADDR_MIF $qspi_addr_3 CONFIG.C_ATG_SYSTEM_INIT_DATA_MIF $qspi_data_3 CONFIG.C_ATG_SYSTEM_INIT_MASK_MIF $qspi_mask_3 CONFIG.C_ATG_SYSTEM_INIT_CTRL_MIF $qspi_ctrl_3 CONFIG.C_ATG_SYSTEM_TEST_MAX_CLKS {200000000}] [get_ips axi_traffic_gen_3]
+generate_target all [get_ips axi_traffic_gen_3]
+<: } else { :>
+create_ip -name axi_cdma -vendor xilinx.com -library ip -module_name axi_cdma_0
+set_property -dict [list CONFIG.C_INCLUDE_SG {0} CONFIG.C_M_AXI_DATA_WIDTH {32} CONFIG.C_M_AXI_MAX_BURST_LEN {16} CONFIG.C_INCLUDE_DRE {1}] [get_ips axi_cdma_0]
+generate_target all [get_ips axi_cdma_0]
+
+##create_ip -name blk_mem_gen -vendor xilinx.com -library ip -module_name blk_mem_gen_0
+##set_property -dict [list CONFIG.Interface_Type {AXI4} CONFIG.AXI_ID_Width {4} CONFIG.AXI_ID_Width {<=:$C_S_AXI4_ID_WIDTH:>} CONFIG.Write_Width_A {32} CONFIG.Load_Init_File {true} CONFIG.Coe_File ##$init_data CONFIG.Fill_Remaining_Memory_Locations {false}] [get_ips blk_mem_gen_0]
+##generate_target all [get_ips blk_mem_gen_0]
+
+create_ip -name axi_bram_ctrl -vendor xilinx.com -library ip -module_name axi_bram_ctrl_3
+set_property -dict [list CONFIG.SUPPORTS_NARROW_BURST {0} CONFIG.SINGLE_PORT_BRAM {1} CONFIG.MEM_DEPTH {1024}] [get_ips axi_bram_ctrl_3]
+generate_target all [get_ips axi_bram_ctrl_3]
+<: } :>
+<: } else { :>
+
+create_ip -name axi_traffic_gen -vendor xilinx.com -library ip -module_name axi_traffic_gen_1
+set_property -dict [list CONFIG.ATG_OPTIONS {Custom} CONFIG.C_ATG_MODE {AXI4-Lite} CONFIG.C_ATG_SYSTEM_CMD_MAX_RETRY {200024} CONFIG.C_ATG_MIF_DATA_DEPTH {256} CONFIG.C_ATG_SYSINIT_MODES {System_Test} CONFIG.C_ATG_SYSTEM_MAX_CHANNELS {2} CONFIG.C_ATG_SYSTEM_INIT_ADDR_MIF $qspi_addr_1 CONFIG.C_ATG_SYSTEM_INIT_DATA_MIF $qspi_data_1 CONFIG.C_ATG_SYSTEM_INIT_MASK_MIF $qspi_mask_1 CONFIG.C_ATG_SYSTEM_INIT_CTRL_MIF $qspi_ctrl_1 CONFIG.C_ATG_SYSTEM_CH1_HIGH {0x00001FFF} CONFIG.C_ATG_SYSTEM_CH1_LOW {0x00001000} CONFIG.C_ATG_SYSTEM_CH2_LOW {0x00002000} CONFIG.C_ATG_SYSTEM_CH2_HIGH {0x00002FFF} CONFIG.C_ATG_SYSTEM_TEST_MAX_CLKS {200000000}] [get_ips axi_traffic_gen_1]
+generate_target all [get_ips axi_traffic_gen_1]
+
+create_ip -name axi_quad_spi -vendor xilinx.com -library ip -module_name axi_quad_spi_Master
+set_property -dict [list CONFIG.C_TYPE_OF_AXI4_INTERFACE {<=: $C_AXI4 :>} CONFIG.C_NUM_TRANSFER_BITS {<=: $C_DATA_WIDTH :>} CONFIG.C_USE_STARTUP {0} CONFIG.C_SCK_RATIO {<=: $C_SCK_RATIO :>} CONFIG.Master_mode {1} CONFIG.C_S_AXI4_ID_WIDTH {<=: $C_S_AXI4_ID_WIDTH :>}] [get_ips axi_quad_spi_Master]
+generate_target all [get_ips axi_quad_spi_Master]
+<: } :>
