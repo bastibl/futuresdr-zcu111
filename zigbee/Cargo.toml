@@ -2,8 +2,7 @@
 name = "zigbee"
 version = "0.0.1"
 edition = "2021"
-default-run = "rx"
 
 [dependencies]
 futuresdr = { version = "0.0.32", features = ["zynq"] }
-
+xilinx-dma = "0.0.7"

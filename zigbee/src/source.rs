@@ -3,8 +3,8 @@ use xilinx_dma::AxiDmaAsync;
 use xilinx_dma::DmaBuffer;
 
 use futuresdr::anyhow::Result;
+use futuresdr::async_trait::async_trait;
 use futuresdr::runtime::buffer::zynq::BufferEmpty;
-use futuresdr::runtime::buffer::zynq::BufferFull;
 use futuresdr::runtime::buffer::zynq::WriterD2H;
 use futuresdr::runtime::Block;
 use futuresdr::runtime::BlockMeta;
@@ -21,7 +21,7 @@ where
     O: Send + 'static,
 {
     dma_d2h: AxiDmaAsync,
-    dma_buffs: Vec<String>,
+    dma_bufs: Vec<String>,
     output_buffers: Vec<BufferEmpty>,
     output_data: PhantomData<O>,
 }
@@ -32,10 +32,10 @@ where
 {
     pub fn new<S: Into<String>>(
         dma_d2h: impl AsRef<str>,
-        dma_buffs: Vec<S>,
+        dma_bufs: Vec<S>,
     ) -> Result<Block> {
-        assert!(dma_buffs.len() > 1);
-        let dma_buffs = dma_buffs.into_iter().map(Into::into).collect();
+        assert!(dma_bufs.len() > 1);
+        let dma_bufs = dma_bufs.into_iter().map(Into::into).collect();
 
         Ok(Block::new(
             BlockMetaBuilder::new("Source").build(),
@@ -43,7 +43,7 @@ where
             MessageIoBuilder::<Self>::new().build(),
             Source {
                 dma_d2h: AxiDmaAsync::new(dma_d2h.as_ref())?,
-                dma_buffs,
+                dma_bufs,
                 output_buffers: Vec::new(),
                 output_data: PhantomData,
             },
@@ -64,28 +64,25 @@ where
 {
     async fn init(
         &mut self,
-        sio: &mut StreamIo,
+        _sio: &mut StreamIo,
         _m: &mut MessageIo<Self>,
         _b: &mut BlockMeta,
     ) -> Result<()> {
-        let len = self.dma_buffs.len();
-        assert!(len > 1);
+        assert!(!self.dma_bufs.is_empty());
 
-        for n in self.dma_buffs.iter() {
+        for n in self.dma_bufs.iter() {
             self.output_buffers.push(BufferEmpty {
                 buffer: DmaBuffer::new(n)?,
             });
         }
 
-        self.dma_h2d.reset();
         self.dma_d2h.reset();
-
         Ok(())
     }
 
     async fn work(
         &mut self,
-        io: &mut WorkIo,
+        _io: &mut WorkIo,
         sio: &mut StreamIo,
         _mio: &mut MessageIo<Self>,
         _meta: &mut BlockMeta,
