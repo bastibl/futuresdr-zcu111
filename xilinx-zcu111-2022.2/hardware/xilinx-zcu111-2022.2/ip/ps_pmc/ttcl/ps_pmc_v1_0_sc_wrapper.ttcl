@@ -1,0 +1,533 @@
+<: setFileName ps_pmc_v1_0_0_tlm :>
+<: setFileExtension .h :>
+<: setOutputDirectory sim_tlm/ :> 
+<: setFileIsInclude true :>
+<: setFileType "systemCSource" :>
+<: set maxigp0 [get_property PARAM_VALUE.PS_USE_M_AXI_GP0] :>
+<: set maxigp2 [get_property PARAM_VALUE.PS_USE_M_AXI_GP2] :>
+<: set if_ps_noc_cci_0 [get_property PARAM_VALUE.PS_USE_PS_NOC_CCI_0] :>
+<: set if_ps_noc_cci_1 [get_property PARAM_VALUE.PS_USE_PS_NOC_CCI_1] :>
+<: set if_ps_noc_cci_2 [get_property PARAM_VALUE.PS_USE_PS_NOC_CCI_2] :>
+<: set if_ps_noc_cci_3 [get_property PARAM_VALUE.PS_USE_PS_NOC_CCI_3] :>
+<: set if_ps_noc_nci_0 [get_property PARAM_VALUE.PS_USE_PS_NOC_NCI_0] :>
+<: set if_ps_noc_nci_1 [get_property PARAM_VALUE.PS_USE_PS_NOC_NCI_1] :>
+<: set if_ps_noc_pcie_0 [get_property PARAM_VALUE.PS_USE_PS_NOC_PCI_0] :>
+<: set if_ps_noc_pcie_1 [get_property PARAM_VALUE.PS_USE_PS_NOC_PCI_1] :>
+<: set if_ps_noc_rpu_0 [get_property PARAM_VALUE.PS_USE_PS_NOC_RPU_0] :>
+<: set if_pmc_noc_axi_0 [get_property PARAM_VALUE.PMC_USE_PMC_NOC_AXI0] :>
+<: set saxigp0 [get_property PARAM_VALUE.PS_USE_S_AXI_GP0] :>
+<: set saxigp2 [get_property PARAM_VALUE.PS_USE_S_AXI_GP2] :>
+<: set saxigp4 [get_property PARAM_VALUE.PS_USE_S_AXI_GP4] :>
+<: set saxiacp [get_property PARAM_VALUE.PS_USE_S_AXI_ACP] :>
+<: set saxiace [get_property PARAM_VALUE.PS_USE_S_AXI_ACE] :>
+<: set if_noc_ps_nci_0 [get_property PARAM_VALUE.PS_USE_NOC_PS_NCI_0] :>
+<: set if_noc_ps_nci_1 [get_property PARAM_VALUE.PS_USE_NOC_PS_NCI_1] :>
+<: set if_noc_ps_cci_0 [get_property PARAM_VALUE.PS_USE_NOC_PS_CCI_0] :>
+<: set if_noc_ps_cci_1 [get_property PARAM_VALUE.PS_USE_NOC_PS_CCI_1] :>
+<: set if_noc_ps_pcie_0 [get_property PARAM_VALUE.PS_USE_NOC_PS_PCI_0] :>
+<: set if_noc_pmc_axi_0 [get_property PARAM_VALUE.PMC_USE_NOC_PMC_AXI0] :>
+<: set fclk0 [get_property PARAM_VALUE.PS_USE_PMCPL_CLK0] :>
+<: set fclk1 [get_property PARAM_VALUE.PS_USE_PMCPL_CLK1] :>
+<: set fclk2 [get_property PARAM_VALUE.PS_USE_PMCPL_CLK2] :>
+<: set fclk3 [get_property PARAM_VALUE.PS_USE_PMCPL_CLK3] :>
+<: set fclk0_freq [get_property PARAM_VALUE.PMC_CRP_PL0_REF_CTRL_FREQMHZ] :>
+<: set fclk1_freq [get_property PARAM_VALUE.PMC_CRP_PL1_REF_CTRL_FREQMHZ] :>
+<: set fclk2_freq [get_property PARAM_VALUE.PMC_CRP_PL2_REF_CTRL_FREQMHZ] :>
+<: set fclk3_freq [get_property PARAM_VALUE.PMC_CRP_PL3_REF_CTRL_FREQMHZ] :>
+<: set num_rst [get_property PARAM_VALUE.PS_NUM_FABRIC_RESETS] :>
+<: set mgp0_data_width [get_property PARAM_VALUE.PS_M_AXI_GP0_DATA_WIDTH] :>
+<: set mgp2_data_width [get_property PARAM_VALUE.PS_M_AXI_GP2_DATA_WIDTH] :>
+<: set saxigp0_data_width [get_property PARAM_VALUE.PS_S_AXI_GP0_DATA_WIDTH] :>
+<: set saxigp2_data_width [get_property PARAM_VALUE.PS_S_AXI_GP2_DATA_WIDTH] :>
+<: set saxigp4_data_width [get_property PARAM_VALUE.PS_S_AXI_GP4_DATA_WIDTH] :>
+<: set saxiacp_data_width [get_property PARAM_VALUE.PS_S_AXI_ACP_DATA_WIDTH] :>
+<: set saxiace_data_width [get_property PARAM_VALUE.PS_S_AXI_ACE_DATA_WIDTH] :>
+<: set if_ps_noc_cci_0_data_width [get_property PARAM_VALUE.PS_PS_NOC_CCI_DATA_WIDTH] :>
+<: set if_ps_noc_cci_1_data_width [get_property PARAM_VALUE.PS_PS_NOC_CCI_DATA_WIDTH] :>
+<: set if_ps_noc_cci_2_data_width [get_property PARAM_VALUE.PS_PS_NOC_CCI_DATA_WIDTH] :>
+<: set if_ps_noc_cci_3_data_width [get_property PARAM_VALUE.PS_PS_NOC_CCI_DATA_WIDTH] :>
+<: set if_ps_noc_nci_0_data_width [get_property PARAM_VALUE.PS_PS_NOC_NCI_DATA_WIDTH] :>
+<: set if_ps_noc_nci_1_data_width [get_property PARAM_VALUE.PS_PS_NOC_NCI_DATA_WIDTH] :>
+<: set if_noc_ps_nci_0_data_width [get_property PARAM_VALUE.PS_PS_NOC_NCI_DATA_WIDTH] :>
+<: set if_noc_ps_nci_1_data_width [get_property PARAM_VALUE.PS_PS_NOC_NCI_DATA_WIDTH] :>
+<: set if_noc_ps_cci_0_data_width [get_property PARAM_VALUE.PS_NOC_PS_CCI_DATA_WIDTH] :>
+<: set if_noc_ps_cci_1_data_width [get_property PARAM_VALUE.PS_NOC_PS_CCI_DATA_WIDTH] :>
+<: set if_ps_noc_pcie_0_data_width [get_property PARAM_VALUE.PS_PS_NOC_PCI_DATA_WIDTH] :>
+<: set if_ps_noc_pcie_1_data_width [get_property PARAM_VALUE.PS_PS_NOC_PCI_DATA_WIDTH] :>
+<: set if_noc_ps_pcie_0_data_width [get_property PARAM_VALUE.PS_NOC_PS_PCI_DATA_WIDTH] :>
+<: set if_ps_noc_rpu_0_data_width [get_property PARAM_VALUE.PS_PS_NOC_RPU_DATA_WIDTH] :>
+<: set if_pmc_noc_axi_0_data_width [get_property PARAM_VALUE.PMC_PMC_NOC_DATA_WIDTH] :>
+<: set if_pmc_noc_axi_0_addr_width [get_property PARAM_VALUE.PMC_PMC_NOC_ADDR_WIDTH] :>
+<: set if_noc_pmc_axi_0_data_width [get_property PARAM_VALUE.PMC_NOC_PMC_DATA_WIDTH] :>
+<: set pl_ps_irq0 [get_property PARAM_VALUE.PS_USE_IRQ_0] :>
+<: set pl_ps_irq1 [get_property PARAM_VALUE.PS_USE_IRQ_1] :>
+<: set pl_ps_irq2 [get_property PARAM_VALUE.PS_USE_IRQ_2] :>
+<: set pl_ps_irq3 [get_property PARAM_VALUE.PS_USE_IRQ_3] :>
+<: set pl_ps_irq4 [get_property PARAM_VALUE.PS_USE_IRQ_4] :>
+<: set pl_ps_irq5 [get_property PARAM_VALUE.PS_USE_IRQ_5] :>
+<: set pl_ps_irq6 [get_property PARAM_VALUE.PS_USE_IRQ_6] :>
+<: set pl_ps_irq7 [get_property PARAM_VALUE.PS_USE_IRQ_7] :>
+<: set pl_ps_irq8 [get_property PARAM_VALUE.PS_USE_IRQ_8] :>
+<: set pl_ps_irq9 [get_property PARAM_VALUE.PS_USE_IRQ_9] :>
+<: set pl_ps_irq10 [get_property PARAM_VALUE.PS_USE_IRQ_10] :>
+<: set pl_ps_irq11 [get_property PARAM_VALUE.PS_USE_IRQ_11] :>
+<: set pl_ps_irq12 [get_property PARAM_VALUE.PS_USE_IRQ_12] :>
+<: set pl_ps_irq13 [get_property PARAM_VALUE.PS_USE_IRQ_13] :>
+<: set pl_ps_irq14 [get_property PARAM_VALUE.PS_USE_IRQ_14] :>
+<: set pl_ps_irq15 [get_property PARAM_VALUE.PS_USE_IRQ_15] :>
+// (c) Copyright 1995-2017 Xilinx, Inc. All rights reserved.
+// 
+// This file contains confidential and proprietary information
+// of Xilinx, Inc. and is protected under U.S. and
+// international copyright and other intellectual property
+// laws.
+// 
+// DISCLAIMER
+// This disclaimer is not a license and does not grant any
+// rights to the materials distributed herewith. Except as
+// otherwise provided in a valid license issued to you by
+// Xilinx, and to the maximum extent permitted by applicable
+// law: (1) THESE MATERIALS ARE MADE AVAILABLE "AS IS" AND
+// WITH ALL FAULTS, AND XILINX HEREBY DISCLAIMS ALL WARRANTIES
+// AND CONDITIONS, EXPRESS, IMPLIED, OR STATUTORY, INCLUDING
+// BUT NOT LIMITED TO WARRANTIES OF MERCHANTABILITY, NON-
+// INFRINGEMENT, OR FITNESS FOR ANY PARTICULAR PURPOSE; and
+// (2) Xilinx shall not be liable (whether in contract or tort,
+// including negligence, or under any other theory of
+// liability) for any loss or damage of any kind or nature
+// related to, arising under or in connection with these
+// materials, including for any direct, or any indirect,
+// special, incidental, or consequential loss or damage
+// (including loss of data, profits, goodwill, or any type of
+// loss or damage suffered as a result of any action brought
+// by a third party) even if such damage or loss was
+// reasonably foreseeable or Xilinx had been advised of the
+// possibility of the same.
+// 
+// CRITICAL APPLICATIONS
+// Xilinx products are not designed or intended to be fail-
+// safe, or for use in any application requiring fail-safe
+// performance, such as life-support or safety devices or
+// systems, Class III medical devices, nuclear facilities,
+// applications related to the deployment of airbags, or any
+// other applications that could lead to death, personal
+// injury, or severe property or environmental damage
+// (individually and collectively, "Critical
+// Applications"). Customer assumes the sole risk and
+// liability of any use of Xilinx products in Critical
+// Applications, subject only to applicable laws and
+// regulations governing limitations on product liability.
+// 
+// THIS COPYRIGHT NOTICE AND DISCLAIMER MUST BE RETAINED AS
+// PART OF THIS FILE AT ALL TIMES.
+// 
+// DO NOT MODIFY THIS FILE.
+
+#ifndef __PS_PMC_TLM_H__
+#define __PS_PMC_TLM_H__
+
+#include "systemc.h"
+#include "xtlm.h"
+#include "xtlm_adaptors/xaximm_xtlm2tlm.h"
+#include "xtlm_adaptors/xaximm_tlm2xtlm.h"
+#include "tlm_utils/simple_initiator_socket.h"
+#include "tlm_utils/simple_target_socket.h"
+#include <vector>
+#include "genattr.h"
+#include "xilinx_zynq3.h"
+#include <stdlib.h>
+#include "xtlm_simple_interconnect_model.h"
+<: if { $if_pmc_noc_axi_0 == 1} {   :>
+#include "RdWrTCPSocket.h"
+#include "rwd_tlmmodel.h"
+#include<thread>
+<:}:>
+<: if { $if_ps_noc_pcie_0 == 1} {   :>
+#include "sim_xdma.h"
+<:}:>
+#include "b_transport_converter.h"
+
+/***************************************************************************************
+*
+* A Simple Converter which converts Remote-port's simplae_intiator_sockets<32>->b_transport()
+* calls to xTLM sockets bn_transport_x() calls..
+* 
+* This is Only specific to remote-port so not creating seperate header for it.
+*
+***************************************************************************************/
+template <int IN_WIDTH, int OUT_WIDTH>
+class rptlm2xtlm_converter : public sc_module{
+    public:
+    tlm::tlm_target_socket<IN_WIDTH> target_socket;
+    xtlm::xtlm_aximm_initiator_socket wr_socket;
+    xtlm::xtlm_aximm_initiator_socket rd_socket;
+    rptlm2xtlm_converter<IN_WIDTH, OUT_WIDTH>(sc_module_name name);//:sc_module(name)
+	void registerUserExtensionHandlerCallback(
+			void (*callback)(xtlm::aximm_payload*,
+					const tlm::tlm_generic_payload*));
+
+    private:
+    b_transport_converter<IN_WIDTH, OUT_WIDTH> m_btrans_conv;
+    xtlm::xaximm_tlm2xtlm_t<OUT_WIDTH> xtlm_bridge;
+};
+
+/***************************************************************************************
+*   Global method, get registered with tlm2xtlm bridge
+*   This function is called when tlm2xtlm bridge convert tlm payload to xtlm payload.
+*
+*   caller:     tlm2xtlm bridge
+*   purpose:    To get master id and other parameters out of genattr_extension 
+*               and use master id to AxUSER PIN of xtlm payload.
+*
+*
+***************************************************************************************/
+extern void get_extensions_from_tlm(xtlm::aximm_payload* xtlm_pay, const tlm::tlm_generic_payload* gp);
+
+/***************************************************************************************
+*   Global method, get registered with xtlm2tlm bridge
+*   This function is called when xtlm2tlm bridge convert xtlm payload to tlm payload.
+*
+*   caller:     xtlm2tlm bridge
+*   purpose:    To create and add master id and other parameters to genattr_extension.
+*               Master id red from AxID PIN of xtlm payload.
+*
+*
+***************************************************************************************/
+extern void add_extensions_to_tlm(const xtlm::aximm_payload* xtlm_pay, tlm::tlm_generic_payload* gp);
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//                                                                                                              //
+// File:            ps_pmc_v1_0_tlm.h                                                                       //
+//                                                                                                              //
+// Description:     ps_pmc_v1_0_0_tlm class is a sc_module, act as intermediate layer between                 //
+//                  xilinx_zynqmp qemu wrapper and Vivado generated systemc simulation ip wrapper.              //
+//                  it's basically created for supporting tlm based xilinx_zynqmp from xtlm based vivado        //
+//                  generated systemc wrapper. this wrapper is live only when SELECTED_SIM_MODEL is set         //
+//                  to tlm. it's also act as bridge between vivado wrapper and xilinx_zynqmp wrapper.           //
+//                  it fill the the gap between input/output ports of vivado generated wrapper to               //
+//                  xilinx_zynqmp wrapper signals. This wrapper is auto generated by ttcl scripts               //
+//                  based on IP configuration in vivado.                                                        //
+//                                                                                                              //
+//                                                                                                              //
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+template<int INIT_WIDTH, int TARGET_WIDTH>
+class tlm_width_conversion;
+class ps_pmc_v1_0_0_tlm : public sc_core::sc_module   {
+    
+    public:
+    // Non-AXI ports are declared here
+	<: set portname [ipx::get_ports -of_objects [current_ipbom]] :>
+	<: foreach m_port $portname { :>
+		<: set port_direction [get_property DIRECTION $m_port] :>
+        <: set port_enablement [get_property ENABLEMENT_VALUE $m_port] :>
+		<: set leftSize [get_property SIZE_LEFT $m_port] :>
+		<: set rightSize [get_property SIZE_RIGHT $m_port] :>
+		<: set isVector  [get_property IS_VECTOR $m_port] :>
+	    <: set portName_init [lindex $m_port 2] :>
+        <: set flag "0":>
+        <:  if { $port_enablement == 1 } { :>
+            <: set interface_list [ipx::get_bus_interfaces -of_objects [current_ipbom] -filter "BUS_TYPE_VLNV==xilinx.com:interface:aximm:1.0" ] :>
+            <: foreach interface $interface_list {:>
+                <: set checkIntrEnablement [get_property ENABLEMENT_VALUE $interface] :>
+	            <: if { $checkIntrEnablement != 1 } { :>
+                    <: continue; :>
+                <:}:>
+                <: set ports_list [ipx::get_port_maps -of_objects $interface ] :>
+                <: foreach port $ports_list {:>
+	                <: set physicalName [get_property PHYSICAL_NAME $port] :>
+                    <: if { $portName_init eq $physicalName } { :>
+                        <: set flag "1" :>
+                    <:}:>
+                <:}:>
+            <:}:>
+            <: if { $flag == "0" } { :>
+                <: set port_dir "sc_core::sc_inout<" :>
+                <: if { $port_direction == "out" } { :>
+                    <: set port_dir  "sc_core::sc_out<" :>
+                <:} elseif { $port_direction == "in" } {:>
+                    <: set port_dir "sc_core::sc_in<" :>
+                <:}:>
+                <: print "    " :>
+                <: if { $isVector == 1 } { :>
+                    <: incr leftSize :>
+                  <: print $port_dir :>sc_dt::sc_bv<<: print $leftSize :>> >  <: print $portName_init :>;
+                <:} else {:>
+                  <: print $port_dir :>bool> <: print $portName_init :>;
+                <:}:>
+            <:}:>
+        <:}:>
+    <:}:>
+     
+    // Xtlm aximm slave sockets are delcared here. these XTLM sockets will hierachically bound with 
+    // slave sockets defined in vivado generated wrapper.
+    <: if { $saxigp0 == 1} {   :>
+    xtlm::xtlm_aximm_target_socket*         S_AXI_GP0_wr_socket;
+    xtlm::xtlm_aximm_target_socket*         S_AXI_GP0_rd_socket;
+    <:}:>
+    <: if { $saxigp2 == 1} {   :>
+    xtlm::xtlm_aximm_target_socket*         S_AXI_GP2_wr_socket;
+    xtlm::xtlm_aximm_target_socket*         S_AXI_GP2_rd_socket;
+    <:}:>
+    <: if { $saxigp4 == 1} {   :>
+    xtlm::xtlm_aximm_target_socket*         S_AXI_GP4_wr_socket;
+    xtlm::xtlm_aximm_target_socket*         S_AXI_GP4_rd_socket;
+    <:}:>
+    <: if { $saxiacp == 1} {   :>
+    xtlm::xtlm_aximm_target_socket*         S_AXI_ACP_wr_socket;
+    xtlm::xtlm_aximm_target_socket*         S_AXI_ACP_rd_socket;
+    <:}:>
+    <: if { $saxiace == 1} {   :>
+    xtlm::xtlm_aximm_target_socket*         S_AXI_ACE_wr_socket;
+    xtlm::xtlm_aximm_target_socket*         S_AXI_ACE_rd_socket;
+    <:}:>
+    <: if { $if_noc_ps_nci_0 == 1} {   :>
+    xtlm::xtlm_aximm_target_socket*         IF_NOC_PS_NCI_0_wr_socket;
+    xtlm::xtlm_aximm_target_socket*         IF_NOC_PS_NCI_0_rd_socket;
+    <:}:>
+    <: if { $if_noc_ps_nci_1 == 1} {   :>
+    xtlm::xtlm_aximm_target_socket*         IF_NOC_PS_NCI_1_wr_socket;
+    xtlm::xtlm_aximm_target_socket*         IF_NOC_PS_NCI_1_rd_socket;
+    <:}:>
+    <: if { $if_noc_ps_cci_0 == 1} {   :>
+    xtlm::xtlm_aximm_target_socket*         IF_NOC_PS_CCI_0_wr_socket;
+    xtlm::xtlm_aximm_target_socket*         IF_NOC_PS_CCI_0_rd_socket;
+    <:}:>
+    <: if { $if_noc_ps_cci_1 == 1} {   :>
+    xtlm::xtlm_aximm_target_socket*         IF_NOC_PS_CCI_1_wr_socket;
+    xtlm::xtlm_aximm_target_socket*         IF_NOC_PS_CCI_1_rd_socket;
+    <:}:>
+    <: if { $if_noc_ps_pcie_0 == 1} {   :>
+    xtlm::xtlm_aximm_target_socket*         IF_NOC_PS_PCIE_0_wr_socket;
+    xtlm::xtlm_aximm_target_socket*         IF_NOC_PS_PCIE_0_rd_socket;
+    <:}:>
+    <: if { $if_noc_pmc_axi_0 == 1} {   :>
+    xtlm::xtlm_aximm_target_socket*         IF_NOC_PMC_AXI_0_wr_socket;
+    xtlm::xtlm_aximm_target_socket*         IF_NOC_PMC_AXI_0_rd_socket;
+    <:}:>
+
+    // Xtlm aximm master socket/s is/are delcared here. these XTLM sockets will hierachically bound with 
+    // master sockets defined in vivado generated wrapper.
+    <: if { $maxigp0 == 1} {   :>
+    xtlm::xtlm_aximm_initiator_socket*      M_AXI_GP0_wr_socket;
+    xtlm::xtlm_aximm_initiator_socket*      M_AXI_GP0_rd_socket;
+    <:}:>
+    <: if { $maxigp2 == 1} {   :>
+    xtlm::xtlm_aximm_initiator_socket*      M_AXI_GP2_wr_socket;
+    xtlm::xtlm_aximm_initiator_socket*      M_AXI_GP2_rd_socket;
+    <:}:>
+    <: if { $if_ps_noc_cci_0 == 1} {   :>
+    xtlm::xtlm_aximm_initiator_socket*      IF_PS_NOC_CCI_0_wr_socket;
+    xtlm::xtlm_aximm_initiator_socket*      IF_PS_NOC_CCI_0_rd_socket;
+    <:}:>
+    <: if { $if_ps_noc_cci_1 == 1} {   :>
+    xtlm::xtlm_aximm_initiator_socket*      IF_PS_NOC_CCI_1_wr_socket;
+    xtlm::xtlm_aximm_initiator_socket*      IF_PS_NOC_CCI_1_rd_socket;
+    <:}:>
+    <: if { $if_ps_noc_cci_2 == 1} {   :>
+    xtlm::xtlm_aximm_initiator_socket*      IF_PS_NOC_CCI_2_wr_socket;
+    xtlm::xtlm_aximm_initiator_socket*      IF_PS_NOC_CCI_2_rd_socket;
+    <:}:>
+    <: if { $if_ps_noc_cci_3 == 1} {   :>
+    xtlm::xtlm_aximm_initiator_socket*      IF_PS_NOC_CCI_3_wr_socket;
+    xtlm::xtlm_aximm_initiator_socket*      IF_PS_NOC_CCI_3_rd_socket;
+    <:}:>
+    <: if { $if_ps_noc_nci_0 == 1} {   :>
+    xtlm::xtlm_aximm_initiator_socket*      IF_PS_NOC_NCI_0_wr_socket;
+    xtlm::xtlm_aximm_initiator_socket*      IF_PS_NOC_NCI_0_rd_socket;
+    <:}:>
+    <: if { $if_ps_noc_nci_1 == 1} {   :>
+    xtlm::xtlm_aximm_initiator_socket*      IF_PS_NOC_NCI_1_wr_socket;
+    xtlm::xtlm_aximm_initiator_socket*      IF_PS_NOC_NCI_1_rd_socket;
+    <:}:>
+    <: if { $if_ps_noc_pcie_0 == 1} {   :>
+    xtlm::xtlm_aximm_initiator_socket*      IF_PS_NOC_PCIE_0_wr_socket;
+    xtlm::xtlm_aximm_initiator_socket*      IF_PS_NOC_PCIE_0_rd_socket;
+    <:}:>
+    <: if { $if_ps_noc_pcie_1 == 1} {   :>
+    xtlm::xtlm_aximm_initiator_socket*      IF_PS_NOC_PCIE_1_wr_socket;
+    xtlm::xtlm_aximm_initiator_socket*      IF_PS_NOC_PCIE_1_rd_socket;
+    <:}:>
+    <: if { $if_ps_noc_rpu_0 == 1} {   :>
+    xtlm::xtlm_aximm_initiator_socket*      IF_PS_NOC_RPU_0_wr_socket;
+    xtlm::xtlm_aximm_initiator_socket*      IF_PS_NOC_RPU_0_rd_socket;
+    <:}:>
+    <: if { $if_pmc_noc_axi_0 == 1} {   :>
+    xtlm::xtlm_aximm_initiator_socket*      IF_PMC_NOC_AXI_0_wr_socket;
+    xtlm::xtlm_aximm_initiator_socket*      IF_PMC_NOC_AXI_0_rd_socket;
+    <:}:>
+
+    //constructor having three paramters
+    // 1. module name in sc_module_name objec, 
+    // 2. reference to map object of name and integer value pairs 
+    // 3. reference to map object of name and string value pairs
+    // All the model parameters (integer and string) which are configuration parameters 
+    // of ZynqUltraScale+ IP propogated from Vivado
+    ps_pmc_v1_0_0_tlm (sc_core::sc_module_name name,
+        xsc::common_cpp::properties model_param_props);
+    ~ps_pmc_v1_0_0_tlm();
+    SC_HAS_PROCESS(ps_pmc_v1_0_0_tlm);
+
+    private:
+    
+    //zynqmp tlm wrapper provided by Edgar
+    //module with interfaces of standard tlm 
+    //and input/output ports at signal level
+    xilinx_zynq3* m_zynq3_tlm_model;
+
+    // Array of Xtlm2tlm Bridges
+    // Converts Xtlm transactions to tlm transactions
+    // Bridge's Xtlm wr/rd target sockets binds with 
+    // xtlm initiator sockets of zynq_ultra_ps_e_tlm and tlm simple initiator 
+    // socket with xilinx_zynqmp's target socket
+    // Array of size 11 
+    xtlm::xaximm_xtlm2tlm **m_xtlm2tlm;
+
+    // Array of tlm2xtlm Bridges
+    // Converts tlm transactions to xtlm transactions
+    // Bridge's tlm simple target socket binds with 
+    // simple initiator socket of xilinx_zynqmp and xtlm 
+    // socket with xilinx_zynqmp's simple target socket
+    // Array of size 12
+
+    <: if { $maxigp0 == 1} {   :>
+    rptlm2xtlm_converter<32, <: print $mgp0_data_width :> > m_rp_bridge_M_AXI_GP0; 
+    <:}:>
+    <: if { $maxigp2 == 1} {   :>
+    rptlm2xtlm_converter<32, <: print $mgp2_data_width :> > m_rp_bridge_M_AXI_GP2; 
+    <:}:>
+    <: if { $if_ps_noc_cci_0 == 1} {   :>
+    rptlm2xtlm_converter<32,<: print $if_ps_noc_cci_0_data_width :> > m_rp_bridge_IF_PS_NOC_CCI_0; 
+    <:}:>
+    <: if { $if_ps_noc_cci_1 == 1} {   :>
+    rptlm2xtlm_converter<32,<: print $if_ps_noc_cci_1_data_width :> > m_rp_bridge_IF_PS_NOC_CCI_1; 
+    <:}:>
+    <: if { $if_ps_noc_cci_2 == 1} {   :>
+    rptlm2xtlm_converter<32,<: print $if_ps_noc_cci_2_data_width :> > m_rp_bridge_IF_PS_NOC_CCI_2; 
+    <:}:>
+    <: if { $if_ps_noc_cci_3 == 1} {   :>
+    rptlm2xtlm_converter<32,<: print $if_ps_noc_cci_3_data_width :> > m_rp_bridge_IF_PS_NOC_CCI_3; 
+    <:}:>
+    <: if { $if_ps_noc_nci_0 == 1} {   :>
+    rptlm2xtlm_converter<32,<: print $if_ps_noc_nci_0_data_width :> > m_rp_bridge_IF_PS_NOC_NCI_0; 
+    <:}:>
+    <: if { $if_ps_noc_nci_1 == 1} {   :>
+    rptlm2xtlm_converter<32,<: print $if_ps_noc_nci_1_data_width :> > m_rp_bridge_IF_PS_NOC_NCI_1; 
+    <:}:>
+    <: if { $if_ps_noc_pcie_1 == 1} {   :>
+    rptlm2xtlm_converter<32,<: print $if_ps_noc_pcie_1_data_width :> > m_rp_bridge_IF_PS_NOC_PCIE_1; 
+    <:}:>
+    <: if { $if_ps_noc_rpu_0 == 1} {   :>
+    rptlm2xtlm_converter<32,<: print $if_ps_noc_rpu_0_data_width :> > m_rp_bridge_IF_PS_NOC_RPU_0; 
+    <:}:>
+    <: if { $if_pmc_noc_axi_0 == 1} {   :>
+    rptlm2xtlm_converter<32,<: print $if_pmc_noc_axi_0_data_width :> > m_rp_bridge_IF_PMC_NOC_AXI_0; 
+    <:}:>
+
+    // sc_clocks for generating pl clocks
+    // output pins pl_clk0..3 are drived by these clocks
+    <: if { $fclk0 == "1"} {   :>
+    sc_core::sc_clock pl_clk0_clk;
+    <:}:>
+    <: if { $fclk1 == "1"} {   :>
+    sc_core::sc_clock pl_clk1_clk;
+    <:}:>
+    <: if { $fclk2 == "1"} {   :>
+    sc_core::sc_clock pl_clk2_clk;
+    <:}:>
+    <: if { $fclk3 == "1"} {   :>
+    sc_core::sc_clock pl_clk3_clk;
+    <:}:>
+    sc_core::sc_clock pmc_noc_clk;
+
+    
+    <: if { $fclk0 == "1"} {   :>
+    //Method which is sentive to pl_clk0_clk sc_clock object
+    //pl_clk0 pin written based on pl_clk0_clk clock value 
+    void trigger_pl_clk0_pin(); 
+    <:}:>
+    <: if { $fclk1 == "1"} {   :>
+    //Method which is sentive to pl_clk1_clk sc_clock object
+    //pl_clk1 pin written based on pl_clk1_clk clock value 
+    void trigger_pl_clk1_pin();    
+    <:}:>
+    <: if { $fclk2 == "1"} {   :>
+    //Method which is sentive to pl_clk2_clk sc_clock object
+    //pl_clk2 pin written based on pl_clk2_clk clock value 
+    void trigger_pl_clk2_pin();
+    <:}:>
+    <: if { $fclk3 == "1"} {   :>
+    //Method which is sentive to pl_clk3_clk sc_clock object
+    //pl_clk3 pin written based on pl_clk3_clk clock value 
+    void trigger_pl_clk3_pin();
+    <:}:>
+    <: if { $if_pmc_noc_axi_0 == 1} {   :>
+    void trigger_ps_pmc_noc_axi0_clk_pin();
+    <:}:>
+    <: if { $if_ps_noc_pcie_0 == 1} {   :>
+    void trigger_ps_noc_pcie_axi0_clk_pin();
+    <:}:>
+    <: if { $if_ps_noc_cci_0 == 1} {   :>
+    void trigger_ps_noc_cci_axi0_clk_pin();
+    <:}:>
+    <: if { $if_ps_noc_cci_1 == 1} {   :>
+    void trigger_ps_noc_cci_axi1_clk_pin();
+    <:}:>
+    <: if { $if_ps_noc_cci_2 == 1} {   :>
+    void trigger_ps_noc_cci_axi2_clk_pin();
+    <:}:>
+    <: if { $if_ps_noc_cci_3 == 1} {   :>
+    void trigger_ps_noc_cci_axi3_clk_pin();
+    <:}:>
+    <: if { $if_ps_noc_nci_0 == 1} {   :>
+    void trigger_ps_noc_nci_axi0_clk_pin();
+    <:}:>
+    <: if { $if_ps_noc_nci_1 == 1} {   :>
+    void trigger_ps_noc_nci_axi1_clk_pin();
+    <:}:>
+    <: if { $if_ps_noc_rpu_0 == 1} {   :>
+    void trigger_ps_noc_rpu_axi0_clk_pin();
+    <:}:>
+    void pl_ps_irq_method();
+    <: if { $num_rst >= "1"} { :>
+    //pl_resetn0 output reset pin get toggle when emio bank 2's 31th signal gets toggled
+    //EMIO[2] bank 31th(GPIO[95] signal)acts as reset signal to the PL(refer Zynq UltraScale+ TRM, page no:761)
+    void pl_resetn0_trigger();   
+    <:}:>
+    <: if { $num_rst >= "2"} { :>
+    //pl_resetn1 output reset pin get toggle when emio bank 2's 30th signal gets toggled
+    //EMIO[2] bank 30th(GPIO[94] signal)acts as reset signal to the PL(refer Zynq UltraScale+ TRM, page no:761)
+    void pl_resetn1_trigger();
+    <:}:>
+    <: if { $num_rst >= "3"} { :>
+    //pl_resetn2 output reset pin get toggle when emio bank 2's 29th signal gets toggled
+    //EMIO[2] bank 29th(GPIO[93] signal)acts as reset signal to the PL(refer Zynq UltraScale+ TRM, page no:761)
+    void pl_resetn2_trigger();
+    <:}:>
+    <: if { $num_rst >= "4"} { :>
+    //pl_resetn3 output reset pin get toggle when emio bank 2's 29th signal gets toggled
+    //EMIO[2] bank 28th(GPIO[92] signal)acts as reset signal to the PL(refer Zynq UltraScale+ TRM, page no:761)
+    void pl_resetn3_trigger();
+    <:}:>
+
+    sc_signal<bool> qemu_rst;
+    void start_of_simulation();
+    void rwd_tlmmodule_init();
+    <: if { $if_pmc_noc_axi_0 == 1} {   :>
+    rwd_tlmmodel* m_rwd_tlmmodel;
+    RdWrTCPSocket* m_rdwrtcpsock;
+    std::thread* m_rwd_thread;
+    rptlm2xtlm_converter<32,<: print $if_pmc_noc_axi_0_data_width :> >* rwd_tlm2xtlm_brdg;
+    xtlm_simple_interconnect_model* rwd_pmc_interconnect;
+    <:}:>
+    <: if { $if_ps_noc_pcie_0 == 1} {   :>
+    sim_xdma* m_sim_xdma_ptr;
+    xtlm_simple_interconnect_model* sim_xdma_interconnect;
+    sc_core::sc_signal<bool> dummy_noc_pcie_sig;
+    <:}:>
+    
+    void enable_sim_xdma();
+
+};
+#endif

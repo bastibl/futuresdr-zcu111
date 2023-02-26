@@ -1,0 +1,1507 @@
+<: setFileName ps_pmc_v1_0_0_tlm :>
+<: setFileExtension .cpp :>
+<: setOutputDirectory sim_tlm/ :>
+<: setFileType "systemCSource" :>
+<: set maxigp0 [get_property PARAM_VALUE.PS_USE_M_AXI_GP0] :>
+<: set maxigp2 [get_property PARAM_VALUE.PS_USE_M_AXI_GP2] :>
+<: set if_ps_noc_cci_0 [get_property PARAM_VALUE.PS_USE_PS_NOC_CCI_0] :>
+<: set if_ps_noc_cci_1 [get_property PARAM_VALUE.PS_USE_PS_NOC_CCI_1] :>
+<: set if_ps_noc_cci_2 [get_property PARAM_VALUE.PS_USE_PS_NOC_CCI_2] :>
+<: set if_ps_noc_cci_3 [get_property PARAM_VALUE.PS_USE_PS_NOC_CCI_3] :>
+<: set if_ps_noc_nci_0 [get_property PARAM_VALUE.PS_USE_PS_NOC_NCI_0] :>
+<: set if_ps_noc_nci_1 [get_property PARAM_VALUE.PS_USE_PS_NOC_NCI_1] :>
+<: set if_ps_noc_pcie_0 [get_property PARAM_VALUE.PS_USE_PS_NOC_PCI_0] :>
+<: set if_ps_noc_pcie_1 [get_property PARAM_VALUE.PS_USE_PS_NOC_PCI_1] :>
+<: set if_ps_noc_rpu_0 [get_property PARAM_VALUE.PS_USE_PS_NOC_RPU_0] :>
+<: set if_pmc_noc_axi_0 [get_property PARAM_VALUE.PMC_USE_PMC_NOC_AXI0] :>
+<: set saxigp0 [get_property PARAM_VALUE.PS_USE_S_AXI_GP0] :>
+<: set saxigp2 [get_property PARAM_VALUE.PS_USE_S_AXI_GP2] :>
+<: set saxigp4 [get_property PARAM_VALUE.PS_USE_S_AXI_GP4] :>
+<: set saxiacp [get_property PARAM_VALUE.PS_USE_S_AXI_ACP] :>
+<: set saxiace [get_property PARAM_VALUE.PS_USE_S_AXI_ACE] :>
+<: set if_noc_ps_nci_0 [get_property PARAM_VALUE.PS_USE_NOC_PS_NCI_0] :>
+<: set if_noc_ps_nci_1 [get_property PARAM_VALUE.PS_USE_NOC_PS_NCI_1] :>
+<: set if_noc_ps_cci_0 [get_property PARAM_VALUE.PS_USE_NOC_PS_CCI_0] :>
+<: set if_noc_ps_cci_1 [get_property PARAM_VALUE.PS_USE_NOC_PS_CCI_1] :>
+<: set if_noc_ps_pcie_0 [get_property PARAM_VALUE.PS_USE_NOC_PS_PCI_0] :>
+<: set if_noc_pmc_axi_0 [get_property PARAM_VALUE.PMC_USE_NOC_PMC_AXI0] :>
+<: set fclk0 [get_property PARAM_VALUE.PS_USE_PMCPL_CLK0] :>
+<: set fclk1 [get_property PARAM_VALUE.PS_USE_PMCPL_CLK1] :>
+<: set fclk2 [get_property PARAM_VALUE.PS_USE_PMCPL_CLK2] :>
+<: set fclk3 [get_property PARAM_VALUE.PS_USE_PMCPL_CLK3] :>
+<: set fclk0_freq [get_property PARAM_VALUE.PMC_CRP_PL0_REF_CTRL_FREQMHZ] :>
+<: set fclk1_freq [get_property PARAM_VALUE.PMC_CRP_PL1_REF_CTRL_FREQMHZ] :>
+<: set fclk2_freq [get_property PARAM_VALUE.PMC_CRP_PL2_REF_CTRL_FREQMHZ] :>
+<: set fclk3_freq [get_property PARAM_VALUE.PMC_CRP_PL3_REF_CTRL_FREQMHZ] :>
+<: set num_rst [get_property PARAM_VALUE.PS_NUM_FABRIC_RESETS] :>
+<: set mgp0_data_width [get_property PARAM_VALUE.PS_M_AXI_GP0_DATA_WIDTH] :>
+<: set mgp2_data_width [get_property PARAM_VALUE.PS_M_AXI_GP2_DATA_WIDTH] :>
+<: set saxigp0_data_width [get_property PARAM_VALUE.PS_S_AXI_GP0_DATA_WIDTH] :>
+<: set saxigp2_data_width [get_property PARAM_VALUE.PS_S_AXI_GP2_DATA_WIDTH] :>
+<: set saxigp4_data_width [get_property PARAM_VALUE.PS_S_AXI_GP4_DATA_WIDTH] :>
+<: set saxiacp_data_width [get_property PARAM_VALUE.PS_S_AXI_ACP_DATA_WIDTH] :>
+<: set saxiace_data_width [get_property PARAM_VALUE.PS_S_AXI_ACE_DATA_WIDTH] :>
+<: set if_ps_noc_cci_0_data_width [get_property PARAM_VALUE.PS_PS_NOC_CCI_DATA_WIDTH] :>
+<: set if_ps_noc_cci_1_data_width [get_property PARAM_VALUE.PS_PS_NOC_CCI_DATA_WIDTH] :>
+<: set if_ps_noc_cci_2_data_width [get_property PARAM_VALUE.PS_PS_NOC_CCI_DATA_WIDTH] :>
+<: set if_ps_noc_cci_3_data_width [get_property PARAM_VALUE.PS_PS_NOC_CCI_DATA_WIDTH] :>
+<: set if_ps_noc_nci_0_data_width [get_property PARAM_VALUE.PS_PS_NOC_NCI_DATA_WIDTH] :>
+<: set if_ps_noc_nci_1_data_width [get_property PARAM_VALUE.PS_PS_NOC_NCI_DATA_WIDTH] :>
+<: set if_noc_ps_nci_0_data_width [get_property PARAM_VALUE.PS_PS_NOC_NCI_DATA_WIDTH] :>
+<: set if_noc_ps_nci_1_data_width [get_property PARAM_VALUE.PS_PS_NOC_NCI_DATA_WIDTH] :>
+<: set if_noc_ps_cci_0_data_width [get_property PARAM_VALUE.PS_NOC_PS_CCI_DATA_WIDTH] :>
+<: set if_noc_ps_cci_1_data_width [get_property PARAM_VALUE.PS_NOC_PS_CCI_DATA_WIDTH] :>
+<: set if_ps_noc_pcie_0_data_width [get_property PARAM_VALUE.PS_PS_NOC_PCI_DATA_WIDTH] :>
+<: set if_ps_noc_pcie_1_data_width [get_property PARAM_VALUE.PS_PS_NOC_PCI_DATA_WIDTH] :>
+<: set if_noc_ps_pcie_0_data_width [get_property PARAM_VALUE.PS_NOC_PS_PCI_DATA_WIDTH] :>
+<: set if_ps_noc_rpu_0_data_width [get_property PARAM_VALUE.PS_PS_NOC_RPU_DATA_WIDTH] :>
+<: set if_pmc_noc_axi_0_data_width [get_property PARAM_VALUE.PMC_PMC_NOC_DATA_WIDTH] :>
+<: set if_pmc_noc_axi_0_addr_width [get_property PARAM_VALUE.PMC_PMC_NOC_ADDR_WIDTH] :>
+<: set if_noc_pmc_axi_0_data_width [get_property PARAM_VALUE.PMC_NOC_PMC_DATA_WIDTH] :>
+<: set pl_ps_irq0 [get_property PARAM_VALUE.PS_USE_IRQ_0] :>
+<: set pl_ps_irq1 [get_property PARAM_VALUE.PS_USE_IRQ_1] :>
+<: set pl_ps_irq2 [get_property PARAM_VALUE.PS_USE_IRQ_2] :>
+<: set pl_ps_irq3 [get_property PARAM_VALUE.PS_USE_IRQ_3] :>
+<: set pl_ps_irq4 [get_property PARAM_VALUE.PS_USE_IRQ_4] :>
+<: set pl_ps_irq5 [get_property PARAM_VALUE.PS_USE_IRQ_5] :>
+<: set pl_ps_irq6 [get_property PARAM_VALUE.PS_USE_IRQ_6] :>
+<: set pl_ps_irq7 [get_property PARAM_VALUE.PS_USE_IRQ_7] :>
+<: set pl_ps_irq8 [get_property PARAM_VALUE.PS_USE_IRQ_8] :>
+<: set pl_ps_irq9 [get_property PARAM_VALUE.PS_USE_IRQ_9] :>
+<: set pl_ps_irq10 [get_property PARAM_VALUE.PS_USE_IRQ_10] :>
+<: set pl_ps_irq11 [get_property PARAM_VALUE.PS_USE_IRQ_11] :>
+<: set pl_ps_irq12 [get_property PARAM_VALUE.PS_USE_IRQ_12] :>
+<: set pl_ps_irq13 [get_property PARAM_VALUE.PS_USE_IRQ_13] :>
+<: set pl_ps_irq14 [get_property PARAM_VALUE.PS_USE_IRQ_14] :>
+<: set pl_ps_irq15 [get_property PARAM_VALUE.PS_USE_IRQ_15] :>
+// (c) Copyright 1995-2017 Xilinx, Inc. All rights reserved.
+// 
+// This file contains confidential and proprietary information
+// of Xilinx, Inc. and is protected under U.S. and
+// international copyright and other intellectual property
+// laws.
+// 
+// DISCLAIMER
+// This disclaimer is not a license and does not grant any
+// rights to the materials distributed herewith. Except as
+// otherwise provided in a valid license issued to you by
+// Xilinx, and to the maximum extent permitted by applicable
+// law: (1) THESE MATERIALS ARE MADE AVAILABLE "AS IS" AND
+// WITH ALL FAULTS, AND XILINX HEREBY DISCLAIMS ALL WARRANTIES
+// AND CONDITIONS, EXPRESS, IMPLIED, OR STATUTORY, INCLUDING
+// BUT NOT LIMITED TO WARRANTIES OF MERCHANTABILITY, NON-
+// INFRINGEMENT, OR FITNESS FOR ANY PARTICULAR PURPOSE; and
+// (2) Xilinx shall not be liable (whether in contract or tort,
+// including negligence, or under any other theory of
+// liability) for any loss or damage of any kind or nature
+// related to, arising under or in connection with these
+// materials, including for any direct, or any indirect,
+// special, incidental, or consequential loss or damage
+// (including loss of data, profits, goodwill, or any type of
+// loss or damage suffered as a result of any action brought
+// by a third party) even if such damage or loss was
+// reasonably foreseeable or Xilinx had been advised of the
+// possibility of the same.
+// 
+// CRITICAL APPLICATIONS
+// Xilinx products are not designed or intended to be fail-
+// safe, or for use in any application requiring fail-safe
+// performance, such as life-support or safety devices or
+// systems, Class III medical devices, nuclear facilities,
+// applications related to the deployment of airbags, or any
+// other applications that could lead to death, personal
+// injury, or severe property or environmental damage
+// (individually and collectively, "Critical
+// Applications"). Customer assumes the sole risk and
+// liability of any use of Xilinx products in Critical
+// Applications, subject only to applicable laws and
+// regulations governing limitations on product liability.
+// 
+// THIS COPYRIGHT NOTICE AND DISCLAIMER MUST BE RETAINED AS
+// PART OF THIS FILE AT ALL TIMES.
+// 
+// DO NOT MODIFY THIS FILE.
+
+
+#include "ps_pmc_v1_0_0_tlm.h"
+<: if { $if_pmc_noc_axi_0 == 1} {   :>#include "RdWrTCPSocket.h"
+#include "rwd_tlmmodel.h"
+<:}:>
+
+/***************************************************************************************
+*   Global method, get registered with tlm2xtlm bridge
+*   This function is called when tlm2xtlm bridge convert tlm payload to xtlm payload.
+*
+*   caller:     tlm2xtlm bridge
+*   purpose:    To get master id and other parameters out of genattr_extension 
+*               and use master id to AxUSER PIN of xtlm payload.
+*
+*
+***************************************************************************************/
+void get_extensions_from_tlm(xtlm::aximm_payload* xtlm_pay, const tlm::tlm_generic_payload* gp)
+{
+    if((xtlm_pay == NULL) || (gp == NULL))
+        return;
+    if((gp->get_command() == tlm::TLM_WRITE_COMMAND) && (xtlm_pay->get_awuser_size() > 0))
+    {
+        genattr_extension* ext = NULL;
+        gp->get_extension(ext);
+        if(ext == NULL)
+            return;
+        //Portion of master ID(master_id[5:0]) are transfered on AxUSER bits(refere Zynq UltraScale+ TRM page.no:414)
+        uint32_t val = ext->get_master_id() && 0x3F;
+        unsigned char* ptr = xtlm_pay->get_awuser_ptr();
+        unsigned int size  = xtlm_pay->get_awuser_size();
+        *ptr = (unsigned char)val;
+
+    }
+    else if((gp->get_command() == tlm::TLM_READ_COMMAND) && (xtlm_pay->get_aruser_size() > 0))
+    {
+        genattr_extension* ext = NULL;
+        gp->get_extension(ext);
+        if(ext == NULL)
+            return;
+        //Portion of master ID(master_id[5:0]) are transfered on AxUSER bits(refere Zynq UltraScale+ TRM page.no:414)
+        uint32_t val = ext->get_master_id() && 0x3F;
+        unsigned char* ptr = xtlm_pay->get_aruser_ptr();
+        unsigned int size  = xtlm_pay->get_aruser_size();
+        *ptr = (unsigned char)val;
+    }
+}
+
+/***************************************************************************************
+*   Global method, get registered with xtlm2tlm bridge
+*   This function is called when xtlm2tlm bridge convert xtlm payload to tlm payload.
+*
+*   caller:     xtlm2tlm bridge
+*   purpose:    To create and add master id and other parameters to genattr_extension.
+*               Master id red from AxID PIN of xtlm payload.
+*
+*
+***************************************************************************************/
+void add_extensions_to_tlm(const xtlm::aximm_payload* xtlm_pay, tlm::tlm_generic_payload* gp)
+{
+    if(gp == NULL)
+        return;
+    uint8_t val = 0;
+    if((gp->get_command() != tlm::TLM_WRITE_COMMAND) && (gp->get_command() != tlm::TLM_READ_COMMAND))
+        return;
+    //portion of master ID bits(master_id[5:0]) are derived from the AXI ID(AWID/ARID). (refere Zynq UltraScale+ TRM page.no:414,415)
+    val = ((uint8_t)(xtlm_pay->get_axi_id())) && 0x3F;
+    genattr_extension* ext = new genattr_extension;
+    ext->set_master_id(val);
+    gp->set_extension(ext);    
+    gp->set_streaming_width(gp->get_data_length());
+    if(gp->get_command() != tlm::TLM_WRITE_COMMAND)
+    {
+        gp->set_byte_enable_length(0);
+        gp->set_byte_enable_ptr(0);
+    }
+}
+/*
+template<int INIT_WIDTH, int TARGET_WIDTH>
+class tlm_width_conversion :public sc_module {
+    public:
+    tlm_utils::simple_initiator_socket<tlm_width_conversion<INIT_WIDTH,TARGET_WIDTH>, INIT_WIDTH> initsock;
+    tlm_utils::simple_target_socket<tlm_width_conversion<INIT_WIDTH,TARGET_WIDTH>, TARGET_WIDTH> tarsock;
+    tlm_width_conversion<INIT_WIDTH, TARGET_WIDTH>(sc_module_name name):sc_module(name){
+        tarsock.register_b_transport(this, &tlm_width_conversion<INIT_WIDTH, TARGET_WIDTH>::b_transport);
+        tarsock.register_get_direct_mem_ptr(this, &tlm_width_conversion<INIT_WIDTH, TARGET_WIDTH>::get_direct_mem_ptr);
+        tarsock.register_transport_dbg(this, &tlm_width_conversion<INIT_WIDTH, TARGET_WIDTH>::transport_dbg);
+    }
+    private:
+    void b_transport(tlm::tlm_generic_payload& trans, sc_core::sc_time& delay){
+        initsock->b_transport(trans, delay);
+    }
+    unsigned int transport_dbg(tlm::tlm_generic_payload& trans){
+        return initsock->transport_dbg(trans);
+    }
+    bool get_direct_mem_ptr(tlm::tlm_generic_payload& trans, tlm::tlm_dmi& dmi_data){
+        return initsock->get_direct_mem_ptr(trans, dmi_data);
+    }
+
+};
+*/
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//                                                                                                              //
+// File:            ps_pmc_v1_0_tlm.cpp                                                                         //
+//                                                                                                              //
+// Description:     ps_pmc_v1_0_0_tlm class is a sc_module, act as intermediate layer between                     //
+//                  xilinx_zynqmp qemu wrapper and Vivado generated systemc simulation ip wrapper.              //
+//                  it's basically created for supporting tlm based xilinx_zynqmp from xtlm based vivado        //
+//                  generated systemc wrapper. this wrapper is live only when SELECTED_SIM_MODEL is set         //
+//                  to tlm. it's also act as bridge between vivado wrapper and xilinx_zynqmp wrapper.           //
+//                  it fill the the gap between input/output ports of vivado generated wrapper to               //
+//                  xilinx_zynqmp wrapper signals. This wrapper is auto generated by ttcl scripts               //
+//                  based on IP configuration in vivado.                                                        //
+//                                                                                                              //
+//                                                                                                              //
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+<: if { $if_pmc_noc_axi_0 == 1} {   :>
+void StartThreadedTCPServer(RdWrTCPSocket* m_rdwrtcpsock);
+<:}:>
+    //constructor having three paramters
+    // 1. module name in sc_module_name objec, 
+    // 2. reference to map object of name and integer value pairs 
+    // 3. reference to map object of name and string value pairs
+    // All the model parameters (integer and string) which are configuration parameters 
+    // of ZynqUltraScale+ IP propogated from Vivado
+    ps_pmc_v1_0_0_tlm :: ps_pmc_v1_0_0_tlm (sc_core::sc_module_name name,
+        xsc::common_cpp::properties model_param_props): sc_module(name)//registering module name with parent
+    <: set portname [ipx::get_ports -of_objects [current_ipbom]] :>
+	<: foreach m_port $portname { :>
+		<: set port_direction [get_property DIRECTION $m_port] :>
+        <: set port_enablement [get_property ENABLEMENT_VALUE $m_port] :>
+		<: set leftSize [get_property SIZE_LEFT $m_port] :>
+		<: set rightSize [get_property SIZE_RIGHT $m_port] :>
+		<: set isVector  [get_property IS_VECTOR $m_port] :>
+	    <: set portName_init [lindex $m_port 2] :>
+        <: set flag "0":>
+        <:  if { $port_enablement == 1 } { :>
+            <: set interface_list [ipx::get_bus_interfaces -of_objects [current_ipbom] -filter "BUS_TYPE_VLNV==xilinx.com:interface:aximm:1.0"] :>
+            <: foreach interface $interface_list {:>
+                <: set checkIntrEnablement [get_property ENABLEMENT_VALUE $interface] :>
+	            <: if { $checkIntrEnablement != 1 } { :>
+                    <: continue; :>
+                <:}:>
+                <: set ports_list [ipx::get_port_maps -of_objects $interface ] :>
+                <: foreach port $ports_list {:>
+	                <: set physicalName [get_property PHYSICAL_NAME $port] :>
+                    <: if { $portName_init eq $physicalName } { :>
+                        <: set flag "1" :>
+                    <:}:>
+                <:}:>
+            <:}:>
+            <: if { $flag == "0" } { :>
+        ,<: print $portName_init :>("<: print $portName_init :>")
+            <:}:>
+        <:}:>
+    <:}:>
+    <: if { $fclk0 == "1"} { :>
+    <:set clk_period_ns [expr 1000.0/($fclk0_freq)] :>
+        ,pl_clk0_clk("pl_clk0_clk", sc_time(<:print $clk_period_ns:>,sc_core::SC_NS))//clock period in nanoseconds = 1000/freq(in MZ)
+    <:}:>
+    <: if { $fclk1 == "1"} { :>
+    <:set clk_period_ns [expr 1000.0/($fclk1_freq)] :>
+        ,pl_clk1_clk("pl_clk1_clk", sc_time(<:print $clk_period_ns:>,sc_core::SC_NS))//clock period in nanoseconds = 1000/freq(in MZ)
+    <:}:>
+    <: if { $fclk2 == "1"} { :>
+    <:set clk_period_ns [expr 1000.0/($fclk2_freq)] :>
+        ,pl_clk2_clk("pl_clk2_clk", sc_time(<:print $clk_period_ns:>,sc_core::SC_NS))//clock period in nanoseconds = 1000/freq(in MZ)
+    <:}:>
+    <: if { $fclk3 == "1"} { :>
+    <:set clk_period_ns [expr 1000.0/($fclk3_freq)] :>
+        ,pl_clk3_clk("pl_clk3_clk", sc_time(<:print $clk_period_ns:>,sc_core::SC_NS))//clock period in nanoseconds = 1000/freq(in MZ)
+    <:}:>
+    <:set clk_period_ns [expr 1000.0/1200 ] :>
+        ,pmc_noc_clk("pl_clk3_clk", sc_time(<:print $clk_period_ns:>,sc_core::SC_NS))//clock period in nanoseconds = 1000/freq(in MZ)
+    <: if { $if_ps_noc_pcie_0 == 1} {   :>
+    ,dummy_noc_pcie_sig("dummy_noc_pcie_sig")
+    <:}:>
+    <: if { $maxigp0 == 1} {   :>
+    ,m_rp_bridge_M_AXI_GP0("m_rp_bridge_M_AXI_GP0") 
+    <:}:>
+    <: if { $maxigp2 == 1} {   :>
+    ,m_rp_bridge_M_AXI_GP2("m_rp_bridge_M_AXI_GP2") 
+    <:}:>
+    <: if { $if_ps_noc_cci_0 == 1} {   :>
+    ,m_rp_bridge_IF_PS_NOC_CCI_0("m_rp_bridge_IF_PS_NOC_CCI_0")
+    <:}:>
+    <: if { $if_ps_noc_cci_1 == 1} {   :>
+    ,m_rp_bridge_IF_PS_NOC_CCI_1("m_rp_bridge_IF_PS_NOC_CCI_1")
+    <:}:>
+    <: if { $if_ps_noc_cci_2 == 1} {   :>
+    ,m_rp_bridge_IF_PS_NOC_CCI_2("m_rp_bridge_IF_PS_NOC_CCI_2") 
+    <:}:>
+    <: if { $if_ps_noc_cci_3 == 1} {   :>
+    ,m_rp_bridge_IF_PS_NOC_CCI_3("m_rp_bridge_IF_PS_NOC_CCI_3")
+    <:}:>
+    <: if { $if_ps_noc_nci_0 == 1} {   :>
+    ,m_rp_bridge_IF_PS_NOC_NCI_0("m_rp_bridge_IF_PS_NOC_NCI_0")
+    <:}:>
+    <: if { $if_ps_noc_nci_1 == 1} {   :>
+    ,m_rp_bridge_IF_PS_NOC_NCI_1("m_rp_bridge_IF_PS_NOC_NCI_1")
+    <:}:>
+    <: if { $if_ps_noc_pcie_1 == 1} {   :>
+    ,m_rp_bridge_IF_PS_NOC_PCIE_1("m_rp_bridge_IF_PS_NOC_PCIE_1")
+    <:}:>
+    <: if { $if_ps_noc_rpu_0 == 1} {   :>
+    ,m_rp_bridge_IF_PS_NOC_RPU_0("m_rp_bridge_IF_PS_NOC_RPU_0")
+    <:}:>
+    <: if { $if_pmc_noc_axi_0 == 1} {   :>
+    ,m_rp_bridge_IF_PMC_NOC_AXI_0("m_rp_bridge_IF_PMC_NOC_AXI_0")
+    <:}:>
+    {
+        //creating instances of xtlm slave sockets
+    <: if { $if_pmc_noc_axi_0 == 1} {   :>
+        //pmc_noc interface related initialization...
+        m_rwd_tlmmodel = NULL;
+        m_rdwrtcpsock = NULL;
+        m_rwd_thread = NULL;
+        rwd_tlm2xtlm_brdg = NULL;
+        rwd_pmc_interconnect = NULL;
+    <:}:>
+    <: if { $if_ps_noc_pcie_0 == 1} {   :>
+        //initializing input clocks and pointers to NULL of sim_xdma when ps_noc_pcie IF is enabled..
+        m_sim_xdma_ptr = NULL;
+        sim_xdma_interconnect = NULL;
+    <:}:>        
+
+        <: if { $saxigp0 == 1} {   :>
+        S_AXI_GP0_wr_socket = new xtlm::xtlm_aximm_target_socket("S_AXI_GP0_wr_socket", <: print $saxigp0_data_width:>);
+        S_AXI_GP0_rd_socket = new xtlm::xtlm_aximm_target_socket("S_AXI_GP0_wr_socket", <: print $saxigp0_data_width:>);
+        <:}:>
+        <: if { $saxigp2 == 1} {   :>
+        S_AXI_GP2_wr_socket = new xtlm::xtlm_aximm_target_socket("S_AXI_GP2_wr_socket", <: print $saxigp2_data_width :>);
+        S_AXI_GP2_rd_socket = new xtlm::xtlm_aximm_target_socket("S_AXI_GP2_rd_socket", <: print $saxigp2_data_width :>);
+        <:}:>
+        <: if { $saxigp4 == 1} {   :>
+        S_AXI_GP4_wr_socket = new xtlm::xtlm_aximm_target_socket("S_AXI_GP4_wr_socket", <: print $saxigp4_data_width :>);
+        S_AXI_GP4_rd_socket = new xtlm::xtlm_aximm_target_socket("S_AXI_GP4_rd_socket", <: print $saxigp4_data_width :>);
+        <:}:>
+        <: if { $saxiacp == 1} {   :>
+        S_AXI_ACP_wr_socket = new xtlm::xtlm_aximm_target_socket("S_AXI_ACP_wr_socket", <: print $saxiace_data_width :>);
+        S_AXI_ACP_rd_socket = new xtlm::xtlm_aximm_target_socket("S_AXI_ACP_rd_socket", <: print $saxiace_data_width :>);
+        <:}:>
+        <: if { $saxiace == 1} {   :>
+        S_AXI_ACE_wr_socket = new xtlm::xtlm_aximm_target_socket("S_AXI_ACP_wr_socket", <: print $saxiace_data_width:>);
+        S_AXI_ACE_rd_socket = new xtlm::xtlm_aximm_target_socket("S_AXI_ACP_rd_socket", <: print $saxiace_data_width:>);
+        <:}:>
+        <: if { $if_noc_ps_nci_0 == 1} {   :>
+        IF_NOC_PS_NCI_0_wr_socket = new xtlm::xtlm_aximm_target_socket("IF_NOC_PS_NCI_0_wr_socket", <: print $if_noc_ps_nci_0_data_width :>);
+        IF_NOC_PS_NCI_0_rd_socket = new xtlm::xtlm_aximm_target_socket("IF_NOC_PS_NCI_0_rd_socket", <: print $if_noc_ps_nci_0_data_width :>);
+        <:}:>
+        <: if { $if_noc_ps_nci_1 == 1} {   :>
+        IF_NOC_PS_NCI_1_wr_socket = new xtlm::xtlm_aximm_target_socket("IF_NOC_PS_NCI_1_wr_socket", <: print $if_noc_ps_nci_1_data_width :>);
+        IF_NOC_PS_NCI_1_rd_socket = new xtlm::xtlm_aximm_target_socket("IF_NOC_PS_NCI_1_rd_socket", <: print $if_noc_ps_nci_1_data_width :>);
+        <:}:>
+        <: if { $if_noc_ps_cci_0 == 1} {   :>
+        IF_NOC_PS_CCI_0_wr_socket = new xtlm::xtlm_aximm_target_socket("IF_NOC_PS_CCI_0_wr_socket", <: print $if_noc_ps_cci_0_data_width :>);
+        IF_NOC_PS_CCI_0_rd_socket = new xtlm::xtlm_aximm_target_socket("IF_NOC_PS_CCI_0_wr_socket", <: print $if_noc_ps_cci_0_data_width :>);
+        <:}:>
+        <: if { $if_noc_ps_cci_1 == 1} {   :>
+        IF_NOC_PS_CCI_1_wr_socket = new xtlm::xtlm_aximm_target_socket("IF_NOC_PS_CCI_1_wr_socket", <: print $if_noc_ps_cci_1_data_width :>);
+        IF_NOC_PS_CCI_1_rd_socket = new xtlm::xtlm_aximm_target_socket("IF_NOC_PS_CCI_1_rd_socket", <: print $if_noc_ps_cci_1_data_width :>);
+        <:}:>
+        <: if { $if_noc_ps_pcie_0 == 1} {   :>
+        IF_NOC_PS_PCIE_0_wr_socket = new xtlm::xtlm_aximm_target_socket("IF_NOC_PS_PCIE_0_wr_socket", <: print $if_noc_ps_pcie_0_data_width :>);
+        IF_NOC_PS_PCIE_0_rd_socket = new xtlm::xtlm_aximm_target_socket("IF_NOC_PS_PCIE_0_rd_socket", <: print $if_noc_ps_pcie_0_data_width :>);
+        <:}:>
+        <: if { $if_noc_pmc_axi_0 == 1} {   :>
+        IF_NOC_PMC_AXI_0_wr_socket = new xtlm::xtlm_aximm_target_socket("IF_NOC_PMC_AXI_0_wr_socket", <: print $if_noc_pmc_axi_0_data_width :>);
+        IF_NOC_PMC_AXI_0_rd_socket = new xtlm::xtlm_aximm_target_socket("IF_NOC_PMC_AXI_0_rd_socket", <: print $if_noc_pmc_axi_0_data_width :>);
+        <:}:>
+
+        //creating instances of xtlm master sockets
+        <: if { $maxigp0 == 1} {   :>
+        M_AXI_GP0_wr_socket = new xtlm::xtlm_aximm_initiator_socket("M_AXI_GP0_wr_socket", <: print $mgp0_data_width :>);
+        M_AXI_GP0_rd_socket = new xtlm::xtlm_aximm_initiator_socket("M_AXI_GP0_rd_socket", <: print $mgp0_data_width :>);
+        <:}:>
+        <: if { $maxigp2 == 1} {   :>
+        M_AXI_GP2_wr_socket = new xtlm::xtlm_aximm_initiator_socket("M_AXI_GP2_wr_socket", <: print $mgp2_data_width :>);
+        M_AXI_GP2_rd_socket = new xtlm::xtlm_aximm_initiator_socket("M_AXI_GP2_rd_socket", <: print $mgp2_data_width :>);
+        <:}:>
+        <: if { $if_ps_noc_cci_0 == 1} {   :>
+        IF_PS_NOC_CCI_0_wr_socket = new xtlm::xtlm_aximm_initiator_socket("IF_PS_NOC_CCI_0_wr_socket", <: print $if_ps_noc_cci_0_data_width :>);
+        IF_PS_NOC_CCI_0_rd_socket = new xtlm::xtlm_aximm_initiator_socket("IF_PS_NOC_CCI_0_rd_socket", <: print $if_ps_noc_cci_0_data_width :>);
+        <:}:>
+        <: if { $if_ps_noc_cci_1 == 1} {   :>
+        IF_PS_NOC_CCI_1_wr_socket = new xtlm::xtlm_aximm_initiator_socket("IF_PS_NOC_CCI_1_wr_socket", <: print $if_ps_noc_cci_1_data_width :>);
+        IF_PS_NOC_CCI_1_rd_socket = new xtlm::xtlm_aximm_initiator_socket("IF_PS_NOC_CCI_1_rd_socket", <: print $if_ps_noc_cci_1_data_width :>);
+        <:}:>
+        <: if { $if_ps_noc_cci_2 == 1} {   :>
+        IF_PS_NOC_CCI_2_wr_socket = new xtlm::xtlm_aximm_initiator_socket("IF_PS_NOC_CCI_2_wr_socket", <: print $if_ps_noc_cci_2_data_width :>);
+        IF_PS_NOC_CCI_2_rd_socket = new xtlm::xtlm_aximm_initiator_socket("IF_PS_NOC_CCI_2_rd_socket", <: print $if_ps_noc_cci_2_data_width :>);
+        <:}:>
+        <: if { $if_ps_noc_cci_3 == 1} {   :>
+        IF_PS_NOC_CCI_3_wr_socket = new xtlm::xtlm_aximm_initiator_socket("IF_PS_NOC_CCI_3_wr_socket", <: print $if_ps_noc_cci_3_data_width :>);
+        IF_PS_NOC_CCI_3_rd_socket = new xtlm::xtlm_aximm_initiator_socket("IF_PS_NOC_CCI_3_rd_socket", <: print $if_ps_noc_cci_3_data_width :>);
+        <:}:>
+        <: if { $if_ps_noc_nci_0 == 1} {   :>
+        IF_PS_NOC_NCI_0_wr_socket = new xtlm::xtlm_aximm_initiator_socket("IF_PS_NOC_NCI_0_wr_socket",<: print $if_ps_noc_nci_0_data_width :>);
+        IF_PS_NOC_NCI_0_rd_socket = new xtlm::xtlm_aximm_initiator_socket("IF_PS_NOC_NCI_0_rd_socket",<: print $if_ps_noc_nci_0_data_width :>);
+        <:}:>
+        <: if { $if_ps_noc_nci_1 == 1} {   :>
+        IF_PS_NOC_NCI_1_wr_socket = new xtlm::xtlm_aximm_initiator_socket("IF_PS_NOC_NCI_1_wr_socket",<: print $if_ps_noc_nci_1_data_width :>);
+        IF_PS_NOC_NCI_1_rd_socket = new xtlm::xtlm_aximm_initiator_socket("IF_PS_NOC_NCI_1_rd_socket",<: print $if_ps_noc_nci_1_data_width :>);
+        <:}:>
+        <: if { $if_ps_noc_pcie_0 == 1} {   :>
+        IF_PS_NOC_PCIE_0_wr_socket = new xtlm::xtlm_aximm_initiator_socket("IF_PS_NOC_PCIE_0_wr_socket", <: print $if_ps_noc_pcie_0_data_width :>);
+        IF_PS_NOC_PCIE_0_rd_socket = new xtlm::xtlm_aximm_initiator_socket("IF_PS_NOC_PCIE_0_rd_socket", <: print $if_ps_noc_pcie_0_data_width :>);
+        <:}:>
+        <: if { $if_ps_noc_pcie_1 == 1} {   :>
+        IF_PS_NOC_PCIE_1_wr_socket = new xtlm::xtlm_aximm_initiator_socket("IF_PS_NOC_PCIE_1_wr_socket", <: print $if_ps_noc_pcie_1_data_width :>);
+        IF_PS_NOC_PCIE_1_rd_socket = new xtlm::xtlm_aximm_initiator_socket("IF_PS_NOC_PCIE_1_rd_socket", <: print $if_ps_noc_pcie_1_data_width :>);
+        <:}:>
+        <: if { $if_ps_noc_rpu_0 == 1} {   :>
+        IF_PS_NOC_RPU_0_wr_socket = new xtlm::xtlm_aximm_initiator_socket("IF_PS_NOC_RPU_0_wr_socket", <: print $if_ps_noc_rpu_0_data_width :>);
+        IF_PS_NOC_RPU_0_rd_socket = new xtlm::xtlm_aximm_initiator_socket("IF_PS_NOC_RPU_0_rd_socket", <: print $if_ps_noc_rpu_0_data_width :>);
+        <:}:>
+        <: if { $if_pmc_noc_axi_0 == 1} {   :>
+        IF_PMC_NOC_AXI_0_wr_socket = new xtlm::xtlm_aximm_initiator_socket("IF_PMC_NOC_AXI_0_wr_socket", <: print $if_pmc_noc_axi_0_data_width :>);
+        IF_PMC_NOC_AXI_0_rd_socket = new xtlm::xtlm_aximm_initiator_socket("IF_PMC_NOC_AXI_0_rd_socket", <: print $if_pmc_noc_axi_0_data_width :>);
+        <:}:>
+
+        char* tcpip_addr = getenv("COSIM_MACHINE_TCPIP_ADDRESS");
+        if(tcpip_addr == NULL)  {
+            std::cerr << "ERROR: Environment Variable COSIM_MACHINE_TCPIP_ADDRESS is not specified.\n Please Specify COSIM_MACHINE_TCPIP_ADDRESS for TCP Socket Communication.\n" << std::endl;
+            exit(0);
+        }
+        char* skt_name = strdup(tcpip_addr);
+        m_zynq3_tlm_model = new xilinx_zynq3("xilinx_zynq3",skt_name);
+
+       //quantumkeeper value update
+        char* qk_value = getenv("TLM_QUANTUM_IN_PS");
+        if(qk_value != NULL) {
+            double value = atof(qk_value);
+            m_zynq3_tlm_model->m_qk.set_global_quantum(sc_core::sc_time(value,SC_PS));
+        } else {
+            m_zynq3_tlm_model->m_qk.set_global_quantum(sc_core::sc_time(20,SC_NS));
+        }
+        m_zynq3_tlm_model->m_qk.reset();                
+
+        m_xtlm2tlm = new xtlm::xaximm_xtlm2tlm*[11];//for slave interfaces of zynq3 -- 11 slave interfaces are exist
+        for(int index = 0; index < 3; index++)  {
+            m_xtlm2tlm[index] = NULL;
+        }
+
+        <: if { $saxigp0 == 1} {   :>
+        //instantiating XTLM2TLM bridge and stiching it between 
+        //S_AXI_GP0_wr/rd_socket sockets to s_axi_gp_0 target socket of Zynqmp Qemu tlm wrapper
+        m_xtlm2tlm[0] = new xtlm::xaximm_xtlm2tlm("S_AXI_GP0_xtlm2tlm_bg",<: print $saxigp0_data_width:>);
+        S_AXI_GP0_wr_socket->bind(*m_xtlm2tlm[0]->wr_socket);
+        S_AXI_GP0_rd_socket->bind(*m_xtlm2tlm[0]->rd_socket);
+        m_zynq3_tlm_model->s_axi_gp_0->bind(m_xtlm2tlm[0]->initiator_socket);
+
+        <:}:>
+        <: if { $saxigp2 == 1} {   :>
+        //instantiating XTLM2TLM bridge and stiching it between 
+        //S_AXI_GP2_wr/rd_socket sockets to s_axi_gp_2 target socket of Zynqmp Qemu tlm wrapper
+        m_xtlm2tlm[1] = new xtlm::xaximm_xtlm2tlm("S_AXI_GP2_xtlm2tlm_bg",<: print $saxigp2_data_width:>);
+        S_AXI_GP2_wr_socket->bind(*m_xtlm2tlm[1]->wr_socket);
+        S_AXI_GP2_rd_socket->bind(*m_xtlm2tlm[1]->rd_socket);
+        m_zynq3_tlm_model->s_axi_gp_2->bind(m_xtlm2tlm[1]->initiator_socket);
+
+        <:}:>
+        <: if { $saxigp4 == 1} {   :>
+        //instantiating XTLM2TLM bridge and stiching it between 
+        //S_AXI_GP4_wr/rd_socket sockets to s_axi_gp_4 target socket of Zynqmp Qemu tlm wrapper
+        m_xtlm2tlm[2] = new xtlm::xaximm_xtlm2tlm("S_AXI_GP4_xtlm2tlm_bg",<: print $saxigp4_data_width:>);
+        S_AXI_GP4_wr_socket->bind(*m_xtlm2tlm[2]->wr_socket);
+        S_AXI_GP4_rd_socket->bind(*m_xtlm2tlm[2]->rd_socket);
+        m_zynq3_tlm_model->s_axi_gp_4->bind(m_xtlm2tlm[2]->initiator_socket);
+
+        <:}:>
+        <: if { $saxiacp == 1} {   :>
+        //instantiating XTLM2TLM bridge and stiching it between 
+        //S_AXI_ACP_wr/rd_socket sockets to s_axi_acp target socket of Zynqmp Qemu tlm wrapper
+        m_xtlm2tlm[3] = new xtlm::xaximm_xtlm2tlm("S_AXI_ACP_xtlm2tlm_bg",<: print $saxiacp_data_width:>);
+        S_AXI_ACP_wr_socket->bind(*m_xtlm2tlm[3]->wr_socket);
+        S_AXI_ACP_rd_socket->bind(*m_xtlm2tlm[3]->rd_socket);
+        m_zynq3_tlm_model->s_axi_acp->bind(m_xtlm2tlm[3]->initiator_socket);
+
+        <:}:>
+        <: if { $saxiace == 1} {   :>
+        //instantiating XTLM2TLM bridge and stiching it between 
+        //S_AXI_ACE_wr/rd_socket sockets to s_axi_ace target socket of Zynqmp Qemu tlm wrapper
+        m_xtlm2tlm[4] = new xtlm::xaximm_xtlm2tlm("S_AXI_ACE_xtlm2tlm_bg",<: print $saxiace_data_width:>);
+        S_AXI_ACE_wr_socket->bind(*m_xtlm2tlm[4]->wr_socket);
+        S_AXI_ACE_rd_socket->bind(*m_xtlm2tlm[4]->rd_socket);
+        m_zynq3_tlm_model->s_axi_ace->bind(m_xtlm2tlm[4]->initiator_socket);
+
+        <:}:>
+        <: if { $if_noc_ps_nci_0 == 1} {   :>
+        //instantiating XTLM2TLM bridge and stiching it between 
+        //IF_NOC_PS_NCI_0_wr/rd_socket sockets to if_noc_ps_nci_0 target socket of Zynqmp Qemu tlm wrapper
+        m_xtlm2tlm[5] = new xtlm::xaximm_xtlm2tlm("IF_NOC_PS_NCI_0_xtlm2tlm_bg",<: print $if_noc_ps_nci_0_data_width:>);
+        IF_NOC_PS_NCI_0_wr_socket->bind(*m_xtlm2tlm[5]->wr_socket);
+        IF_NOC_PS_NCI_0_rd_socket->bind(*m_xtlm2tlm[5]->rd_socket);
+        m_zynq3_tlm_model->if_noc_ps_nci_0->bind(m_xtlm2tlm[5]->initiator_socket);
+
+        <:}:>
+        <: if { $if_noc_ps_nci_1 == 1} {   :>
+        //instantiating XTLM2TLM bridge and stiching it between 
+        //IF_NOC_PS_NCI_1_wr/rd_socket sockets to if_noc_ps_nci_1 target socket of Zynqmp Qemu tlm wrapper
+        m_xtlm2tlm[6] = new xtlm::xaximm_xtlm2tlm("IF_NOC_PS_NCI_1_xtlm2tlm_bg",<: print $if_noc_ps_nci_1_data_width:>);
+        IF_NOC_PS_NCI_1_wr_socket->bind(*m_xtlm2tlm[6]->wr_socket);
+        IF_NOC_PS_NCI_1_rd_socket->bind(*m_xtlm2tlm[6]->rd_socket);
+        m_zynq3_tlm_model->if_noc_ps_nci_1->bind(m_xtlm2tlm[6]->initiator_socket);
+
+        <:}:>
+        <: if { $if_noc_ps_cci_0 == 1} {   :>
+        //instantiating XTLM2TLM bridge and stiching it between 
+        //IF_NOC_PS_CCI_0_wr/rd_socket sockets to if_noc_ps_cci_0 target socket of Zynqmp Qemu tlm wrapper
+        m_xtlm2tlm[7] = new xtlm::xaximm_xtlm2tlm("IF_NOC_PS_CCI_0_xtlm2tlm_bg",<: print $if_noc_ps_cci_0_data_width:>);
+        IF_NOC_PS_CCI_0_wr_socket->bind(*m_xtlm2tlm[7]->wr_socket);
+        IF_NOC_PS_CCI_0_rd_socket->bind(*m_xtlm2tlm[7]->rd_socket);
+        m_zynq3_tlm_model->if_noc_ps_cci_0->bind(m_xtlm2tlm[7]->initiator_socket);
+
+        <:}:>
+        <: if { $if_noc_ps_cci_1 == 1} {   :>
+        //instantiating XTLM2TLM bridge and stiching it between 
+        //IF_NOC_PS_CCI_1_wr/rd_socket sockets to if_noc_ps_cci_1 target socket of Zynqmp Qemu tlm wrapper
+        m_xtlm2tlm[8] = new xtlm::xaximm_xtlm2tlm("IF_NOC_PS_CCI_1_xtlm2tlm_bg",<: print $if_noc_ps_cci_1_data_width:>);
+        IF_NOC_PS_CCI_1_wr_socket->bind(*m_xtlm2tlm[8]->wr_socket);
+        IF_NOC_PS_CCI_1_rd_socket->bind(*m_xtlm2tlm[8]->rd_socket);
+        m_zynq3_tlm_model->if_noc_ps_cci_1->bind(m_xtlm2tlm[8]->initiator_socket);
+
+        <:}:>
+        <: if { $if_noc_ps_pcie_0 == 1} {   :>
+        //instantiating XTLM2TLM bridge and stiching it between 
+        //IF_NOC_PS_PCIE_0_wr/rd_socket sockets to if_noc_ps_pcie_0 target socket of Zynqmp Qemu tlm wrapper
+        m_xtlm2tlm[9] = new xtlm::xaximm_xtlm2tlm("IF_NOC_PS_PCIE_0_xtlm2tlm_bg",<: print $if_noc_ps_pcie_0_data_width:>);
+        IF_NOC_PS_PCIE_0_wr_socket->bind(*m_xtlm2tlm[9]->wr_socket);
+        IF_NOC_PS_PCIE_0_rd_socket->bind(*m_xtlm2tlm[9]->rd_socket);
+        m_zynq3_tlm_model->if_noc_ps_pcie_0->bind(m_xtlm2tlm[9]->initiator_socket);
+
+        <:}:>
+        <: if { $if_noc_pmc_axi_0 == 1} {   :>
+        //instantiating XTLM2TLM bridge and stiching it between 
+        //IF_NOC_PMC_AXI_0_wr/rd_socket sockets to if_noc_pmc_axi_0 target socket of Zynqmp Qemu tlm wrapper
+        m_xtlm2tlm[10] = new xtlm::xaximm_xtlm2tlm("IF_NOC_PMC_AXI_0_xtlm2tlm_bg",<: print $if_noc_pmc_axi_0_data_width:>);
+        IF_NOC_PMC_AXI_0_wr_socket->bind(*m_xtlm2tlm[10]->wr_socket);
+        IF_NOC_PMC_AXI_0_rd_socket->bind(*m_xtlm2tlm[10]->rd_socket);
+        m_zynq3_tlm_model->if_noc_pmc_axi_0->bind(m_xtlm2tlm[10]->initiator_socket);
+
+        <:}:>
+
+        <: if { $if_ps_noc_pcie_0 == 1} {   :>
+        //instantiating TLM2XTLM bridge and stiching it between 
+        //if_ps_noc_pcie_0 initiator socket of zynqmp Qemu tlm wrapper to IF_PS_NOC_NCI_0_wr_socket/rd_socket sockets 
+        enable_sim_xdma();
+
+        <:}:>
+        <: if { $maxigp0 == 1} {   :>
+        //instantiating TLM2XTLM bridge and stiching it between 
+        //m_axi_gp_0 initiator socket of zynqmp Qemu tlm wrapper to M_AXI_GP0_wr_socket/rd_socket sockets 
+        <: if { $if_ps_noc_pcie_0 == 1} {   :>
+        xsc::common_cpp::properties imp_prop;
+	    imp_prop.addLong("C_NUM_SI","2");
+	    imp_prop.addLong("C_NUM_MI","1");
+	    imp_prop.addLong("C_ADDR_RANGES","1");
+        
+        std::string width = std::to_string(<: print $mgp0_data_width :>);
+	    imp_prop.addLong("C_M00_AXI_DATA_WIDTH",width.c_str());
+	    imp_prop.addLong("C_M00_AXI_ADDR_WIDTH","64");
+	    imp_prop.addLong("C_M00_A00_BASE_ADDRESS","0x0");
+	    imp_prop.addLong("C_M00_A00_ADDR_RANGE","0xFFFFFFFFFFFFFFFF");
+
+	    imp_prop.addLong("C_S00_AXI_DATA_WIDTH",width.c_str());
+	    imp_prop.addLong("C_S00_AXI_ADDR_WIDTH","64");
+	    imp_prop.addLong("C_S01_AXI_DATA_WIDTH",width.c_str());
+	    imp_prop.addLong("C_S01_AXI_ADDR_WIDTH","64");
+
+	    imp_prop.addLong("C_M00_S00_CONNECTIVITY","1");
+	    imp_prop.addLong("C_M00_S01_CONNECTIVITY","1");
+        sim_xdma_interconnect = new xtlm_simple_interconnect_model("qemugp0_xdmaaxilite_interconnect",imp_prop); 
+        sim_xdma_interconnect->initiator_wr_sockets[0]->bind(*M_AXI_GP0_wr_socket);
+        sim_xdma_interconnect->initiator_rd_sockets[0]->bind(*M_AXI_GP0_rd_socket);
+        m_sim_xdma_ptr->initiator_ctrl_rd_socket->bind(*sim_xdma_interconnect->target_rd_sockets[1]);
+        m_sim_xdma_ptr->initiator_ctrl_wr_socket->bind(*sim_xdma_interconnect->target_wr_sockets[1]);
+        m_rp_bridge_M_AXI_GP0.wr_socket.bind(*sim_xdma_interconnect->target_wr_sockets[0]);
+        m_rp_bridge_M_AXI_GP0.rd_socket.bind(*sim_xdma_interconnect->target_rd_sockets[0]);
+        m_rp_bridge_M_AXI_GP0.target_socket.bind(*m_zynq3_tlm_model->m_axi_gp_0);
+        <:} else { :>
+        m_rp_bridge_M_AXI_GP0.wr_socket.bind(*M_AXI_GP0_wr_socket);
+        m_rp_bridge_M_AXI_GP0.rd_socket.bind(*M_AXI_GP0_rd_socket);
+        m_rp_bridge_M_AXI_GP0.target_socket.bind(*m_zynq3_tlm_model->m_axi_gp_0);
+        <:}:>
+        <:}:>
+        <: if { $maxigp2 == 1} {   :>
+        //instantiating TLM2XTLM bridge and stiching it between 
+        //m_axi_gp_2 initiator socket of zynqmp Qemu tlm wrapper to M_AXI_GP2_wr_socket/rd_socket sockets 
+        m_rp_bridge_M_AXI_GP2.wr_socket.bind(*M_AXI_GP2_wr_socket);
+        m_rp_bridge_M_AXI_GP2.rd_socket.bind(*M_AXI_GP2_rd_socket);
+        m_rp_bridge_M_AXI_GP2.target_socket.bind(*m_zynq3_tlm_model->m_axi_gp_2);
+
+        <:}:>
+        <: if { $if_ps_noc_cci_0 == 1} {   :>
+        //instantiating TLM2XTLM bridge and stiching it between 
+        //if_ps_noc_cci_0 initiator socket of zynqmp Qemu tlm wrapper to IF_PS_NOC_CCI_0_wr_socket/rd_socket sockets 
+        m_rp_bridge_IF_PS_NOC_CCI_0.wr_socket.bind(*IF_PS_NOC_CCI_0_wr_socket);
+        m_rp_bridge_IF_PS_NOC_CCI_0.rd_socket.bind(*IF_PS_NOC_CCI_0_rd_socket);
+        m_rp_bridge_IF_PS_NOC_CCI_0.target_socket.bind(*m_zynq3_tlm_model->if_ps_noc_cci_0);
+
+        <:}:>
+        <: if { $if_ps_noc_cci_1 == 1} {   :>
+        //instantiating TLM2XTLM bridge and stiching it between 
+        //if_ps_noc_cci_1 initiator socket of zynqmp Qemu tlm wrapper to IF_PS_NOC_CCI_1_wr_socket/rd_socket sockets 
+        m_rp_bridge_IF_PS_NOC_CCI_1.wr_socket.bind(*IF_PS_NOC_CCI_1_wr_socket);
+        m_rp_bridge_IF_PS_NOC_CCI_1.rd_socket.bind(*IF_PS_NOC_CCI_1_rd_socket);
+        m_rp_bridge_IF_PS_NOC_CCI_1.target_socket.bind(*m_zynq3_tlm_model->if_ps_noc_cci_1);
+
+        <:}:>
+        <: if { $if_ps_noc_cci_2 == 1} {   :>
+        //instantiating TLM2XTLM bridge and stiching it between 
+        //if_ps_noc_cci_2 initiator socket of zynqmp Qemu tlm wrapper to IF_PS_NOC_CCI_2_wr_socket/rd_socket sockets 
+        m_rp_bridge_IF_PS_NOC_CCI_2.wr_socket.bind(*IF_PS_NOC_CCI_2_wr_socket);
+        m_rp_bridge_IF_PS_NOC_CCI_2.rd_socket.bind(*IF_PS_NOC_CCI_2_rd_socket);
+        m_rp_bridge_IF_PS_NOC_CCI_2.target_socket.bind(*m_zynq3_tlm_model->if_ps_noc_cci_2);
+
+        <:}:>
+        <: if { $if_ps_noc_cci_3 == 1} {   :>
+        //instantiating TLM2XTLM bridge and stiching it between 
+        //if_ps_noc_cci_3 initiator socket of zynqmp Qemu tlm wrapper to IF_PS_NOC_CCI_3_wr_socket/rd_socket sockets 
+        m_rp_bridge_IF_PS_NOC_CCI_3.wr_socket.bind(*IF_PS_NOC_CCI_3_wr_socket);
+        m_rp_bridge_IF_PS_NOC_CCI_3.rd_socket.bind(*IF_PS_NOC_CCI_3_rd_socket);
+        m_rp_bridge_IF_PS_NOC_CCI_3.target_socket.bind(*m_zynq3_tlm_model->if_ps_noc_cci_3);
+
+        <:}:>
+        <: if { $if_ps_noc_nci_0 == 1} {   :>
+        //instantiating TLM2XTLM bridge and stiching it between 
+        //if_ps_noc_nci_0 initiator socket of zynqmp Qemu tlm wrapper to IF_PS_NOC_NCI_0_wr_socket/rd_socket sockets 
+        m_rp_bridge_IF_PS_NOC_NCI_0.wr_socket.bind(*IF_PS_NOC_NCI_0_wr_socket);
+        m_rp_bridge_IF_PS_NOC_NCI_0.rd_socket.bind(*IF_PS_NOC_NCI_0_rd_socket);
+        m_rp_bridge_IF_PS_NOC_NCI_0.target_socket.bind(*m_zynq3_tlm_model->if_ps_noc_nci_0);
+
+        <:}:>
+        <: if { $if_ps_noc_nci_1 == 1} {   :>
+        //instantiating TLM2XTLM bridge and stiching it between 
+        //if_ps_noc_nci_1 initiator socket of zynqmp Qemu tlm wrapper to IF_PS_NOC_NCI_1_wr_socket/rd_socket sockets 
+        m_rp_bridge_IF_PS_NOC_NCI_1.wr_socket.bind(*IF_PS_NOC_NCI_1_wr_socket);
+        m_rp_bridge_IF_PS_NOC_NCI_1.rd_socket.bind(*IF_PS_NOC_NCI_1_rd_socket);
+        m_rp_bridge_IF_PS_NOC_NCI_1.target_socket.bind(*m_zynq3_tlm_model->if_ps_noc_nci_1);
+
+        <:}:>
+
+        <: if { $if_ps_noc_pcie_1 == 1} {   :>
+        //instantiating TLM2XTLM bridge and stiching it between 
+        //if_ps_noc_pcie_1 initiator socket of zynqmp Qemu tlm wrapper to IF_PS_NOC_NCI_1_wr_socket/rd_socket sockets 
+        m_rp_bridge_IF_PS_NOC_PCIE_1.wr_socket.bind(*IF_PS_NOC_PCIE_1_wr_socket);
+        m_rp_bridge_IF_PS_NOC_PCIE_1.rd_socket.bind(*IF_PS_NOC_PCIE_1_rd_socket);
+        m_rp_bridge_IF_PS_NOC_PCIE_1.target_socket.bind(*m_zynq3_tlm_model->if_ps_noc_pcie_1);
+
+        <:}:>
+        <: if { $if_ps_noc_rpu_0 == 1} {   :>
+        //instantiating TLM2XTLM bridge and stiching it between 
+        //if_ps_noc_rpu_0 initiator socket of zynqmp Qemu tlm wrapper to IF_PS_NOC_NCI_0_wr_socket/rd_socket sockets 
+        m_rp_bridge_IF_PS_NOC_RPU_0.wr_socket.bind(*IF_PS_NOC_RPU_0_wr_socket);
+        m_rp_bridge_IF_PS_NOC_RPU_0.rd_socket.bind(*IF_PS_NOC_RPU_0_rd_socket);
+        m_rp_bridge_IF_PS_NOC_RPU_0.target_socket.bind(*m_zynq3_tlm_model->if_ps_noc_rpu_0);
+
+        <:}:>
+
+        
+        <: if { $if_pmc_noc_axi_0 == 1} {   :>
+        //instantiating TLM2XTLM bridge and stiching it between 
+        //if_pmc_noc_axi_0 initiator socket of zynqmp Qemu tlm wrapper to IF_PS_NOC_NCI_0_wr_socket/rd_socket sockets 
+        rwd_tlmmodule_init();
+        <:}:>
+        m_zynq3_tlm_model->tie_off();
+
+        SC_METHOD(pl_ps_irq_method);
+        <: if { $pl_ps_irq0 == "1"} { :> 
+        sensitive << pl_ps_irq0 ;
+        <:}:>
+        <: if { $pl_ps_irq1 == "1"} { :> 
+        sensitive << pl_ps_irq1 ;
+        <:}:>
+        <: if { $pl_ps_irq2 == "1"} { :> 
+        sensitive << pl_ps_irq2 ;
+        <:}:>
+        <: if { $pl_ps_irq3 == "1"} { :> 
+        sensitive << pl_ps_irq3 ;
+        <:}:>
+        <: if { $pl_ps_irq4 == "1"} { :> 
+        sensitive << pl_ps_irq4 ;
+        <:}:>
+        <: if { $pl_ps_irq5 == "1"} { :> 
+        sensitive << pl_ps_irq5 ;
+        <:}:>
+        <: if { $pl_ps_irq6 == "1"} { :> 
+        sensitive << pl_ps_irq6 ;
+        <:}:>
+        <: if { $pl_ps_irq7 == "1"} { :> 
+        sensitive << pl_ps_irq7 ;
+        <:}:>
+        <: if { $pl_ps_irq8 == "1"} { :> 
+        sensitive << pl_ps_irq8 ;
+        <:}:>
+        <: if { $pl_ps_irq9 == "1"} { :> 
+        sensitive << pl_ps_irq9 ;
+        <:}:>
+        <: if { $pl_ps_irq10 == "1"} { :> 
+        sensitive << pl_ps_irq10 ;
+        <:}:>
+        <: if { $pl_ps_irq11 == "1"} { :> 
+        sensitive << pl_ps_irq11 ;
+        <:}:>
+        <: if { $pl_ps_irq12 == "1"} { :> 
+        sensitive << pl_ps_irq12 ;
+        <:}:>
+        <: if { $pl_ps_irq13 == "1"} { :> 
+        sensitive << pl_ps_irq13 ;
+        <:}:>
+        <: if { $pl_ps_irq14 == "1"} { :> 
+        sensitive << pl_ps_irq14 ;
+        <:}:>
+        <: if { $pl_ps_irq15 == "1"} { :> 
+        sensitive << pl_ps_irq15 ;
+        <:}:>
+        dont_initialize();
+
+        <: if { $fclk0 == "1"} {   :>
+        SC_METHOD(trigger_pl_clk0_pin);
+        sensitive << pl_clk0_clk;
+        dont_initialize();
+        <:}:>
+        <: if { $fclk1 == "1"} {   :>
+        SC_METHOD(trigger_pl_clk1_pin);
+        sensitive << pl_clk1_clk;
+        dont_initialize();
+        <:}:>
+        <: if { $fclk2 == "1"} {   :>
+        SC_METHOD(trigger_pl_clk2_pin);
+        sensitive << pl_clk2_clk;
+        dont_initialize();
+        <:}:>
+        <: if { $fclk3 == "1"} {   :>
+        SC_METHOD(trigger_pl_clk3_pin);
+        sensitive << pl_clk3_clk;
+        dont_initialize();
+        <:}:>
+        <: if { $if_pmc_noc_axi_0 == 1} {   :>
+        SC_METHOD(trigger_ps_pmc_noc_axi0_clk_pin);
+        sensitive << pmc_noc_clk;
+        dont_initialize();
+        <:}:>
+        <: if { $if_ps_noc_cci_0 == 1} {   :>
+        SC_METHOD(trigger_ps_noc_cci_axi0_clk_pin);
+        sensitive << pmc_noc_clk;
+        dont_initialize();
+        <:}:>
+        <: if { $if_ps_noc_cci_1 == 1} {   :>
+        SC_METHOD(trigger_ps_noc_cci_axi1_clk_pin);
+        sensitive << pmc_noc_clk;
+        dont_initialize();
+        <:}:>
+        <: if { $if_ps_noc_cci_2 == 1} {   :>
+        SC_METHOD(trigger_ps_noc_cci_axi2_clk_pin);
+        sensitive << pmc_noc_clk;
+        dont_initialize();
+        <:}:>
+        <: if { $if_ps_noc_cci_3 == 1} {   :>
+        SC_METHOD(trigger_ps_noc_cci_axi3_clk_pin);
+        sensitive << pmc_noc_clk;
+        dont_initialize();
+        <:}:>
+        <: if { $if_ps_noc_nci_0 == 1} {   :>
+        SC_METHOD(trigger_ps_noc_nci_axi0_clk_pin);
+        sensitive << pmc_noc_clk;
+        dont_initialize();
+        <:}:>
+        <: if { $if_ps_noc_nci_1 == 1} {   :>
+        SC_METHOD(trigger_ps_noc_nci_axi1_clk_pin);
+        sensitive << pmc_noc_clk;
+        dont_initialize();
+        <:}:>
+        <: if { $if_ps_noc_rpu_0 == 1} {   :>
+        SC_METHOD(trigger_ps_noc_rpu_axi0_clk_pin);
+        sensitive << pmc_noc_clk;
+        dont_initialize();
+        <:}:>
+        
+        <: if { $saxigp0 == 1} {   :>
+        m_xtlm2tlm[0]->registerUserExtensionHandlerCallback(&add_extensions_to_tlm);
+        <:}:>
+        <: if { $saxigp2 == 1} {   :>
+        m_xtlm2tlm[1]->registerUserExtensionHandlerCallback(&add_extensions_to_tlm);
+        <:}:>
+        <: if { $saxigp4 == 1} {   :>
+        m_xtlm2tlm[2]->registerUserExtensionHandlerCallback(add_extensions_to_tlm);
+        <:}:>
+        <: if { $saxiacp == 1} {   :>
+        m_xtlm2tlm[3]->registerUserExtensionHandlerCallback(add_extensions_to_tlm);
+        <:}:>
+        <: if { $saxiace == 1} {   :>
+        m_xtlm2tlm[4]->registerUserExtensionHandlerCallback(add_extensions_to_tlm);
+        <:}:>
+        <: if { $if_noc_ps_nci_0 == 1} {   :>
+        m_xtlm2tlm[5]->registerUserExtensionHandlerCallback(add_extensions_to_tlm);
+        <:}:>
+        <: if { $if_noc_ps_nci_1 == 1} {   :>
+        m_xtlm2tlm[6]->registerUserExtensionHandlerCallback(add_extensions_to_tlm);
+        <:}:>
+        <: if { $if_noc_ps_cci_0 == 1} {   :>
+        m_xtlm2tlm[7]->registerUserExtensionHandlerCallback(add_extensions_to_tlm);
+        <:}:>
+        <: if { $if_noc_ps_cci_1 == 1} {   :>
+        m_xtlm2tlm[8]->registerUserExtensionHandlerCallback(add_extensions_to_tlm);
+        <:}:>
+        <: if { $if_noc_ps_pcie_0 == 1} {   :>
+        m_xtlm2tlm[9]->registerUserExtensionHandlerCallback(add_extensions_to_tlm);
+        <:}:>
+        <: if { $if_noc_pmc_axi_0 == 1} {   :>
+        m_xtlm2tlm[10]->registerUserExtensionHandlerCallback(add_extensions_to_tlm);
+        <:}:>
+        <: if { $maxigp0 == 1} {   :>
+        m_rp_bridge_M_AXI_GP0.registerUserExtensionHandlerCallback(&get_extensions_from_tlm);
+        <:}:>
+        <: if { $maxigp2 == 1} {   :>
+        m_rp_bridge_M_AXI_GP2.registerUserExtensionHandlerCallback(&get_extensions_from_tlm);
+        <:}:>
+        <: if { $if_ps_noc_cci_0 == 1} {   :>
+        m_rp_bridge_IF_PS_NOC_CCI_0.registerUserExtensionHandlerCallback(&get_extensions_from_tlm);
+        <:}:>
+        <: if { $if_ps_noc_cci_1 == 1} {   :>
+        m_rp_bridge_IF_PS_NOC_CCI_1.registerUserExtensionHandlerCallback(&get_extensions_from_tlm);
+        <:}:>
+        <: if { $if_ps_noc_cci_2 == 1} {   :>
+        m_rp_bridge_IF_PS_NOC_CCI_2.registerUserExtensionHandlerCallback(&get_extensions_from_tlm);
+        <:}:>
+        <: if { $if_ps_noc_cci_3 == 1} {   :>
+        m_rp_bridge_IF_PS_NOC_CCI_3.registerUserExtensionHandlerCallback(&get_extensions_from_tlm);
+        <:}:>
+        <: if { $if_ps_noc_nci_0 == 1} {   :>
+        m_rp_bridge_IF_PS_NOC_NCI_0.registerUserExtensionHandlerCallback(&get_extensions_from_tlm);
+        <:}:>
+        <: if { $if_ps_noc_nci_1 == 1} {   :>
+        m_rp_bridge_IF_PS_NOC_NCI_1.registerUserExtensionHandlerCallback(&get_extensions_from_tlm);
+        <:}:>
+        <: if { $if_ps_noc_rpu_0 == 1} {   :>
+        m_rp_bridge_IF_PS_NOC_RPU_0.registerUserExtensionHandlerCallback(&get_extensions_from_tlm);
+        <:}:>
+        <: if { $if_pmc_noc_axi_0 == 1} {   :>
+        m_rp_bridge_IF_PMC_NOC_AXI_0.registerUserExtensionHandlerCallback(&get_extensions_from_tlm);
+        <:}:>
+
+        m_zynq3_tlm_model->rst(qemu_rst);
+    
+    <: if { $if_ps_noc_pcie_0 == 1} {   :>
+        //initializing input clocks of sim_xdma when ps_noc_pcie IF is enabled..
+        if(m_sim_xdma_ptr != NULL){
+            m_sim_xdma_ptr->m_aximm_aclk.bind(pmc_noc_clk);
+            m_sim_xdma_ptr->m_axictrl_aclk.bind(pmc_noc_clk);
+        }
+        SC_METHOD(trigger_ps_noc_pcie_axi0_clk_pin);
+        sensitive << pmc_noc_clk;
+        dont_initialize();
+    <:}:>
+    
+    }
+    ps_pmc_v1_0_0_tlm :: ~ps_pmc_v1_0_0_tlm()    {
+        //deleteing dynamically created objects 
+        <: if { $saxigp0 == 1} {   :>
+        if(S_AXI_GP0_wr_socket  != NULL){
+            delete S_AXI_GP0_wr_socket;
+            S_AXI_GP0_wr_socket = NULL;
+        }
+        if(S_AXI_GP0_rd_socket != NULL){
+            delete S_AXI_GP0_rd_socket;
+            S_AXI_GP0_rd_socket = NULL;
+        }
+        if(m_xtlm2tlm[0] != NULL){
+            delete m_xtlm2tlm[0];
+            m_xtlm2tlm[0] = NULL;
+        }
+        <:}:>
+        <: if { $saxigp2 == 1} {   :>
+        if(S_AXI_GP2_wr_socket != NULL){
+            delete S_AXI_GP2_wr_socket;
+            S_AXI_GP2_wr_socket = NULL;
+        }
+        if(S_AXI_GP2_rd_socket != NULL){
+            delete S_AXI_GP2_rd_socket;
+            S_AXI_GP2_rd_socket = NULL;
+        }
+        if(m_xtlm2tlm[1] != NULL){
+            delete m_xtlm2tlm[1];
+            m_xtlm2tlm[1] = NULL;
+        }
+        <:}:>
+        <: if { $saxigp4 == 1} {   :>
+        if(S_AXI_GP4_wr_socket != NULL){
+            delete S_AXI_GP4_wr_socket;
+            S_AXI_GP4_wr_socket = NULL;
+        }
+        if(S_AXI_GP4_rd_socket != NULL){
+            delete S_AXI_GP4_rd_socket;
+            S_AXI_GP4_rd_socket = NULL;
+        }
+        if(m_xtlm2tlm[2] != NULL){
+            delete m_xtlm2tlm[2];
+            m_xtlm2tlm[2] = NULL;
+        }
+        <:}:>
+        <: if { $saxiacp == 1} {   :>
+        if(S_AXI_ACP_wr_socket != NULL){
+            delete S_AXI_ACP_wr_socket;
+            S_AXI_ACP_wr_socket = NULL;
+        }
+        if(S_AXI_ACP_rd_socket != NULL){
+            delete S_AXI_ACP_rd_socket;\
+            S_AXI_ACP_rd_socket = NULL;
+        }
+        if(m_xtlm2tlm[3] != NULL){
+            delete m_xtlm2tlm[3];
+            m_xtlm2tlm[3] = NULL;
+        }
+        <:}:>
+        <: if { $saxiace == 1} {   :>
+        if(S_AXI_ACE_wr_socket != NULL){
+            delete S_AXI_ACE_wr_socket;
+            S_AXI_ACE_wr_socket = NULL;
+        }
+        if(S_AXI_ACE_rd_socket != NULL){
+            delete S_AXI_ACE_rd_socket;
+            S_AXI_ACE_rd_socket = NULL;
+        }
+        if(m_xtlm2tlm[4] != NULL){
+            delete m_xtlm2tlm[4];
+            m_xtlm2tlm[4] = NULL;
+        }
+        <:}:>
+        <: if { $if_noc_ps_nci_0 == 1} {   :>
+        if(IF_NOC_PS_NCI_0_wr_socket != NULL){
+            delete IF_NOC_PS_NCI_0_wr_socket;
+            IF_NOC_PS_NCI_0_wr_socket = NULL;
+        }
+        if(IF_NOC_PS_NCI_0_rd_socket != NULL){
+            delete IF_NOC_PS_NCI_0_rd_socket;
+            IF_NOC_PS_NCI_0_wr_socket = NULL;
+        }
+        if(m_xtlm2tlm[5] != NULL){
+            delete m_xtlm2tlm[5];
+        }
+        <:}:>
+        <: if { $if_noc_ps_nci_1 == 1} {   :>
+        if(IF_NOC_PS_NCI_1_wr_socket != NULL){
+            delete IF_NOC_PS_NCI_1_wr_socket;
+        }
+        if(IF_NOC_PS_NCI_1_rd_socket != NULL){
+            delete IF_NOC_PS_NCI_1_rd_socket;
+        }
+        if(m_xtlm2tlm[6] != NULL){
+            delete m_xtlm2tlm[6];
+        }
+        <:}:>
+        <: if { $if_noc_ps_cci_0 == 1} {   :>
+        if(IF_NOC_PS_CCI_0_wr_socket != NULL){
+            delete IF_NOC_PS_CCI_0_wr_socket;
+        }
+        if(IF_NOC_PS_CCI_0_rd_socket != NULL){
+            delete IF_NOC_PS_CCI_0_rd_socket;
+        }
+        if(m_xtlm2tlm[7] != NULL){
+            delete m_xtlm2tlm[7];
+        }
+        <:}:>
+        <: if { $if_noc_ps_cci_1 == 1} {   :>
+        if(IF_NOC_PS_CCI_1_wr_socket != NULL){
+            delete IF_NOC_PS_CCI_1_wr_socket;
+        }
+        if(IF_NOC_PS_CCI_1_rd_socket != NULL){
+            delete IF_NOC_PS_CCI_1_rd_socket;
+        }
+        if(m_xtlm2tlm[8] != NULL){
+            delete m_xtlm2tlm[8];
+        }
+        <:}:>
+        <: if { $if_noc_ps_pcie_0 == 1} {   :>
+        if(IF_NOC_PS_PCIE_0_wr_socket != NULL){
+            delete IF_NOC_PS_PCIE_0_wr_socket;
+        }
+        if(IF_NOC_PS_PCIE_0_rd_socket != NULL){
+            delete IF_NOC_PS_PCIE_0_rd_socket;
+        }
+        if(m_xtlm2tlm[9] != NULL){
+            delete m_xtlm2tlm[9];
+        }
+        <:}:>
+        <: if { $if_noc_pmc_axi_0 == 1} {   :>
+        if(IF_NOC_PMC_AXI_0_wr_socket != NULL){
+            delete IF_NOC_PMC_AXI_0_wr_socket;
+        }
+        if(IF_NOC_PMC_AXI_0_rd_socket != NULL){
+            delete IF_NOC_PMC_AXI_0_rd_socket;
+        }
+        if(m_xtlm2tlm[10] != NULL){
+            delete m_xtlm2tlm[10];
+        }
+        <:}:>
+        <: if { $maxigp0 == 1} {   :>
+        if(M_AXI_GP0_wr_socket != NULL){
+            delete M_AXI_GP0_wr_socket;
+        }
+        if(M_AXI_GP0_rd_socket != NULL){
+            delete M_AXI_GP0_rd_socket;
+        }
+        <:}:>
+        <: if { $maxigp2 == 1} {   :>
+        if(M_AXI_GP2_wr_socket != NULL){
+            delete M_AXI_GP2_wr_socket;
+        }
+        if(M_AXI_GP2_rd_socket != NULL){
+            delete M_AXI_GP2_rd_socket;
+        }
+        <:}:>
+        <: if { $if_ps_noc_cci_0 == 1} {   :>
+        if(IF_PS_NOC_CCI_0_wr_socket != NULL){
+            delete IF_PS_NOC_CCI_0_wr_socket;
+        }
+        if(IF_PS_NOC_CCI_0_rd_socket != NULL){
+            delete IF_PS_NOC_CCI_0_rd_socket;
+        }
+        <:}:>
+        <: if { $if_ps_noc_cci_1 == 1} {   :>
+        if(IF_PS_NOC_CCI_1_wr_socket != NULL){
+            delete IF_PS_NOC_CCI_1_wr_socket;
+        }
+        if(IF_PS_NOC_CCI_1_rd_socket != NULL){
+            delete IF_PS_NOC_CCI_1_rd_socket;
+        }
+        <:}:>
+        <: if { $if_ps_noc_cci_2 == 1} {   :>
+        if(IF_PS_NOC_CCI_2_wr_socket != NULL){
+            delete IF_PS_NOC_CCI_2_wr_socket;
+        }
+        if(IF_PS_NOC_CCI_2_rd_socket != NULL){
+            delete IF_PS_NOC_CCI_2_rd_socket;
+        }
+        <:}:>
+        <: if { $if_ps_noc_cci_3 == 1} {   :>
+        if(IF_PS_NOC_CCI_3_wr_socket != NULL){
+            delete IF_PS_NOC_CCI_3_wr_socket;
+        }
+        if(IF_PS_NOC_CCI_3_rd_socket != NULL){
+            delete IF_PS_NOC_CCI_3_rd_socket;
+        }
+        <:}:>
+        <: if { $if_ps_noc_nci_0 == 1} {   :>
+        if(IF_PS_NOC_NCI_0_wr_socket != NULL){
+            delete IF_PS_NOC_NCI_0_wr_socket;
+        }
+        if(IF_PS_NOC_NCI_0_rd_socket != NULL){
+            delete IF_PS_NOC_NCI_0_rd_socket;
+        }
+        <:}:>
+        <: if { $if_ps_noc_nci_1 == 1} {   :>
+        if(IF_PS_NOC_NCI_1_wr_socket != NULL){
+            delete IF_PS_NOC_NCI_1_wr_socket;
+        }
+        if(IF_PS_NOC_NCI_1_rd_socket != NULL){
+            delete IF_PS_NOC_NCI_1_rd_socket;
+        }
+        <:}:>
+        <: if { $if_ps_noc_pcie_0 == 1} {   :>
+        if(IF_PS_NOC_PCIE_0_wr_socket != NULL){
+            delete IF_PS_NOC_PCIE_0_wr_socket;
+        }
+        if(IF_PS_NOC_PCIE_0_rd_socket != NULL){
+            delete IF_PS_NOC_PCIE_0_rd_socket;
+        }
+        <:}:>
+        <: if { $if_ps_noc_pcie_1 == 1} {   :>
+        if(IF_PS_NOC_PCIE_1_wr_socket != NULL){
+            delete IF_PS_NOC_PCIE_1_wr_socket;
+        }
+        if(IF_PS_NOC_PCIE_1_rd_socket != NULL){
+            delete IF_PS_NOC_PCIE_1_rd_socket;
+        }
+        <:}:>
+        <: if { $if_ps_noc_rpu_0 == 1} {   :>
+        if(IF_PS_NOC_RPU_0_wr_socket != NULL){
+            delete IF_PS_NOC_RPU_0_wr_socket;
+        }
+        if(IF_PS_NOC_RPU_0_rd_socket != NULL){
+            delete IF_PS_NOC_RPU_0_rd_socket;
+        }
+        <:}:>
+        <: if { $if_pmc_noc_axi_0 == 1} {   :>
+        if(IF_PMC_NOC_AXI_0_wr_socket != NULL){
+            delete IF_PMC_NOC_AXI_0_wr_socket;
+        }
+        if(IF_PMC_NOC_AXI_0_rd_socket != NULL){
+            delete IF_PMC_NOC_AXI_0_rd_socket;
+        }
+        <:}:>
+        if(m_xtlm2tlm != NULL){
+            delete[] m_xtlm2tlm;
+        }
+        
+        //deleting the thread object, RdWrTCPSocket and rwd_tlmmodel 
+        <: if { $if_pmc_noc_axi_0 == 1} {   :>
+        if(m_rwd_thread != NULL){
+            delete m_rwd_thread;
+            m_rwd_thread = NULL;
+        }
+        if(m_rdwrtcpsock != NULL){
+            delete m_rdwrtcpsock;
+            m_rdwrtcpsock = NULL;
+        }
+        if(m_rwd_tlmmodel != NULL){
+            delete m_rwd_tlmmodel;
+            m_rwd_tlmmodel = NULL;
+        }
+        if(rwd_tlm2xtlm_brdg != NULL){
+            delete rwd_tlm2xtlm_brdg;
+            rwd_tlm2xtlm_brdg = NULL;
+        }
+        if(rwd_pmc_interconnect != NULL){
+            delete rwd_pmc_interconnect;
+            rwd_pmc_interconnect = NULL;
+        }
+        <:}:>
+        <: if { $if_ps_noc_pcie_0 == 1} {   :>
+        if(m_sim_xdma_ptr != NULL){
+            delete m_sim_xdma_ptr;
+            m_sim_xdma_ptr = NULL;
+        }
+        if(sim_xdma_interconnect != NULL){
+            delete sim_xdma_interconnect;
+            sim_xdma_interconnect = NULL;
+        }
+        <:}:>
+        
+    }
+
+    <: if { $fclk0 == "1"} {   :>
+    //Method which is sentive to pl_clk0_clk sc_clock object
+    //pl_clk0 pin written based on pl_clk0_clk clock value 
+    void ps_pmc_v1_0_0_tlm :: trigger_pl_clk0_pin()    {
+        pl_clk0.write(pl_clk0_clk.read());
+    }
+    <:}:>
+    <: if { $fclk1 == "1"} {   :>
+    //Method which is sentive to pl_clk1_clk sc_clock object
+    //pl_clk1 pin written based on pl_clk1_clk clock value 
+    void ps_pmc_v1_0_0_tlm :: trigger_pl_clk1_pin()    {
+        pl_clk1.write(pl_clk1_clk.read());
+    }
+    <:}:>
+    <: if { $fclk2 == "1"} {   :>
+    //Method which is sentive to pl_clk2_clk sc_clock object
+    //pl_clk2 pin written based on pl_clk2_clk clock value 
+    void ps_pmc_v1_0_0_tlm :: trigger_pl_clk2_pin()    {
+        pl_clk2.write(pl_clk2_clk.read());
+    }
+    <:}:>
+    <: if { $fclk3 == "1"} {   :>
+    //Method which is sentive to pl_clk3_clk sc_clock object
+    //pl_clk3 pin written based on pl_clk3_clk clock value 
+    void ps_pmc_v1_0_0_tlm :: trigger_pl_clk3_pin()    {
+        pl_clk3.write(pl_clk3_clk.read());
+    }
+    <:}:>
+    <: if { $if_pmc_noc_axi_0 == 1} {   :>
+    void ps_pmc_v1_0_0_tlm :: trigger_ps_pmc_noc_axi0_clk_pin()  {
+        ps_pmc_noc_axi0_clk.write(pmc_noc_clk.read());
+    }
+    <:}:>
+    <: if { $if_ps_noc_pcie_0 == 1} {   :>
+    //TODO: use of proper clock freq..
+    void ps_pmc_v1_0_0_tlm :: trigger_ps_noc_pcie_axi0_clk_pin()  {
+        ps_ps_noc_pci_axi0_clk.write(pmc_noc_clk.read());
+
+    }
+    <:}:>
+    <: if { $if_ps_noc_cci_0 == 1} {   :>
+    void ps_pmc_v1_0_0_tlm :: trigger_ps_noc_cci_axi0_clk_pin()  {
+        ps_ps_noc_cci_axi0_clk.write(pmc_noc_clk.read());
+    }
+    <:}:>
+    <: if { $if_ps_noc_cci_1 == 1} {   :>
+    void ps_pmc_v1_0_0_tlm :: trigger_ps_noc_cci_axi1_clk_pin()  {
+        ps_ps_noc_cci_axi1_clk.write(pmc_noc_clk.read());
+    }
+    <:}:>
+    <: if { $if_ps_noc_cci_2 == 1} {   :>
+    void ps_pmc_v1_0_0_tlm :: trigger_ps_noc_cci_axi2_clk_pin()  {
+        ps_ps_noc_cci_axi2_clk.write(pmc_noc_clk.read());
+    }
+    <:}:>
+    <: if { $if_ps_noc_cci_3 == 1} {   :>
+    void ps_pmc_v1_0_0_tlm :: trigger_ps_noc_cci_axi3_clk_pin()  {
+        ps_ps_noc_cci_axi3_clk.write(pmc_noc_clk.read());
+    }
+    <:}:>
+    <: if { $if_ps_noc_nci_0 == 1} {   :>
+    void ps_pmc_v1_0_0_tlm :: trigger_ps_noc_nci_axi0_clk_pin()  {
+        ps_ps_noc_nci_axi0_clk.write(pmc_noc_clk.read());
+    }
+    <:}:>
+    <: if { $if_ps_noc_nci_1 == 1} {   :>
+    void ps_pmc_v1_0_0_tlm :: trigger_ps_noc_nci_axi1_clk_pin()  {
+        ps_ps_noc_nci_axi1_clk.write(pmc_noc_clk.read());
+    }
+    <:}:>
+    <: if { $if_ps_noc_rpu_0 == 1} {   :>
+    void ps_pmc_v1_0_0_tlm :: trigger_ps_noc_rpu_axi0_clk_pin()  {
+        ps_ps_noc_rpu_axi0_clk.write(pmc_noc_clk.read());
+    }
+    <:}:>
+
+
+
+    void ps_pmc_v1_0_0_tlm :: pl_ps_irq_method()    {
+        <: if { $pl_ps_irq0 == "1"} { :>
+        if(pl_ps_irq0.event()) {
+                //m_zynq3_tlm_model->pl2ps_irq[0].write(pl_ps_irq0.read());
+        }
+        <:}:>
+        <: if { $pl_ps_irq1 == "1"} { :>
+        if(pl_ps_irq1.event()) {
+                //m_zynq3_tlm_model->pl2ps_irq[1].write(pl_ps_irq1.read());
+        }
+        <:}:>
+        <: if { $pl_ps_irq2 == "1"} { :>
+        if(pl_ps_irq2.event()) {
+                //m_zynq3_tlm_model->pl2ps_irq[2].write(pl_ps_irq2.read());
+        }
+        <:}:>
+        <: if { $pl_ps_irq3 == "1"} { :>
+        if(pl_ps_irq3.event()) {
+                //m_zynq3_tlm_model->pl2ps_irq[3].write(pl_ps_irq3.read());
+        }
+        <:}:>
+        <: if { $pl_ps_irq4 == "1"} { :>
+        if(pl_ps_irq4.event()) {
+                //m_zynq3_tlm_model->pl2ps_irq[4].write(pl_ps_irq4.read());
+        }
+        <:}:>
+        <: if { $pl_ps_irq5 == "1"} { :>
+        if(pl_ps_irq5.event()) {
+                //m_zynq3_tlm_model->pl2ps_irq[5].write(pl_ps_irq5.read());
+        }
+        <:}:>
+        <: if { $pl_ps_irq6 == "1"} { :>
+        if(pl_ps_irq6.event()) {
+                //m_zynq3_tlm_model->pl2ps_irq[6].write(pl_ps_irq6.read());
+        }
+        <:}:>
+        <: if { $pl_ps_irq7 == "1"} { :>
+        if(pl_ps_irq7.event()) {
+                //m_zynq3_tlm_model->pl2ps_irq[7].write(pl_ps_irq7.read());
+        }
+        <:}:>
+        <: if { $pl_ps_irq8 == "1"} { :>
+        if(pl_ps_irq8.event()) {
+               // m_zynq3_tlm_model->pl2ps_irq[8].write(pl_ps_irq8.read());
+        }
+        <:}:>
+        <: if { $pl_ps_irq9 == "1"} { :>
+        if(pl_ps_irq9.event()) {
+                //m_zynq3_tlm_model->pl2ps_irq[9].write(pl_ps_irq9.read());
+        }
+        <:}:>
+        <: if { $pl_ps_irq10 == "1"} { :>
+        if(pl_ps_irq10.event()) {
+                //m_zynq3_tlm_model->pl2ps_irq[10].write(pl_ps_irq10.read());
+        }
+        <:}:>
+        <: if { $pl_ps_irq11 == "1"} { :>
+        if(pl_ps_irq11.event()) {
+                //m_zynq3_tlm_model->pl2ps_irq[11].write(pl_ps_irq11.read());
+        }
+        <:}:>
+        <: if { $pl_ps_irq12 == "1"} { :>
+        if(pl_ps_irq12.event()) {
+                //m_zynq3_tlm_model->pl2ps_irq[12].write(pl_ps_irq12.read());
+        }
+        <:}:>
+        <: if { $pl_ps_irq13 == "1"} { :>
+        if(pl_ps_irq13.event()) {
+                //m_zynq3_tlm_model->pl2ps_irq[13].write(pl_ps_irq13.read());
+        }
+        <:}:>
+        <: if { $pl_ps_irq14 == "1"} { :>
+        if(pl_ps_irq14.event()) {
+                //m_zynq3_tlm_model->pl2ps_irq[14].write(pl_ps_irq14.read());
+        }
+        <:}:>
+        <: if { $pl_ps_irq15 == "1"} { :>
+        if(pl_ps_irq15.event()) {
+                //m_zynq3_tlm_model->pl2ps_irq[15].write(pl_ps_irq15.read());
+        }
+        <:}:>
+    }
+    <: if { $num_rst >= "1"} { :>
+    //pl_resetn0 output reset pin get toggle when emio bank 2's 31th signal gets toggled
+    //EMIO[2] bank 31th(GPIO[95] signal)acts as reset signal to the PL(refer Zynq UltraScale+ TRM, page no:761)
+    void ps_pmc_v1_0_0_tlm :: pl_resetn0_trigger()   {
+    }
+    <:}:>
+    <: if { $num_rst >= "2"} { :>
+    //pl_resetn1 output reset pin get toggle when emio bank 2's 30th signal gets toggled
+    //EMIO[2] bank 30th(GPIO[94] signal)acts as reset signal to the PL(refer Zynq UltraScale+ TRM, page no:761)
+    void ps_pmc_v1_0_0_tlm :: pl_resetn1_trigger()   {
+    }
+    <:}:>
+    <: if { $num_rst >= "3"} { :>
+    //pl_resetn2 output reset pin get toggle when emio bank 2's 29th signal gets toggled
+    //EMIO[2] bank 29th(GPIO[93] signal)acts as reset signal to the PL(refer Zynq UltraScale+ TRM, page no:761)
+    void ps_pmc_v1_0_0_tlm :: pl_resetn2_trigger()   {
+    }
+    <:}:>
+    <: if { $num_rst >= "4"} { :>
+    //pl_resetn3 output reset pin get toggle when emio bank 2's 29th signal gets toggled
+    //EMIO[2] bank 28th(GPIO[92] signal)acts as reset signal to the PL(refer Zynq UltraScale+ TRM, page no:761)
+    void ps_pmc_v1_0_0_tlm :: pl_resetn3_trigger()   {
+    }
+    <:}:>
+
+    sc_signal<bool> qemu_rst;
+    void ps_pmc_v1_0_0_tlm :: start_of_simulation()
+    {
+    <: if { $num_rst >= "1"} { :>
+        pl_resetn0.write(true);
+    <:}:>
+    <: if { $num_rst >= "2"} { :>
+        pl_resetn1.write(true);
+    <:}:>
+    <: if { $num_rst >= "3"} { :>
+        pl_resetn2.write(true);
+    <:}:>
+    <: if { $num_rst >= "4"} { :>
+        pl_resetn3.write(true);
+    <:}:>
+        qemu_rst.write(false);
+    }
+    void ps_pmc_v1_0_0_tlm :: rwd_tlmmodule_init(){
+        <: if { $if_pmc_noc_axi_0 == 1} {   :>
+        char* rwd = getenv("ENABLE_RDWR_DEBUG");
+        if((rwd != NULL) && (strcasecmp(rwd, "true") == 0)){
+                // instantiating xtlm_interconnect with 2 slave and one master interface
+                xsc::common_cpp::properties imp_prop;
+	            imp_prop.addLong("C_NUM_SI","2");
+	            imp_prop.addLong("C_NUM_MI","1");
+	            imp_prop.addLong("C_ADDR_RANGES","1");
+                
+                std::string width = std::to_string(<: print $if_pmc_noc_axi_0_data_width :>);
+                std::string addr_width = std::to_string(<: print $if_pmc_noc_axi_0_addr_width :>);
+	            imp_prop.addLong("C_M00_AXI_DATA_WIDTH",width.c_str());
+	            imp_prop.addLong("C_M00_AXI_ADDR_WIDTH",addr_width.c_str());
+	            imp_prop.addLong("C_M00_A00_BASE_ADDRESS","0x0");
+	            imp_prop.addLong("C_M00_A00_ADDR_RANGE","0xFFFFFFFFFFFFFFFF");
+
+	            imp_prop.addLong("C_S00_AXI_DATA_WIDTH",width.c_str());
+	            imp_prop.addLong("C_S00_AXI_ADDR_WIDTH",addr_width.c_str());
+	            imp_prop.addLong("C_S01_AXI_DATA_WIDTH",width.c_str());
+	            imp_prop.addLong("C_S01_AXI_ADDR_WIDTH",addr_width.c_str());
+
+	            imp_prop.addLong("C_M00_S00_CONNECTIVITY","1");
+	            imp_prop.addLong("C_M00_S01_CONNECTIVITY","1");
+                rwd_pmc_interconnect = new xtlm_simple_interconnect_model("rwd_pmc_interconnect",imp_prop); 
+                rwd_pmc_interconnect->initiator_wr_sockets[0]->bind(*IF_PMC_NOC_AXI_0_wr_socket);
+                rwd_pmc_interconnect->initiator_rd_sockets[0]->bind(*IF_PMC_NOC_AXI_0_rd_socket);
+                
+                //intantiating rwd_tcpserver and rwd_tlmmodel here
+                m_rwd_tlmmodel = dynamic_cast<rwd_tlmmodel*>(&rwd_interface::getInstance());
+                char* rdwr_port = getenv("RDWR_DEBUG_PORT");
+                int rdwr_port_number = 10100;
+                if(rdwr_port == NULL)  {
+                    std::cout << "\nRDWR_DEBUG_PORT is not mentioned. Default port number is 10100" << std::endl;
+                }
+                else {
+                    char* skt_name = strdup(rdwr_port);
+                    rdwr_port_number = atoi(skt_name);
+                    std::cout << "\nRDWR_DEBUG_PORT is " << dec << rdwr_port_number << std::endl;
+                }
+                m_rdwrtcpsock = new RdWrTCPSocket(rdwr_port_number);
+                m_rwd_thread = new std::thread(StartThreadedTCPServer,m_rdwrtcpsock); 
+                rwd_tlm2xtlm_brdg = new rptlm2xtlm_converter<32, <: print $if_pmc_noc_axi_0_data_width :> >("rwd_tlm2xtlm_brdg");
+                
+                m_rwd_tlmmodel->init_sock(rwd_tlm2xtlm_brdg->target_socket);
+                rwd_tlm2xtlm_brdg->rd_socket.bind(*rwd_pmc_interconnect->target_rd_sockets[1]);
+                rwd_tlm2xtlm_brdg->wr_socket.bind(*rwd_pmc_interconnect->target_wr_sockets[1]);
+
+                //Qemu to simple_interconnect  
+                m_rp_bridge_IF_PMC_NOC_AXI_0.wr_socket.bind(*rwd_pmc_interconnect->target_wr_sockets[0]);
+                m_rp_bridge_IF_PMC_NOC_AXI_0.rd_socket.bind(*rwd_pmc_interconnect->target_rd_sockets[0]);
+                m_rp_bridge_IF_PMC_NOC_AXI_0.target_socket.bind(*m_zynq3_tlm_model->if_pmc_noc_axi_0);
+            } else {
+                m_rp_bridge_IF_PMC_NOC_AXI_0.wr_socket.bind(*IF_PMC_NOC_AXI_0_wr_socket);
+                m_rp_bridge_IF_PMC_NOC_AXI_0.rd_socket.bind(*IF_PMC_NOC_AXI_0_rd_socket);
+                m_rp_bridge_IF_PMC_NOC_AXI_0.target_socket.bind(*m_zynq3_tlm_model->if_pmc_noc_axi_0);
+                m_rwd_tlmmodel = NULL;
+                m_rwd_thread = NULL;
+                rwd_tlm2xtlm_brdg = NULL;
+            }
+
+        <:}:>
+    }
+
+    void ps_pmc_v1_0_0_tlm :: enable_sim_xdma(){
+        <: if { $if_ps_noc_pcie_0 == 1} {   :>
+        xsc::common_cpp::properties model_param_props;
+        model_param_props.addBool("C_M_AXIMM_1_ENABLE", "true");
+        model_param_props.addBool("C_M_AXIMM_2_ENABLE", "false");
+        model_param_props.addLong("C_M_AXIMM_2_BURST_LEN","16");
+        model_param_props.addLong("C_M_AXIMM_2_ID_WIDTH", "1");
+        model_param_props.addLong("C_M_AXIMM_2_ADDR_WIDTH", "32");
+        model_param_props.addLong("C_M_AXIMM_2_DATA_WIDTH", "32");
+        model_param_props.addLong("C_M_AXIMM_2_AWUSER_WIDTH", "1");
+        model_param_props.addLong("C_M_AXIMM_2_ARUSER_WIDTH", "1");
+        model_param_props.addLong("C_M_AXIMM_2_WUSER_WIDTH", "1");
+        model_param_props.addLong("C_M_AXIMM_2_RUSER_WIDTH", "1");
+        model_param_props.addLong("C_M_AXIMM_2_BUSER_WIDTH", "1");
+        model_param_props.addLong("C_M_AXIMM_1_BURST_LEN", "16");
+        model_param_props.addLong("C_M_AXIMM_1_ID_WIDTH", "1");
+        model_param_props.addLong("C_M_AXIMM_1_ADDR_WIDTH", "38");
+        model_param_props.addLong("C_M_AXIMM_1_DATA_WIDTH", "32");
+        model_param_props.addLong("C_M_AXIMM_1_AWUSER_WIDTH", "32");
+        model_param_props.addLong("C_M_AXIMM_1_ARUSER_WIDTH", "32");
+        model_param_props.addLong("C_M_AXIMM_1_WUSER_WIDTH", "1");
+        model_param_props.addLong("C_M_AXIMM_1_RUSER_WIDTH", "1");
+        model_param_props.addLong("C_M_AXIMM_1_BUSER_WIDTH", "1");
+        model_param_props.addLong("C_M_AXICTRL_ADDR_WIDTH", "64");
+        std::string ctrl_data_width = std::to_string(<: print $mgp0_data_width :>);
+        model_param_props.addLong("C_M_AXICTRL_DATA_WIDTH", ctrl_data_width.c_str());
+        model_param_props.addLong("C_M_AXICTRL_TRANSACTIONS_NUM", "4");
+        model_param_props.addLong("C_M_AXIMM_BURST_LEN", "16");
+        model_param_props.addLong("C_M_AXIMM_ID_WIDTH", "1");
+        model_param_props.addLong("C_M_AXIMM_ADDR_WIDTH", "64");
+        std::string mm_data_width = std::to_string(<: print $if_ps_noc_pcie_0_data_width :>);
+        model_param_props.addLong("C_M_AXIMM_DATA_WIDTH", mm_data_width.c_str());
+        model_param_props.addLong("C_M_AXIMM_AWUSER_WIDTH", "32");
+        model_param_props.addLong("C_M_AXIMM_ARUSER_WIDTH","32");
+        model_param_props.addLong("C_M_AXIMM_WUSER_WIDTH","1");
+        model_param_props.addLong("C_M_AXIMM_RUSER_WIDTH","1");
+        model_param_props.addLong("C_M_AXIMM_BUSER_WIDTH","1");
+        model_param_props.addBitString("C_M_AXIMM_2_TARGET_SLAVE_BASE_ADDR","01000000000000000000000000000000",32);
+        model_param_props.addBitString("C_M_AXIMM_1_TARGET_SLAVE_BASE_ADDR", "01000000000000000000000000000000",32);
+        model_param_props.addBitString("C_M_AXICTRL_START_DATA_VALUE", "10101010000000000000000000000000",32);
+        model_param_props.addBitString("C_M_AXICTRL_TARGET_SLAVE_BASE_ADDR", "01000000000000000000000000000000",32);
+        model_param_props.addBitString("C_M_AXIMM_TARGET_SLAVE_BASE_ADDR", "01000000000000000000000000000000",32);
+        model_param_props.addBool("C_M_AXIMM_AUX_ENABLE", "false");
+        model_param_props.addBool("C_STM_ITF_ENABLE", "false");
+        model_param_props.addLong("C_M_AXIMM_AUX_ADDR_WIDTH","32");
+        model_param_props.addLong("C_M_AXIMM_AUX_DATA_WIDTH", "32");
+        model_param_props.addLong("C_M_AXIS_TDATA_WIDTH", "32");
+        model_param_props.addLong("C_S_AXIS_TDATA_WIDTH", "32");
+        m_sim_xdma_ptr = new sim_xdma("sim_xdma", model_param_props);
+        m_sim_xdma_ptr->initiator_mm_rd_socket->bind(*IF_PS_NOC_PCIE_0_rd_socket);
+        m_sim_xdma_ptr->initiator_mm_wr_socket->bind(*IF_PS_NOC_PCIE_0_wr_socket);
+        dummy_noc_pcie_sig.write(true);
+        m_sim_xdma_ptr->m_aximm_aresetn.bind(dummy_noc_pcie_sig);
+        m_sim_xdma_ptr->m_axictrl_aresetn.bind(dummy_noc_pcie_sig);
+
+        <:}:>
+    }
+<: if { $if_pmc_noc_axi_0 == 1} {   :>
+void StartThreadedTCPServer(RdWrTCPSocket* m_rdwrtcpsock) {
+    m_rdwrtcpsock->StartTCPServer();
+}
+<:}:>
+template <int IN_WIDTH, int OUT_WIDTH>
+rptlm2xtlm_converter<IN_WIDTH, OUT_WIDTH>::rptlm2xtlm_converter(sc_module_name name):sc_module(name)
+    ,target_socket("target_socket")
+    ,wr_socket("init_wr_socket",OUT_WIDTH)
+    ,rd_socket("init_rd_socket",OUT_WIDTH)
+    ,m_btrans_conv("b_transport_converter")
+    ,xtlm_bridge("tlm2xtlmbridge")
+{
+    target_socket.bind(m_btrans_conv.target_socket);
+    m_btrans_conv.initiator_socket.bind(xtlm_bridge.target_socket);
+    xtlm_bridge.rd_socket->bind(rd_socket);
+    xtlm_bridge.wr_socket->bind(wr_socket);
+}
+template <int IN_WIDTH, int OUT_WIDTH>
+void rptlm2xtlm_converter<IN_WIDTH, OUT_WIDTH>::registerUserExtensionHandlerCallback(
+		void (*callback)(xtlm::aximm_payload*,
+				const tlm::tlm_generic_payload*)) {
+    xtlm_bridge.registerUserExtensionHandlerCallback(callback);
+}

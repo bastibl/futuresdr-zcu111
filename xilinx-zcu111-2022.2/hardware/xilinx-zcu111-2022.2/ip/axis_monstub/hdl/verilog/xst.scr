@@ -1,0 +1,1 @@
+run -ifn axis_monstub.v -ifmt verilog -p virtex5 -ofn delme.ngc

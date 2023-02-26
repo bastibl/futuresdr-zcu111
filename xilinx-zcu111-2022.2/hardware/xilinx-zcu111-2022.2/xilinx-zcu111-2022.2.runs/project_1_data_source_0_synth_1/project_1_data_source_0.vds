@@ -1,0 +1,601 @@
+#-----------------------------------------------------------
+# Vivado v2022.2 (64-bit)
+# SW Build 3671981 on Fri Oct 14 04:59:54 MDT 2022
+# IP Build 3669848 on Fri Oct 14 08:30:02 MDT 2022
+# Start of session at: Fri Oct 14 13:26:43 2022
+# Process ID: 50376
+# Current directory: /tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.runs/project_1_data_source_0_synth_1
+# Command line: vivado -log project_1_data_source_0.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source project_1_data_source_0.tcl
+# Log file: /tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.runs/project_1_data_source_0_synth_1/project_1_data_source_0.vds
+# Journal file: /tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.runs/project_1_data_source_0_synth_1/vivado.jou
+# Running On: xcosswbld17, OS: Linux, CPU Frequency: 3065.276 MHz, CPU Physical cores: 32, Host memory: 404352 MB
+#-----------------------------------------------------------
+INFO: [Common 17-1239] XILINX_LOCAL_USER_DATA is set to 'NO'.
+Sourcing tcl script '/home/xbrbbot/.Xilinx/Vivado/Vivado_init.tcl'
+484 Beta devices matching pattern found, 484 enabled.
+enable_beta_device: Time (s): cpu = 00:00:12 ; elapsed = 00:00:13 . Memory (MB): peak = 2066.992 ; gain = 130.633 ; free physical = 253079 ; free virtual = 331973
+source project_1_data_source_0.tcl -notrace
+INFO: [IP_Flow 19-234] Refreshing IP repositories
+WARNING: [IP_Flow 19-395] Problem validating against XML schema: see 'spirit:vendor' : Mandatory element missing or unexpected element found
+WARNING: [IP_Flow 19-395] Problem validating against XML schema: see 'spirit:vendor' : Mandatory element missing or unexpected element found
+INFO: [IP_Flow 19-1700] Loaded user IP repository '/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/ip'.
+INFO: [IP_Flow 19-2313] Loaded Vivado IP repository '/proj/xbuilds/2022.2_1014_2/installs/lin64/Vivado/2022.2/data/ip'.
+WARNING: [IP_Flow 19-1663] Duplicate IP found for 'xilinx.com:ip:axi_quad_spi:3.2'. The one found in IP location '/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/ip/axi_quad_spi' will take precedence over the same IP in the Xilinx installed IP.
+WARNING: [IP_Flow 19-4830] Duplicate Interface found for 'xilinx.com:display_startup_io:startup_io:1.0'. The one found in location '/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/ip/axi_quad_spi/startup_io.xml' will take precedence over the same Interface in location '/proj/xbuilds/2022.2_1014_2/installs/lin64/Vivado/2022.2/data/ip/xilinx/axi_quad_spi_v3_2/startup_io.xml'
+WARNING: [IP_Flow 19-4830] Duplicate Interface found for 'xilinx.com:display_usp_rf_data_converter:diff_pins:1.0'. The one found in location '/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/ip/usp_rf_data_converter/interfaces/diff_pins.xml' will take precedence over the same Interface in location '/proj/xbuilds/2022.2_1014_2/installs/lin64/Vivado/2022.2/data/ip/xilinx/usp_rf_data_converter_v2_6/interfaces/diff_pins.xml'
+WARNING: [IP_Flow 19-4830] Duplicate Interface found for 'xilinx.com:display_usp_rf_data_converter:rts_pins:1.0'. The one found in location '/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/ip/usp_rf_data_converter/interfaces/rts_pins.xml' will take precedence over the same Interface in location '/proj/xbuilds/2022.2_1014_2/installs/lin64/Vivado/2022.2/data/ip/xilinx/usp_rf_data_converter_v2_6/interfaces/rts_pins.xml'
+WARNING: [IP_Flow 19-4830] Duplicate Interface found for 'xilinx.com:display_usp_rf_data_converter:drp_mon_pins:1.0'. The one found in location '/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/ip/usp_rf_data_converter/interfaces/drp_mon_pins.xml' will take precedence over the same Interface in location '/proj/xbuilds/2022.2_1014_2/installs/lin64/Vivado/2022.2/data/ip/xilinx/usp_rf_data_converter_v2_6/interfaces/drp_mon_pins.xml'
+WARNING: [IP_Flow 19-4830] Duplicate Interface found for 'xilinx.com:display_usp_rf_data_converter:debug_pins:1.0'. The one found in location '/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/ip/usp_rf_data_converter/interfaces/debug_pins.xml' will take precedence over the same Interface in location '/proj/xbuilds/2022.2_1014_2/installs/lin64/Vivado/2022.2/data/ip/xilinx/usp_rf_data_converter_v2_6/interfaces/debug_pins.xml'
+WARNING: [IP_Flow 19-4830] Duplicate Interface found for 'xilinx.com:user:hsams_data_sink_ctrl:1.0'. The one found in location '/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/ip/usp_rf_data_converter/interfaces/hsams_data_sink_ctrl.xml' will take precedence over the same Interface in location '/proj/xbuilds/2022.2_1014_2/installs/lin64/Vivado/2022.2/data/ip/xilinx/usp_rf_data_converter_v2_6/interfaces/hsams_data_sink_ctrl.xml'
+WARNING: [IP_Flow 19-4830] Duplicate Interface found for 'xilinx.com:user:hsams_data_source_ctrl:1.0'. The one found in location '/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/ip/usp_rf_data_converter/interfaces/hsams_data_source_ctrl.xml' will take precedence over the same Interface in location '/proj/xbuilds/2022.2_1014_2/installs/lin64/Vivado/2022.2/data/ip/xilinx/usp_rf_data_converter_v2_6/interfaces/hsams_data_source_ctrl.xml'
+WARNING: [IP_Flow 19-4830] Duplicate Interface found for 'xilinx.com:display_usp_rf_data_converter:cal_freeze_pins:1.0'. The one found in location '/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/ip/usp_rf_data_converter/interfaces/cal_freeze_pins.xml' will take precedence over the same Interface in location '/proj/xbuilds/2022.2_1014_2/installs/lin64/Vivado/2022.2/data/ip/xilinx/usp_rf_data_converter_v2_6/interfaces/cal_freeze_pins.xml'
+WARNING: [IP_Flow 19-4830] Duplicate Interface found for 'xilinx.com:interface:gt_hsclk_debug:1.0'. The one found in location '/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/ip/ps_pmc/interfaces/gt_hsclk_debug_v1_0/gt_hsclk_debug.xml' will take precedence over the same Interface in location '/proj/xbuilds/2022.2_1014_2/installs/lin64/Vivado/2022.2/data/ip/xilinx/gt_quad_base_v1_1/interfaces/gt_hsclk_debug_v1_0/gt_hsclk_debug.xml'
+WARNING: [IP_Flow 19-4830] Duplicate Interface found for 'xilinx.com:display_pcie4:pcie4_cfg_external_msix:1.0'. The one found in location '/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/ip/ps_pmc/interfaces/pcie4_cfg_ext_msix.xml' will take precedence over the same Interface in location '/proj/xbuilds/2022.2_1014_2/installs/lin64/Vivado/2022.2/data/ip/xilinx/pcie4_uscale_plus_v1_3/interfaces/pcie4_cfg_ext_msix.xml'
+WARNING: [IP_Flow 19-4830] Duplicate Interface found for 'xilinx.com:interface:gt_rxmargin_intf:1.0'. The one found in location '/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/ip/ps_pmc/interfaces/gt_rxmargin_intf_v1_0/gt_rxmargin_intf.xml' will take precedence over the same Interface in location '/proj/xbuilds/2022.2_1014_2/installs/lin64/Vivado/2022.2/data/ip/xilinx/gt_quad_base_v1_1/interfaces/gt_rxmargin_intf_v1_0/gt_rxmargin_intf.xml'
+WARNING: [IP_Flow 19-4830] Duplicate Interface found for 'xilinx.com:user:acelite:1.0'. The one found in location '/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/ip/ps_pmc/interfaces/acelite.xml' will take precedence over the same Interface in location '/proj/xbuilds/2022.2_1014_2/installs/lin64/Vivado/2022.2/data/ip/xilinx/pspmc_v1_2/interfaces/acelite.xml'
+WARNING: [IP_Flow 19-4830] Duplicate Interface found for 'xilinx.com:interface:gt_debug:1.0'. The one found in location '/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/ip/ps_pmc/interfaces/gt_debug_v1_0/gt_debug.xml' will take precedence over the same Interface in location '/proj/xbuilds/2022.2_1014_2/installs/lin64/Vivado/2022.2/data/ip/xilinx/gt_quad_base_v1_1/interfaces/gt_debug_v1_0/gt_debug.xml'
+WARNING: [IP_Flow 19-4830] Duplicate Interface found for 'xilinx.com:display_pcie4:pcie4_cfg_mgmt:1.0'. The one found in location '/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/ip/ps_pmc/interfaces/pcie4_cfg_mgmt.xml' will take precedence over the same Interface in location '/proj/xbuilds/2022.2_1014_2/installs/lin64/Vivado/2022.2/data/ip/xilinx/pcie4_uscale_plus_v1_3/interfaces/pcie4_cfg_mgmt.xml'
+WARNING: [IP_Flow 19-4830] Duplicate Interface found for 'xilinx.com:display_pcie4c_uscaleplus:transceiver_debug:1.0'. The one found in location '/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/ip/ps_pmc/interfaces/transceiver_debug.xml' will take precedence over the same Interface in location '/proj/xbuilds/2022.2_1014_2/installs/lin64/Vivado/2022.2/data/ip/xilinx/pcie4c_uscale_plus_v1_0/interfaces/transceiver_debug.xml'
+WARNING: [IP_Flow 19-4830] Duplicate Interface found for 'xilinx.com:display_pcie4:pcie4_cfg_control:1.0'. The one found in location '/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/ip/ps_pmc/interfaces/pcie4_cfg_control.xml' will take precedence over the same Interface in location '/proj/xbuilds/2022.2_1014_2/installs/lin64/Vivado/2022.2/data/ip/xilinx/pcie4_uscale_plus_v1_3/interfaces/pcie4_cfg_control.xml'
+WARNING: [IP_Flow 19-4830] Duplicate Interface found for 'xilinx.com:interface:gt_channel_debug:1.0'. The one found in location '/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/ip/ps_pmc/interfaces/gt_channel_debug_v1_0/gt_channel_debug.xml' will take precedence over the same Interface in location '/proj/xbuilds/2022.2_1014_2/installs/lin64/Vivado/2022.2/data/ip/xilinx/gt_quad_base_v1_1/interfaces/gt_channel_debug_v1_0/gt_channel_debug.xml'
+WARNING: [IP_Flow 19-4830] Duplicate Interface found for 'xilinx.com:interface:gt_bufgt:1.0'. The one found in location '/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/ip/ps_pmc/interfaces/gt_bufgt_v1_0/gt_bufgt.xml' will take precedence over the same Interface in location '/proj/xbuilds/2022.2_1014_2/installs/lin64/Vivado/2022.2/data/ip/xilinx/gt_quad_base_v1_1/interfaces/gt_bufgt_v1_0/gt_bufgt.xml'
+WARNING: [IP_Flow 19-4830] Duplicate Interface found for 'xilinx.com:interface:gt_tx_interface:1.0'. The one found in location '/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/ip/ps_pmc/interfaces/gt_tx_interface_v1_0/gt_tx_interface.xml' will take precedence over the same Interface in location '/proj/xbuilds/2022.2_1014_2/installs/lin64/Vivado/2022.2/data/ip/interfaces/gt_tx_interface_v1_0/gt_tx_interface.xml'
+WARNING: [IP_Flow 19-4830] Duplicate Interface found for 'xilinx.com:display_pcie4:pcie4_cfg_pm:1.0'. The one found in location '/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/ip/ps_pmc/interfaces/pcie4_cfg_pm.xml' will take precedence over the same Interface in location '/proj/xbuilds/2022.2_1014_2/installs/lin64/Vivado/2022.2/data/ip/xilinx/pcie4_uscale_plus_v1_3/interfaces/pcie4_cfg_pm.xml'
+WARNING: [IP_Flow 19-4830] Duplicate Interface found for 'xilinx.com:display_pcie4:pcie4_cfg_status:1.0'. The one found in location '/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/ip/ps_pmc/interfaces/pcie4_cfg_status.xml' will take precedence over the same Interface in location '/proj/xbuilds/2022.2_1014_2/installs/lin64/Vivado/2022.2/data/ip/xilinx/pcie4_uscale_plus_v1_3/interfaces/pcie4_cfg_status.xml'
+WARNING: [IP_Flow 19-4830] Duplicate Interface found for 'xilinx.com:display_pcie4:pcie4_pl:1.0'. The one found in location '/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/ip/ps_pmc/interfaces/pcie4_pl.xml' will take precedence over the same Interface in location '/proj/xbuilds/2022.2_1014_2/installs/lin64/Vivado/2022.2/data/ip/xilinx/pcie4_uscale_plus_v1_3/interfaces/pcie4_pl.xml'
+WARNING: [IP_Flow 19-4830] Duplicate Interface found for 'xilinx.com:user:smmu:1.0'. The one found in location '/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/ip/ps_pmc/interfaces/smmu.xml' will take precedence over the same Interface in location '/proj/xbuilds/2022.2_1014_2/installs/lin64/Vivado/2022.2/data/ip/xilinx/pspmc_v1_2/interfaces/smmu.xml'
+WARNING: [IP_Flow 19-4830] Duplicate Interface found for 'xilinx.com:display_pcie4:pcie4_pcie_id:1.0'. The one found in location '/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/ip/ps_pmc/interfaces/pcie4_pcie_id.xml' will take precedence over the same Interface in location '/proj/xbuilds/2022.2_1014_2/installs/lin64/Vivado/2022.2/data/ip/xilinx/pcie4_uscale_plus_v1_3/interfaces/pcie4_pcie_id.xml'
+WARNING: [IP_Flow 19-4830] Duplicate Interface found for 'xilinx.com:interface:gt_rx_interface:1.0'. The one found in location '/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/ip/ps_pmc/interfaces/gt_rx_interface_v1_0/gt_rx_interface.xml' will take precedence over the same Interface in location '/proj/xbuilds/2022.2_1014_2/installs/lin64/Vivado/2022.2/data/ip/interfaces/gt_rx_interface_v1_0/gt_rx_interface.xml'
+WARNING: [IP_Flow 19-4830] Duplicate Interface found for 'xilinx.com:display_pcie4:pcie4_cfg_msix_external:1.0'. The one found in location '/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/ip/ps_pmc/interfaces/pcie4_cfg_msix.xml' will take precedence over the same Interface in location '/proj/xbuilds/2022.2_1014_2/installs/lin64/Vivado/2022.2/data/ip/xilinx/pcie4_uscale_plus_v1_3/interfaces/pcie4_cfg_msix.xml'
+WARNING: [IP_Flow 19-4830] Duplicate Interface found for 'xilinx.com:display_pcie4:pcie4_cfg_msix_internal:1.0'. The one found in location '/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/ip/ps_pmc/interfaces/pcie4_cfg_msix_int.xml' will take precedence over the same Interface in location '/proj/xbuilds/2022.2_1014_2/installs/lin64/Vivado/2022.2/data/ip/xilinx/pcie4_uscale_plus_v1_3/interfaces/pcie4_cfg_msix_int.xml'
+INFO: [IP_Flow 19-6924] IPCACHE: Running cache check for IP inst: project_1_data_source_0
+Command: synth_design -top project_1_data_source_0 -part xczu28dr-ffvg1517-2-e -incremental_mode off -mode out_of_context
+Starting synth_design
+Attempting to get a license for feature 'Synthesis' and/or device 'xczu28dr'
+INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xczu28dr'
+INFO: [Device 21-403] Loading part xczu28dr-ffvg1517-2-e
+INFO: [Synth 8-7079] Multithreading enabled for synth_design using a maximum of 4 processes.
+INFO: [Synth 8-7078] Launching helper process for spawning children vivado processes
+INFO: [Synth 8-7075] Helper process launched with PID 53077
+INFO: [Synth 8-11241] undeclared symbol 'REGCCE', assumed default net type 'wire' [/proj/xbuilds/2022.2_1014_2/installs/lin64/Vivado/2022.2/data/verilog/src/unimacro/BRAM_SINGLE_MACRO.v:2170]
+---------------------------------------------------------------------------------
+Starting RTL Elaboration : Time (s): cpu = 00:00:04 ; elapsed = 00:00:04 . Memory (MB): peak = 3430.676 ; gain = 322.770 ; free physical = 238937 ; free virtual = 317989
+Synthesis current peak Physical Memory [PSS] (MB): peak = 2594.594; parent = 2473.383; children = 121.211
+Synthesis current peak Virtual Memory [VSS] (MB): peak = 4441.723; parent = 3436.617; children = 1005.105
+---------------------------------------------------------------------------------
+INFO: [Synth 8-6157] synthesizing module 'project_1_data_source_0' [/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.gen/sources_1/bd/project_1/ip/project_1_data_source_0/synth/project_1_data_source_0.v:53]
+INFO: [Synth 8-6157] synthesizing module 'data_source_top' [/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.gen/sources_1/bd/project_1/ipshared/4dff/hdl/verilog/data_source_top.v:10]
+INFO: [Synth 8-6157] synthesizing module 'data_source_top_CNTRL_s_axi' [/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.gen/sources_1/bd/project_1/ipshared/4dff/hdl/verilog/data_source_top_CNTRL_s_axi.v:9]
+INFO: [Synth 8-155] case statement is not full and has no default [/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.gen/sources_1/bd/project_1/ipshared/4dff/hdl/verilog/data_source_top_CNTRL_s_axi.v:329]
+INFO: [Synth 8-6155] done synthesizing module 'data_source_top_CNTRL_s_axi' (0#1) [/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.gen/sources_1/bd/project_1/ipshared/4dff/hdl/verilog/data_source_top_CNTRL_s_axi.v:9]
+INFO: [Synth 8-6157] synthesizing module 'data_source_operator_s' [/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.gen/sources_1/bd/project_1/ipshared/4dff/hdl/verilog/data_source_operator_s.v:10]
+INFO: [Synth 8-6157] synthesizing module 'data_source_operator_s_coarsebkb' [/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.gen/sources_1/bd/project_1/ipshared/4dff/hdl/verilog/data_source_operator_s_coarsebkb.v:84]
+INFO: [Synth 8-6157] synthesizing module 'data_source_operator_s_coarsebkb_rom' [/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.gen/sources_1/bd/project_1/ipshared/4dff/hdl/verilog/data_source_operator_s_coarsebkb.v:9]
+INFO: [Synth 8-3876] $readmem data file './data_source_operator_s_coarsebkb_rom.dat' is read successfully [/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.gen/sources_1/bd/project_1/ipshared/4dff/hdl/verilog/data_source_operator_s_coarsebkb.v:34]
+INFO: [Synth 8-3876] $readmem data file './data_source_operator_s_coarsebkb_rom.dat' is read successfully [/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.gen/sources_1/bd/project_1/ipshared/4dff/hdl/verilog/data_source_operator_s_coarsebkb.v:35]
+INFO: [Synth 8-6155] done synthesizing module 'data_source_operator_s_coarsebkb_rom' (0#1) [/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.gen/sources_1/bd/project_1/ipshared/4dff/hdl/verilog/data_source_operator_s_coarsebkb.v:9]
+INFO: [Synth 8-6155] done synthesizing module 'data_source_operator_s_coarsebkb' (0#1) [/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.gen/sources_1/bd/project_1/ipshared/4dff/hdl/verilog/data_source_operator_s_coarsebkb.v:84]
+INFO: [Synth 8-6157] synthesizing module 'data_source_operator_s_gradiecud' [/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.gen/sources_1/bd/project_1/ipshared/4dff/hdl/verilog/data_source_operator_s_gradiecud.v:84]
+INFO: [Synth 8-6157] synthesizing module 'data_source_operator_s_gradiecud_rom' [/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.gen/sources_1/bd/project_1/ipshared/4dff/hdl/verilog/data_source_operator_s_gradiecud.v:9]
+INFO: [Synth 8-3876] $readmem data file './data_source_operator_s_gradiecud_rom.dat' is read successfully [/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.gen/sources_1/bd/project_1/ipshared/4dff/hdl/verilog/data_source_operator_s_gradiecud.v:34]
+INFO: [Synth 8-3876] $readmem data file './data_source_operator_s_gradiecud_rom.dat' is read successfully [/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.gen/sources_1/bd/project_1/ipshared/4dff/hdl/verilog/data_source_operator_s_gradiecud.v:35]
+INFO: [Synth 8-6155] done synthesizing module 'data_source_operator_s_gradiecud_rom' (0#1) [/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.gen/sources_1/bd/project_1/ipshared/4dff/hdl/verilog/data_source_operator_s_gradiecud.v:9]
+INFO: [Synth 8-6155] done synthesizing module 'data_source_operator_s_gradiecud' (0#1) [/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.gen/sources_1/bd/project_1/ipshared/4dff/hdl/verilog/data_source_operator_s_gradiecud.v:84]
+INFO: [Synth 8-6157] synthesizing module 'data_source_top_mul_31s_18ns_dEe' [/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.gen/sources_1/bd/project_1/ipshared/4dff/hdl/verilog/data_source_top_mul_31s_18ns_dEe.v:35]
+INFO: [Synth 8-6157] synthesizing module 'data_source_top_mul_31s_18ns_dEe_MulnS_0' [/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.gen/sources_1/bd/project_1/ipshared/4dff/hdl/verilog/data_source_top_mul_31s_18ns_dEe.v:11]
+INFO: [Synth 8-6155] done synthesizing module 'data_source_top_mul_31s_18ns_dEe_MulnS_0' (0#1) [/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.gen/sources_1/bd/project_1/ipshared/4dff/hdl/verilog/data_source_top_mul_31s_18ns_dEe.v:11]
+INFO: [Synth 8-6155] done synthesizing module 'data_source_top_mul_31s_18ns_dEe' (0#1) [/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.gen/sources_1/bd/project_1/ipshared/4dff/hdl/verilog/data_source_top_mul_31s_18ns_dEe.v:35]
+INFO: [Synth 8-6157] synthesizing module 'data_source_top_mul_mul_13ns_eOg' [/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.gen/sources_1/bd/project_1/ipshared/4dff/hdl/verilog/data_source_top_mul_mul_13ns_eOg.v:26]
+INFO: [Synth 8-6157] synthesizing module 'data_source_top_mul_mul_13ns_eOg_DSP48_0' [/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.gen/sources_1/bd/project_1/ipshared/4dff/hdl/verilog/data_source_top_mul_mul_13ns_eOg.v:4]
+INFO: [Synth 8-6155] done synthesizing module 'data_source_top_mul_mul_13ns_eOg_DSP48_0' (0#1) [/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.gen/sources_1/bd/project_1/ipshared/4dff/hdl/verilog/data_source_top_mul_mul_13ns_eOg.v:4]
+INFO: [Synth 8-6155] done synthesizing module 'data_source_top_mul_mul_13ns_eOg' (0#1) [/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.gen/sources_1/bd/project_1/ipshared/4dff/hdl/verilog/data_source_top_mul_mul_13ns_eOg.v:26]
+WARNING: [Synth 8-589] replacing case/wildcard equality operator === with logical equality operator == [/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.gen/sources_1/bd/project_1/ipshared/4dff/hdl/verilog/data_source_operator_s.v:937]
+WARNING: [Synth 8-589] replacing case/wildcard equality operator === with logical equality operator == [/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.gen/sources_1/bd/project_1/ipshared/4dff/hdl/verilog/data_source_operator_s.v:939]
+WARNING: [Synth 8-589] replacing case/wildcard equality operator === with logical equality operator == [/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.gen/sources_1/bd/project_1/ipshared/4dff/hdl/verilog/data_source_operator_s.v:941]
+WARNING: [Synth 8-589] replacing case/wildcard equality operator === with logical equality operator == [/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.gen/sources_1/bd/project_1/ipshared/4dff/hdl/verilog/data_source_operator_s.v:943]
+WARNING: [Synth 8-589] replacing case/wildcard equality operator === with logical equality operator == [/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.gen/sources_1/bd/project_1/ipshared/4dff/hdl/verilog/data_source_operator_s.v:945]
+WARNING: [Synth 8-589] replacing case/wildcard equality operator === with logical equality operator == [/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.gen/sources_1/bd/project_1/ipshared/4dff/hdl/verilog/data_source_operator_s.v:947]
+WARNING: [Synth 8-589] replacing case/wildcard equality operator === with logical equality operator == [/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.gen/sources_1/bd/project_1/ipshared/4dff/hdl/verilog/data_source_operator_s.v:949]
+WARNING: [Synth 8-589] replacing case/wildcard equality operator === with logical equality operator == [/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.gen/sources_1/bd/project_1/ipshared/4dff/hdl/verilog/data_source_operator_s.v:951]
+WARNING: [Synth 8-589] replacing case/wildcard equality operator === with logical equality operator == [/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.gen/sources_1/bd/project_1/ipshared/4dff/hdl/verilog/data_source_operator_s.v:953]
+WARNING: [Synth 8-589] replacing case/wildcard equality operator === with logical equality operator == [/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.gen/sources_1/bd/project_1/ipshared/4dff/hdl/verilog/data_source_operator_s.v:955]
+WARNING: [Synth 8-589] replacing case/wildcard equality operator === with logical equality operator == [/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.gen/sources_1/bd/project_1/ipshared/4dff/hdl/verilog/data_source_operator_s.v:957]
+WARNING: [Synth 8-589] replacing case/wildcard equality operator === with logical equality operator == [/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.gen/sources_1/bd/project_1/ipshared/4dff/hdl/verilog/data_source_operator_s.v:959]
+WARNING: [Synth 8-589] replacing case/wildcard equality operator === with logical equality operator == [/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.gen/sources_1/bd/project_1/ipshared/4dff/hdl/verilog/data_source_operator_s.v:961]
+WARNING: [Synth 8-589] replacing case/wildcard equality operator === with logical equality operator == [/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.gen/sources_1/bd/project_1/ipshared/4dff/hdl/verilog/data_source_operator_s.v:963]
+WARNING: [Synth 8-589] replacing case/wildcard equality operator === with logical equality operator == [/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.gen/sources_1/bd/project_1/ipshared/4dff/hdl/verilog/data_source_operator_s.v:965]
+WARNING: [Synth 8-589] replacing case/wildcard equality operator === with logical equality operator == [/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.gen/sources_1/bd/project_1/ipshared/4dff/hdl/verilog/data_source_operator_s.v:967]
+WARNING: [Synth 8-589] replacing case/wildcard equality operator === with logical equality operator == [/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.gen/sources_1/bd/project_1/ipshared/4dff/hdl/verilog/data_source_operator_s.v:969]
+WARNING: [Synth 8-589] replacing case/wildcard equality operator === with logical equality operator == [/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.gen/sources_1/bd/project_1/ipshared/4dff/hdl/verilog/data_source_operator_s.v:1037]
+WARNING: [Synth 8-589] replacing case/wildcard equality operator === with logical equality operator == [/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.gen/sources_1/bd/project_1/ipshared/4dff/hdl/verilog/data_source_operator_s.v:1039]
+WARNING: [Synth 8-589] replacing case/wildcard equality operator === with logical equality operator == [/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.gen/sources_1/bd/project_1/ipshared/4dff/hdl/verilog/data_source_operator_s.v:1041]
+WARNING: [Synth 8-589] replacing case/wildcard equality operator === with logical equality operator == [/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.gen/sources_1/bd/project_1/ipshared/4dff/hdl/verilog/data_source_operator_s.v:1043]
+WARNING: [Synth 8-589] replacing case/wildcard equality operator === with logical equality operator == [/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.gen/sources_1/bd/project_1/ipshared/4dff/hdl/verilog/data_source_operator_s.v:1045]
+WARNING: [Synth 8-589] replacing case/wildcard equality operator === with logical equality operator == [/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.gen/sources_1/bd/project_1/ipshared/4dff/hdl/verilog/data_source_operator_s.v:1047]
+WARNING: [Synth 8-589] replacing case/wildcard equality operator === with logical equality operator == [/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.gen/sources_1/bd/project_1/ipshared/4dff/hdl/verilog/data_source_operator_s.v:1049]
+WARNING: [Synth 8-589] replacing case/wildcard equality operator === with logical equality operator == [/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.gen/sources_1/bd/project_1/ipshared/4dff/hdl/verilog/data_source_operator_s.v:1051]
+WARNING: [Synth 8-589] replacing case/wildcard equality operator === with logical equality operator == [/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.gen/sources_1/bd/project_1/ipshared/4dff/hdl/verilog/data_source_operator_s.v:1053]
+WARNING: [Synth 8-589] replacing case/wildcard equality operator === with logical equality operator == [/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.gen/sources_1/bd/project_1/ipshared/4dff/hdl/verilog/data_source_operator_s.v:1055]
+WARNING: [Synth 8-589] replacing case/wildcard equality operator === with logical equality operator == [/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.gen/sources_1/bd/project_1/ipshared/4dff/hdl/verilog/data_source_operator_s.v:1057]
+WARNING: [Synth 8-589] replacing case/wildcard equality operator === with logical equality operator == [/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.gen/sources_1/bd/project_1/ipshared/4dff/hdl/verilog/data_source_operator_s.v:1059]
+WARNING: [Synth 8-589] replacing case/wildcard equality operator === with logical equality operator == [/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.gen/sources_1/bd/project_1/ipshared/4dff/hdl/verilog/data_source_operator_s.v:1125]
+WARNING: [Synth 8-589] replacing case/wildcard equality operator === with logical equality operator == [/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.gen/sources_1/bd/project_1/ipshared/4dff/hdl/verilog/data_source_operator_s.v:1153]
+WARNING: [Synth 8-589] replacing case/wildcard equality operator === with logical equality operator == [/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.gen/sources_1/bd/project_1/ipshared/4dff/hdl/verilog/data_source_operator_s.v:1177]
+WARNING: [Synth 8-589] replacing case/wildcard equality operator === with logical equality operator == [/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.gen/sources_1/bd/project_1/ipshared/4dff/hdl/verilog/data_source_operator_s.v:1203]
+WARNING: [Synth 8-589] replacing case/wildcard equality operator === with logical equality operator == [/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.gen/sources_1/bd/project_1/ipshared/4dff/hdl/verilog/data_source_operator_s.v:1251]
+WARNING: [Synth 8-589] replacing case/wildcard equality operator === with logical equality operator == [/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.gen/sources_1/bd/project_1/ipshared/4dff/hdl/verilog/data_source_operator_s.v:1273]
+WARNING: [Synth 8-589] replacing case/wildcard equality operator === with logical equality operator == [/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.gen/sources_1/bd/project_1/ipshared/4dff/hdl/verilog/data_source_operator_s.v:1279]
+WARNING: [Synth 8-589] replacing case/wildcard equality operator === with logical equality operator == [/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.gen/sources_1/bd/project_1/ipshared/4dff/hdl/verilog/data_source_operator_s.v:1285]
+WARNING: [Synth 8-589] replacing case/wildcard equality operator === with logical equality operator == [/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.gen/sources_1/bd/project_1/ipshared/4dff/hdl/verilog/data_source_operator_s.v:1291]
+INFO: [Synth 8-6155] done synthesizing module 'data_source_operator_s' (0#1) [/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.gen/sources_1/bd/project_1/ipshared/4dff/hdl/verilog/data_source_operator_s.v:10]
+WARNING: [Synth 8-589] replacing case/wildcard equality operator === with logical equality operator == [/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.gen/sources_1/bd/project_1/ipshared/4dff/hdl/verilog/data_source_top.v:1809]
+WARNING: [Synth 8-589] replacing case/wildcard equality operator === with logical equality operator == [/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.gen/sources_1/bd/project_1/ipshared/4dff/hdl/verilog/data_source_top.v:1813]
+INFO: [Synth 8-6155] done synthesizing module 'data_source_top' (0#1) [/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.gen/sources_1/bd/project_1/ipshared/4dff/hdl/verilog/data_source_top.v:10]
+INFO: [Synth 8-6155] done synthesizing module 'project_1_data_source_0' (0#1) [/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.gen/sources_1/bd/project_1/ip/project_1_data_source_0/synth/project_1_data_source_0.v:53]
+WARNING: [Synth 8-6014] Unused sequential element dec_ctrl_out_V_last_V_1_sel_rd_reg was removed.  [/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.gen/sources_1/bd/project_1/ipshared/4dff/hdl/verilog/data_source_top.v:748]
+WARNING: [Synth 8-6014] Unused sequential element enc_ctrl_out_V_last_V_1_sel_rd_reg was removed.  [/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.gen/sources_1/bd/project_1/ipshared/4dff/hdl/verilog/data_source_top.v:846]
+WARNING: [Synth 8-7129] Port rst in module data_source_top_mul_mul_13ns_eOg_DSP48_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port reset in module data_source_top_mul_31s_18ns_dEe is either unconnected or has no load
+WARNING: [Synth 8-7129] Port reset in module data_source_operator_s_gradiecud is either unconnected or has no load
+WARNING: [Synth 8-7129] Port reset in module data_source_operator_s_coarsebkb is either unconnected or has no load
+---------------------------------------------------------------------------------
+Finished RTL Elaboration : Time (s): cpu = 00:00:05 ; elapsed = 00:00:06 . Memory (MB): peak = 3505.582 ; gain = 397.676 ; free physical = 237122 ; free virtual = 316174
+Synthesis current peak Physical Memory [PSS] (MB): peak = 2594.594; parent = 2473.383; children = 121.211
+Synthesis current peak Virtual Memory [VSS] (MB): peak = 4510.691; parent = 3505.586; children = 1005.105
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Handling Custom Attributes
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:06 ; elapsed = 00:00:07 . Memory (MB): peak = 3523.395 ; gain = 415.488 ; free physical = 236736 ; free virtual = 315789
+Synthesis current peak Physical Memory [PSS] (MB): peak = 2594.594; parent = 2473.383; children = 121.211
+Synthesis current peak Virtual Memory [VSS] (MB): peak = 4528.504; parent = 3523.398; children = 1005.105
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:06 ; elapsed = 00:00:07 . Memory (MB): peak = 3523.395 ; gain = 415.488 ; free physical = 236581 ; free virtual = 315634
+Synthesis current peak Physical Memory [PSS] (MB): peak = 2594.594; parent = 2473.383; children = 121.211
+Synthesis current peak Virtual Memory [VSS] (MB): peak = 4528.504; parent = 3523.398; children = 1005.105
+---------------------------------------------------------------------------------
+Netlist sorting complete. Time (s): cpu = 00:00:00.04 ; elapsed = 00:00:00.04 . Memory (MB): peak = 3523.395 ; gain = 0.000 ; free physical = 236537 ; free virtual = 315591
+INFO: [Project 1-570] Preparing netlist for logic optimization
+
+Processing XDC Constraints
+Initializing timing engine
+Parsing XDC File [/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.gen/sources_1/bd/project_1/ip/project_1_data_source_0/constraints/data_source_top_ooc.xdc] for cell 'inst'
+Finished Parsing XDC File [/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.gen/sources_1/bd/project_1/ip/project_1_data_source_0/constraints/data_source_top_ooc.xdc] for cell 'inst'
+Parsing XDC File [/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.runs/project_1_data_source_0_synth_1/dont_touch.xdc]
+Finished Parsing XDC File [/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.runs/project_1_data_source_0_synth_1/dont_touch.xdc]
+Completed Processing XDC Constraints
+
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 3654.051 ; gain = 0.000 ; free physical = 226148 ; free virtual = 305230
+INFO: [Project 1-111] Unisim Transformation Summary:
+No Unisim elements were transformed.
+
+Constraint Validation Runtime : Time (s): cpu = 00:00:00.16 ; elapsed = 00:00:00.07 . Memory (MB): peak = 3654.051 ; gain = 0.000 ; free physical = 225998 ; free virtual = 305055
+INFO: [Designutils 20-5008] Incremental synthesis strategy off
+INFO: [Synth 8-11241] undeclared symbol 'REGCCE', assumed default net type 'wire' [/proj/xbuilds/2022.2_1014_2/installs/lin64/Vivado/2022.2/data/verilog/src/unimacro/BRAM_SINGLE_MACRO.v:2170]
+---------------------------------------------------------------------------------
+Finished Constraint Validation : Time (s): cpu = 00:00:17 ; elapsed = 00:00:19 . Memory (MB): peak = 3654.051 ; gain = 546.145 ; free physical = 220478 ; free virtual = 299544
+Synthesis current peak Physical Memory [PSS] (MB): peak = 2638.568; parent = 2517.964; children = 121.211
+Synthesis current peak Virtual Memory [VSS] (MB): peak = 4659.160; parent = 3654.055; children = 1005.105
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Loading Part and Timing Information
+---------------------------------------------------------------------------------
+Loading part: xczu28dr-ffvg1517-2-e
+INFO: [Synth 8-6742] Reading net delay rules and data
+---------------------------------------------------------------------------------
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:18 ; elapsed = 00:00:19 . Memory (MB): peak = 3654.051 ; gain = 546.145 ; free physical = 220207 ; free virtual = 299274
+Synthesis current peak Physical Memory [PSS] (MB): peak = 2638.568; parent = 2517.964; children = 121.211
+Synthesis current peak Virtual Memory [VSS] (MB): peak = 4659.160; parent = 3654.055; children = 1005.105
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Applying 'set_property' XDC Constraints
+---------------------------------------------------------------------------------
+Applied set_property KEEP_HIERARCHY = SOFT for inst. (constraint file  /tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.runs/project_1_data_source_0_synth_1/dont_touch.xdc, line 9).
+---------------------------------------------------------------------------------
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:18 ; elapsed = 00:00:19 . Memory (MB): peak = 3654.051 ; gain = 546.145 ; free physical = 219922 ; free virtual = 299007
+Synthesis current peak Physical Memory [PSS] (MB): peak = 2638.568; parent = 2517.964; children = 121.211
+Synthesis current peak Virtual Memory [VSS] (MB): peak = 4659.160; parent = 3654.055; children = 1005.105
+---------------------------------------------------------------------------------
+INFO: [Synth 8-802] inferred FSM for state register 'wstate_reg' in module 'data_source_top_CNTRL_s_axi'
+INFO: [Synth 8-802] inferred FSM for state register 'rstate_reg' in module 'data_source_top_CNTRL_s_axi'
+WARNING: [Synth 8-3936] Found unconnected internal register 'r_V_reg_1939_reg' and it is trimmed from '49' to '45' bits. [/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.gen/sources_1/bd/project_1/ipshared/4dff/hdl/verilog/data_source_operator_s.v:655]
+INFO: [Synth 8-4490] FSM extraction disabled for register 'ap_CS_fsm_reg' through user attribute
+---------------------------------------------------------------------------------------------------
+                   State |                     New Encoding |                Previous Encoding 
+---------------------------------------------------------------------------------------------------
+                  iSTATE |                             0001 |                               11
+*
+                  WRIDLE |                             0010 |                               00
+                  WRDATA |                             0100 |                               01
+                  WRRESP |                             1000 |                               10
+---------------------------------------------------------------------------------------------------
+INFO: [Synth 8-3354] encoded FSM with state register 'wstate_reg' using encoding 'one-hot' in module 'data_source_top_CNTRL_s_axi'
+---------------------------------------------------------------------------------------------------
+                   State |                     New Encoding |                Previous Encoding 
+---------------------------------------------------------------------------------------------------
+                  iSTATE |                              001 |                               10
+*
+                  RDIDLE |                              010 |                               00
+                  RDDATA |                              100 |                               01
+---------------------------------------------------------------------------------------------------
+INFO: [Synth 8-3354] encoded FSM with state register 'rstate_reg' using encoding 'one-hot' in module 'data_source_top_CNTRL_s_axi'
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:19 ; elapsed = 00:00:21 . Memory (MB): peak = 3654.051 ; gain = 546.145 ; free physical = 217442 ; free virtual = 296563
+Synthesis current peak Physical Memory [PSS] (MB): peak = 2638.568; parent = 2517.964; children = 121.211
+Synthesis current peak Virtual Memory [VSS] (MB): peak = 4659.160; parent = 3654.055; children = 1005.105
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start RTL Component Statistics 
+---------------------------------------------------------------------------------
+Detailed RTL Component Info : 
++---Adders : 
+	   2 Input   48 Bit       Adders := 1     
+	   2 Input   31 Bit       Adders := 1     
+	   2 Input   30 Bit       Adders := 2     
+	   2 Input   29 Bit       Adders := 4     
+	   3 Input   29 Bit       Adders := 4     
+	   2 Input   12 Bit       Adders := 1     
++---XORs : 
+	   2 Input     64 Bit         XORs := 6     
+	   2 Input     32 Bit         XORs := 1     
+	   2 Input      1 Bit         XORs := 2     
++---Registers : 
+	              128 Bit    Registers := 9     
+	               64 Bit    Registers := 8     
+	               47 Bit    Registers := 2     
+	               45 Bit    Registers := 1     
+	               40 Bit    Registers := 6     
+	               32 Bit    Registers := 9     
+	               31 Bit    Registers := 2     
+	               30 Bit    Registers := 2     
+	               23 Bit    Registers := 4     
+	               18 Bit    Registers := 1     
+	               17 Bit    Registers := 20    
+	               16 Bit    Registers := 4     
+	               15 Bit    Registers := 4     
+	               14 Bit    Registers := 3     
+	               13 Bit    Registers := 8     
+	               12 Bit    Registers := 3     
+	               10 Bit    Registers := 16    
+	                8 Bit    Registers := 3     
+	                5 Bit    Registers := 10    
+	                4 Bit    Registers := 4     
+	                3 Bit    Registers := 3     
+	                2 Bit    Registers := 11    
+	                1 Bit    Registers := 102   
++---Multipliers : 
+	              19x31  Multipliers := 1     
++---ROMs : 
+	                    ROMs := 8     
++---Muxes : 
+	   2 Input  128 Bit        Muxes := 1     
+	   2 Input   64 Bit        Muxes := 3     
+	   2 Input   40 Bit        Muxes := 2     
+	   2 Input   35 Bit        Muxes := 2     
+	  24 Input   32 Bit        Muxes := 1     
+	   2 Input   29 Bit        Muxes := 4     
+	   2 Input   16 Bit        Muxes := 2     
+	   2 Input   15 Bit        Muxes := 8     
+	   2 Input   12 Bit        Muxes := 2     
+	   2 Input    9 Bit        Muxes := 4     
+	   3 Input    9 Bit        Muxes := 4     
+	   2 Input    7 Bit        Muxes := 4     
+	   2 Input    6 Bit        Muxes := 4     
+	   4 Input    4 Bit        Muxes := 1     
+	   2 Input    4 Bit        Muxes := 3     
+	   3 Input    3 Bit        Muxes := 1     
+	   2 Input    3 Bit        Muxes := 3     
+	   6 Input    3 Bit        Muxes := 1     
+	   2 Input    2 Bit        Muxes := 13    
+	   4 Input    2 Bit        Muxes := 8     
+	   3 Input    2 Bit        Muxes := 2     
+	   2 Input    1 Bit        Muxes := 32    
+---------------------------------------------------------------------------------
+Finished RTL Component Statistics 
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Part Resource Summary
+---------------------------------------------------------------------------------
+Part Resources:
+DSPs: 4272 (col length:192)
+BRAMs: 2160 (col length: RAMB18 192 RAMB36 96)
+---------------------------------------------------------------------------------
+Finished Part Resource Summary
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Cross Boundary and Area Optimization
+---------------------------------------------------------------------------------
+WARNING: [Synth 8-7080] Parallel synthesis criteria is not met
+DSP Report: Generating DSP top_mul_mul_13ns_eOg_U2/data_source_top_mul_mul_13ns_eOg_DSP48_0_U/p_reg_reg, operation Mode is: (A*B)'.
+DSP Report: register top_mul_mul_13ns_eOg_U2/data_source_top_mul_mul_13ns_eOg_DSP48_0_U/p_reg_reg is absorbed into DSP top_mul_mul_13ns_eOg_U2/data_source_top_mul_mul_13ns_eOg_DSP48_0_U/p_reg_reg.
+DSP Report: operator top_mul_mul_13ns_eOg_U2/data_source_top_mul_mul_13ns_eOg_DSP48_0_U/p_reg0 is absorbed into DSP top_mul_mul_13ns_eOg_U2/data_source_top_mul_mul_13ns_eOg_DSP48_0_U/p_reg_reg.
+DSP Report: Generating DSP top_mul_mul_13ns_eOg_U3/data_source_top_mul_mul_13ns_eOg_DSP48_0_U/p_reg_reg, operation Mode is: (A*B)'.
+DSP Report: register top_mul_mul_13ns_eOg_U3/data_source_top_mul_mul_13ns_eOg_DSP48_0_U/p_reg_reg is absorbed into DSP top_mul_mul_13ns_eOg_U3/data_source_top_mul_mul_13ns_eOg_DSP48_0_U/p_reg_reg.
+DSP Report: operator top_mul_mul_13ns_eOg_U3/data_source_top_mul_mul_13ns_eOg_DSP48_0_U/p_reg0 is absorbed into DSP top_mul_mul_13ns_eOg_U3/data_source_top_mul_mul_13ns_eOg_DSP48_0_U/p_reg_reg.
+DSP Report: Generating DSP top_mul_mul_13ns_eOg_U4/data_source_top_mul_mul_13ns_eOg_DSP48_0_U/p_reg_reg, operation Mode is: (A*B)'.
+DSP Report: register top_mul_mul_13ns_eOg_U4/data_source_top_mul_mul_13ns_eOg_DSP48_0_U/p_reg_reg is absorbed into DSP top_mul_mul_13ns_eOg_U4/data_source_top_mul_mul_13ns_eOg_DSP48_0_U/p_reg_reg.
+DSP Report: operator top_mul_mul_13ns_eOg_U4/data_source_top_mul_mul_13ns_eOg_DSP48_0_U/p_reg0 is absorbed into DSP top_mul_mul_13ns_eOg_U4/data_source_top_mul_mul_13ns_eOg_DSP48_0_U/p_reg_reg.
+DSP Report: Generating DSP top_mul_mul_13ns_eOg_U5/data_source_top_mul_mul_13ns_eOg_DSP48_0_U/p_reg_reg, operation Mode is: (A*B)'.
+DSP Report: register top_mul_mul_13ns_eOg_U5/data_source_top_mul_mul_13ns_eOg_DSP48_0_U/p_reg_reg is absorbed into DSP top_mul_mul_13ns_eOg_U5/data_source_top_mul_mul_13ns_eOg_DSP48_0_U/p_reg_reg.
+DSP Report: operator top_mul_mul_13ns_eOg_U5/data_source_top_mul_mul_13ns_eOg_DSP48_0_U/p_reg0 is absorbed into DSP top_mul_mul_13ns_eOg_U5/data_source_top_mul_mul_13ns_eOg_DSP48_0_U/p_reg_reg.
+DSP Report: Generating DSP top_mul_31s_18ns_dEe_U1/data_source_top_mul_31s_18ns_dEe_MulnS_0_U/tmp_product, operation Mode is: A2*B2.
+DSP Report: register top_mul_31s_18ns_dEe_U1/data_source_top_mul_31s_18ns_dEe_MulnS_0_U/tmp_product is absorbed into DSP top_mul_31s_18ns_dEe_U1/data_source_top_mul_31s_18ns_dEe_MulnS_0_U/tmp_product.
+DSP Report: register top_mul_31s_18ns_dEe_U1/data_source_top_mul_31s_18ns_dEe_MulnS_0_U/tmp_product is absorbed into DSP top_mul_31s_18ns_dEe_U1/data_source_top_mul_31s_18ns_dEe_MulnS_0_U/tmp_product.
+DSP Report: operator top_mul_31s_18ns_dEe_U1/data_source_top_mul_31s_18ns_dEe_MulnS_0_U/tmp_product is absorbed into DSP top_mul_31s_18ns_dEe_U1/data_source_top_mul_31s_18ns_dEe_MulnS_0_U/tmp_product.
+DSP Report: operator top_mul_31s_18ns_dEe_U1/data_source_top_mul_31s_18ns_dEe_MulnS_0_U/tmp_product is absorbed into DSP top_mul_31s_18ns_dEe_U1/data_source_top_mul_31s_18ns_dEe_MulnS_0_U/tmp_product.
+DSP Report: Generating DSP top_mul_31s_18ns_dEe_U1/data_source_top_mul_31s_18ns_dEe_MulnS_0_U/buff0_reg, operation Mode is: (PCIN>>17)+A2*B.
+DSP Report: register top_mul_31s_18ns_dEe_U1/data_source_top_mul_31s_18ns_dEe_MulnS_0_U/buff0_reg is absorbed into DSP top_mul_31s_18ns_dEe_U1/data_source_top_mul_31s_18ns_dEe_MulnS_0_U/buff0_reg.
+DSP Report: register top_mul_31s_18ns_dEe_U1/data_source_top_mul_31s_18ns_dEe_MulnS_0_U/buff0_reg is absorbed into DSP top_mul_31s_18ns_dEe_U1/data_source_top_mul_31s_18ns_dEe_MulnS_0_U/buff0_reg.
+DSP Report: operator top_mul_31s_18ns_dEe_U1/data_source_top_mul_31s_18ns_dEe_MulnS_0_U/tmp_product is absorbed into DSP top_mul_31s_18ns_dEe_U1/data_source_top_mul_31s_18ns_dEe_MulnS_0_U/buff0_reg.
+DSP Report: operator top_mul_31s_18ns_dEe_U1/data_source_top_mul_31s_18ns_dEe_MulnS_0_U/tmp_product is absorbed into DSP top_mul_31s_18ns_dEe_U1/data_source_top_mul_31s_18ns_dEe_MulnS_0_U/buff0_reg.
+WARNING: [Synth 8-3332] Sequential element (top_CNTRL_s_axi_U/FSM_onehot_wstate_reg[0]) is unused and will be removed from module data_source_top.
+WARNING: [Synth 8-3332] Sequential element (top_CNTRL_s_axi_U/FSM_onehot_rstate_reg[0]) is unused and will be removed from module data_source_top.
+WARNING: [Synth 8-3332] Sequential element (grp_operator_s_fu_337/top_mul_31s_18ns_dEe_U1/data_source_top_mul_31s_18ns_dEe_MulnS_0_U/buff0_reg[47]) is unused and will be removed from module data_source_top.
+WARNING: [Synth 8-3332] Sequential element (grp_operator_s_fu_337/top_mul_31s_18ns_dEe_U1/data_source_top_mul_31s_18ns_dEe_MulnS_0_U/buff0_reg[46]) is unused and will be removed from module data_source_top.
+WARNING: [Synth 8-3332] Sequential element (grp_operator_s_fu_337/top_mul_31s_18ns_dEe_U1/data_source_top_mul_31s_18ns_dEe_MulnS_0_U/buff0_reg[45]) is unused and will be removed from module data_source_top.
+WARNING: [Synth 8-3332] Sequential element (grp_operator_s_fu_337/top_mul_31s_18ns_dEe_U1/data_source_top_mul_31s_18ns_dEe_MulnS_0_U/buff0_reg[44]) is unused and will be removed from module data_source_top.
+WARNING: [Synth 8-3332] Sequential element (grp_operator_s_fu_337/top_mul_31s_18ns_dEe_U1/data_source_top_mul_31s_18ns_dEe_MulnS_0_U/buff0_reg[43]) is unused and will be removed from module data_source_top.
+WARNING: [Synth 8-3332] Sequential element (grp_operator_s_fu_337/top_mul_31s_18ns_dEe_U1/data_source_top_mul_31s_18ns_dEe_MulnS_0_U/buff0_reg[42]) is unused and will be removed from module data_source_top.
+WARNING: [Synth 8-3332] Sequential element (grp_operator_s_fu_337/top_mul_31s_18ns_dEe_U1/data_source_top_mul_31s_18ns_dEe_MulnS_0_U/buff0_reg[41]) is unused and will be removed from module data_source_top.
+WARNING: [Synth 8-3332] Sequential element (grp_operator_s_fu_337/top_mul_31s_18ns_dEe_U1/data_source_top_mul_31s_18ns_dEe_MulnS_0_U/buff0_reg[40]) is unused and will be removed from module data_source_top.
+WARNING: [Synth 8-3332] Sequential element (grp_operator_s_fu_337/top_mul_31s_18ns_dEe_U1/data_source_top_mul_31s_18ns_dEe_MulnS_0_U/buff0_reg[39]) is unused and will be removed from module data_source_top.
+WARNING: [Synth 8-3332] Sequential element (grp_operator_s_fu_337/top_mul_31s_18ns_dEe_U1/data_source_top_mul_31s_18ns_dEe_MulnS_0_U/buff0_reg[38]) is unused and will be removed from module data_source_top.
+WARNING: [Synth 8-3332] Sequential element (grp_operator_s_fu_337/top_mul_31s_18ns_dEe_U1/data_source_top_mul_31s_18ns_dEe_MulnS_0_U/buff0_reg[37]) is unused and will be removed from module data_source_top.
+WARNING: [Synth 8-3332] Sequential element (grp_operator_s_fu_337/top_mul_31s_18ns_dEe_U1/data_source_top_mul_31s_18ns_dEe_MulnS_0_U/buff0_reg[36]) is unused and will be removed from module data_source_top.
+WARNING: [Synth 8-3332] Sequential element (grp_operator_s_fu_337/top_mul_31s_18ns_dEe_U1/data_source_top_mul_31s_18ns_dEe_MulnS_0_U/buff0_reg[35]) is unused and will be removed from module data_source_top.
+WARNING: [Synth 8-3332] Sequential element (grp_operator_s_fu_337/top_mul_31s_18ns_dEe_U1/data_source_top_mul_31s_18ns_dEe_MulnS_0_U/buff0_reg[34]) is unused and will be removed from module data_source_top.
+WARNING: [Synth 8-3332] Sequential element (grp_operator_s_fu_337/top_mul_31s_18ns_dEe_U1/data_source_top_mul_31s_18ns_dEe_MulnS_0_U/buff0_reg[33]) is unused and will be removed from module data_source_top.
+WARNING: [Synth 8-3332] Sequential element (grp_operator_s_fu_337/top_mul_31s_18ns_dEe_U1/data_source_top_mul_31s_18ns_dEe_MulnS_0_U/buff0_reg[32]) is unused and will be removed from module data_source_top.
+WARNING: [Synth 8-3332] Sequential element (grp_operator_s_fu_337/top_mul_31s_18ns_dEe_U1/data_source_top_mul_31s_18ns_dEe_MulnS_0_U/buff0_reg[31]) is unused and will be removed from module data_source_top.
+WARNING: [Synth 8-3332] Sequential element (grp_operator_s_fu_337/top_mul_31s_18ns_dEe_U1/data_source_top_mul_31s_18ns_dEe_MulnS_0_U/buff0_reg[30]) is unused and will be removed from module data_source_top.
+WARNING: [Synth 8-3332] Sequential element (grp_operator_s_fu_337/top_mul_31s_18ns_dEe_U1/data_source_top_mul_31s_18ns_dEe_MulnS_0_U/buff0_reg[29]) is unused and will be removed from module data_source_top.
+WARNING: [Synth 8-3332] Sequential element (grp_operator_s_fu_337/top_mul_31s_18ns_dEe_U1/data_source_top_mul_31s_18ns_dEe_MulnS_0_U/buff0_reg[28]) is unused and will be removed from module data_source_top.
+WARNING: [Synth 8-3332] Sequential element (grp_operator_s_fu_337/top_mul_31s_18ns_dEe_U1/data_source_top_mul_31s_18ns_dEe_MulnS_0_U/buff0_reg[27]) is unused and will be removed from module data_source_top.
+WARNING: [Synth 8-3332] Sequential element (grp_operator_s_fu_337/top_mul_31s_18ns_dEe_U1/data_source_top_mul_31s_18ns_dEe_MulnS_0_U/buff0_reg[26]) is unused and will be removed from module data_source_top.
+WARNING: [Synth 8-3332] Sequential element (grp_operator_s_fu_337/top_mul_31s_18ns_dEe_U1/data_source_top_mul_31s_18ns_dEe_MulnS_0_U/buff0_reg[25]) is unused and will be removed from module data_source_top.
+WARNING: [Synth 8-3332] Sequential element (grp_operator_s_fu_337/top_mul_31s_18ns_dEe_U1/data_source_top_mul_31s_18ns_dEe_MulnS_0_U/buff0_reg[24]) is unused and will be removed from module data_source_top.
+WARNING: [Synth 8-3332] Sequential element (grp_operator_s_fu_337/top_mul_31s_18ns_dEe_U1/data_source_top_mul_31s_18ns_dEe_MulnS_0_U/buff0_reg[23]) is unused and will be removed from module data_source_top.
+WARNING: [Synth 8-3332] Sequential element (grp_operator_s_fu_337/top_mul_31s_18ns_dEe_U1/data_source_top_mul_31s_18ns_dEe_MulnS_0_U/buff0_reg[22]) is unused and will be removed from module data_source_top.
+WARNING: [Synth 8-3332] Sequential element (grp_operator_s_fu_337/top_mul_31s_18ns_dEe_U1/data_source_top_mul_31s_18ns_dEe_MulnS_0_U/buff0_reg[21]) is unused and will be removed from module data_source_top.
+WARNING: [Synth 8-3332] Sequential element (grp_operator_s_fu_337/top_mul_31s_18ns_dEe_U1/data_source_top_mul_31s_18ns_dEe_MulnS_0_U/buff0_reg[20]) is unused and will be removed from module data_source_top.
+WARNING: [Synth 8-3332] Sequential element (grp_operator_s_fu_337/top_mul_31s_18ns_dEe_U1/data_source_top_mul_31s_18ns_dEe_MulnS_0_U/buff0_reg[19]) is unused and will be removed from module data_source_top.
+WARNING: [Synth 8-3332] Sequential element (grp_operator_s_fu_337/top_mul_31s_18ns_dEe_U1/data_source_top_mul_31s_18ns_dEe_MulnS_0_U/buff0_reg[18]) is unused and will be removed from module data_source_top.
+WARNING: [Synth 8-3332] Sequential element (grp_operator_s_fu_337/top_mul_31s_18ns_dEe_U1/data_source_top_mul_31s_18ns_dEe_MulnS_0_U/buff0_reg[17]) is unused and will be removed from module data_source_top.
+WARNING: [Synth 8-3332] Sequential element (grp_operator_s_fu_337/top_mul_31s_18ns_dEe_U1/data_source_top_mul_31s_18ns_dEe_MulnS_0_U/buff0_reg[7]) is unused and will be removed from module data_source_top.
+WARNING: [Synth 8-3332] Sequential element (grp_operator_s_fu_337/top_mul_31s_18ns_dEe_U1/data_source_top_mul_31s_18ns_dEe_MulnS_0_U/buff0_reg[6]) is unused and will be removed from module data_source_top.
+WARNING: [Synth 8-3332] Sequential element (grp_operator_s_fu_337/top_mul_31s_18ns_dEe_U1/data_source_top_mul_31s_18ns_dEe_MulnS_0_U/buff0_reg[5]) is unused and will be removed from module data_source_top.
+WARNING: [Synth 8-3332] Sequential element (grp_operator_s_fu_337/top_mul_31s_18ns_dEe_U1/data_source_top_mul_31s_18ns_dEe_MulnS_0_U/buff0_reg[4]) is unused and will be removed from module data_source_top.
+WARNING: [Synth 8-3332] Sequential element (grp_operator_s_fu_337/top_mul_31s_18ns_dEe_U1/data_source_top_mul_31s_18ns_dEe_MulnS_0_U/buff0_reg[3]) is unused and will be removed from module data_source_top.
+WARNING: [Synth 8-3332] Sequential element (grp_operator_s_fu_337/top_mul_31s_18ns_dEe_U1/data_source_top_mul_31s_18ns_dEe_MulnS_0_U/buff0_reg[2]) is unused and will be removed from module data_source_top.
+WARNING: [Synth 8-3332] Sequential element (grp_operator_s_fu_337/top_mul_31s_18ns_dEe_U1/data_source_top_mul_31s_18ns_dEe_MulnS_0_U/buff0_reg[1]) is unused and will be removed from module data_source_top.
+WARNING: [Synth 8-3332] Sequential element (grp_operator_s_fu_337/top_mul_31s_18ns_dEe_U1/data_source_top_mul_31s_18ns_dEe_MulnS_0_U/buff0_reg[0]) is unused and will be removed from module data_source_top.
+---------------------------------------------------------------------------------
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:25 ; elapsed = 00:00:28 . Memory (MB): peak = 3654.051 ; gain = 546.145 ; free physical = 210379 ; free virtual = 289511
+Synthesis current peak Physical Memory [PSS] (MB): peak = 2638.568; parent = 2517.964; children = 121.211
+Synthesis current peak Virtual Memory [VSS] (MB): peak = 4659.160; parent = 3654.055; children = 1005.105
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start ROM, RAM, DSP, Shift Register and Retiming Reporting
+---------------------------------------------------------------------------------
+
+ROM: Preliminary Mapping Report
++----------------+----------------------------------------------------------------------------------------+---------------+----------------+
+|Module Name     | RTL Object                                                                             | Depth x Width | Implemented As | 
++----------------+----------------------------------------------------------------------------------------+---------------+----------------+
+|data_source_top | grp_operator_s_fu_337/coarseContents_U/data_source_operator_s_coarsebkb_rom_U/q0_reg   | 512x17        | Block RAM      | 
+|data_source_top | grp_operator_s_fu_337/coarseContents_U/data_source_operator_s_coarsebkb_rom_U/q1_reg   | 512x17        | Block RAM      | 
+|data_source_top | grp_operator_s_fu_337/coarseContents_U/data_source_operator_s_coarsebkb_rom_U/q2_reg   | 512x17        | Block RAM      | 
+|data_source_top | grp_operator_s_fu_337/coarseContents_U/data_source_operator_s_coarsebkb_rom_U/q3_reg   | 512x17        | Block RAM      | 
+|data_source_top | grp_operator_s_fu_337/gradientContents_U/data_source_operator_s_gradiecud_rom_U/q0_reg | 512x13        | Block RAM      | 
+|data_source_top | grp_operator_s_fu_337/gradientContents_U/data_source_operator_s_gradiecud_rom_U/q1_reg | 512x13        | Block RAM      | 
+|data_source_top | grp_operator_s_fu_337/gradientContents_U/data_source_operator_s_gradiecud_rom_U/q2_reg | 512x13        | Block RAM      | 
+|data_source_top | grp_operator_s_fu_337/gradientContents_U/data_source_operator_s_gradiecud_rom_U/q3_reg | 512x13        | Block RAM      | 
++----------------+----------------------------------------------------------------------------------------+---------------+----------------+
+
+
+DSP: Preliminary Mapping Report (see note below. The ' indicates corresponding REG is set)
++-----------------------------------------+-----------------+--------+--------+--------+--------+--------+------+------+------+------+-------+------+------+
+|Module Name                              | DSP Mapping     | A Size | B Size | C Size | D Size | P Size | AREG | BREG | CREG | DREG | ADREG | MREG | PREG | 
++-----------------------------------------+-----------------+--------+--------+--------+--------+--------+------+------+------+------+-------+------+------+
+|data_source_top_mul_mul_13ns_eOg_DSP48_0 | (A*B)'          | 14     | 10     | -      | -      | 24     | 0    | 0    | -    | -    | -     | 1    | 0    | 
+|data_source_top_mul_mul_13ns_eOg_DSP48_0 | (A*B)'          | 14     | 10     | -      | -      | 24     | 0    | 0    | -    | -    | -     | 1    | 0    | 
+|data_source_top_mul_mul_13ns_eOg_DSP48_0 | (A*B)'          | 14     | 10     | -      | -      | 24     | 0    | 0    | -    | -    | -     | 1    | 0    | 
+|data_source_top_mul_mul_13ns_eOg_DSP48_0 | (A*B)'          | 14     | 10     | -      | -      | 24     | 0    | 0    | -    | -    | -     | 1    | 0    | 
+|data_source_operator_s                   | A2*B2           | 19     | 18     | -      | -      | 48     | 1    | 1    | -    | -    | -     | 0    | 0    | 
+|data_source_operator_s                   | (PCIN>>17)+A2*B | 19     | 14     | -      | -      | 48     | 1    | 0    | -    | -    | -     | 0    | 1    | 
++-----------------------------------------+-----------------+--------+--------+--------+--------+--------+------+------+------+------+-------+------+------+
+
+Note: The table above is a preliminary report that shows the DSPs inferred at the current stage of the synthesis flow. Some DSP may be reimplemented as non DSP primitives later in the synthesis flow. Multiple instantiated DSPs are reported only once.
+---------------------------------------------------------------------------------
+Finished ROM, RAM, DSP, Shift Register and Retiming Reporting
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Applying XDC Timing Constraints
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:35 ; elapsed = 00:00:39 . Memory (MB): peak = 3956.590 ; gain = 848.684 ; free physical = 204186 ; free virtual = 283378
+Synthesis current peak Physical Memory [PSS] (MB): peak = 3053.822; parent = 2935.796; children = 121.211
+Synthesis current peak Virtual Memory [VSS] (MB): peak = 4961.699; parent = 3956.594; children = 1005.105
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Timing Optimization
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Timing Optimization : Time (s): cpu = 00:00:38 ; elapsed = 00:00:43 . Memory (MB): peak = 3992.668 ; gain = 884.762 ; free physical = 202952 ; free virtual = 282229
+Synthesis current peak Physical Memory [PSS] (MB): peak = 3088.826; parent = 2970.801; children = 121.211
+Synthesis current peak Virtual Memory [VSS] (MB): peak = 4997.777; parent = 3992.672; children = 1005.105
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Technology Mapping
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Technology Mapping : Time (s): cpu = 00:00:39 ; elapsed = 00:00:44 . Memory (MB): peak = 4008.684 ; gain = 900.777 ; free physical = 201975 ; free virtual = 281256
+Synthesis current peak Physical Memory [PSS] (MB): peak = 3088.826; parent = 2970.801; children = 121.211
+Synthesis current peak Virtual Memory [VSS] (MB): peak = 5013.793; parent = 4008.688; children = 1005.105
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Final Netlist Cleanup
+---------------------------------------------------------------------------------
+INFO: [Synth 8-6069] LOCAL FORWARD RETIMING for instance inst/ap_CS_fsm_reg[0] with forward move, found 1 loads out of which
+0 loads can have forward move, 1 loads have (UNCOMPATIBLE REGISTERS) and retiming cannot be done
+
+---------------------------------------------------------------------------------
+Finished Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished IO Insertion : Time (s): cpu = 00:00:44 ; elapsed = 00:00:49 . Memory (MB): peak = 4008.684 ; gain = 900.777 ; free physical = 200645 ; free virtual = 279939
+Synthesis current peak Physical Memory [PSS] (MB): peak = 3090.204; parent = 2971.931; children = 121.211
+Synthesis current peak Virtual Memory [VSS] (MB): peak = 5013.793; parent = 4008.688; children = 1005.105
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Instances
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Instances : Time (s): cpu = 00:00:44 ; elapsed = 00:00:49 . Memory (MB): peak = 4008.684 ; gain = 900.777 ; free physical = 200629 ; free virtual = 279917
+Synthesis current peak Physical Memory [PSS] (MB): peak = 3090.216; parent = 2971.942; children = 121.211
+Synthesis current peak Virtual Memory [VSS] (MB): peak = 5013.793; parent = 4008.688; children = 1005.105
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Rebuilding User Hierarchy
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:44 ; elapsed = 00:00:49 . Memory (MB): peak = 4008.684 ; gain = 900.777 ; free physical = 200446 ; free virtual = 279736
+Synthesis current peak Physical Memory [PSS] (MB): peak = 3090.356; parent = 2972.084; children = 121.211
+Synthesis current peak Virtual Memory [VSS] (MB): peak = 5013.793; parent = 4008.688; children = 1005.105
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Ports
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Ports : Time (s): cpu = 00:00:44 ; elapsed = 00:00:49 . Memory (MB): peak = 4008.684 ; gain = 900.777 ; free physical = 200380 ; free virtual = 279673
+Synthesis current peak Physical Memory [PSS] (MB): peak = 3090.356; parent = 2972.084; children = 121.211
+Synthesis current peak Virtual Memory [VSS] (MB): peak = 5013.793; parent = 4008.688; children = 1005.105
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Handling Custom Attributes
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:44 ; elapsed = 00:00:49 . Memory (MB): peak = 4008.684 ; gain = 900.777 ; free physical = 200363 ; free virtual = 279653
+Synthesis current peak Physical Memory [PSS] (MB): peak = 3090.356; parent = 2972.084; children = 121.211
+Synthesis current peak Virtual Memory [VSS] (MB): peak = 5013.793; parent = 4008.688; children = 1005.105
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Nets
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Nets : Time (s): cpu = 00:00:44 ; elapsed = 00:00:50 . Memory (MB): peak = 4008.684 ; gain = 900.777 ; free physical = 200356 ; free virtual = 279651
+Synthesis current peak Physical Memory [PSS] (MB): peak = 3090.356; parent = 2972.084; children = 121.211
+Synthesis current peak Virtual Memory [VSS] (MB): peak = 5013.793; parent = 4008.688; children = 1005.105
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start ROM, RAM, DSP, Shift Register and Retiming Reporting
+---------------------------------------------------------------------------------
+
+Static Shift Register Report:
++----------------+----------------------------------------------------------------+--------+-------+--------------+--------------------+-------------------+--------+---------+
+|Module Name     | RTL Name                                                       | Length | Width | Reset Signal | Pull out first Reg | Pull out last Reg | SRL16E | SRLC32E | 
++----------------+----------------------------------------------------------------+--------+-------+--------------+--------------------+-------------------+--------+---------+
+|data_source_top | grp_operator_s_fu_337/p_Val2_s_reg_1614_pp0_iter5_reg_reg[127] | 6      | 4     | NO           | NO                 | YES               | 4      | 0       | 
+|data_source_top | grp_operator_s_fu_337/tmp_45_2_reg_1701_pp0_iter3_reg_reg[0]   | 4      | 10    | NO           | NO                 | YES               | 10     | 0       | 
+|data_source_top | grp_operator_s_fu_337/tmp_45_3_reg_1729_pp0_iter3_reg_reg[0]   | 4      | 10    | NO           | NO                 | YES               | 10     | 0       | 
+|data_source_top | grp_operator_s_fu_337/tmp_45_1_reg_1673_pp0_iter3_reg_reg[0]   | 4      | 10    | NO           | NO                 | YES               | 10     | 0       | 
+|data_source_top | grp_operator_s_fu_337/tmp_22_reg_1645_pp0_iter3_reg_reg[0]     | 4      | 10    | NO           | NO                 | YES               | 10     | 0       | 
+|data_source_top | tmp_last_V_reg_656_pp0_iter12_reg_reg[0]                       | 11     | 1     | NO           | NO                 | YES               | 1      | 0       | 
++----------------+----------------------------------------------------------------+--------+-------+--------------+--------------------+-------------------+--------+---------+
+
+---------------------------------------------------------------------------------
+Finished ROM, RAM, DSP, Shift Register and Retiming Reporting
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Writing Synthesis Report
+---------------------------------------------------------------------------------
+
+DSP Final Report (the ' indicates corresponding REG is set)
++-----------------------------------------+------------------+--------+--------+--------+--------+--------+------+------+------+------+-------+------+------+
+|Module Name                              | DSP Mapping      | A Size | B Size | C Size | D Size | P Size | AREG | BREG | CREG | DREG | ADREG | MREG | PREG | 
++-----------------------------------------+------------------+--------+--------+--------+--------+--------+------+------+------+------+-------+------+------+
+|data_source_operator_s                   | A'*B'            | 18     | 17     | -      | -      | 48     | 1    | 1    | -    | -    | -     | 0    | 0    | 
+|data_source_operator_s                   | (PCIN>>17+A*B')' | 0      | 18     | -      | -      | 48     | 0    | 1    | -    | -    | -     | 0    | 1    | 
+|data_source_top_mul_mul_13ns_eOg_DSP48_0 | (A*B)'           | 13     | 18     | -      | -      | 23     | 0    | 0    | -    | -    | -     | 0    | 1    | 
+|data_source_top_mul_mul_13ns_eOg_DSP48_0 | (A*B)'           | 13     | 18     | -      | -      | 23     | 0    | 0    | -    | -    | -     | 0    | 1    | 
+|data_source_top_mul_mul_13ns_eOg_DSP48_0 | (A*B)'           | 13     | 18     | -      | -      | 23     | 0    | 0    | -    | -    | -     | 0    | 1    | 
+|data_source_top_mul_mul_13ns_eOg_DSP48_0 | (A*B)'           | 13     | 18     | -      | -      | 23     | 0    | 0    | -    | -    | -     | 0    | 1    | 
++-----------------------------------------+------------------+--------+--------+--------+--------+--------+------+------+------+------+-------+------+------+
+
+
+Report BlackBoxes: 
++-+--------------+----------+
+| |BlackBox name |Instances |
++-+--------------+----------+
++-+--------------+----------+
+
+Report Cell Usage: 
++------+----------------+------+
+|      |Cell            |Count |
++------+----------------+------+
+|1     |CARRY8          |    52|
+|2     |DSP_ALU         |     6|
+|3     |DSP_A_B_DATA    |     6|
+|6     |DSP_C_DATA      |     6|
+|8     |DSP_MULTIPLIER  |     6|
+|9     |DSP_M_DATA      |     6|
+|10    |DSP_OUTPUT      |     6|
+|12    |DSP_PREADD      |     6|
+|13    |DSP_PREADD_DATA |     6|
+|14    |LUT1            |    39|
+|15    |LUT2            |   232|
+|16    |LUT3            |   850|
+|17    |LUT4            |   231|
+|18    |LUT5            |   110|
+|19    |LUT6            |   243|
+|20    |MUXF7           |    11|
+|21    |RAMB18E2        |     4|
+|23    |SRL16E          |    45|
+|24    |FDRE            |  2104|
+|25    |FDSE            |    97|
++------+----------------+------+
+---------------------------------------------------------------------------------
+Finished Writing Synthesis Report : Time (s): cpu = 00:00:44 ; elapsed = 00:00:50 . Memory (MB): peak = 4008.684 ; gain = 900.777 ; free physical = 200225 ; free virtual = 279520
+Synthesis current peak Physical Memory [PSS] (MB): peak = 3090.356; parent = 2972.084; children = 121.211
+Synthesis current peak Virtual Memory [VSS] (MB): peak = 5013.793; parent = 4008.688; children = 1005.105
+---------------------------------------------------------------------------------
+Synthesis finished with 0 errors, 0 critical warnings and 43 warnings.
+Synthesis Optimization Runtime : Time (s): cpu = 00:00:37 ; elapsed = 00:00:43 . Memory (MB): peak = 4008.684 ; gain = 770.121 ; free physical = 200292 ; free virtual = 279587
+Synthesis Optimization Complete : Time (s): cpu = 00:00:44 ; elapsed = 00:00:50 . Memory (MB): peak = 4008.691 ; gain = 900.777 ; free physical = 200473 ; free virtual = 279768
+INFO: [Project 1-571] Translating synthesized netlist
+Netlist sorting complete. Time (s): cpu = 00:00:00.03 ; elapsed = 00:00:00.03 . Memory (MB): peak = 4016.684 ; gain = 0.000 ; free physical = 200964 ; free virtual = 280262
+INFO: [Netlist 29-17] Analyzing 69 Unisim elements for replacement
+INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
+INFO: [Project 1-570] Preparing netlist for logic optimization
+INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
+INFO: [Opt 31-422] The CLOCK_DOMAINS attribute on the BRAM cell inst/grp_operator_s_fu_337/coarseContents_U/data_source_operator_s_coarsebkb_rom_U/q0_reg has been changed from INDEPENDENT to COMMON to match the clocking topology used for the BRAM.
+INFO: [Opt 31-422] The CLOCK_DOMAINS attribute on the BRAM cell inst/grp_operator_s_fu_337/coarseContents_U/data_source_operator_s_coarsebkb_rom_U/q2_reg has been changed from INDEPENDENT to COMMON to match the clocking topology used for the BRAM.
+INFO: [Opt 31-422] The CLOCK_DOMAINS attribute on the BRAM cell inst/grp_operator_s_fu_337/gradientContents_U/data_source_operator_s_gradiecud_rom_U/q0_reg has been changed from INDEPENDENT to COMMON to match the clocking topology used for the BRAM.
+INFO: [Opt 31-422] The CLOCK_DOMAINS attribute on the BRAM cell inst/grp_operator_s_fu_337/gradientContents_U/data_source_operator_s_gradiecud_rom_U/q2_reg has been changed from INDEPENDENT to COMMON to match the clocking topology used for the BRAM.
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 4052.402 ; gain = 0.000 ; free physical = 202546 ; free virtual = 281848
+INFO: [Project 1-111] Unisim Transformation Summary:
+  A total of 6 instances were transformed.
+  DSP48E2 => DSP48E2 (DSP_ALU, DSP_A_B_DATA, DSP_C_DATA, DSP_MULTIPLIER, DSP_M_DATA, DSP_OUTPUT, DSP_PREADD, DSP_PREADD_DATA): 6 instances
+
+Synth Design complete, checksum: a61e641e
+INFO: [Common 17-83] Releasing license: Synthesis
+61 Infos, 119 Warnings, 0 Critical Warnings and 0 Errors encountered.
+synth_design completed successfully
+synth_design: Time (s): cpu = 00:01:02 ; elapsed = 00:01:07 . Memory (MB): peak = 4052.402 ; gain = 1885.809 ; free physical = 202845 ; free virtual = 282164
+INFO: [Common 17-1381] The checkpoint '/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.runs/project_1_data_source_0_synth_1/project_1_data_source_0.dcp' has been generated.
+INFO: [Coretcl 2-1648] Added synthesis output to IP cache for IP project_1_data_source_0, cache-ID = 15f8178627766d77
+INFO: [Coretcl 2-1174] Renamed 17 cell refs.
+INFO: [Common 17-1381] The checkpoint '/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.runs/project_1_data_source_0_synth_1/project_1_data_source_0.dcp' has been generated.
+INFO: [runtcl-4] Executing : report_utilization -file project_1_data_source_0_utilization_synth.rpt -pb project_1_data_source_0_utilization_synth.pb
+INFO: [Common 17-206] Exiting Vivado at Fri Oct 14 13:28:21 2022...

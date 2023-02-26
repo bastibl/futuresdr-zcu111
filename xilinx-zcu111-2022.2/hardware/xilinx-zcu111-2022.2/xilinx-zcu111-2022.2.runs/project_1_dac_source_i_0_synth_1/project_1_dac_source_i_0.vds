@@ -1,0 +1,484 @@
+#-----------------------------------------------------------
+# Vivado v2022.2 (64-bit)
+# SW Build 3671981 on Fri Oct 14 04:59:54 MDT 2022
+# IP Build 3669848 on Fri Oct 14 08:30:02 MDT 2022
+# Start of session at: Fri Oct 14 13:26:43 2022
+# Process ID: 50346
+# Current directory: /tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.runs/project_1_dac_source_i_0_synth_1
+# Command line: vivado -log project_1_dac_source_i_0.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source project_1_dac_source_i_0.tcl
+# Log file: /tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.runs/project_1_dac_source_i_0_synth_1/project_1_dac_source_i_0.vds
+# Journal file: /tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.runs/project_1_dac_source_i_0_synth_1/vivado.jou
+# Running On: xcosswbld17, OS: Linux, CPU Frequency: 2995.536 MHz, CPU Physical cores: 32, Host memory: 404352 MB
+#-----------------------------------------------------------
+INFO: [Common 17-1239] XILINX_LOCAL_USER_DATA is set to 'NO'.
+Sourcing tcl script '/home/xbrbbot/.Xilinx/Vivado/Vivado_init.tcl'
+484 Beta devices matching pattern found, 484 enabled.
+enable_beta_device: Time (s): cpu = 00:00:13 ; elapsed = 00:00:15 . Memory (MB): peak = 2066.961 ; gain = 130.633 ; free physical = 252847 ; free virtual = 331762
+source project_1_dac_source_i_0.tcl -notrace
+INFO: [IP_Flow 19-234] Refreshing IP repositories
+WARNING: [IP_Flow 19-395] Problem validating against XML schema: see 'spirit:vendor' : Mandatory element missing or unexpected element found
+WARNING: [IP_Flow 19-395] Problem validating against XML schema: see 'spirit:vendor' : Mandatory element missing or unexpected element found
+INFO: [IP_Flow 19-1700] Loaded user IP repository '/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/ip'.
+INFO: [IP_Flow 19-2313] Loaded Vivado IP repository '/proj/xbuilds/2022.2_1014_2/installs/lin64/Vivado/2022.2/data/ip'.
+WARNING: [IP_Flow 19-1663] Duplicate IP found for 'xilinx.com:ip:axi_quad_spi:3.2'. The one found in IP location '/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/ip/axi_quad_spi' will take precedence over the same IP in the Xilinx installed IP.
+WARNING: [IP_Flow 19-4830] Duplicate Interface found for 'xilinx.com:display_startup_io:startup_io:1.0'. The one found in location '/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/ip/axi_quad_spi/startup_io.xml' will take precedence over the same Interface in location '/proj/xbuilds/2022.2_1014_2/installs/lin64/Vivado/2022.2/data/ip/xilinx/axi_quad_spi_v3_2/startup_io.xml'
+WARNING: [IP_Flow 19-4830] Duplicate Interface found for 'xilinx.com:display_usp_rf_data_converter:diff_pins:1.0'. The one found in location '/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/ip/usp_rf_data_converter/interfaces/diff_pins.xml' will take precedence over the same Interface in location '/proj/xbuilds/2022.2_1014_2/installs/lin64/Vivado/2022.2/data/ip/xilinx/usp_rf_data_converter_v2_6/interfaces/diff_pins.xml'
+WARNING: [IP_Flow 19-4830] Duplicate Interface found for 'xilinx.com:display_usp_rf_data_converter:rts_pins:1.0'. The one found in location '/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/ip/usp_rf_data_converter/interfaces/rts_pins.xml' will take precedence over the same Interface in location '/proj/xbuilds/2022.2_1014_2/installs/lin64/Vivado/2022.2/data/ip/xilinx/usp_rf_data_converter_v2_6/interfaces/rts_pins.xml'
+WARNING: [IP_Flow 19-4830] Duplicate Interface found for 'xilinx.com:display_usp_rf_data_converter:drp_mon_pins:1.0'. The one found in location '/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/ip/usp_rf_data_converter/interfaces/drp_mon_pins.xml' will take precedence over the same Interface in location '/proj/xbuilds/2022.2_1014_2/installs/lin64/Vivado/2022.2/data/ip/xilinx/usp_rf_data_converter_v2_6/interfaces/drp_mon_pins.xml'
+WARNING: [IP_Flow 19-4830] Duplicate Interface found for 'xilinx.com:display_usp_rf_data_converter:debug_pins:1.0'. The one found in location '/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/ip/usp_rf_data_converter/interfaces/debug_pins.xml' will take precedence over the same Interface in location '/proj/xbuilds/2022.2_1014_2/installs/lin64/Vivado/2022.2/data/ip/xilinx/usp_rf_data_converter_v2_6/interfaces/debug_pins.xml'
+WARNING: [IP_Flow 19-4830] Duplicate Interface found for 'xilinx.com:user:hsams_data_sink_ctrl:1.0'. The one found in location '/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/ip/usp_rf_data_converter/interfaces/hsams_data_sink_ctrl.xml' will take precedence over the same Interface in location '/proj/xbuilds/2022.2_1014_2/installs/lin64/Vivado/2022.2/data/ip/xilinx/usp_rf_data_converter_v2_6/interfaces/hsams_data_sink_ctrl.xml'
+WARNING: [IP_Flow 19-4830] Duplicate Interface found for 'xilinx.com:user:hsams_data_source_ctrl:1.0'. The one found in location '/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/ip/usp_rf_data_converter/interfaces/hsams_data_source_ctrl.xml' will take precedence over the same Interface in location '/proj/xbuilds/2022.2_1014_2/installs/lin64/Vivado/2022.2/data/ip/xilinx/usp_rf_data_converter_v2_6/interfaces/hsams_data_source_ctrl.xml'
+WARNING: [IP_Flow 19-4830] Duplicate Interface found for 'xilinx.com:display_usp_rf_data_converter:cal_freeze_pins:1.0'. The one found in location '/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/ip/usp_rf_data_converter/interfaces/cal_freeze_pins.xml' will take precedence over the same Interface in location '/proj/xbuilds/2022.2_1014_2/installs/lin64/Vivado/2022.2/data/ip/xilinx/usp_rf_data_converter_v2_6/interfaces/cal_freeze_pins.xml'
+WARNING: [IP_Flow 19-4830] Duplicate Interface found for 'xilinx.com:interface:gt_hsclk_debug:1.0'. The one found in location '/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/ip/ps_pmc/interfaces/gt_hsclk_debug_v1_0/gt_hsclk_debug.xml' will take precedence over the same Interface in location '/proj/xbuilds/2022.2_1014_2/installs/lin64/Vivado/2022.2/data/ip/xilinx/gt_quad_base_v1_1/interfaces/gt_hsclk_debug_v1_0/gt_hsclk_debug.xml'
+WARNING: [IP_Flow 19-4830] Duplicate Interface found for 'xilinx.com:display_pcie4:pcie4_cfg_external_msix:1.0'. The one found in location '/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/ip/ps_pmc/interfaces/pcie4_cfg_ext_msix.xml' will take precedence over the same Interface in location '/proj/xbuilds/2022.2_1014_2/installs/lin64/Vivado/2022.2/data/ip/xilinx/pcie4_uscale_plus_v1_3/interfaces/pcie4_cfg_ext_msix.xml'
+WARNING: [IP_Flow 19-4830] Duplicate Interface found for 'xilinx.com:interface:gt_rxmargin_intf:1.0'. The one found in location '/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/ip/ps_pmc/interfaces/gt_rxmargin_intf_v1_0/gt_rxmargin_intf.xml' will take precedence over the same Interface in location '/proj/xbuilds/2022.2_1014_2/installs/lin64/Vivado/2022.2/data/ip/xilinx/gt_quad_base_v1_1/interfaces/gt_rxmargin_intf_v1_0/gt_rxmargin_intf.xml'
+WARNING: [IP_Flow 19-4830] Duplicate Interface found for 'xilinx.com:user:acelite:1.0'. The one found in location '/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/ip/ps_pmc/interfaces/acelite.xml' will take precedence over the same Interface in location '/proj/xbuilds/2022.2_1014_2/installs/lin64/Vivado/2022.2/data/ip/xilinx/pspmc_v1_2/interfaces/acelite.xml'
+WARNING: [IP_Flow 19-4830] Duplicate Interface found for 'xilinx.com:interface:gt_debug:1.0'. The one found in location '/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/ip/ps_pmc/interfaces/gt_debug_v1_0/gt_debug.xml' will take precedence over the same Interface in location '/proj/xbuilds/2022.2_1014_2/installs/lin64/Vivado/2022.2/data/ip/xilinx/gt_quad_base_v1_1/interfaces/gt_debug_v1_0/gt_debug.xml'
+WARNING: [IP_Flow 19-4830] Duplicate Interface found for 'xilinx.com:display_pcie4:pcie4_cfg_mgmt:1.0'. The one found in location '/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/ip/ps_pmc/interfaces/pcie4_cfg_mgmt.xml' will take precedence over the same Interface in location '/proj/xbuilds/2022.2_1014_2/installs/lin64/Vivado/2022.2/data/ip/xilinx/pcie4_uscale_plus_v1_3/interfaces/pcie4_cfg_mgmt.xml'
+WARNING: [IP_Flow 19-4830] Duplicate Interface found for 'xilinx.com:display_pcie4c_uscaleplus:transceiver_debug:1.0'. The one found in location '/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/ip/ps_pmc/interfaces/transceiver_debug.xml' will take precedence over the same Interface in location '/proj/xbuilds/2022.2_1014_2/installs/lin64/Vivado/2022.2/data/ip/xilinx/pcie4c_uscale_plus_v1_0/interfaces/transceiver_debug.xml'
+WARNING: [IP_Flow 19-4830] Duplicate Interface found for 'xilinx.com:display_pcie4:pcie4_cfg_control:1.0'. The one found in location '/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/ip/ps_pmc/interfaces/pcie4_cfg_control.xml' will take precedence over the same Interface in location '/proj/xbuilds/2022.2_1014_2/installs/lin64/Vivado/2022.2/data/ip/xilinx/pcie4_uscale_plus_v1_3/interfaces/pcie4_cfg_control.xml'
+WARNING: [IP_Flow 19-4830] Duplicate Interface found for 'xilinx.com:interface:gt_channel_debug:1.0'. The one found in location '/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/ip/ps_pmc/interfaces/gt_channel_debug_v1_0/gt_channel_debug.xml' will take precedence over the same Interface in location '/proj/xbuilds/2022.2_1014_2/installs/lin64/Vivado/2022.2/data/ip/xilinx/gt_quad_base_v1_1/interfaces/gt_channel_debug_v1_0/gt_channel_debug.xml'
+WARNING: [IP_Flow 19-4830] Duplicate Interface found for 'xilinx.com:interface:gt_bufgt:1.0'. The one found in location '/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/ip/ps_pmc/interfaces/gt_bufgt_v1_0/gt_bufgt.xml' will take precedence over the same Interface in location '/proj/xbuilds/2022.2_1014_2/installs/lin64/Vivado/2022.2/data/ip/xilinx/gt_quad_base_v1_1/interfaces/gt_bufgt_v1_0/gt_bufgt.xml'
+WARNING: [IP_Flow 19-4830] Duplicate Interface found for 'xilinx.com:interface:gt_tx_interface:1.0'. The one found in location '/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/ip/ps_pmc/interfaces/gt_tx_interface_v1_0/gt_tx_interface.xml' will take precedence over the same Interface in location '/proj/xbuilds/2022.2_1014_2/installs/lin64/Vivado/2022.2/data/ip/interfaces/gt_tx_interface_v1_0/gt_tx_interface.xml'
+WARNING: [IP_Flow 19-4830] Duplicate Interface found for 'xilinx.com:display_pcie4:pcie4_cfg_pm:1.0'. The one found in location '/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/ip/ps_pmc/interfaces/pcie4_cfg_pm.xml' will take precedence over the same Interface in location '/proj/xbuilds/2022.2_1014_2/installs/lin64/Vivado/2022.2/data/ip/xilinx/pcie4_uscale_plus_v1_3/interfaces/pcie4_cfg_pm.xml'
+WARNING: [IP_Flow 19-4830] Duplicate Interface found for 'xilinx.com:display_pcie4:pcie4_cfg_status:1.0'. The one found in location '/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/ip/ps_pmc/interfaces/pcie4_cfg_status.xml' will take precedence over the same Interface in location '/proj/xbuilds/2022.2_1014_2/installs/lin64/Vivado/2022.2/data/ip/xilinx/pcie4_uscale_plus_v1_3/interfaces/pcie4_cfg_status.xml'
+WARNING: [IP_Flow 19-4830] Duplicate Interface found for 'xilinx.com:display_pcie4:pcie4_pl:1.0'. The one found in location '/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/ip/ps_pmc/interfaces/pcie4_pl.xml' will take precedence over the same Interface in location '/proj/xbuilds/2022.2_1014_2/installs/lin64/Vivado/2022.2/data/ip/xilinx/pcie4_uscale_plus_v1_3/interfaces/pcie4_pl.xml'
+WARNING: [IP_Flow 19-4830] Duplicate Interface found for 'xilinx.com:user:smmu:1.0'. The one found in location '/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/ip/ps_pmc/interfaces/smmu.xml' will take precedence over the same Interface in location '/proj/xbuilds/2022.2_1014_2/installs/lin64/Vivado/2022.2/data/ip/xilinx/pspmc_v1_2/interfaces/smmu.xml'
+WARNING: [IP_Flow 19-4830] Duplicate Interface found for 'xilinx.com:display_pcie4:pcie4_pcie_id:1.0'. The one found in location '/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/ip/ps_pmc/interfaces/pcie4_pcie_id.xml' will take precedence over the same Interface in location '/proj/xbuilds/2022.2_1014_2/installs/lin64/Vivado/2022.2/data/ip/xilinx/pcie4_uscale_plus_v1_3/interfaces/pcie4_pcie_id.xml'
+WARNING: [IP_Flow 19-4830] Duplicate Interface found for 'xilinx.com:interface:gt_rx_interface:1.0'. The one found in location '/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/ip/ps_pmc/interfaces/gt_rx_interface_v1_0/gt_rx_interface.xml' will take precedence over the same Interface in location '/proj/xbuilds/2022.2_1014_2/installs/lin64/Vivado/2022.2/data/ip/interfaces/gt_rx_interface_v1_0/gt_rx_interface.xml'
+WARNING: [IP_Flow 19-4830] Duplicate Interface found for 'xilinx.com:display_pcie4:pcie4_cfg_msix_external:1.0'. The one found in location '/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/ip/ps_pmc/interfaces/pcie4_cfg_msix.xml' will take precedence over the same Interface in location '/proj/xbuilds/2022.2_1014_2/installs/lin64/Vivado/2022.2/data/ip/xilinx/pcie4_uscale_plus_v1_3/interfaces/pcie4_cfg_msix.xml'
+WARNING: [IP_Flow 19-4830] Duplicate Interface found for 'xilinx.com:display_pcie4:pcie4_cfg_msix_internal:1.0'. The one found in location '/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/ip/ps_pmc/interfaces/pcie4_cfg_msix_int.xml' will take precedence over the same Interface in location '/proj/xbuilds/2022.2_1014_2/installs/lin64/Vivado/2022.2/data/ip/xilinx/pcie4_uscale_plus_v1_3/interfaces/pcie4_cfg_msix_int.xml'
+INFO: [IP_Flow 19-6924] IPCACHE: Running cache check for IP inst: project_1_dac_source_i_0
+Command: synth_design -top project_1_dac_source_i_0 -part xczu28dr-ffvg1517-2-e -incremental_mode off -mode out_of_context
+Starting synth_design
+Attempting to get a license for feature 'Synthesis' and/or device 'xczu28dr'
+INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xczu28dr'
+INFO: [Device 21-403] Loading part xczu28dr-ffvg1517-2-e
+INFO: [Synth 8-7079] Multithreading enabled for synth_design using a maximum of 4 processes.
+INFO: [Synth 8-7078] Launching helper process for spawning children vivado processes
+INFO: [Synth 8-7075] Helper process launched with PID 53386
+INFO: [Synth 8-11241] undeclared symbol 'REGCCE', assumed default net type 'wire' [/proj/xbuilds/2022.2_1014_2/installs/lin64/Vivado/2022.2/data/verilog/src/unimacro/BRAM_SINGLE_MACRO.v:2170]
+---------------------------------------------------------------------------------
+Starting RTL Elaboration : Time (s): cpu = 00:00:05 ; elapsed = 00:00:06 . Memory (MB): peak = 3428.613 ; gain = 321.770 ; free physical = 227916 ; free virtual = 306970
+Synthesis current peak Physical Memory [PSS] (MB): peak = 2590.038; parent = 2469.817; children = 120.221
+Synthesis current peak Virtual Memory [VSS] (MB): peak = 4440.457; parent = 3434.555; children = 1005.902
+---------------------------------------------------------------------------------
+INFO: [Synth 8-6157] synthesizing module 'project_1_dac_source_i_0' [/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.gen/sources_1/bd/project_1/ip/project_1_dac_source_i_0/synth/project_1_dac_source_i_0.v:53]
+INFO: [Synth 8-6157] synthesizing module 'exdes_rfdac_src' [/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.srcs/sources_1/imports/src/exdes_rfdac_src.v:50]
+INFO: [Synth 8-6157] synthesizing module 'dg_slice' [/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.srcs/sources_1/imports/src/exdes_rfdac_tile_source.v:49]
+INFO: [Synth 8-6157] synthesizing module 'dg_cell' [/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.srcs/sources_1/imports/src/exdes_rfdac_tile_source.v:119]
+WARNING: [Synth 8-693] zero replication count - replication ignored [/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.srcs/sources_1/imports/src/exdes_rfdac_tile_source.v:261]
+WARNING: [Synth 8-693] zero replication count - replication ignored [/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.srcs/sources_1/imports/src/exdes_rfdac_tile_source.v:262]
+WARNING: [Synth 8-693] zero replication count - replication ignored [/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.srcs/sources_1/imports/src/exdes_rfdac_tile_source.v:263]
+WARNING: [Synth 8-693] zero replication count - replication ignored [/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.srcs/sources_1/imports/src/exdes_rfdac_tile_source.v:265]
+WARNING: [Synth 8-693] zero replication count - replication ignored [/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.srcs/sources_1/imports/src/exdes_rfdac_tile_source.v:267]
+WARNING: [Synth 8-693] zero replication count - replication ignored [/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.srcs/sources_1/imports/src/exdes_rfdac_tile_source.v:268]
+INFO: [Synth 8-6157] synthesizing module 'exdes_rfdac_sine_wave_lut' [/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.srcs/sources_1/imports/src/exdes_rfdac_sine_wave_lut.v:40]
+INFO: [Synth 8-6155] done synthesizing module 'exdes_rfdac_sine_wave_lut' (0#1) [/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.srcs/sources_1/imports/src/exdes_rfdac_sine_wave_lut.v:40]
+INFO: [Synth 8-6155] done synthesizing module 'dg_cell' (0#1) [/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.srcs/sources_1/imports/src/exdes_rfdac_tile_source.v:119]
+INFO: [Synth 8-6155] done synthesizing module 'dg_slice' (0#1) [/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.srcs/sources_1/imports/src/exdes_rfdac_tile_source.v:49]
+INFO: [Synth 8-6157] synthesizing module 'xpm_cdc_single' [/proj/xbuilds/2022.2_1014_2/installs/lin64/Vivado/2022.2/data/ip/xpm/xpm_cdc/hdl/xpm_cdc.sv:152]
+INFO: [Synth 8-6155] done synthesizing module 'xpm_cdc_single' (0#1) [/proj/xbuilds/2022.2_1014_2/installs/lin64/Vivado/2022.2/data/ip/xpm/xpm_cdc/hdl/xpm_cdc.sv:152]
+INFO: [Synth 8-6157] synthesizing module 'rfdac_exdes_ctrl' [/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.srcs/sources_1/imports/src/usp_rf_data_converter_0exdes_rfdac_ctrl.v:4264]
+INFO: [Synth 8-6157] synthesizing module 'rfdac_exdes_ctrl_axi' [/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.srcs/sources_1/imports/src/usp_rf_data_converter_0exdes_rfdac_ctrl.v:5667]
+INFO: [Synth 8-6155] done synthesizing module 'rfdac_exdes_ctrl_axi' (0#1) [/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.srcs/sources_1/imports/src/usp_rf_data_converter_0exdes_rfdac_ctrl.v:5667]
+INFO: [Synth 8-6157] synthesizing module 'dac_exdes_cfg' [/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.srcs/sources_1/imports/src/usp_rf_data_converter_0exdes_rfdac_ctrl.v:58]
+INFO: [Synth 8-155] case statement is not full and has no default [/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.srcs/sources_1/imports/src/usp_rf_data_converter_0exdes_rfdac_ctrl.v:111]
+INFO: [Synth 8-6155] done synthesizing module 'dac_exdes_cfg' (0#1) [/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.srcs/sources_1/imports/src/usp_rf_data_converter_0exdes_rfdac_ctrl.v:58]
+INFO: [Synth 8-6157] synthesizing module 'dac0_rfdac_exdes_ctrl_axi' [/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.srcs/sources_1/imports/src/usp_rf_data_converter_0exdes_rfdac_ctrl.v:216]
+INFO: [Synth 8-6157] synthesizing module 'rfdac_exdes_ctrl_hshk_pls_gen' [/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.srcs/sources_1/imports/src/usp_rf_data_converter_0exdes_rfdac_ctrl.v:6377]
+INFO: [Synth 8-6157] synthesizing module 'rfdac_exdes_ctrl_sync' [/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.srcs/sources_1/imports/src/usp_rf_data_converter_0exdes_rfdac_ctrl.v:6532]
+INFO: [Synth 8-6155] done synthesizing module 'rfdac_exdes_ctrl_sync' (0#1) [/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.srcs/sources_1/imports/src/usp_rf_data_converter_0exdes_rfdac_ctrl.v:6532]
+INFO: [Synth 8-6155] done synthesizing module 'rfdac_exdes_ctrl_hshk_pls_gen' (0#1) [/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.srcs/sources_1/imports/src/usp_rf_data_converter_0exdes_rfdac_ctrl.v:6377]
+INFO: [Synth 8-155] case statement is not full and has no default [/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.srcs/sources_1/imports/src/usp_rf_data_converter_0exdes_rfdac_ctrl.v:569]
+INFO: [Synth 8-6155] done synthesizing module 'dac0_rfdac_exdes_ctrl_axi' (0#1) [/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.srcs/sources_1/imports/src/usp_rf_data_converter_0exdes_rfdac_ctrl.v:216]
+INFO: [Synth 8-6157] synthesizing module 'dac1_rfdac_exdes_ctrl_axi' [/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.srcs/sources_1/imports/src/usp_rf_data_converter_0exdes_rfdac_ctrl.v:1228]
+INFO: [Synth 8-155] case statement is not full and has no default [/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.srcs/sources_1/imports/src/usp_rf_data_converter_0exdes_rfdac_ctrl.v:1581]
+INFO: [Synth 8-6155] done synthesizing module 'dac1_rfdac_exdes_ctrl_axi' (0#1) [/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.srcs/sources_1/imports/src/usp_rf_data_converter_0exdes_rfdac_ctrl.v:1228]
+INFO: [Synth 8-6157] synthesizing module 'dac2_rfdac_exdes_ctrl_axi' [/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.srcs/sources_1/imports/src/usp_rf_data_converter_0exdes_rfdac_ctrl.v:2240]
+INFO: [Synth 8-155] case statement is not full and has no default [/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.srcs/sources_1/imports/src/usp_rf_data_converter_0exdes_rfdac_ctrl.v:2593]
+INFO: [Synth 8-6155] done synthesizing module 'dac2_rfdac_exdes_ctrl_axi' (0#1) [/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.srcs/sources_1/imports/src/usp_rf_data_converter_0exdes_rfdac_ctrl.v:2240]
+INFO: [Synth 8-6157] synthesizing module 'dac3_rfdac_exdes_ctrl_axi' [/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.srcs/sources_1/imports/src/usp_rf_data_converter_0exdes_rfdac_ctrl.v:3252]
+INFO: [Synth 8-155] case statement is not full and has no default [/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.srcs/sources_1/imports/src/usp_rf_data_converter_0exdes_rfdac_ctrl.v:3605]
+INFO: [Synth 8-6155] done synthesizing module 'dac3_rfdac_exdes_ctrl_axi' (0#1) [/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.srcs/sources_1/imports/src/usp_rf_data_converter_0exdes_rfdac_ctrl.v:3252]
+INFO: [Synth 8-6155] done synthesizing module 'rfdac_exdes_ctrl' (0#1) [/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.srcs/sources_1/imports/src/usp_rf_data_converter_0exdes_rfdac_ctrl.v:4264]
+INFO: [Synth 8-6155] done synthesizing module 'exdes_rfdac_src' (0#1) [/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.srcs/sources_1/imports/src/exdes_rfdac_src.v:50]
+INFO: [Synth 8-6155] done synthesizing module 'project_1_dac_source_i_0' (0#1) [/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.gen/sources_1/bd/project_1/ip/project_1_dac_source_i_0/synth/project_1_dac_source_i_0.v:53]
+WARNING: [Synth 8-6014] Unused sequential element inc_by_sel_r_reg was removed.  [/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.srcs/sources_1/imports/src/exdes_rfdac_tile_source.v:211]
+WARNING: [Synth 8-3936] Found unconnected internal register 'dg_modify_r_reg' and it is trimmed from '17' to '16' bits. [/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.srcs/sources_1/imports/src/exdes_rfdac_tile_source.v:288]
+WARNING: [Synth 8-3936] Found unconnected internal register 'dg_control_r_reg' and it is trimmed from '8' to '4' bits. [/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.srcs/sources_1/imports/src/exdes_rfdac_tile_source.v:189]
+WARNING: [Synth 8-7129] Port src_clk in module xpm_cdc_single is either unconnected or has no load
+WARNING: [Synth 8-7129] Port slv_wdata[31] in module dac_exdes_cfg is either unconnected or has no load
+WARNING: [Synth 8-7129] Port slv_wdata[30] in module dac_exdes_cfg is either unconnected or has no load
+WARNING: [Synth 8-7129] Port slv_wdata[29] in module dac_exdes_cfg is either unconnected or has no load
+WARNING: [Synth 8-7129] Port slv_wdata[28] in module dac_exdes_cfg is either unconnected or has no load
+WARNING: [Synth 8-7129] Port slv_wdata[27] in module dac_exdes_cfg is either unconnected or has no load
+WARNING: [Synth 8-7129] Port slv_wdata[26] in module dac_exdes_cfg is either unconnected or has no load
+WARNING: [Synth 8-7129] Port slv_wdata[25] in module dac_exdes_cfg is either unconnected or has no load
+WARNING: [Synth 8-7129] Port slv_wdata[24] in module dac_exdes_cfg is either unconnected or has no load
+WARNING: [Synth 8-7129] Port slv_wdata[23] in module dac_exdes_cfg is either unconnected or has no load
+WARNING: [Synth 8-7129] Port slv_wdata[22] in module dac_exdes_cfg is either unconnected or has no load
+WARNING: [Synth 8-7129] Port slv_wdata[21] in module dac_exdes_cfg is either unconnected or has no load
+WARNING: [Synth 8-7129] Port slv_wdata[20] in module dac_exdes_cfg is either unconnected or has no load
+WARNING: [Synth 8-7129] Port slv_wdata[19] in module dac_exdes_cfg is either unconnected or has no load
+WARNING: [Synth 8-7129] Port slv_wdata[18] in module dac_exdes_cfg is either unconnected or has no load
+WARNING: [Synth 8-7129] Port slv_wdata[17] in module dac_exdes_cfg is either unconnected or has no load
+WARNING: [Synth 8-7129] Port slv_wdata[16] in module dac_exdes_cfg is either unconnected or has no load
+WARNING: [Synth 8-7129] Port slv_wdata[15] in module dac_exdes_cfg is either unconnected or has no load
+WARNING: [Synth 8-7129] Port slv_wdata[14] in module dac_exdes_cfg is either unconnected or has no load
+WARNING: [Synth 8-7129] Port slv_wdata[13] in module dac_exdes_cfg is either unconnected or has no load
+WARNING: [Synth 8-7129] Port slv_wdata[12] in module dac_exdes_cfg is either unconnected or has no load
+WARNING: [Synth 8-7129] Port s_axi_awaddr[1] in module rfdac_exdes_ctrl_axi is either unconnected or has no load
+WARNING: [Synth 8-7129] Port s_axi_awaddr[0] in module rfdac_exdes_ctrl_axi is either unconnected or has no load
+WARNING: [Synth 8-7129] Port s_axi_araddr[1] in module rfdac_exdes_ctrl_axi is either unconnected or has no load
+WARNING: [Synth 8-7129] Port s_axi_araddr[0] in module rfdac_exdes_ctrl_axi is either unconnected or has no load
+WARNING: [Synth 8-7129] Port dg_control[7] in module dg_cell is either unconnected or has no load
+WARNING: [Synth 8-7129] Port dg_control[6] in module dg_cell is either unconnected or has no load
+WARNING: [Synth 8-7129] Port dg_control[5] in module dg_cell is either unconnected or has no load
+WARNING: [Synth 8-7129] Port dg_control[4] in module dg_cell is either unconnected or has no load
+WARNING: [Synth 8-7129] Port s_axi_wstrb[3] in module exdes_rfdac_src is either unconnected or has no load
+WARNING: [Synth 8-7129] Port s_axi_wstrb[2] in module exdes_rfdac_src is either unconnected or has no load
+WARNING: [Synth 8-7129] Port s_axi_wstrb[1] in module exdes_rfdac_src is either unconnected or has no load
+WARNING: [Synth 8-7129] Port s_axi_wstrb[0] in module exdes_rfdac_src is either unconnected or has no load
+---------------------------------------------------------------------------------
+Finished RTL Elaboration : Time (s): cpu = 00:00:09 ; elapsed = 00:00:10 . Memory (MB): peak = 3588.090 ; gain = 481.246 ; free physical = 221017 ; free virtual = 300083
+Synthesis current peak Physical Memory [PSS] (MB): peak = 2605.195; parent = 2485.705; children = 120.221
+Synthesis current peak Virtual Memory [VSS] (MB): peak = 4593.996; parent = 3588.094; children = 1005.902
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Handling Custom Attributes
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:10 ; elapsed = 00:00:11 . Memory (MB): peak = 3605.902 ; gain = 499.059 ; free physical = 221034 ; free virtual = 300100
+Synthesis current peak Physical Memory [PSS] (MB): peak = 2605.195; parent = 2485.705; children = 120.221
+Synthesis current peak Virtual Memory [VSS] (MB): peak = 4611.809; parent = 3605.906; children = 1005.902
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:10 ; elapsed = 00:00:11 . Memory (MB): peak = 3605.902 ; gain = 499.059 ; free physical = 221975 ; free virtual = 301040
+Synthesis current peak Physical Memory [PSS] (MB): peak = 2605.476; parent = 2485.956; children = 120.221
+Synthesis current peak Virtual Memory [VSS] (MB): peak = 4611.809; parent = 3605.906; children = 1005.902
+---------------------------------------------------------------------------------
+Netlist sorting complete. Time (s): cpu = 00:00:00.13 ; elapsed = 00:00:00.12 . Memory (MB): peak = 3605.902 ; gain = 0.000 ; free physical = 221261 ; free virtual = 300327
+INFO: [Project 1-570] Preparing netlist for logic optimization
+
+Processing XDC Constraints
+Initializing timing engine
+INFO: [Project 1-236] Implementation specific constraints were found while reading constraint file [/proj/xbuilds/2022.2_1014_2/installs/lin64/Vivado/2022.2/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_single.tcl]. These constraints will be ignored for synthesis but will be used in implementation. Impacted constraints are listed in the file [.Xil/project_1_dac_source_i_0_propImpl.xdc].
+Resolution: To avoid this warning, move constraints listed in [.Xil/project_1_dac_source_i_0_propImpl.xdc] to another XDC file and exclude this new file from synthesis with the used_in_synthesis property (File Properties dialog in GUI) and re-run elaboration/synthesis.
+INFO: [Project 1-1714] 9 XPM XDC files have been applied to the design.
+Completed Processing XDC Constraints
+
+Netlist sorting complete. Time (s): cpu = 00:00:00.01 ; elapsed = 00:00:00 . Memory (MB): peak = 3715.715 ; gain = 0.000 ; free physical = 217223 ; free virtual = 296351
+INFO: [Project 1-111] Unisim Transformation Summary:
+No Unisim elements were transformed.
+
+Constraint Validation Runtime : Time (s): cpu = 00:00:00.34 ; elapsed = 00:00:00.14 . Memory (MB): peak = 3739.527 ; gain = 23.812 ; free physical = 217224 ; free virtual = 296351
+INFO: [Designutils 20-5008] Incremental synthesis strategy off
+INFO: [Synth 8-11241] undeclared symbol 'REGCCE', assumed default net type 'wire' [/proj/xbuilds/2022.2_1014_2/installs/lin64/Vivado/2022.2/data/verilog/src/unimacro/BRAM_SINGLE_MACRO.v:2170]
+---------------------------------------------------------------------------------
+Finished Constraint Validation : Time (s): cpu = 00:00:20 ; elapsed = 00:00:21 . Memory (MB): peak = 3739.527 ; gain = 632.684 ; free physical = 210037 ; free virtual = 289170
+Synthesis current peak Physical Memory [PSS] (MB): peak = 2605.476; parent = 2485.956; children = 120.221
+Synthesis current peak Virtual Memory [VSS] (MB): peak = 4745.434; parent = 3739.531; children = 1005.902
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Loading Part and Timing Information
+---------------------------------------------------------------------------------
+Loading part: xczu28dr-ffvg1517-2-e
+INFO: [Synth 8-6742] Reading net delay rules and data
+---------------------------------------------------------------------------------
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:20 ; elapsed = 00:00:22 . Memory (MB): peak = 3739.527 ; gain = 632.684 ; free physical = 209783 ; free virtual = 288917
+Synthesis current peak Physical Memory [PSS] (MB): peak = 2605.476; parent = 2485.956; children = 120.221
+Synthesis current peak Virtual Memory [VSS] (MB): peak = 4745.434; parent = 3739.531; children = 1005.902
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Applying 'set_property' XDC Constraints
+---------------------------------------------------------------------------------
+Applied set_property KEEP_HIERARCHY = SOFT for inst/cdc_arstn_0i. (constraint file  auto generated constraint).
+Applied set_property KEEP_HIERARCHY = SOFT for inst/rfdac_exdes_ctrl_i/dac0_rfdac_exdes_ctrl_axi_i/clk2clk_handshake_pulse_gen_i/axi_2_drp_valid_i/cdc_i. (constraint file  auto generated constraint).
+Applied set_property KEEP_HIERARCHY = SOFT for inst/rfdac_exdes_ctrl_i/dac0_rfdac_exdes_ctrl_axi_i/clk2clk_handshake_pulse_gen_i/drp_2_axi_in_progress_i/cdc_i. (constraint file  auto generated constraint).
+Applied set_property KEEP_HIERARCHY = SOFT for inst/rfdac_exdes_ctrl_i/dac1_rfdac_exdes_ctrl_axi_i/clk2clk_handshake_pulse_gen_i/axi_2_drp_valid_i/cdc_i. (constraint file  auto generated constraint).
+Applied set_property KEEP_HIERARCHY = SOFT for inst/rfdac_exdes_ctrl_i/dac1_rfdac_exdes_ctrl_axi_i/clk2clk_handshake_pulse_gen_i/drp_2_axi_in_progress_i/cdc_i. (constraint file  auto generated constraint).
+Applied set_property KEEP_HIERARCHY = SOFT for inst/rfdac_exdes_ctrl_i/dac2_rfdac_exdes_ctrl_axi_i/clk2clk_handshake_pulse_gen_i/axi_2_drp_valid_i/cdc_i. (constraint file  auto generated constraint).
+Applied set_property KEEP_HIERARCHY = SOFT for inst/rfdac_exdes_ctrl_i/dac2_rfdac_exdes_ctrl_axi_i/clk2clk_handshake_pulse_gen_i/drp_2_axi_in_progress_i/cdc_i. (constraint file  auto generated constraint).
+Applied set_property KEEP_HIERARCHY = SOFT for inst/rfdac_exdes_ctrl_i/dac3_rfdac_exdes_ctrl_axi_i/clk2clk_handshake_pulse_gen_i/axi_2_drp_valid_i/cdc_i. (constraint file  auto generated constraint).
+Applied set_property KEEP_HIERARCHY = SOFT for inst/rfdac_exdes_ctrl_i/dac3_rfdac_exdes_ctrl_axi_i/clk2clk_handshake_pulse_gen_i/drp_2_axi_in_progress_i/cdc_i. (constraint file  auto generated constraint).
+---------------------------------------------------------------------------------
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:20 ; elapsed = 00:00:22 . Memory (MB): peak = 3739.527 ; gain = 632.684 ; free physical = 209673 ; free virtual = 288806
+Synthesis current peak Physical Memory [PSS] (MB): peak = 2605.476; parent = 2485.956; children = 120.221
+Synthesis current peak Virtual Memory [VSS] (MB): peak = 4745.434; parent = 3739.531; children = 1005.902
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:30 ; elapsed = 00:00:34 . Memory (MB): peak = 3739.527 ; gain = 632.684 ; free physical = 203399 ; free virtual = 282648
+Synthesis current peak Physical Memory [PSS] (MB): peak = 2629.688; parent = 2511.661; children = 120.221
+Synthesis current peak Virtual Memory [VSS] (MB): peak = 4745.434; parent = 3739.531; children = 1005.902
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start RTL Component Statistics 
+---------------------------------------------------------------------------------
+Detailed RTL Component Info : 
++---Adders : 
+	   2 Input   17 Bit       Adders := 32    
+	   2 Input   13 Bit       Adders := 1     
++---Registers : 
+	               32 Bit    Registers := 9     
+	               17 Bit    Registers := 32    
+	               16 Bit    Registers := 337   
+	               13 Bit    Registers := 1     
+	               12 Bit    Registers := 1     
+	               10 Bit    Registers := 1     
+	                8 Bit    Registers := 16    
+	                7 Bit    Registers := 32    
+	                6 Bit    Registers := 1     
+	                5 Bit    Registers := 9     
+	                4 Bit    Registers := 48    
+	                3 Bit    Registers := 32    
+	                2 Bit    Registers := 2     
+	                1 Bit    Registers := 98    
++---Muxes : 
+	   2 Input   32 Bit        Muxes := 6     
+	   4 Input   32 Bit        Muxes := 1     
+	  93 Input   32 Bit        Muxes := 4     
+	   2 Input   17 Bit        Muxes := 32    
+	   2 Input   16 Bit        Muxes := 48    
+	   2 Input   13 Bit        Muxes := 1     
+	   2 Input   10 Bit        Muxes := 1     
+	   2 Input    8 Bit        Muxes := 16    
+	   2 Input    7 Bit        Muxes := 16    
+	   2 Input    6 Bit        Muxes := 1     
+	   2 Input    4 Bit        Muxes := 16    
+	   2 Input    3 Bit        Muxes := 16    
+	   2 Input    2 Bit        Muxes := 2     
+	   2 Input    1 Bit        Muxes := 620   
+	   4 Input    1 Bit        Muxes := 35    
+	  97 Input    1 Bit        Muxes := 384   
+---------------------------------------------------------------------------------
+Finished RTL Component Statistics 
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Part Resource Summary
+---------------------------------------------------------------------------------
+Part Resources:
+DSPs: 4272 (col length:192)
+BRAMs: 2160 (col length: RAMB18 192 RAMB36 96)
+---------------------------------------------------------------------------------
+Finished Part Resource Summary
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Cross Boundary and Area Optimization
+---------------------------------------------------------------------------------
+WARNING: [Synth 8-7080] Parallel synthesis criteria is not met
+WARNING: [Synth 8-6040] Register counter_reg_rep driving address of a ROM cannot be packed in BRAM/URAM because of presence of initial value.
+WARNING: [Synth 8-3936] Found unconnected internal register 'counter_reg_rep' and it is trimmed from '16' to '7' bits. [/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.srcs/sources_1/imports/src/exdes_rfdac_tile_source.v:202]
+WARNING: [Synth 8-6040] Register counter_reg_rep driving address of a ROM cannot be packed in BRAM/URAM because of presence of initial value.
+WARNING: [Synth 8-6040] Register counter_reg_rep driving address of a ROM cannot be packed in BRAM/URAM because of presence of initial value.
+WARNING: [Synth 8-6040] Register counter_reg_rep driving address of a ROM cannot be packed in BRAM/URAM because of presence of initial value.
+WARNING: [Synth 8-6040] Register counter_reg_rep driving address of a ROM cannot be packed in BRAM/URAM because of presence of initial value.
+WARNING: [Synth 8-6040] Register counter_reg_rep driving address of a ROM cannot be packed in BRAM/URAM because of presence of initial value.
+WARNING: [Synth 8-6040] Register counter_reg_rep driving address of a ROM cannot be packed in BRAM/URAM because of presence of initial value.
+WARNING: [Synth 8-6040] Register counter_reg_rep driving address of a ROM cannot be packed in BRAM/URAM because of presence of initial value.
+WARNING: [Synth 8-6040] Register counter_reg_rep driving address of a ROM cannot be packed in BRAM/URAM because of presence of initial value.
+WARNING: [Synth 8-6040] Register counter_reg_rep driving address of a ROM cannot be packed in BRAM/URAM because of presence of initial value.
+WARNING: [Synth 8-6040] Register counter_reg_rep driving address of a ROM cannot be packed in BRAM/URAM because of presence of initial value.
+WARNING: [Synth 8-6040] Register counter_reg_rep driving address of a ROM cannot be packed in BRAM/URAM because of presence of initial value.
+WARNING: [Synth 8-6040] Register counter_reg_rep driving address of a ROM cannot be packed in BRAM/URAM because of presence of initial value.
+WARNING: [Synth 8-6040] Register counter_reg_rep driving address of a ROM cannot be packed in BRAM/URAM because of presence of initial value.
+WARNING: [Synth 8-6040] Register counter_reg_rep driving address of a ROM cannot be packed in BRAM/URAM because of presence of initial value.
+WARNING: [Synth 8-6040] Register counter_reg_rep driving address of a ROM cannot be packed in BRAM/URAM because of presence of initial value.
+WARNING: [Synth 8-7129] Port src_clk in module xpm_cdc_single is either unconnected or has no load
+WARNING: [Synth 8-7129] Port slv_wdata[31] in module dac_exdes_cfg is either unconnected or has no load
+WARNING: [Synth 8-7129] Port slv_wdata[30] in module dac_exdes_cfg is either unconnected or has no load
+WARNING: [Synth 8-7129] Port slv_wdata[29] in module dac_exdes_cfg is either unconnected or has no load
+WARNING: [Synth 8-7129] Port slv_wdata[28] in module dac_exdes_cfg is either unconnected or has no load
+WARNING: [Synth 8-7129] Port slv_wdata[27] in module dac_exdes_cfg is either unconnected or has no load
+WARNING: [Synth 8-7129] Port slv_wdata[26] in module dac_exdes_cfg is either unconnected or has no load
+WARNING: [Synth 8-7129] Port slv_wdata[25] in module dac_exdes_cfg is either unconnected or has no load
+WARNING: [Synth 8-7129] Port slv_wdata[24] in module dac_exdes_cfg is either unconnected or has no load
+WARNING: [Synth 8-7129] Port slv_wdata[23] in module dac_exdes_cfg is either unconnected or has no load
+WARNING: [Synth 8-7129] Port slv_wdata[22] in module dac_exdes_cfg is either unconnected or has no load
+WARNING: [Synth 8-7129] Port slv_wdata[21] in module dac_exdes_cfg is either unconnected or has no load
+WARNING: [Synth 8-7129] Port slv_wdata[20] in module dac_exdes_cfg is either unconnected or has no load
+WARNING: [Synth 8-7129] Port slv_wdata[19] in module dac_exdes_cfg is either unconnected or has no load
+WARNING: [Synth 8-7129] Port slv_wdata[18] in module dac_exdes_cfg is either unconnected or has no load
+WARNING: [Synth 8-7129] Port slv_wdata[17] in module dac_exdes_cfg is either unconnected or has no load
+WARNING: [Synth 8-7129] Port slv_wdata[16] in module dac_exdes_cfg is either unconnected or has no load
+WARNING: [Synth 8-7129] Port slv_wdata[15] in module dac_exdes_cfg is either unconnected or has no load
+WARNING: [Synth 8-7129] Port slv_wdata[14] in module dac_exdes_cfg is either unconnected or has no load
+WARNING: [Synth 8-7129] Port slv_wdata[13] in module dac_exdes_cfg is either unconnected or has no load
+WARNING: [Synth 8-7129] Port slv_wdata[12] in module dac_exdes_cfg is either unconnected or has no load
+WARNING: [Synth 8-7129] Port s_axi_awaddr[1] in module rfdac_exdes_ctrl_axi is either unconnected or has no load
+WARNING: [Synth 8-7129] Port s_axi_awaddr[0] in module rfdac_exdes_ctrl_axi is either unconnected or has no load
+WARNING: [Synth 8-7129] Port s_axi_araddr[1] in module rfdac_exdes_ctrl_axi is either unconnected or has no load
+WARNING: [Synth 8-7129] Port s_axi_araddr[0] in module rfdac_exdes_ctrl_axi is either unconnected or has no load
+WARNING: [Synth 8-7129] Port dg_control[7] in module dg_cell is either unconnected or has no load
+WARNING: [Synth 8-7129] Port dg_control[6] in module dg_cell is either unconnected or has no load
+WARNING: [Synth 8-7129] Port dg_control[5] in module dg_cell is either unconnected or has no load
+WARNING: [Synth 8-7129] Port dg_control[4] in module dg_cell is either unconnected or has no load
+WARNING: [Synth 8-7129] Port s_axi_wstrb[3] in module project_1_dac_source_i_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port s_axi_wstrb[2] in module project_1_dac_source_i_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port s_axi_wstrb[1] in module project_1_dac_source_i_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port s_axi_wstrb[0] in module project_1_dac_source_i_0 is either unconnected or has no load
+---------------------------------------------------------------------------------
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:01:10 ; elapsed = 00:01:18 . Memory (MB): peak = 3739.527 ; gain = 632.684 ; free physical = 260890 ; free virtual = 340157
+Synthesis current peak Physical Memory [PSS] (MB): peak = 2687.199; parent = 2562.497; children = 130.021
+Synthesis current peak Virtual Memory [VSS] (MB): peak = 4745.434; parent = 3739.531; children = 1005.902
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start ROM, RAM, DSP, Shift Register and Retiming Reporting
+---------------------------------------------------------------------------------
+
+ROM: Preliminary Mapping Report
++--------------------------+-----------------------------+---------------+----------------+
+|Module Name               | RTL Object                  | Depth x Width | Implemented As | 
++--------------------------+-----------------------------+---------------+----------------+
+|exdes_rfdac_sine_wave_lut | sine_lut128_16bit           | 128x16        | LUT            | 
+|dg_cell                   | sine0_lut/sine_lut128_16bit | 128x16        | LUT            | 
+|dg_cell                   | sine0_lut/sine_lut128_16bit | 128x16        | LUT            | 
+|dg_cell                   | sine0_lut/sine_lut128_16bit | 128x16        | LUT            | 
+|dg_cell                   | sine0_lut/sine_lut128_16bit | 128x16        | LUT            | 
+|dg_cell                   | sine0_lut/sine_lut128_16bit | 128x16        | LUT            | 
+|dg_cell                   | sine0_lut/sine_lut128_16bit | 128x16        | LUT            | 
+|dg_cell                   | sine0_lut/sine_lut128_16bit | 128x16        | LUT            | 
++--------------------------+-----------------------------+---------------+----------------+
+
+---------------------------------------------------------------------------------
+Finished ROM, RAM, DSP, Shift Register and Retiming Reporting
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Applying XDC Timing Constraints
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:01:20 ; elapsed = 00:01:28 . Memory (MB): peak = 3975.379 ; gain = 868.535 ; free physical = 274574 ; free virtual = 353841
+Synthesis current peak Physical Memory [PSS] (MB): peak = 3144.979; parent = 3006.705; children = 138.273
+Synthesis current peak Virtual Memory [VSS] (MB): peak = 4981.285; parent = 3975.383; children = 1005.902
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Timing Optimization
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Timing Optimization : Time (s): cpu = 00:01:21 ; elapsed = 00:01:30 . Memory (MB): peak = 3983.379 ; gain = 876.535 ; free physical = 276938 ; free virtual = 356205
+Synthesis current peak Physical Memory [PSS] (MB): peak = 3163.845; parent = 3023.332; children = 140.513
+Synthesis current peak Virtual Memory [VSS] (MB): peak = 4989.285; parent = 3983.383; children = 1005.902
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Technology Mapping
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Technology Mapping : Time (s): cpu = 00:01:25 ; elapsed = 00:01:34 . Memory (MB): peak = 4019.434 ; gain = 912.590 ; free physical = 276730 ; free virtual = 356030
+Synthesis current peak Physical Memory [PSS] (MB): peak = 3164.553; parent = 3024.088; children = 140.513
+Synthesis current peak Virtual Memory [VSS] (MB): peak = 5025.340; parent = 4019.438; children = 1005.902
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished IO Insertion : Time (s): cpu = 00:01:28 ; elapsed = 00:01:38 . Memory (MB): peak = 4028.340 ; gain = 921.496 ; free physical = 276256 ; free virtual = 355534
+Synthesis current peak Physical Memory [PSS] (MB): peak = 3164.553; parent = 3024.088; children = 140.513
+Synthesis current peak Virtual Memory [VSS] (MB): peak = 5034.246; parent = 4028.344; children = 1005.902
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Instances
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Instances : Time (s): cpu = 00:01:28 ; elapsed = 00:01:38 . Memory (MB): peak = 4028.340 ; gain = 921.496 ; free physical = 276263 ; free virtual = 355541
+Synthesis current peak Physical Memory [PSS] (MB): peak = 3164.553; parent = 3024.088; children = 140.513
+Synthesis current peak Virtual Memory [VSS] (MB): peak = 5034.246; parent = 4028.344; children = 1005.902
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Rebuilding User Hierarchy
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:01:29 ; elapsed = 00:01:39 . Memory (MB): peak = 4028.340 ; gain = 921.496 ; free physical = 276142 ; free virtual = 355421
+Synthesis current peak Physical Memory [PSS] (MB): peak = 3164.553; parent = 3024.088; children = 140.513
+Synthesis current peak Virtual Memory [VSS] (MB): peak = 5034.246; parent = 4028.344; children = 1005.902
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Ports
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Ports : Time (s): cpu = 00:01:29 ; elapsed = 00:01:39 . Memory (MB): peak = 4028.340 ; gain = 921.496 ; free physical = 276107 ; free virtual = 355386
+Synthesis current peak Physical Memory [PSS] (MB): peak = 3164.553; parent = 3024.088; children = 140.513
+Synthesis current peak Virtual Memory [VSS] (MB): peak = 5034.246; parent = 4028.344; children = 1005.902
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Handling Custom Attributes
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Handling Custom Attributes : Time (s): cpu = 00:01:29 ; elapsed = 00:01:40 . Memory (MB): peak = 4028.340 ; gain = 921.496 ; free physical = 276041 ; free virtual = 355319
+Synthesis current peak Physical Memory [PSS] (MB): peak = 3164.553; parent = 3024.088; children = 140.513
+Synthesis current peak Virtual Memory [VSS] (MB): peak = 5034.246; parent = 4028.344; children = 1005.902
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Nets
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Nets : Time (s): cpu = 00:01:29 ; elapsed = 00:01:40 . Memory (MB): peak = 4028.340 ; gain = 921.496 ; free physical = 276027 ; free virtual = 355306
+Synthesis current peak Physical Memory [PSS] (MB): peak = 3164.553; parent = 3024.088; children = 140.513
+Synthesis current peak Virtual Memory [VSS] (MB): peak = 5034.246; parent = 4028.344; children = 1005.902
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Writing Synthesis Report
+---------------------------------------------------------------------------------
+
+Report BlackBoxes: 
++-+--------------+----------+
+| |BlackBox name |Instances |
++-+--------------+----------+
++-+--------------+----------+
+
+Report Cell Usage: 
++------+-------+------+
+|      |Cell   |Count |
++------+-------+------+
+|1     |CARRY8 |    80|
+|2     |LUT1   |     3|
+|3     |LUT2   |   377|
+|4     |LUT3   |   360|
+|5     |LUT4   |   360|
+|6     |LUT5   |   381|
+|7     |LUT6   |  2868|
+|8     |MUXF7  |   784|
+|9     |MUXF8  |   272|
+|10    |FDRE   |  6412|
+|11    |FDSE   |     1|
++------+-------+------+
+---------------------------------------------------------------------------------
+Finished Writing Synthesis Report : Time (s): cpu = 00:01:29 ; elapsed = 00:01:40 . Memory (MB): peak = 4028.340 ; gain = 921.496 ; free physical = 275986 ; free virtual = 355264
+Synthesis current peak Physical Memory [PSS] (MB): peak = 3164.553; parent = 3024.088; children = 140.513
+Synthesis current peak Virtual Memory [VSS] (MB): peak = 5034.246; parent = 4028.344; children = 1005.902
+---------------------------------------------------------------------------------
+Synthesis finished with 0 errors, 0 critical warnings and 51 warnings.
+Synthesis Optimization Runtime : Time (s): cpu = 00:01:26 ; elapsed = 00:01:37 . Memory (MB): peak = 4028.340 ; gain = 787.871 ; free physical = 275986 ; free virtual = 355265
+Synthesis Optimization Complete : Time (s): cpu = 00:01:30 ; elapsed = 00:01:40 . Memory (MB): peak = 4028.348 ; gain = 921.496 ; free physical = 275934 ; free virtual = 355212
+INFO: [Project 1-571] Translating synthesized netlist
+Netlist sorting complete. Time (s): cpu = 00:00:00.09 ; elapsed = 00:00:00.08 . Memory (MB): peak = 4039.309 ; gain = 0.000 ; free physical = 275944 ; free virtual = 355222
+INFO: [Netlist 29-17] Analyzing 1136 Unisim elements for replacement
+INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
+INFO: [Project 1-570] Preparing netlist for logic optimization
+INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 4048.215 ; gain = 0.000 ; free physical = 275772 ; free virtual = 355050
+INFO: [Project 1-111] Unisim Transformation Summary:
+No Unisim elements were transformed.
+
+Synth Design complete, checksum: 39e4e75b
+INFO: [Common 17-83] Releasing license: Synthesis
+59 Infos, 123 Warnings, 0 Critical Warnings and 0 Errors encountered.
+synth_design completed successfully
+synth_design: Time (s): cpu = 00:01:53 ; elapsed = 00:02:03 . Memory (MB): peak = 4048.215 ; gain = 1881.652 ; free physical = 275967 ; free virtual = 355246
+INFO: [Common 17-1381] The checkpoint '/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.runs/project_1_dac_source_i_0_synth_1/project_1_dac_source_i_0.dcp' has been generated.
+INFO: [Coretcl 2-1648] Added synthesis output to IP cache for IP project_1_dac_source_i_0, cache-ID = 390f97dd2db5d364
+INFO: [Coretcl 2-1174] Renamed 62 cell refs.
+INFO: [Common 17-1381] The checkpoint '/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.runs/project_1_dac_source_i_0_synth_1/project_1_dac_source_i_0.dcp' has been generated.
+INFO: [runtcl-4] Executing : report_utilization -file project_1_dac_source_i_0_utilization_synth.rpt -pb project_1_dac_source_i_0_utilization_synth.pb
+INFO: [Common 17-206] Exiting Vivado at Fri Oct 14 13:29:21 2022...

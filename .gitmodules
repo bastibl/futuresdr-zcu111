@@ -1,0 +1,3 @@
+[submodule "xilinx-zcu111-2022.2/components/ext_source/meta-rust"]
+	path = xilinx-zcu111-2022.2/components/ext_source/meta-rust
+	url = https://github.com/meta-rust/meta-rust.git

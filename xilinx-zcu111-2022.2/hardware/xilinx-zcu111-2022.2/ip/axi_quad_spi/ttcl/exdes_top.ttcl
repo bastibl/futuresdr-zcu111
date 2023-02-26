@@ -1,0 +1,2875 @@
+<: set ComponentName [getComponentNameString] :>
+<: setOutputDirectory [ttcl_string_concat $ComponentName "/example_design"] :>
+<: setFileName [ttcl_string_concat $ComponentName "_exdes"] :>
+<: set C_FIFO_DEPTH  [get_property PARAM_VALUE.C_FIFO_DEPTH ] :>
+<: set C_ADDR_WIDTH  [get_property MODELPARAM_VALUE.C_SPI_MEM_ADDR_BITS ] :>
+<: set ADDR_WIDTH [expr {$C_ADDR_WIDTH - 1}] :>
+<: set C_USE_STARTUP  [get_property PARAM_VALUE.C_USE_STARTUP ] :>
+<: set UC_FAMILY [get_property PARAM_VALUE.UC_FAMILY ] :>
+<: set C_NUM_SS_BITS      [get_property PARAM_VALUE.C_NUM_SS_BITS ] :>
+<: set SLAVES [expr {$C_NUM_SS_BITS - 1}] :>
+<: set Master_mode  [get_property PARAM_VALUE.Master_mode ] :>
+<: set C_DATA_WIDTH  [get_property PARAM_VALUE.C_NUM_TRANSFER_BITS ] :>
+<: set C_S_AXI4_ID_WIDTH  [get_property PARAM_VALUE.C_S_AXI4_ID_WIDTH ] :>
+<: set lsb_stup  [get_property MODELPARAM_VALUE.C_LSB_STUP ] :>
+<: set C_USE_STARTUP_EXT  [get_property MODELPARAM_VALUE.C_USE_STARTUP_EXT ] :>
+<: if {$C_S_AXI4_ID_WIDTH == 0} { :>
+<: set C_ID_WIDTH 1 :>
+<: } else { :>
+<: set C_ID_WIDTH $C_S_AXI4_ID_WIDTH :>
+<: } :>
+<: set ID_WIDTH [expr {$C_ID_WIDTH - 1}] :>
+<: set C_XIP_MODE  [get_property PARAM_VALUE.C_XIP_MODE ] :>
+<: set C_AXI4  [get_property PARAM_VALUE.C_TYPE_OF_AXI4_INTERFACE ] :>
+<: set C_SPI_MODE    [get_property PARAM_VALUE.C_SPI_MODE ] :>
+<: set C_DUAL_QUAD_MODE    [get_property PARAM_VALUE.C_DUAL_QUAD_MODE ] :>
+<: set C_SPI_MEMORY  [get_property PARAM_VALUE.C_SPI_MEMORY ] :>
+<: if {$C_SPI_MEMORY == 0} { :>
+<: set SPI_MODE 0 :>
+<: } else { :>
+<: set SPI_MODE $C_SPI_MODE :>
+<: } :>
+<: set wd [ file dirname [ get_property xml_file_name [ current_ipbom ] ] ] :>
+<: setFileExtension ".vhd" :>
+--Example design Top
+-- file: exdes_top.vhd
+-- 
+-- (c) Copyright 2008 - 2013 Xilinx, Inc. All rights reserved.
+-- 
+-- This file contains confidential and proprietary information
+-- of Xilinx, Inc. and is protected under U.S. and
+-- international copyright and other intellectual property
+-- laws.
+-- 
+-- DISCLAIMER
+-- This disclaimer is not a license and does not grant any
+-- rights to the materials distributed herewith. Except as
+-- otherwise provided in a valid license issued to you by
+-- Xilinx, and to the maximum extent permitted by applicable
+-- law: (1) THESE MATERIALS ARE MADE AVAILABLE "AS IS" AND
+-- WITH ALL FAULTS, AND XILINX HEREBY DISCLAIMS ALL WARRANTIES
+-- AND CONDITIONS, EXPRESS, IMPLIED, OR STATUTORY, INCLUDING
+-- BUT NOT LIMITED TO WARRANTIES OF MERCHANTABILITY, NON-
+-- INFRINGEMENT, OR FITNESS FOR ANY PARTICULAR PURPOSE; and
+-- (2) Xilinx shall not be liable (whether in contract or tort,
+-- including negligence, or under any other theory of
+-- liability) for any loss or damage of any kind or nature
+-- related to, arising under or in connection with these
+-- materials, including for any direct, or any indirect,
+-- special, incidental, or consequential loss or damage
+-- (including loss of data, profits, goodwill, or any type of
+-- loss or damage suffered as a result of any action brought
+-- by a third party) even if such damage or loss was
+-- reasonably foreseeable or Xilinx had been advised of the
+-- possibility of the same.
+-- 
+-- CRITICAL APPLICATIONS
+-- Xilinx products are not designed or intended to be fail-
+-- safe, or for use in any application requiring fail-safe
+-- performance, such as life-support or safety devices or
+-- systems, Class III medical devices, nuclear facilities,
+-- applications related to the deployment of airbags, or any
+-- other applications that could lead to death, personal
+-- injury, or severe property or environmental damage
+-- (individually and collectively, "Critical
+-- Applications"). Customer assumes the sole risk and
+-- liability of any use of Xilinx products in Critical
+-- Applications, subject only to applicable laws and
+-- regulations governing limitations on product liability.
+-- 
+-- THIS COPYRIGHT NOTICE AND DISCLAIMER MUST BE RETAINED AS
+-- PART OF THIS FILE AT ALL TIMES.
+-- 
+------------------------------------------------------------------------------
+-- User entered comments
+------------------------------------------------------------------------------
+-- This is a self-desigined TOP Wrapper developed for QSPI Example Design
+--
+------------------------------------------------------------------------------
+
+
+
+library ieee;
+use ieee.std_logic_1164.all;
+use ieee.numeric_std.all;
+use ieee.std_logic_misc.all;
+use ieee.std_logic_arith.all;
+use ieee.std_logic_unsigned.all;
+
+Library xpm;
+use xpm.vcomponents.all;
+
+Library UNISIM;
+use UNISIM.vcomponents.all;
+
+library work;
+entity <=:$ComponentName:>_exdes is
+ PORT (
+    clk_p       : in std_logic;
+    clk_n       : in std_logic;
+    reset       : in std_logic;
+	atg_done    : OUT STD_LOGIC;
+      axi_clk_out    : out std_logic;
+      axi_aresetn_out    : out std_logic;
+    IO0_IO     : inout STD_LOGIC;
+    IO1_IO     : inout STD_LOGIC;
+<: if {$C_SPI_MODE == 2} { :>	
+    IO2_IO     : inout STD_LOGIC;
+    IO3_IO     : inout STD_LOGIC;
+<: } :>
+<: if {$C_USE_STARTUP == 1 && $UC_FAMILY == 1 && $C_DUAL_QUAD_MODE == 1 && $C_USE_STARTUP_EXT == 0} { :>	
+    IO0_1_IO     : inout STD_LOGIC;
+    IO1_1_IO     : inout STD_LOGIC;
+    IO2_1_IO     : inout STD_LOGIC;
+    IO3_1_IO     : inout STD_LOGIC;
+    SS_1_IO     : inout STD_LOGIC;
+<: } :>
+	
+--<: if {$Master_mode == 1 } { :>
+--<: if {$SLAVES == 0 } { :>
+--<: if {$C_USE_STARTUP == 1 && $UC_FAMILY == 1 && $C_NUM_SS_BITS == 1} { :>	
+--<: } else { :>
+--    SS_IO     : inout STD_LOGIC;
+--<: } :>	
+--<: } else { :>
+--<: if {$C_USE_STARTUP == 1 && $UC_FAMILY == 1 && $C_NUM_SS_BITS == 1 && $C_USE_STARTUP_EXT == 0} { :>	
+--<: } else { :>
+--<: if {$C_DUAL_QUAD_MODE == 0 || ($C_DUAL_QUAD_MODE == 1 && $C_USE_STARTUP_EXT == 0)} { :>	
+--<: if {$C_USE_STARTUP_EXT == 1 } { :>
+--    SS_IO     : inout STD_LOGIC_VECTOR(<=:$SLAVES:> DOWNTO 1);
+--<: } else { :>
+--<: if {$C_USE_STARTUP == 1 && $UC_FAMILY == 1 && ($C_NUM_SS_BITS == 1 || ($C_USE_STARTUP_EXT == 0 && $C_DUAL_QUAD_MODE == 1))} { :>	
+--<: } else { :>	
+--    SS_IO     : inout STD_LOGIC_VECTOR(<=:$SLAVES:> DOWNTO <=:$lsb_stup:>);
+--<: } :>	
+--<: } :>	
+--<: } else { :>
+--    SS_IO     : inout STD_LOGIC;
+--<: } :>	
+--<: } :>	
+--<: } :>	
+--<: } :>
+
+<: if {$Master_mode == 1} { :>
+<: if {($UC_FAMILY == 0) || ($UC_FAMILY == 1 && $C_USE_STARTUP == 0)} { :>
+    SS_IO     : inout STD_LOGIC_VECTOR(<=:$SLAVES:> DOWNTO 0);
+<: } else { :>
+--<: if {$C_DUAL_QUAD_MODE == 1 && $C_USE_STARTUP_EXT == 1} { :>
+--    SS_IO     : inout STD_LOGIC;
+--<: } :>
+<: if {$C_NUM_SS_BITS > 1} { :>
+    SS_IO     : inout STD_LOGIC_VECTOR(<=:$SLAVES:> DOWNTO 1);
+<: } :>
+<: } :>
+<: } :>
+	
+<: if {$C_USE_STARTUP == 0 || ($C_USE_STARTUP_EXT == 1 && $C_DUAL_QUAD_MODE == 1)} { :>	
+    SCK_IO     : inout STD_LOGIC;
+<: } :>	
+<: if {$Master_mode == 0 } { :>
+    SPISEL            : in STD_LOGIC;
+    SS_IO_Master      : inout STD_LOGIC;
+    IO0_IO_Master     : inout STD_LOGIC;
+    IO1_IO_Master     : inout STD_LOGIC;
+<: if {$C_SPI_MODE == 2} { :>	
+    IO2_IO_Master     : inout STD_LOGIC;
+    IO3_IO_Master     : inout STD_LOGIC;
+<: } :>	
+<: if {$C_USE_STARTUP == 0} { :>	
+    SCK_IO_Master     : inout STD_LOGIC;
+<: } :>	
+<: } :>	
+	atg_status  : OUT STD_LOGIC_VECTOR(31 DOWNTO 0)
+  );
+end entity;
+
+architecture impl of <=:$ComponentName:>_exdes is
+
+--------------------------------------------------------------------------------------
+-- below attributes are added to reduce the synth warnings in Vivado tool
+  attribute DowngradeIPIdentifiedWarnings: string;
+  attribute DowngradeIPIdentifiedWarnings of impl : architecture is "yes";
+--------------------------------------------------------------------------------------
+COMPONENT clk_wiz_0
+port
+ (-- Clock in ports
+  clk_in1_p         : in     std_logic;
+  clk_in1_n         : in     std_logic;
+  -- Clock out ports
+  clk_out1          : out    std_logic;
+  -- Status and control signals
+  reset             : in     std_logic;
+  locked            : out    std_logic
+ );
+end COMPONENT;
+
+<: if {$Master_mode == 1 } { :>
+COMPONENT axi_traffic_gen_1
+  PORT (
+    s_axi_aclk : IN STD_LOGIC;
+    s_axi_aresetn : IN STD_LOGIC;
+    m_axi_lite_ch1_awaddr : OUT STD_LOGIC_VECTOR(31 DOWNTO 0);
+    m_axi_lite_ch1_awprot : OUT STD_LOGIC_VECTOR(2 DOWNTO 0);
+    m_axi_lite_ch1_awvalid : OUT STD_LOGIC;
+    m_axi_lite_ch1_awready : IN STD_LOGIC;
+    m_axi_lite_ch1_wdata : OUT STD_LOGIC_VECTOR(31 DOWNTO 0);
+    m_axi_lite_ch1_wstrb : OUT STD_LOGIC_VECTOR(3 DOWNTO 0);
+    m_axi_lite_ch1_wvalid : OUT STD_LOGIC;
+    m_axi_lite_ch1_wready : IN STD_LOGIC;
+    m_axi_lite_ch1_bresp : IN STD_LOGIC_VECTOR(1 DOWNTO 0);
+    m_axi_lite_ch1_bvalid : IN STD_LOGIC;
+    m_axi_lite_ch1_bready : OUT STD_LOGIC;
+    m_axi_lite_ch1_araddr : OUT STD_LOGIC_VECTOR(31 DOWNTO 0);
+    m_axi_lite_ch1_arvalid : OUT STD_LOGIC;
+    m_axi_lite_ch1_arready : IN STD_LOGIC;
+    m_axi_lite_ch1_rdata : IN STD_LOGIC_VECTOR(31 DOWNTO 0);
+    m_axi_lite_ch1_rvalid : IN STD_LOGIC;
+    m_axi_lite_ch1_rready : OUT STD_LOGIC;
+    m_axi_lite_ch1_rresp : IN STD_LOGIC_VECTOR(1 DOWNTO 0);
+    done : OUT STD_LOGIC;
+    status : OUT STD_LOGIC_VECTOR(31 DOWNTO 0)
+  );
+END COMPONENT;
+<: if {$C_XIP_MODE == 0 } { :>
+COMPONENT axi_traffic_gen_2
+  PORT (
+    s_axi_aclk : IN STD_LOGIC;
+    s_axi_aresetn : IN STD_LOGIC;
+    m_axi_lite_ch1_awaddr : OUT STD_LOGIC_VECTOR(31 DOWNTO 0);
+    m_axi_lite_ch1_awprot : OUT STD_LOGIC_VECTOR(2 DOWNTO 0);
+    m_axi_lite_ch1_awvalid : OUT STD_LOGIC;
+    m_axi_lite_ch1_awready : IN STD_LOGIC;
+    m_axi_lite_ch1_wdata : OUT STD_LOGIC_VECTOR(31 DOWNTO 0);
+    m_axi_lite_ch1_wstrb : OUT STD_LOGIC_VECTOR(3 DOWNTO 0);
+    m_axi_lite_ch1_wvalid : OUT STD_LOGIC;
+    m_axi_lite_ch1_wready : IN STD_LOGIC;
+    m_axi_lite_ch1_bresp : IN STD_LOGIC_VECTOR(1 DOWNTO 0);
+    m_axi_lite_ch1_bvalid : IN STD_LOGIC;
+    m_axi_lite_ch1_bready : OUT STD_LOGIC;
+    m_axi_lite_ch1_araddr : OUT STD_LOGIC_VECTOR(31 DOWNTO 0);
+    m_axi_lite_ch1_arvalid : OUT STD_LOGIC;
+    m_axi_lite_ch1_arready : IN STD_LOGIC;
+    m_axi_lite_ch1_rdata : IN STD_LOGIC_VECTOR(31 DOWNTO 0);
+    m_axi_lite_ch1_rvalid : IN STD_LOGIC;
+    m_axi_lite_ch1_rready : OUT STD_LOGIC;
+    m_axi_lite_ch1_rresp : IN STD_LOGIC_VECTOR(1 DOWNTO 0);
+    done : OUT STD_LOGIC;
+    status : OUT STD_LOGIC_VECTOR(31 DOWNTO 0)
+  );
+END COMPONENT;
+
+COMPONENT axi_traffic_gen_3
+  PORT (
+    s_axi_aclk : IN STD_LOGIC;
+    s_axi_aresetn : IN STD_LOGIC;
+    m_axi_lite_ch1_awaddr : OUT STD_LOGIC_VECTOR(31 DOWNTO 0);
+    m_axi_lite_ch1_awprot : OUT STD_LOGIC_VECTOR(2 DOWNTO 0);
+    m_axi_lite_ch1_awvalid : OUT STD_LOGIC;
+    m_axi_lite_ch1_awready : IN STD_LOGIC;
+    m_axi_lite_ch1_wdata : OUT STD_LOGIC_VECTOR(31 DOWNTO 0);
+    m_axi_lite_ch1_wstrb : OUT STD_LOGIC_VECTOR(3 DOWNTO 0);
+    m_axi_lite_ch1_wvalid : OUT STD_LOGIC;
+    m_axi_lite_ch1_wready : IN STD_LOGIC;
+    m_axi_lite_ch1_bresp : IN STD_LOGIC_VECTOR(1 DOWNTO 0);
+    m_axi_lite_ch1_bvalid : IN STD_LOGIC;
+    m_axi_lite_ch1_bready : OUT STD_LOGIC;
+    m_axi_lite_ch1_araddr : OUT STD_LOGIC_VECTOR(31 DOWNTO 0);
+    m_axi_lite_ch1_arvalid : OUT STD_LOGIC;
+    m_axi_lite_ch1_arready : IN STD_LOGIC;
+    m_axi_lite_ch1_rdata : IN STD_LOGIC_VECTOR(31 DOWNTO 0);
+    m_axi_lite_ch1_rvalid : IN STD_LOGIC;
+    m_axi_lite_ch1_rready : OUT STD_LOGIC;
+    m_axi_lite_ch1_rresp : IN STD_LOGIC_VECTOR(1 DOWNTO 0);
+    done : OUT STD_LOGIC;
+    status : OUT STD_LOGIC_VECTOR(31 DOWNTO 0)
+  );
+END COMPONENT;
+
+COMPONENT <=:$ComponentName:>
+  PORT (
+    ext_spi_clk : IN STD_LOGIC;
+<: if {$C_AXI4 == 0} { :>
+    s_axi_aclk : IN STD_LOGIC;
+    s_axi_aresetn : IN STD_LOGIC;
+    s_axi_awaddr : IN STD_LOGIC_VECTOR(6 DOWNTO 0);
+    s_axi_awvalid : IN STD_LOGIC;
+    s_axi_awready : OUT STD_LOGIC;
+    s_axi_wdata : IN STD_LOGIC_VECTOR(31 DOWNTO 0);
+    s_axi_wstrb : IN STD_LOGIC_VECTOR(3 DOWNTO 0);
+    s_axi_wvalid : IN STD_LOGIC;
+    s_axi_wready : OUT STD_LOGIC;
+    s_axi_bresp : OUT STD_LOGIC_VECTOR(1 DOWNTO 0);
+    s_axi_bvalid : OUT STD_LOGIC;
+    s_axi_bready : IN STD_LOGIC;
+    s_axi_araddr : IN STD_LOGIC_VECTOR(6 DOWNTO 0);
+    s_axi_arvalid : IN STD_LOGIC;
+    s_axi_arready : OUT STD_LOGIC;
+    s_axi_rdata : OUT STD_LOGIC_VECTOR(31 DOWNTO 0);
+    s_axi_rresp : OUT STD_LOGIC_VECTOR(1 DOWNTO 0);
+    s_axi_rvalid : OUT STD_LOGIC;
+    s_axi_rready : IN STD_LOGIC;
+<: } :>
+<: if {$C_AXI4 == 1} { :>
+    s_axi4_aclk : IN STD_LOGIC;
+    s_axi4_aresetn : IN STD_LOGIC;
+<: if {$C_S_AXI4_ID_WIDTH != 0} { :>
+    s_axi4_awid : IN STD_LOGIC_VECTOR(<=:$ID_WIDTH:> DOWNTO 0);
+<: } :>
+    s_axi4_awaddr : IN STD_LOGIC_VECTOR(<=:$ADDR_WIDTH:> DOWNTO 0);
+    s_axi4_awlen : IN STD_LOGIC_VECTOR(7 DOWNTO 0);
+    s_axi4_awsize : IN STD_LOGIC_VECTOR(2 DOWNTO 0);
+    s_axi4_awburst : IN STD_LOGIC_VECTOR(1 DOWNTO 0);
+    s_axi4_awlock : IN STD_LOGIC;
+    s_axi4_awcache : IN STD_LOGIC_VECTOR(3 DOWNTO 0);
+    s_axi4_awprot : IN STD_LOGIC_VECTOR(2 DOWNTO 0);
+    s_axi4_awvalid : IN STD_LOGIC;
+    s_axi4_awready : OUT STD_LOGIC;
+    s_axi4_wdata : IN STD_LOGIC_VECTOR(31 DOWNTO 0);
+    s_axi4_wstrb : IN STD_LOGIC_VECTOR(3 DOWNTO 0);
+    s_axi4_wlast : IN STD_LOGIC;
+    s_axi4_wvalid : IN STD_LOGIC;
+    s_axi4_wready : OUT STD_LOGIC;
+<: if {$C_S_AXI4_ID_WIDTH != 0} { :>
+    s_axi4_bid : OUT STD_LOGIC_VECTOR(<=:$ID_WIDTH:> DOWNTO 0);
+<: } :>
+    s_axi4_bresp : OUT STD_LOGIC_VECTOR(1 DOWNTO 0);
+    s_axi4_bvalid : OUT STD_LOGIC;
+    s_axi4_bready : IN STD_LOGIC;
+<: if {$C_S_AXI4_ID_WIDTH != 0} { :>
+    s_axi4_arid : IN STD_LOGIC_VECTOR(<=:$ID_WIDTH:> DOWNTO 0);
+<: } :>
+    s_axi4_araddr : IN STD_LOGIC_VECTOR(<=:$ADDR_WIDTH:> DOWNTO 0);
+    s_axi4_arlen : IN STD_LOGIC_VECTOR(7 DOWNTO 0);
+    s_axi4_arsize : IN STD_LOGIC_VECTOR(2 DOWNTO 0);
+    s_axi4_arburst : IN STD_LOGIC_VECTOR(1 DOWNTO 0);
+    s_axi4_arlock : IN STD_LOGIC;
+    s_axi4_arcache : IN STD_LOGIC_VECTOR(3 DOWNTO 0);
+    s_axi4_arprot : IN STD_LOGIC_VECTOR(2 DOWNTO 0);
+    s_axi4_arvalid : IN STD_LOGIC;
+    s_axi4_arready : OUT STD_LOGIC;
+<: if {$C_S_AXI4_ID_WIDTH != 0} { :>
+    s_axi4_rid : OUT STD_LOGIC_VECTOR(<=:$ID_WIDTH:> DOWNTO 0);
+<: } :>
+    s_axi4_rdata : OUT STD_LOGIC_VECTOR(31 DOWNTO 0);
+    s_axi4_rresp : OUT STD_LOGIC_VECTOR(1 DOWNTO 0);
+    s_axi4_rlast : OUT STD_LOGIC;
+    s_axi4_rvalid : OUT STD_LOGIC;
+    s_axi4_rready : IN STD_LOGIC;
+<: } :>
+<: if {$C_USE_STARTUP == 1 && $UC_FAMILY == 1 && $C_USE_STARTUP_EXT == 0} { :>	
+    gsr : IN STD_LOGIC;
+    gts : IN STD_LOGIC;
+    keyclearb : IN STD_LOGIC;
+    usrcclkts : IN STD_LOGIC;
+    usrdoneo : IN STD_LOGIC;
+    usrdonets : IN STD_LOGIC;
+<: } else { :>	
+    io0_i : IN STD_LOGIC;
+    io0_o : OUT STD_LOGIC;
+    io0_t : OUT STD_LOGIC;
+    io1_i : IN STD_LOGIC;
+    io1_o : OUT STD_LOGIC;
+    io1_t : OUT STD_LOGIC;
+<: } :>
+<: if {$C_SPI_MODE == 2} { :>	
+<: if {$C_USE_STARTUP == 1 && $UC_FAMILY == 1} { :>	
+<: if {$C_DUAL_QUAD_MODE == 1} { :>	
+    io0_1_i : IN STD_LOGIC;
+    io0_1_o : OUT STD_LOGIC;
+    io0_1_t : OUT STD_LOGIC;
+    io1_1_i : IN STD_LOGIC;
+    io1_1_o : OUT STD_LOGIC;
+    io1_1_t : OUT STD_LOGIC;
+    io2_1_i : IN STD_LOGIC;
+    io2_1_o : OUT STD_LOGIC;
+    io2_1_t : OUT STD_LOGIC;
+    io3_1_i : IN STD_LOGIC;
+    io3_1_o : OUT STD_LOGIC;
+    io3_1_t : OUT STD_LOGIC;
+    ss_1_i : IN STD_LOGIC;
+    ss_1_o : OUT STD_LOGIC;
+    ss_1_t : OUT STD_LOGIC;
+<: if {$C_USE_STARTUP == 1 && $UC_FAMILY == 1 && $C_USE_STARTUP_EXT == 1} { :>	
+	 io2_i : IN STD_LOGIC;
+    io2_o : OUT STD_LOGIC;
+    io2_t : OUT STD_LOGIC;
+    io3_i : IN STD_LOGIC;
+    io3_o : OUT STD_LOGIC;
+    io3_t : OUT STD_LOGIC;
+    sck_i : IN STD_LOGIC;
+    sck_o : OUT STD_LOGIC;
+    sck_t : OUT STD_LOGIC;
+
+<: } :>	
+<: } else { :>	
+<: if {$C_USE_STARTUP_EXT == 1} { :>	
+	 io2_i : IN STD_LOGIC;
+    io2_o : OUT STD_LOGIC;
+    io2_t : OUT STD_LOGIC;
+    io3_i : IN STD_LOGIC;
+    io3_o : OUT STD_LOGIC;
+    io3_t : OUT STD_LOGIC;
+    sck_i : IN STD_LOGIC;
+    sck_o : OUT STD_LOGIC;
+    sck_t : OUT STD_LOGIC;
+<: } :>	
+<: } :>	
+<: } else { :>	
+	 io2_i : IN STD_LOGIC;
+    io2_o : OUT STD_LOGIC;
+    io2_t : OUT STD_LOGIC;
+    io3_i : IN STD_LOGIC;
+    io3_o : OUT STD_LOGIC;
+    io3_t : OUT STD_LOGIC;
+<: if {$C_USE_STARTUP == 0 || $C_USE_STARTUP_EXT == 1} { :>	
+    sck_i : IN STD_LOGIC;
+    sck_o : OUT STD_LOGIC;
+    sck_t : OUT STD_LOGIC;
+<: } :>	
+<: } :>	
+<: } :>	
+<: if {($C_USE_STARTUP == 0 || ($C_DUAL_QUAD_MODE == 0 && $C_USE_STARTUP_EXT == 1)) && $C_SPI_MODE < 2} { :>	
+    sck_i : IN STD_LOGIC;
+    sck_o : OUT STD_LOGIC;
+    sck_t : OUT STD_LOGIC;
+<: } :>	
+<: if {$C_USE_STARTUP == 1 && $UC_FAMILY == 1 && ($C_NUM_SS_BITS == 1 || $C_DUAL_QUAD_MODE == 1)} { :>	
+<: if {$C_USE_STARTUP_EXT == 1} { :>	
+    ss_i : IN STD_LOGIC_VECTOR(0 DOWNTO 0);
+    ss_o : OUT STD_LOGIC_VECTOR(0 DOWNTO 0);
+    ss_t : OUT STD_LOGIC;
+<: } :>	
+<: } else { :>	
+<: if {$C_DUAL_QUAD_MODE == 0 || ($C_DUAL_QUAD_MODE == 1 && $C_USE_STARTUP_EXT == 0)} { :>	
+    ss_i : IN STD_LOGIC_VECTOR(<=:$SLAVES:> DOWNTO <=:$lsb_stup:>);
+    ss_o : OUT STD_LOGIC_VECTOR(<=:$SLAVES:> DOWNTO <=:$lsb_stup:>);
+<: } else { :>	
+    ss_i : IN STD_LOGIC_VECTOR(0 DOWNTO 0);
+    ss_o : OUT STD_LOGIC_VECTOR(0 DOWNTO 0);
+<: } :>	
+    ss_t : OUT STD_LOGIC;
+<: } :>	
+    ip2intc_irpt : OUT STD_LOGIC
+  );
+END COMPONENT;
+
+<: } else { :>
+COMPONENT axi_cdma_0
+  PORT (
+    m_axi_aclk : in std_logic;
+    s_axi_lite_aclk : in std_logic;
+    s_axi_lite_aresetn : in std_logic;
+    cdma_introut : out std_logic;
+    s_axi_lite_awready : out std_logic;
+    s_axi_lite_awvalid : in std_logic;
+    s_axi_lite_awaddr : in std_logic_vector(5 DOWNTO 0);
+    s_axi_lite_wready : out std_logic;
+    s_axi_lite_wvalid : in std_logic;
+    s_axi_lite_wdata : in std_logic_vector(31 DOWNTO 0);
+    s_axi_lite_bready : in std_logic;
+    s_axi_lite_bvalid : out std_logic;
+    s_axi_lite_bresp : out std_logic_vector(1 DOWNTO 0);
+    s_axi_lite_arready : out std_logic;
+    s_axi_lite_arvalid : in std_logic;
+    s_axi_lite_araddr : in std_logic_vector(5 DOWNTO 0);
+    s_axi_lite_rready : in std_logic;
+    s_axi_lite_rvalid : out std_logic;
+    s_axi_lite_rdata : out std_logic_vector(31 DOWNTO 0);
+    s_axi_lite_rresp : out std_logic_vector(1 DOWNTO 0);
+    m_axi_arready : in std_logic;
+    m_axi_arvalid : out std_logic;
+    m_axi_araddr : out std_logic_vector(31 DOWNTO 0);
+    m_axi_arlen : out std_logic_vector(7 DOWNTO 0);
+    m_axi_arsize : out std_logic_vector(2 DOWNTO 0);
+    m_axi_arburst : out std_logic_vector(1 DOWNTO 0);
+    m_axi_arprot : out std_logic_vector(2 DOWNTO 0);
+    m_axi_arcache : out std_logic_vector(3 DOWNTO 0);
+    m_axi_rready : out std_logic;
+    m_axi_rvalid : in std_logic;
+    m_axi_rdata : in std_logic_vector(31 DOWNTO 0);
+    m_axi_rresp : in std_logic_vector(1 DOWNTO 0);
+    m_axi_rlast : in std_logic;
+    m_axi_awready : in std_logic;
+    m_axi_awvalid : out std_logic;
+    m_axi_awaddr : out std_logic_vector(31 DOWNTO 0);
+    m_axi_awlen : out std_logic_vector(7 DOWNTO 0);
+    m_axi_awsize : out std_logic_vector(2 DOWNTO 0);
+    m_axi_awburst : out std_logic_vector(1 DOWNTO 0);
+    m_axi_awprot : out std_logic_vector(2 DOWNTO 0);
+    m_axi_awcache : out std_logic_vector(3 DOWNTO 0);
+    m_axi_wready : in std_logic;
+    m_axi_wvalid : out std_logic;
+    m_axi_wdata : out std_logic_vector(31 DOWNTO 0);
+    m_axi_wstrb : out std_logic_vector(3 DOWNTO 0);
+    m_axi_wlast : out std_logic;
+    m_axi_bready : out std_logic;
+    m_axi_bvalid : in std_logic;
+    m_axi_bresp : in std_logic_vector(1 DOWNTO 0);
+    cdma_tvect_out : out std_logic_vector(31 DOWNTO 0)
+  );
+END COMPONENT;
+
+-------------------Block Memory Generator----------------------
+COMPONENT axi_bram_ctrl_3
+  PORT (
+    s_axi_aclk : IN STD_LOGIC;
+    s_axi_aresetn : IN STD_LOGIC;
+    s_axi_awaddr : IN STD_LOGIC_VECTOR(11 DOWNTO 0);
+    s_axi_awlen : IN STD_LOGIC_VECTOR(7 DOWNTO 0);
+    s_axi_awsize : IN STD_LOGIC_VECTOR(2 DOWNTO 0);
+    s_axi_awburst : IN STD_LOGIC_VECTOR(1 DOWNTO 0);
+    s_axi_awlock : IN STD_LOGIC;
+    s_axi_awcache : IN STD_LOGIC_VECTOR(3 DOWNTO 0);
+    s_axi_awprot : IN STD_LOGIC_VECTOR(2 DOWNTO 0);
+    s_axi_awvalid : IN STD_LOGIC;
+    s_axi_awready : OUT STD_LOGIC;
+    s_axi_wdata : IN STD_LOGIC_VECTOR(31 DOWNTO 0);
+    s_axi_wstrb : IN STD_LOGIC_VECTOR(3 DOWNTO 0);
+    s_axi_wlast : IN STD_LOGIC;
+    s_axi_wvalid : IN STD_LOGIC;
+    s_axi_wready : OUT STD_LOGIC;
+    s_axi_bresp : OUT STD_LOGIC_VECTOR(1 DOWNTO 0);
+    s_axi_bvalid : OUT STD_LOGIC;
+    s_axi_bready : IN STD_LOGIC;
+    s_axi_araddr : IN STD_LOGIC_VECTOR(11 DOWNTO 0);
+    s_axi_arlen : IN STD_LOGIC_VECTOR(7 DOWNTO 0);
+    s_axi_arsize : IN STD_LOGIC_VECTOR(2 DOWNTO 0);
+    s_axi_arburst : IN STD_LOGIC_VECTOR(1 DOWNTO 0);
+    s_axi_arlock : IN STD_LOGIC;
+    s_axi_arcache : IN STD_LOGIC_VECTOR(3 DOWNTO 0);
+    s_axi_arprot : IN STD_LOGIC_VECTOR(2 DOWNTO 0);
+    s_axi_arvalid : IN STD_LOGIC;
+    s_axi_arready : OUT STD_LOGIC;
+    s_axi_rdata : OUT STD_LOGIC_VECTOR(31 DOWNTO 0);
+    s_axi_rresp : OUT STD_LOGIC_VECTOR(1 DOWNTO 0);
+    s_axi_rlast : OUT STD_LOGIC;
+    s_axi_rvalid : OUT STD_LOGIC;
+    s_axi_rready : IN STD_LOGIC;
+    bram_rst_a : OUT STD_LOGIC;
+    bram_clk_a : OUT STD_LOGIC;
+    bram_en_a : OUT STD_LOGIC;
+    bram_we_a : OUT STD_LOGIC_VECTOR(3 DOWNTO 0);
+    bram_addr_a : OUT STD_LOGIC_VECTOR(11 DOWNTO 0);
+    bram_wrdata_a : OUT STD_LOGIC_VECTOR(31 DOWNTO 0);
+    bram_rddata_a : IN STD_LOGIC_VECTOR(31 DOWNTO 0)
+  );
+END COMPONENT;
+
+
+
+
+
+
+--COMPONENT blk_mem_gen_0
+---  PORT (
+---    s_aclk : in std_logic;
+---    s_aresetn : in std_logic;
+---    s_axi_awid : in std_logic_vector(<=:$ID_WIDTH:> DOWNTO 0);
+---    s_axi_awaddr : in std_logic_vector(31 DOWNTO 0);
+---    s_axi_awlen : in std_logic_vector(7 DOWNTO 0);
+---    s_axi_awsize : in std_logic_vector(2 DOWNTO 0);
+---    s_axi_awburst : in std_logic_vector(1 DOWNTO 0);
+---    s_axi_awvalid : in std_logic;
+---    s_axi_awready : out std_logic;
+---    s_axi_wdata : in std_logic_vector(31 DOWNTO 0);
+---    s_axi_wstrb : in std_logic_vector(3 DOWNTO 0);
+---    s_axi_wlast : in std_logic;
+---    s_axi_wvalid : in std_logic;
+---    s_axi_wready : out std_logic;
+---    s_axi_bid : out std_logic_vector(<=:$ID_WIDTH:> DOWNTO 0);
+---    s_axi_bresp : out std_logic_vector(1 DOWNTO 0);
+---    s_axi_bvalid : out std_logic;
+---    s_axi_bready : in std_logic;
+---    s_axi_arid : in std_logic_vector(<=:$ID_WIDTH:> DOWNTO 0);
+---    s_axi_araddr : in std_logic_vector(31 DOWNTO 0);
+---    s_axi_arlen : in std_logic_vector(7 DOWNTO 0);
+---    s_axi_arsize : in std_logic_vector(2 DOWNTO 0);
+---    s_axi_arburst : in std_logic_vector(1 DOWNTO 0);
+---    s_axi_arvalid : in std_logic;
+---    s_axi_arready : out std_logic;
+---    s_axi_rid : out std_logic_vector(<=:$ID_WIDTH:> DOWNTO 0);
+---    s_axi_rdata : out std_logic_vector(31 DOWNTO 0);
+---    s_axi_rresp : out std_logic_vector(1 DOWNTO 0);
+---    s_axi_rlast : out std_logic;
+---    s_axi_rvalid : out std_logic;
+---    s_axi_rready : in std_logic
+---  );
+---END COMPONENT;
+
+
+
+
+
+
+
+
+
+COMPONENT <=:$ComponentName:>
+  PORT (
+    ext_spi_clk : IN STD_LOGIC;
+    s_axi_aclk : IN STD_LOGIC;
+    s_axi_aresetn : IN STD_LOGIC;
+    s_axi4_aclk : IN STD_LOGIC;
+    s_axi4_aresetn : IN STD_LOGIC;
+    s_axi_awaddr : IN STD_LOGIC_VECTOR(6 DOWNTO 0);
+    s_axi_awvalid : IN STD_LOGIC;
+    s_axi_awready : OUT STD_LOGIC;
+    s_axi_wdata : IN STD_LOGIC_VECTOR(31 DOWNTO 0);
+    s_axi_wstrb : IN STD_LOGIC_VECTOR(3 DOWNTO 0);
+    s_axi_wvalid : IN STD_LOGIC;
+    s_axi_wready : OUT STD_LOGIC;
+    s_axi_bresp : OUT STD_LOGIC_VECTOR(1 DOWNTO 0);
+    s_axi_bvalid : OUT STD_LOGIC;
+    s_axi_bready : IN STD_LOGIC;
+    s_axi_araddr : IN STD_LOGIC_VECTOR(6 DOWNTO 0);
+    s_axi_arvalid : IN STD_LOGIC;
+    s_axi_arready : OUT STD_LOGIC;
+    s_axi_rdata : OUT STD_LOGIC_VECTOR(31 DOWNTO 0);
+    s_axi_rresp : OUT STD_LOGIC_VECTOR(1 DOWNTO 0);
+    s_axi_rvalid : OUT STD_LOGIC;
+    s_axi_rready : IN STD_LOGIC;
+<: if {$C_S_AXI4_ID_WIDTH != 0} { :>
+    s_axi4_awid : IN STD_LOGIC_VECTOR(<=:$ID_WIDTH:> DOWNTO 0);
+<: } :>	
+    s_axi4_awaddr : IN STD_LOGIC_VECTOR(<=:$ADDR_WIDTH:> DOWNTO 0);
+    s_axi4_awlen : IN STD_LOGIC_VECTOR(7 DOWNTO 0);
+    s_axi4_awsize : IN STD_LOGIC_VECTOR(2 DOWNTO 0);
+    s_axi4_awburst : IN STD_LOGIC_VECTOR(1 DOWNTO 0);
+    s_axi4_awlock : IN STD_LOGIC;
+    s_axi4_awcache : IN STD_LOGIC_VECTOR(3 DOWNTO 0);
+    s_axi4_awprot : IN STD_LOGIC_VECTOR(2 DOWNTO 0);
+    s_axi4_awvalid : IN STD_LOGIC;
+    s_axi4_awready : OUT STD_LOGIC;
+    s_axi4_wdata : IN STD_LOGIC_VECTOR(31 DOWNTO 0);
+    s_axi4_wstrb : IN STD_LOGIC_VECTOR(3 DOWNTO 0);
+    s_axi4_wlast : IN STD_LOGIC;
+    s_axi4_wvalid : IN STD_LOGIC;
+    s_axi4_wready : OUT STD_LOGIC;
+<: if {$C_S_AXI4_ID_WIDTH != 0} { :>
+    s_axi4_bid : OUT STD_LOGIC_VECTOR(<=:$ID_WIDTH:> DOWNTO 0);
+<: } :>	
+    s_axi4_bresp : OUT STD_LOGIC_VECTOR(1 DOWNTO 0);
+    s_axi4_bvalid : OUT STD_LOGIC;
+    s_axi4_bready : IN STD_LOGIC;
+<: if {$C_S_AXI4_ID_WIDTH != 0} { :>
+    s_axi4_arid : IN STD_LOGIC_VECTOR(<=:$ID_WIDTH:> DOWNTO 0);
+<: } :>	
+    s_axi4_araddr : IN STD_LOGIC_VECTOR(<=:$ADDR_WIDTH:> DOWNTO 0);
+    s_axi4_arlen : IN STD_LOGIC_VECTOR(7 DOWNTO 0);
+    s_axi4_arsize : IN STD_LOGIC_VECTOR(2 DOWNTO 0);
+    s_axi4_arburst : IN STD_LOGIC_VECTOR(1 DOWNTO 0);
+    s_axi4_arlock : IN STD_LOGIC;
+    s_axi4_arcache : IN STD_LOGIC_VECTOR(3 DOWNTO 0);
+    s_axi4_arprot : IN STD_LOGIC_VECTOR(2 DOWNTO 0);
+    s_axi4_arvalid : IN STD_LOGIC;
+    s_axi4_arready : OUT STD_LOGIC;
+<: if {$C_S_AXI4_ID_WIDTH != 0} { :>
+    s_axi4_rid : OUT STD_LOGIC_VECTOR(<=:$ID_WIDTH:> DOWNTO 0);
+<: } :>	
+    s_axi4_rdata : OUT STD_LOGIC_VECTOR(31 DOWNTO 0);
+    s_axi4_rresp : OUT STD_LOGIC_VECTOR(1 DOWNTO 0);
+    s_axi4_rlast : OUT STD_LOGIC;
+    s_axi4_rvalid : OUT STD_LOGIC;
+    s_axi4_rready : IN STD_LOGIC;
+<: if {$C_USE_STARTUP == 1 && $UC_FAMILY == 1 && $C_USE_STARTUP_EXT == 0} { :>	
+    gsr : IN STD_LOGIC;
+    gts : IN STD_LOGIC;
+    keyclearb : IN STD_LOGIC;
+    usrcclkts : IN STD_LOGIC;
+    usrdoneo : IN STD_LOGIC;
+    usrdonets : IN STD_LOGIC;
+<: } else { :>	
+    io0_i : IN STD_LOGIC;
+    io0_o : OUT STD_LOGIC;
+    io0_t : OUT STD_LOGIC;
+    io1_i : IN STD_LOGIC;
+    io1_o : OUT STD_LOGIC;
+    io1_t : OUT STD_LOGIC;
+<: } :>	
+<: if {$C_SPI_MODE == 2} { :>	
+<: if {$C_USE_STARTUP == 1 && $UC_FAMILY == 1} { :>	
+<: if {$C_DUAL_QUAD_MODE == 1} { :>	
+    io0_1_i : IN STD_LOGIC;
+    io0_1_o : OUT STD_LOGIC;
+    io0_1_t : OUT STD_LOGIC;
+    io1_1_i : IN STD_LOGIC;
+    io1_1_o : OUT STD_LOGIC;
+    io1_1_t : OUT STD_LOGIC;
+    io2_1_i : IN STD_LOGIC;
+    io2_1_o : OUT STD_LOGIC;
+    io2_1_t : OUT STD_LOGIC;
+    io3_1_i : IN STD_LOGIC;
+    io3_1_o : OUT STD_LOGIC;
+    io3_1_t : OUT STD_LOGIC;
+    ss_1_i : IN STD_LOGIC;
+    ss_1_o : OUT STD_LOGIC;
+    ss_1_t : OUT STD_LOGIC;
+<: if {$C_USE_STARTUP == 1 && $UC_FAMILY == 1 && $C_USE_STARTUP_EXT == 1} { :>	
+	 io2_i : IN STD_LOGIC;
+    io2_o : OUT STD_LOGIC;
+    io2_t : OUT STD_LOGIC;
+    io3_i : IN STD_LOGIC;
+    io3_o : OUT STD_LOGIC;
+    io3_t : OUT STD_LOGIC;
+    sck_i : IN STD_LOGIC;
+    sck_o : OUT STD_LOGIC;
+    sck_t : OUT STD_LOGIC;
+
+<: } :>	
+<: } else { :>	
+<: if {$C_USE_STARTUP_EXT == 1} { :>	
+	 io2_i : IN STD_LOGIC;
+    io2_o : OUT STD_LOGIC;
+    io2_t : OUT STD_LOGIC;
+    io3_i : IN STD_LOGIC;
+    io3_o : OUT STD_LOGIC;
+    io3_t : OUT STD_LOGIC;
+    sck_i : IN STD_LOGIC;
+    sck_o : OUT STD_LOGIC;
+    sck_t : OUT STD_LOGIC;
+<: } :>	
+<: } :>	
+<: } else { :>	
+	 io2_i : IN STD_LOGIC;
+    io2_o : OUT STD_LOGIC;
+    io2_t : OUT STD_LOGIC;
+    io3_i : IN STD_LOGIC;
+    io3_o : OUT STD_LOGIC;
+    io3_t : OUT STD_LOGIC;
+<: if {$C_USE_STARTUP == 0 || $C_USE_STARTUP_EXT == 1} { :>	
+    sck_i : IN STD_LOGIC;
+    sck_o : OUT STD_LOGIC;
+    sck_t : OUT STD_LOGIC;
+<: } :>	
+<: } :>	
+<: } :>	
+<: if {($C_USE_STARTUP == 0 || ($C_DUAL_QUAD_MODE == 0 && $C_USE_STARTUP_EXT == 1)) && $C_SPI_MODE < 2} { :>	
+    sck_i : IN STD_LOGIC;
+    sck_o : OUT STD_LOGIC;
+    sck_t : OUT STD_LOGIC;
+<: } :>	
+<: if {$C_USE_STARTUP == 1 && $UC_FAMILY == 1 && $C_DUAL_QUAD_MODE == 1} { :>	
+<: } else { :>	
+    ss_i : IN STD_LOGIC_VECTOR(0 DOWNTO 0);
+    ss_o : OUT STD_LOGIC_VECTOR(0 DOWNTO 0);
+    ss_t : OUT STD_LOGIC;
+<: } :>	
+    ip2intc_irpt : OUT STD_LOGIC
+  );
+END COMPONENT;
+
+
+<: } :>
+--------------AXI_QUAD_SPI_Component------------------------------
+
+<: if {$C_USE_STARTUP_EXT == 1} { :>	
+-- STARTUP EXTERNAL
+  signal cfgclk,cfgmclk : STD_LOGIC;
+  signal eos    :  std_logic;  -- OS           , -- 1-bit output: Active high output signal indicating the End Of Startup.
+  signal preq   :  std_logic;
+  signal clk     :std_logic;   -- input
+  signal gsr     :std_logic;   -- input
+  signal gts     :std_logic;   -- input
+  signal keyclearb :std_logic;   -- input
+  signal usrcclkts :std_logic;   -- input
+  signal usrdoneo :std_logic;   -- input
+  signal usrdonets :std_logic;   -- input
+  signal di_int : std_logic_vector (3 downto 0);
+  signal do_int : std_logic_vector (3 downto 0);
+  signal dts_int : std_logic_vector (3 downto 0);
+
+<: } :>
+------------- Signal Declaration-----------------------
+<: if {$C_USE_STARTUP == 1 && $UC_FAMILY == 1} { :>	
+   signal DI_IN : STD_LOGIC_VECTOR(1 DOWNTO 0):=(others => '0');
+<: } :>
+<: if {$C_XIP_MODE == 0} { :>
+   signal m_axi_lite_ch1_awaddr : STD_LOGIC_VECTOR(31 DOWNTO 0):=(others => '0');
+   signal m_axi_lite_ch1_awvalid : STD_LOGIC:= '0';
+   signal m_axi_lite_ch1_wdata : STD_LOGIC_VECTOR(31 DOWNTO 0):=(others => '0');
+   signal m_axi_lite_ch1_wstrb :  STD_LOGIC_VECTOR(3 DOWNTO 0):=(others => '0');
+   signal m_axi_lite_ch1_wvalid :  STD_LOGIC:= '0';
+   signal m_axi_lite_ch1_bready :  STD_LOGIC:= '0';
+   signal m_axi_lite_ch1_araddr :  STD_LOGIC_VECTOR(31 DOWNTO 0):=(others => '0');
+   signal m_axi_lite_ch1_arvalid :  STD_LOGIC:= '0';
+   signal m_axi_lite_ch1_rready :  STD_LOGIC:= '0';
+   
+  signal   s_axi_awready : STD_LOGIC:= '0';
+  signal   s_axi_wready : STD_LOGIC:= '0';
+  signal   s_axi_bresp : STD_LOGIC_VECTOR(1 DOWNTO 0):=(others => '0');
+  signal   s_axi_bvalid : STD_LOGIC:= '0';
+  signal   s_axi_arready : STD_LOGIC:= '0';
+  signal   s_axi_rdata : STD_LOGIC_VECTOR(31 DOWNTO 0):=(others => '0');
+  signal   s_axi_rresp : STD_LOGIC_VECTOR(1 DOWNTO 0):=(others => '0');
+  signal   s_axi_rvalid : STD_LOGIC:= '0';
+  
+  signal   atg_done_1    : STD_LOGIC:= '0';
+  signal   atg_status_1  : STD_LOGIC_VECTOR(31 DOWNTO 0):=(others => '0');
+  signal m_axi_lite_ch1_awaddr_1 : STD_LOGIC_VECTOR(31 DOWNTO 0):=(others => '0');
+   signal m_axi_lite_ch1_awvalid_1 : STD_LOGIC:= '0';
+   signal m_axi_lite_ch1_wdata_1 : STD_LOGIC_VECTOR(31 DOWNTO 0):=(others => '0');
+   signal m_axi_lite_ch1_wstrb_1 :  STD_LOGIC_VECTOR(3 DOWNTO 0):=(others => '0');
+   signal m_axi_lite_ch1_wvalid_1 :  STD_LOGIC:= '0';
+   signal m_axi_lite_ch1_bready_1 :  STD_LOGIC:= '0';
+   signal m_axi_lite_ch1_araddr_1 :  STD_LOGIC_VECTOR(31 DOWNTO 0):=(others => '0');
+   signal m_axi_lite_ch1_arvalid_1 :  STD_LOGIC:= '0';
+   signal m_axi_lite_ch1_rready_1 :  STD_LOGIC:= '0';
+   
+  signal   atg_done_2    : STD_LOGIC:= '0';
+  signal   atg_status_2  : STD_LOGIC_VECTOR(31 DOWNTO 0):=(others => '0');
+  signal m_axi_lite_ch1_awaddr_2 : STD_LOGIC_VECTOR(31 DOWNTO 0):=(others => '0');
+   signal m_axi_lite_ch1_awvalid_2 : STD_LOGIC:= '0';
+   signal m_axi_lite_ch1_wdata_2 : STD_LOGIC_VECTOR(31 DOWNTO 0):=(others => '0');
+   signal m_axi_lite_ch1_wstrb_2 :  STD_LOGIC_VECTOR(3 DOWNTO 0):=(others => '0');
+   signal m_axi_lite_ch1_wvalid_2 :  STD_LOGIC:= '0';
+   signal m_axi_lite_ch1_bready_2 :  STD_LOGIC:= '0';
+   signal m_axi_lite_ch1_araddr_2 :  STD_LOGIC_VECTOR(31 DOWNTO 0):=(others => '0');
+   signal m_axi_lite_ch1_arvalid_2 :  STD_LOGIC:= '0';
+   signal m_axi_lite_ch1_rready_2 :  STD_LOGIC:= '0';
+   
+ 
+    signal   atg_done_3    : STD_LOGIC:= '0';
+  signal   atg_status_3  : STD_LOGIC_VECTOR(31 DOWNTO 0):=(others => '0');
+  signal m_axi_lite_ch1_awaddr_3 : STD_LOGIC_VECTOR(31 DOWNTO 0):=(others => '0');
+   signal m_axi_lite_ch1_awvalid_3 : STD_LOGIC:= '0';
+   signal m_axi_lite_ch1_wdata_3 : STD_LOGIC_VECTOR(31 DOWNTO 0):=(others => '0');
+   signal m_axi_lite_ch1_wstrb_3 :  STD_LOGIC_VECTOR(3 DOWNTO 0):=(others => '0');
+   signal m_axi_lite_ch1_wvalid_3 :  STD_LOGIC:= '0';
+   signal m_axi_lite_ch1_bready_3 :  STD_LOGIC:= '0';
+   signal m_axi_lite_ch1_araddr_3 :  STD_LOGIC_VECTOR(31 DOWNTO 0):=(others => '0');
+   signal m_axi_lite_ch1_arvalid_3 :  STD_LOGIC:= '0';
+   signal m_axi_lite_ch1_rready_3 :  STD_LOGIC:= '0';
+   
+ 	
+   
+  signal   io0_i : STD_LOGIC:= '0';
+  signal   io0_o : STD_LOGIC:= '0';
+  signal   io0_t : STD_LOGIC:= '0';
+  signal   io1_i :STD_LOGIC:= '0';
+  signal   io1_o : STD_LOGIC:= '0';
+  signal   io1_t : STD_LOGIC:= '0';
+<: if {$C_SPI_MODE > 0} { :>  
+  signal   io2_i : STD_LOGIC:= '0';
+  signal   io2_o : STD_LOGIC:= '0';
+  signal   io2_t : STD_LOGIC:= '0';
+  signal   io3_i :STD_LOGIC:= '0';
+  signal   io3_o : STD_LOGIC:= '0';
+  signal   io3_t : STD_LOGIC:= '0';
+<: if {$C_DUAL_QUAD_MODE == 1} { :>	
+    signal io0_1_i :  STD_LOGIC;
+    signal io0_1_o :  STD_LOGIC;
+    signal io0_1_t :  STD_LOGIC;
+    signal io1_1_i : STD_LOGIC;
+    signal io1_1_o :  STD_LOGIC;
+    signal io1_1_t :  STD_LOGIC;
+    signal io2_1_i : STD_LOGIC;
+    signal io2_1_o :  STD_LOGIC;
+    signal io2_1_t :  STD_LOGIC;
+    signal io3_1_i : STD_LOGIC;
+    signal io3_1_o :  STD_LOGIC;
+    signal io3_1_t :  STD_LOGIC;
+    signal ss_1_i : STD_LOGIC;
+    signal ss_1_o :  STD_LOGIC;
+    signal ss_1_t :  STD_LOGIC;
+<: } else { :>	
+<: } :>	
+<: } :>	
+  signal   sck_i : STD_LOGIC:= '0';
+  signal   sck_o : STD_LOGIC:= '0';
+  signal   sck_t : STD_LOGIC:= '0';
+<: if {$C_DUAL_QUAD_MODE == 1  && $C_USE_STARTUP_EXT == 1} { :>  
+  signal   ss_i : STD_LOGIC_VECTOR(0 DOWNTO 0):=(others => '0');
+  signal   ss_o : STD_LOGIC_VECTOR(0 DOWNTO 0):=(others => '0');
+<: } else { :>
+  signal   ss_i : STD_LOGIC_VECTOR(<=:$SLAVES:> DOWNTO <=:$lsb_stup:>):=(others => '0');
+  signal   ss_o : STD_LOGIC_VECTOR(<=:$SLAVES:> DOWNTO <=:$lsb_stup:>):=(others => '0');
+ 
+<: } :>	
+  signal   ss_t : STD_LOGIC:= '0';
+  signal   ip2intc_irpt : STD_LOGIC:= '0';
+<: } else { :>
+signal  bmg_axi_awid :  std_logic_vector(<=:$ID_WIDTH:> DOWNTO 0):=(others => '0');
+signal  bmg_axi_awaddr :  std_logic_vector(31 DOWNTO 0):=(others => '0');
+signal  bmg_axi_awlen :  std_logic_vector(7 DOWNTO 0):=(others => '0');
+signal  bmg_axi_awsize :  std_logic_vector(2 DOWNTO 0):=(others => '0');
+signal  bmg_axi_awburst :  std_logic_vector(1 DOWNTO 0):=(others => '0');
+signal  bmg_axi_awvalid :  std_logic:= '0';
+signal  bmg_axi_awready :  std_logic:= '0';
+signal  bmg_axi_wdata :  std_logic_vector(31 DOWNTO 0):=(others => '0');
+signal  bmg_axi_wstrb :  std_logic_vector(3 DOWNTO 0):=(others => '0');
+signal  bmg_axi_wlast :  std_logic:= '0';
+signal  bmg_axi_wvalid :  std_logic:= '0';
+signal  bmg_axi_wready :  std_logic:= '0';
+signal  bmg_axi_bid :  std_logic_vector(<=:$ID_WIDTH:> DOWNTO 0):=(others => '0');
+signal  bmg_axi_bresp :  std_logic_vector(1 DOWNTO 0):=(others => '0');
+signal  bmg_axi_bvalid :  std_logic:= '0';
+signal  bmg_axi_bready :  std_logic:= '0';
+signal  bmg_axi_arid :  std_logic_vector(<=:$ID_WIDTH:> DOWNTO 0):=(others => '0');
+signal  bmg_axi_araddr :  std_logic_vector(31 DOWNTO 0):=(others => '0');
+signal  bmg_axi_arlen :  std_logic_vector(7 DOWNTO 0):=(others => '0');
+signal  bmg_axi_arsize :  std_logic_vector(2 DOWNTO 0):=(others => '0');
+signal  bmg_axi_arburst :  std_logic_vector(1 DOWNTO 0):=(others => '0');
+signal  bmg_axi_arvalid :  std_logic:= '0';
+signal  bmg_axi_arready :  std_logic:= '0';
+signal  bmg_axi_rid :  std_logic_vector(<=:$ID_WIDTH:> DOWNTO 0):=(others => '0');
+signal  bmg_axi_rdata :  std_logic_vector(31 DOWNTO 0):=(others => '0');
+signal  bmg_axi_rresp :  std_logic_vector(1 DOWNTO 0):=(others => '0');
+signal  bmg_axi_rlast :  std_logic:= '0';
+signal  bmg_axi_rvalid :  std_logic:= '0';
+signal  bmg_axi_rready :  std_logic:= '0';
+
+signal  r_atg_lite_awready :  std_logic:= '0';
+signal  r_atg_lite_awvalid :  std_logic:= '0';
+signal  r_atg_lite_awaddr :  std_logic_vector(31 DOWNTO 0):=(others => '0');
+signal  r_atg_lite_wready :  std_logic:= '0';
+signal  r_atg_lite_wvalid :  std_logic:= '0';
+signal  r_atg_lite_wdata :  std_logic_vector(31 DOWNTO 0):=(others => '0');
+signal  r_atg_lite_bready :  std_logic:= '0';
+signal  r_atg_lite_bvalid :  std_logic:= '0';
+signal  r_atg_lite_bresp :  std_logic_vector(1 DOWNTO 0):=(others => '0');
+signal  r_atg_lite_arready :  std_logic:= '0';
+signal  r_atg_lite_arvalid :  std_logic:= '0';
+signal  r_atg_lite_araddr :  std_logic_vector(31 DOWNTO 0):=(others => '0');
+signal  r_atg_lite_rready :  std_logic:= '0';
+signal  r_atg_lite_rvalid :  std_logic:= '0';
+signal  r_atg_lite_rdata :  std_logic_vector(31 DOWNTO 0):=(others => '0');
+signal  r_atg_lite_rresp :  std_logic_vector(1 DOWNTO 0):=(others => '0');
+
+   signal m_axi_lite_ch1_awaddr : STD_LOGIC_VECTOR(31 DOWNTO 0):=(others => '0');
+   signal m_axi_lite_ch1_awprot : STD_LOGIC_VECTOR(2 DOWNTO 0):=(others => '0');
+   signal m_axi_lite_ch1_awvalid : STD_LOGIC:= '0';
+   signal m_axi_lite_ch1_awready : STD_LOGIC:= '0';
+   signal m_axi_lite_ch1_wdata : STD_LOGIC_VECTOR(31 DOWNTO 0):=(others => '0');
+   signal m_axi_lite_ch1_wstrb :  STD_LOGIC_VECTOR(3 DOWNTO 0):=(others => '0');
+   signal m_axi_lite_ch1_wvalid :  STD_LOGIC:= '0';
+   signal m_axi_lite_ch1_wready :  STD_LOGIC:= '0';
+   signal m_axi_lite_ch1_bresp : STD_LOGIC_VECTOR(1 DOWNTO 0):=(others => '0');
+   signal m_axi_lite_ch1_bvalid :  STD_LOGIC:= '0';
+   signal m_axi_lite_ch1_bready :  STD_LOGIC:= '0';
+   signal m_axi_lite_ch1_araddr :  STD_LOGIC_VECTOR(31 DOWNTO 0):=(others => '0');
+   signal m_axi_lite_ch1_arvalid :  STD_LOGIC:= '0';
+   signal m_axi_lite_ch1_arready :  STD_LOGIC:= '0';
+   signal m_axi_lite_ch1_rdata :  STD_LOGIC_VECTOR(31 DOWNTO 0):=(others => '0');
+   signal m_axi_lite_ch1_rvalid : STD_LOGIC:= '0';
+   signal m_axi_lite_ch1_rready :  STD_LOGIC:= '0';
+   signal m_axi_lite_ch1_rresp : STD_LOGIC_VECTOR(1 DOWNTO 0):=(others => '0');
+   signal m_axi_lite_ch1_awvalid_sig : STD_LOGIC:= '0';
+
+   
+   signal s_axi_awaddr : STD_LOGIC_VECTOR(6 DOWNTO 0):=(others => '0');
+   signal s_axi_awvalid : STD_LOGIC:= '0';
+   signal s_axi_awready :  STD_LOGIC:= '0';
+   signal s_axi_wdata : STD_LOGIC_VECTOR(31 DOWNTO 0):=(others => '0');
+   signal s_axi_wstrb : STD_LOGIC_VECTOR(3 DOWNTO 0):=(others => '0');
+   signal s_axi_wvalid : STD_LOGIC:= '0';
+   signal s_axi_wready :  STD_LOGIC:= '0';
+   signal s_axi_bresp :  STD_LOGIC_VECTOR(1 DOWNTO 0):=(others => '0');
+   signal s_axi_bvalid :  STD_LOGIC:= '0';
+   signal s_axi_bready :  STD_LOGIC:= '0';
+   signal s_axi_araddr :  STD_LOGIC_VECTOR(6 DOWNTO 0):=(others => '0');
+   signal s_axi_arvalid : STD_LOGIC:= '0';
+   signal s_axi_arready : STD_LOGIC:= '0';
+   signal s_axi_rdata :  STD_LOGIC_VECTOR(31 DOWNTO 0):=(others => '0');
+   signal s_axi_rresp : STD_LOGIC_VECTOR(1 DOWNTO 0):=(others => '0');
+   signal s_axi_rvalid :  STD_LOGIC:= '0';
+   signal s_axi_rready : STD_LOGIC:= '0';
+   signal qspi_axi_awid : STD_LOGIC_VECTOR(<=:$ID_WIDTH:> DOWNTO 0):=(others => '0');
+    signal qspi_axi_awaddr :  STD_LOGIC_VECTOR(31 DOWNTO 0):=(others => '0');
+    signal qspi_axi_awlen : STD_LOGIC_VECTOR(7 DOWNTO 0):=(others => '0');
+   signal qspi_axi_awsize :  STD_LOGIC_VECTOR(2 DOWNTO 0):=(others => '0');
+   signal qspi_axi_awburst : STD_LOGIC_VECTOR(1 DOWNTO 0):=(others => '0');
+   signal qspi_axi_awlock :  STD_LOGIC:= '0';
+   signal qspi_axi_awcache :  STD_LOGIC_VECTOR(3 DOWNTO 0):=(others => '0');
+   signal qspi_axi_awprot : STD_LOGIC_VECTOR(2 DOWNTO 0):=(others => '0');
+   signal qspi_axi_awvalid : STD_LOGIC:= '0';
+   signal qspi_axi_awready :  STD_LOGIC:= '0';
+   signal qspi_axi_wdata : STD_LOGIC_VECTOR(31 DOWNTO 0):=(others => '0');
+   signal qspi_axi_wstrb : STD_LOGIC_VECTOR(3 DOWNTO 0):=(others => '0');
+   signal qspi_axi_wlast : STD_LOGIC:= '0';
+   signal qspi_axi_wvalid :  STD_LOGIC:= '0';
+   signal qspi_axi_wready :  STD_LOGIC:= '0';
+   signal qspi_axi_bid :  STD_LOGIC_VECTOR(<=:$ID_WIDTH:> DOWNTO 0):=(others => '0');
+   signal qspi_axi_bresp : STD_LOGIC_VECTOR(1 DOWNTO 0):=(others => '0');
+   signal qspi_axi_bvalid : STD_LOGIC:= '0';
+   signal qspi_axi_bready : STD_LOGIC:= '0';
+   signal qspi_axi_arid : STD_LOGIC_VECTOR(<=:$ID_WIDTH:> DOWNTO 0):=(others => '0');
+   signal qspi_axi_araddr : STD_LOGIC_VECTOR(31 DOWNTO 0):=(others => '0');
+   signal qspi_axi_arlen : STD_LOGIC_VECTOR(7 DOWNTO 0):=(others => '0');
+   signal qspi_axi_arsize : STD_LOGIC_VECTOR(2 DOWNTO 0):=(others => '0');
+   signal qspi_axi_arburst :STD_LOGIC_VECTOR(1 DOWNTO 0):=(others => '0');
+  signal  qspi_axi_arlock : STD_LOGIC:= '0';
+   signal qspi_axi_arcache : STD_LOGIC_VECTOR(3 DOWNTO 0):=(others => '0');
+   signal qspi_axi_arprot : STD_LOGIC_VECTOR(2 DOWNTO 0):=(others => '0');
+   signal qspi_axi_arvalid : STD_LOGIC:= '0';
+   signal qspi_axi_arready :  STD_LOGIC:= '0';
+   signal qspi_axi_rid : STD_LOGIC_VECTOR(<=:$ID_WIDTH:> DOWNTO 0):=(others => '0');
+   signal qspi_axi_rdata : STD_LOGIC_VECTOR(31 DOWNTO 0):=(others => '0');
+   signal qspi_axi_rresp : STD_LOGIC_VECTOR(1 DOWNTO 0):=(others => '0');
+   signal qspi_axi_rlast :  STD_LOGIC:= '0';
+   signal qspi_axi_rvalid :  STD_LOGIC:= '0';
+   signal qspi_axi_rready : STD_LOGIC:= '0';
+  signal   io0_i : STD_LOGIC:= '0';
+  signal   io0_o : STD_LOGIC:= '0';
+  signal   io0_t : STD_LOGIC:= '0';
+  signal   io1_i :STD_LOGIC:= '0';
+  signal   io1_o : STD_LOGIC:= '0';
+  signal   io1_t : STD_LOGIC:= '0';
+<: if {$C_SPI_MODE > 0} { :>  
+  signal   io2_i : STD_LOGIC:= '0';
+  signal   io2_o : STD_LOGIC:= '0';
+  signal   io2_t : STD_LOGIC:= '0';
+  signal   io3_i :STD_LOGIC:= '0';
+  signal   io3_o : STD_LOGIC:= '0';
+  signal   io3_t : STD_LOGIC:= '0';
+<: } :>	
+  signal   sck_i : STD_LOGIC:= '0';
+  signal   sck_o : STD_LOGIC:= '0';
+  signal   sck_t : STD_LOGIC:= '0';
+  signal   ss_i : STD_LOGIC_VECTOR(0 DOWNTO 0):=(others => '0');
+  signal   ss_o : STD_LOGIC_VECTOR(0 DOWNTO 0):=(others => '0');
+  signal   ss_t : STD_LOGIC:= '0';
+  signal   ip2intc_irpt : STD_LOGIC:= '0';
+
+<: } :>	
+  ------ CLK WIZ signals------------
+  signal  axi_clk      :  std_logic:= '0';
+  signal  locked       :  std_logic:= '0';
+  signal  axi_aresetn  :  std_logic:= '0';
+  -------------Memory model Signals---------------
+  signal   sio0_i : STD_LOGIC:= '0';
+  signal   sio0_o : STD_LOGIC_VECTOR(<=:$SLAVES:> DOWNTO 0):=(others => '0');
+  signal   sio1_i :STD_LOGIC:= '0';
+  signal   sio1_o : STD_LOGIC_VECTOR(<=:$SLAVES:> DOWNTO 0):=(others => '0');
+  signal   sio2_i : STD_LOGIC:= '0';
+  signal   sio2_o : STD_LOGIC_VECTOR(<=:$SLAVES:> DOWNTO 0):=(others => '0');
+  signal   sio3_i :STD_LOGIC:= '0';
+  signal   sio3_o : STD_LOGIC_VECTOR(<=:$SLAVES:> DOWNTO 0):=(others => '0');
+
+<: if {$C_DUAL_QUAD_MODE == 1  && $C_USE_STARTUP_EXT == 1} { :>	
+    signal io0_1_i_int : STD_LOGIC;
+    signal io0_1_o_int : STD_LOGIC;
+    signal io0_1_t_int : STD_LOGIC;
+    signal io1_1_i_int : STD_LOGIC;
+    signal io1_1_o_int : STD_LOGIC;
+    signal io1_1_t_int : STD_LOGIC;
+    signal io2_1_i_int : STD_LOGIC;
+    signal io2_1_o_int : STD_LOGIC;
+    signal io2_1_t_int : STD_LOGIC;
+    signal io3_1_i_int : STD_LOGIC;
+    signal io3_1_o_int : STD_LOGIC;
+    signal io3_1_t_int : STD_LOGIC;
+<: } :>
+-------------------------------------------------------
+signal BRAM_Clk_A    : std_logic;
+signal BRAM_Rst_A    : std_logic;
+signal BRAM_En_A     : std_logic;
+signal BRAM_WE_A     : std_logic_vector(3 DOWNTO 0) := (others => '0');
+signal BRAM_Addr_A   : std_logic_vector(11 DOWNTO 0) := (others => '0');
+signal BRAM_WrData_A : std_logic_vector(31 DOWNTO 0) := (others => '0');
+signal BRAM_RdData_A : std_logic_vector(31 DOWNTO 0) := (others => '0');
+signal clock_sg : std_logic; -- to be used for SG in async mode
+
+
+begin
+
+CLK_GEN : clk_wiz_0
+   port map ( 
+   -- Clock in ports
+   clk_in1_p => clk_p,
+   clk_in1_n => clk_n,
+  -- Clock out ports  
+   clk_out1 => axi_clk,
+  -- Status and control signals                
+   reset => reset,
+   locked => locked            
+ );
+axi_aresetn <= locked;
+axi_aresetn_out <= locked;
+axi_clk_out <= axi_clk;
+
+
+<: if {$C_XIP_MODE == 0} { :>
+Instance_ATG_1 : axi_traffic_gen_1
+  PORT MAP (
+    s_axi_aclk => axi_clk,
+    s_axi_aresetn => axi_aresetn,
+    m_axi_lite_ch1_awaddr => m_axi_lite_ch1_awaddr_1,
+    m_axi_lite_ch1_awprot => open,
+    m_axi_lite_ch1_awvalid => m_axi_lite_ch1_awvalid_1,
+    m_axi_lite_ch1_awready => s_axi_awready,
+    m_axi_lite_ch1_wdata => m_axi_lite_ch1_wdata_1,
+    m_axi_lite_ch1_wstrb => m_axi_lite_ch1_wstrb_1,
+    m_axi_lite_ch1_wvalid => m_axi_lite_ch1_wvalid_1,
+    m_axi_lite_ch1_wready => s_axi_wready,
+    m_axi_lite_ch1_bresp => s_axi_bresp,
+    m_axi_lite_ch1_bvalid => s_axi_bvalid,
+    m_axi_lite_ch1_bready => m_axi_lite_ch1_bready_1,
+    m_axi_lite_ch1_araddr => m_axi_lite_ch1_araddr_1,
+    m_axi_lite_ch1_arvalid => m_axi_lite_ch1_arvalid_1,
+    m_axi_lite_ch1_arready => s_axi_arready,
+    m_axi_lite_ch1_rdata => s_axi_rdata,
+    m_axi_lite_ch1_rvalid => s_axi_rvalid,
+    m_axi_lite_ch1_rready => m_axi_lite_ch1_rready_1,
+    m_axi_lite_ch1_rresp => s_axi_rresp,
+    done => atg_done_1,
+    status => atg_status_1
+  );
+
+ Instance_ATG_2 : axi_traffic_gen_2
+  PORT MAP (
+    s_axi_aclk => axi_clk,
+    s_axi_aresetn => atg_done_1,
+    m_axi_lite_ch1_awaddr => m_axi_lite_ch1_awaddr_2,
+    m_axi_lite_ch1_awprot => open,
+    m_axi_lite_ch1_awvalid => m_axi_lite_ch1_awvalid_2,
+    m_axi_lite_ch1_awready => s_axi_awready,
+    m_axi_lite_ch1_wdata => m_axi_lite_ch1_wdata_2,
+    m_axi_lite_ch1_wstrb => m_axi_lite_ch1_wstrb_2,
+    m_axi_lite_ch1_wvalid => m_axi_lite_ch1_wvalid_2,
+    m_axi_lite_ch1_wready => s_axi_wready,
+    m_axi_lite_ch1_bresp => s_axi_bresp,
+    m_axi_lite_ch1_bvalid => s_axi_bvalid,
+    m_axi_lite_ch1_bready => m_axi_lite_ch1_bready_2,
+    m_axi_lite_ch1_araddr => m_axi_lite_ch1_araddr_2,
+    m_axi_lite_ch1_arvalid => m_axi_lite_ch1_arvalid_2,
+    m_axi_lite_ch1_arready => s_axi_arready,
+    m_axi_lite_ch1_rdata => s_axi_rdata,
+    m_axi_lite_ch1_rvalid => s_axi_rvalid,
+    m_axi_lite_ch1_rready => m_axi_lite_ch1_rready_2,
+    m_axi_lite_ch1_rresp => s_axi_rresp,
+    done => atg_done_2,
+    status => atg_status_2
+  );
+
+Instance_ATG_3 : axi_traffic_gen_3
+  PORT MAP (
+    s_axi_aclk => axi_clk,
+    s_axi_aresetn => atg_done_2,
+    m_axi_lite_ch1_awaddr => m_axi_lite_ch1_awaddr_3,
+    m_axi_lite_ch1_awprot => open,
+    m_axi_lite_ch1_awvalid => m_axi_lite_ch1_awvalid_3,
+    m_axi_lite_ch1_awready => s_axi_awready,
+    m_axi_lite_ch1_wdata => m_axi_lite_ch1_wdata_3,
+    m_axi_lite_ch1_wstrb => m_axi_lite_ch1_wstrb_3,
+    m_axi_lite_ch1_wvalid => m_axi_lite_ch1_wvalid_3,
+    m_axi_lite_ch1_wready => s_axi_wready,
+    m_axi_lite_ch1_bresp => s_axi_bresp,
+    m_axi_lite_ch1_bvalid => s_axi_bvalid,
+    m_axi_lite_ch1_bready => m_axi_lite_ch1_bready_3,
+    m_axi_lite_ch1_araddr => m_axi_lite_ch1_araddr_3,
+    m_axi_lite_ch1_arvalid => m_axi_lite_ch1_arvalid_3,
+    m_axi_lite_ch1_arready => s_axi_arready,
+    m_axi_lite_ch1_rdata => s_axi_rdata,
+    m_axi_lite_ch1_rvalid => s_axi_rvalid,
+    m_axi_lite_ch1_rready => m_axi_lite_ch1_rready_3,
+    m_axi_lite_ch1_rresp => s_axi_rresp,
+    done => atg_done,
+    status => atg_status_3
+  );
+  
+  
+   m_axi_lite_ch1_awaddr <= m_axi_lite_ch1_awaddr_1 WHEN (atg_done_1 = '0') ELSE 
+                            m_axi_lite_ch1_awaddr_2 WHEN (atg_done_2 = '0') ELSE
+							m_axi_lite_ch1_awaddr_3;
+							
+   m_axi_lite_ch1_awvalid <= m_axi_lite_ch1_awvalid_1 WHEN (atg_done_1 = '0') ELSE 
+                             m_axi_lite_ch1_awvalid_2 WHEN (atg_done_2 = '0') ELSE
+							 m_axi_lite_ch1_awvalid_3;
+
+   m_axi_lite_ch1_wdata <= m_axi_lite_ch1_wdata_1 WHEN (atg_done_1 = '0') ELSE 
+                             m_axi_lite_ch1_wdata_2 WHEN (atg_done_2 = '0') ELSE
+							 m_axi_lite_ch1_wdata_3;
+							 
+   m_axi_lite_ch1_wstrb <= m_axi_lite_ch1_wstrb_1 WHEN (atg_done_1 = '0') ELSE 
+                             m_axi_lite_ch1_wstrb_2 WHEN (atg_done_2 = '0') ELSE
+							 m_axi_lite_ch1_wstrb_3;
+
+   m_axi_lite_ch1_wvalid <= m_axi_lite_ch1_wvalid_1 WHEN (atg_done_1 = '0') ELSE 
+                             m_axi_lite_ch1_wvalid_2 WHEN (atg_done_2 = '0') ELSE
+							 m_axi_lite_ch1_wvalid_3;
+							 
+   m_axi_lite_ch1_bready <= m_axi_lite_ch1_bready_1 WHEN (atg_done_1 = '0') ELSE 
+                             m_axi_lite_ch1_bready_2 WHEN (atg_done_2 = '0') ELSE
+							 m_axi_lite_ch1_bready_3;
+
+   m_axi_lite_ch1_araddr <= m_axi_lite_ch1_araddr_1 WHEN (atg_done_1 = '0') ELSE 
+                             m_axi_lite_ch1_araddr_2 WHEN (atg_done_2 = '0') ELSE
+							 m_axi_lite_ch1_araddr_3;
+
+   m_axi_lite_ch1_arvalid <= m_axi_lite_ch1_arvalid_1 WHEN (atg_done_1 = '0') ELSE 
+                             m_axi_lite_ch1_arvalid_2 WHEN (atg_done_2 = '0') ELSE
+							 m_axi_lite_ch1_arvalid_3;
+							 
+   m_axi_lite_ch1_rready <= m_axi_lite_ch1_rready_1 WHEN (atg_done_1 = '0') ELSE 
+                             m_axi_lite_ch1_rready_2 WHEN (atg_done_2 = '0') ELSE
+							 m_axi_lite_ch1_rready_3;
+							 
+    atg_status <= atg_status_3 or atg_status_2 or atg_status_1;
+	
+  DUT : <=:$ComponentName:>
+  PORT MAP (
+    ext_spi_clk => axi_clk,
+<: if {$C_AXI4 == 0} { :>
+    s_axi_aclk =>  axi_clk,
+    s_axi_aresetn => axi_aresetn,
+    s_axi_awaddr => m_axi_lite_ch1_awaddr(6 downto 0),
+    s_axi_awvalid => m_axi_lite_ch1_awvalid,
+    s_axi_awready => s_axi_awready,
+    s_axi_wdata => m_axi_lite_ch1_wdata,
+    s_axi_wstrb => m_axi_lite_ch1_wstrb,
+    s_axi_wvalid => m_axi_lite_ch1_wvalid,
+    s_axi_wready => s_axi_wready,
+    s_axi_bresp => s_axi_bresp,
+    s_axi_bvalid => s_axi_bvalid,
+    s_axi_bready => m_axi_lite_ch1_bready,
+    s_axi_araddr => m_axi_lite_ch1_araddr(6 downto 0),
+    s_axi_arvalid => m_axi_lite_ch1_arvalid,
+    s_axi_arready => s_axi_arready,
+    s_axi_rdata => s_axi_rdata,
+    s_axi_rresp => s_axi_rresp,
+    s_axi_rvalid => s_axi_rvalid,
+    s_axi_rready => m_axi_lite_ch1_rready,
+<: } :>	
+<: if {$C_AXI4 == 1} { :>
+    s_axi4_aclk     => axi_clk,
+    s_axi4_aresetn => axi_aresetn,
+<: if {$C_S_AXI4_ID_WIDTH != 0} { :>
+    s_axi4_awid => (others => '0'),
+<: } :>	
+    s_axi4_awaddr => m_axi_lite_ch1_awaddr(23 downto 0),
+    s_axi4_awlen => (others => '0'),
+    s_axi4_awsize => "010",
+    s_axi4_awburst => "00",
+    s_axi4_awlock => '0',
+    s_axi4_awcache => "0011",
+    s_axi4_awprot => (others => '0'),
+    s_axi4_awvalid => m_axi_lite_ch1_awvalid,
+    s_axi4_awready => s_axi_awready,
+    s_axi4_wdata => m_axi_lite_ch1_wdata,
+    s_axi4_wstrb => m_axi_lite_ch1_wstrb,
+    s_axi4_wlast => '1',
+    s_axi4_wvalid => m_axi_lite_ch1_wvalid,
+    s_axi4_wready => s_axi_wready,
+<: if {$C_S_AXI4_ID_WIDTH != 0} { :>
+    s_axi4_bid => open,
+<: } :>	
+    s_axi4_bresp => s_axi_bresp,
+    s_axi4_bvalid => s_axi_bvalid,
+    s_axi4_bready => m_axi_lite_ch1_bready,
+<: if {$C_S_AXI4_ID_WIDTH != 0} { :>
+    s_axi4_arid => (others => '0'),
+<: } :>	
+    s_axi4_araddr => m_axi_lite_ch1_araddr(23 downto 0),
+    s_axi4_arlen => (others => '0'),
+    s_axi4_arsize => "010",
+    s_axi4_arburst => "00",
+    s_axi4_arlock => '0',
+    s_axi4_arcache => "0011",
+    s_axi4_arprot => (others => '0'),
+    s_axi4_arvalid => m_axi_lite_ch1_arvalid,
+    s_axi4_arready => s_axi_arready,
+<: if {$C_S_AXI4_ID_WIDTH != 0} { :>
+    s_axi4_rid => open,
+<: } :>	
+    s_axi4_rdata => s_axi_rdata,
+    s_axi4_rresp => s_axi_rresp,
+    s_axi4_rlast => open,
+    s_axi4_rvalid => s_axi_rvalid,
+    s_axi4_rready => m_axi_lite_ch1_rready,
+<: } :>	
+<: if {$C_USE_STARTUP == 1 && $UC_FAMILY == 1 && $C_USE_STARTUP_EXT == 0} { :>	
+    gsr => '0',
+    gts => '0',
+    keyclearb => '0',
+    usrcclkts => '0',
+    usrdoneo => '0',
+    usrdonets => '0',
+<: } else { :>	
+    io0_i => io0_i,
+    io0_o => io0_o,
+    io0_t => io0_t,
+    io1_i => io1_i,
+    io1_o => io1_o,
+    io1_t => io1_t,
+<: } :>	
+<: if {$C_SPI_MODE == 2} { :>	
+<: if {$C_USE_STARTUP == 1 && $UC_FAMILY == 1} { :>	
+<: if {$C_DUAL_QUAD_MODE == 1 && $C_USE_STARTUP_EXT == 0} { :>	
+    io0_1_i  =>io0_1_i ,
+    io0_1_o  =>io0_1_o ,
+    io0_1_t  =>io0_1_t ,
+    io1_1_i  =>io1_1_i ,
+    io1_1_o  =>io1_1_o ,
+    io1_1_t  =>io1_1_t ,
+    io2_1_i  =>io2_1_i ,
+    io2_1_o  =>io2_1_o ,
+    io2_1_t  =>io2_1_t ,
+    io3_1_i  =>io3_1_i ,
+    io3_1_o  =>io3_1_o ,
+    io3_1_t  =>io3_1_t ,
+    ss_1_i  => ss_1_i ,
+    ss_1_o  => ss_1_o ,
+    ss_1_t  => ss_1_t ,
+<: if {$C_USE_STARTUP == 1 && $UC_FAMILY == 1 && $C_USE_STARTUP_EXT == 1} { :>	
+	 io2_i => io2_i,
+    io2_o => io2_o,
+    io2_t => io2_t,
+    io3_i => io3_i,
+    io3_o => io3_o,
+    io3_t => io3_t,
+    sck_i => sck_i,
+    sck_o => sck_o,
+    sck_t => sck_t,
+
+<: } :>
+
+<: } else { :>	
+<: if {$C_DUAL_QUAD_MODE == 1 && $C_USE_STARTUP_EXT == 1} { :>	
+	 io0_1_i => io0_1_i,
+    io0_1_o => io0_1_o,
+    io0_1_t => io0_1_t,
+    io1_1_i => io1_1_i,
+    io1_1_o => io1_1_o,
+    io1_1_t => io1_1_t,
+    io2_1_i => io2_1_i,
+    io2_1_o => io2_1_o,
+    io2_1_t => io2_1_t,
+    io3_1_i => io3_1_i,
+    io3_1_o => io3_1_o,
+    io3_1_t => io3_1_t,
+    ss_1_i => ss_1_i,
+    ss_1_o => ss_1_o,
+    ss_1_t => ss_1_t,
+<: if {$C_USE_STARTUP == 1 && $UC_FAMILY == 1 && $C_USE_STARTUP_EXT == 1} { :>	
+	 io2_i => io2_i,
+    io2_o => io2_o,
+    io2_t => io2_t,
+    io3_i => io3_i,
+    io3_o => io3_o,
+    io3_t => io3_t,
+    sck_i => sck_i,
+    sck_o => sck_o,
+    sck_t => sck_t,
+
+<: } :>
+<: } else { :>	
+<: if {$C_USE_STARTUP_EXT == 1} { :>	
+    io2_i => io2_i,
+    io2_o => io2_o,
+    io2_t => io2_t,
+    io3_i => io3_i,
+    io3_o => io3_o,
+    io3_t => io3_t,
+    sck_i => sck_i,
+    sck_o => sck_o,
+    sck_t => sck_t,
+
+<: } :>	
+<: } :>	
+<: } :>	
+<: } else { :>	
+    io2_i => io2_i,
+    io2_o => io2_o,
+    io2_t => io2_t,
+    io3_i => io3_i,
+    io3_o => io3_o,
+    io3_t => io3_t,
+<: if {$C_USE_STARTUP == 0 || $C_USE_STARTUP_EXT == 1} { :>	
+    sck_i => sck_i,
+    sck_o => sck_o,
+    sck_t => sck_t,
+<: } :>	
+<: } :>	
+<: } :>	
+<: if {($C_USE_STARTUP == 0 || ($C_DUAL_QUAD_MODE == 0 && $C_USE_STARTUP_EXT == 1)) && $C_SPI_MODE < 2} { :>	
+    sck_i => sck_i,
+    sck_o => sck_o,
+    sck_t => sck_t,
+<: } :>	
+<: if {$C_USE_STARTUP == 1 && $UC_FAMILY == 1 && ($C_NUM_SS_BITS == 1 || ($C_DUAL_QUAD_MODE == 1 && $C_USE_STARTUP_EXT == 0))} { :>	
+<: if {$C_USE_STARTUP_EXT == 1} { :>	
+    ss_i => ss_i,
+    ss_o => ss_o,
+    ss_t => ss_t,
+<: } :>	
+<: } else { :>	
+    ss_i => ss_i,
+    ss_o => ss_o,
+    ss_t => ss_t,
+<: } :>	
+    ip2intc_irpt => ip2intc_irpt
+  );
+
+<: } else { :>
+READ_CDMA : axi_cdma_0
+ port map (
+    m_axi_aclk =>                axi_clk,
+    s_axi_lite_aclk =>           axi_clk,
+    s_axi_lite_aresetn =>        axi_aresetn,
+    cdma_introut =>              open,
+    s_axi_lite_awready =>        r_atg_lite_awready,
+    s_axi_lite_awvalid =>        r_atg_lite_awvalid,
+    s_axi_lite_awaddr =>         r_atg_lite_awaddr(5 downto 0), 
+    s_axi_lite_wready =>         r_atg_lite_wready, 
+    s_axi_lite_wvalid =>         r_atg_lite_wvalid, 
+    s_axi_lite_wdata =>          r_atg_lite_wdata,
+    s_axi_lite_bready =>         r_atg_lite_bready, 
+    s_axi_lite_bvalid =>         r_atg_lite_bvalid, 
+    s_axi_lite_bresp =>          r_atg_lite_bresp,
+    s_axi_lite_arready =>        r_atg_lite_arready,
+    s_axi_lite_arvalid =>        r_atg_lite_arvalid,
+    s_axi_lite_araddr =>         r_atg_lite_araddr(5 downto 0), 
+    s_axi_lite_rready =>         r_atg_lite_rready, 
+    s_axi_lite_rvalid =>         r_atg_lite_rvalid, 
+    s_axi_lite_rdata =>          r_atg_lite_rdata,
+    s_axi_lite_rresp =>          r_atg_lite_rresp,
+    m_axi_arready =>             qspi_axi_arready,
+    m_axi_arvalid =>             qspi_axi_arvalid,
+    m_axi_araddr =>              qspi_axi_araddr,
+    m_axi_arlen =>               qspi_axi_arlen,
+    m_axi_arsize =>              qspi_axi_arsize,
+    m_axi_arburst =>             qspi_axi_arburst,
+    m_axi_arprot =>              qspi_axi_arprot,
+    m_axi_arcache =>             qspi_axi_arcache,
+    m_axi_rready =>              qspi_axi_rready,
+    m_axi_rvalid =>              qspi_axi_rvalid,
+    m_axi_rdata =>               qspi_axi_rdata,
+    m_axi_rresp =>               qspi_axi_rresp,
+    m_axi_rlast =>               qspi_axi_rlast,
+    m_axi_awready =>             bmg_axi_awready,
+    m_axi_awvalid =>             bmg_axi_awvalid,
+    m_axi_awaddr =>              bmg_axi_awaddr,
+    m_axi_awlen =>               bmg_axi_awlen,
+    m_axi_awsize =>              bmg_axi_awsize,
+    m_axi_awburst =>             bmg_axi_awburst,
+    m_axi_awprot =>              open,
+    m_axi_awcache =>             open,
+    m_axi_wready =>              bmg_axi_wready,
+    m_axi_wvalid =>              bmg_axi_wvalid,
+    m_axi_wdata =>               bmg_axi_wdata,
+    m_axi_wstrb =>               bmg_axi_wstrb,
+    m_axi_wlast =>               bmg_axi_wlast,
+    m_axi_bready =>              bmg_axi_bready,
+    m_axi_bvalid =>              bmg_axi_bvalid,
+    m_axi_bresp =>               bmg_axi_bresp,
+    cdma_tvect_out =>            open
+);
+
+
+ATG : axi_traffic_gen_1
+  port map (
+    s_axi_aclk =>                      axi_clk,
+    s_axi_aresetn =>                   axi_aresetn,
+    m_axi_lite_ch1_awaddr =>           r_atg_lite_awaddr,
+    m_axi_lite_ch1_awprot =>           open,
+    m_axi_lite_ch1_awvalid =>          r_atg_lite_awvalid,
+    m_axi_lite_ch1_awready =>          r_atg_lite_awready,
+    m_axi_lite_ch1_wdata =>            r_atg_lite_wdata,
+    m_axi_lite_ch1_wstrb =>            open,
+    m_axi_lite_ch1_wvalid =>           r_atg_lite_wvalid,
+    m_axi_lite_ch1_wready =>           r_atg_lite_wready,
+    m_axi_lite_ch1_bresp =>            r_atg_lite_bresp,
+    m_axi_lite_ch1_bvalid =>           r_atg_lite_bvalid,
+    m_axi_lite_ch1_bready =>           r_atg_lite_bready,
+    m_axi_lite_ch1_araddr =>           r_atg_lite_araddr,
+    m_axi_lite_ch1_arvalid =>          r_atg_lite_arvalid,
+    m_axi_lite_ch1_arready =>          r_atg_lite_arready,
+    m_axi_lite_ch1_rdata =>            r_atg_lite_rdata,
+    m_axi_lite_ch1_rvalid =>           r_atg_lite_rvalid,
+    m_axi_lite_ch1_rready =>           r_atg_lite_rready,
+    m_axi_lite_ch1_rresp =>            r_atg_lite_rresp,
+    done                 =>            atg_done,
+    status               =>            atg_status
+  );
+
+
+
+
+SG_ABC : axi_bram_ctrl_3
+
+   PORT MAP (
+       -- AXI Clock and Reset
+       s_axi_aclk     => axi_clk,   
+       s_axi_aresetn  => axi_aresetn, 
+       S_AXI_AWLOCK   => '0',  
+   --    s_axi_awid   => four_gnd, 
+       s_axi_awaddr   => bmg_axi_awaddr (11 downto 0), 
+       s_axi_awlen    => bmg_axi_awlen, 
+       s_axi_awsize   => bmg_axi_awsize,
+       s_axi_awburst  => bmg_axi_awburst,
+       s_axi_awvalid  => bmg_axi_awvalid, 
+       s_axi_awready  => bmg_axi_awready, 
+       s_axi_wdata    => bmg_axi_wdata, 
+       s_axi_wstrb    => bmg_axi_wstrb, 
+       s_axi_wlast    => bmg_axi_wlast, 
+       s_axi_wvalid   => bmg_axi_wvalid, 
+       s_axi_wready   => bmg_axi_wready,  
+       S_AXI_AWCACHE  => "0011",
+       S_AXI_AWPROT   => "000", 
+
+       s_axi_bresp    => bmg_axi_bresp,
+       s_axi_bvalid   => bmg_axi_bvalid,
+       s_axi_bready   => bmg_axi_bready,
+       S_AXI_ARLOCK   => '0', 
+  --     s_axi_arid     => four_gnd,
+       s_axi_araddr   => (others => '0'), 
+       s_axi_arlen    => (others => '0'), 
+       s_axi_arsize   => (others => '0'), 
+       s_axi_arburst  => (others => '0'), 
+       s_axi_arvalid  => '0' ,  
+       s_axi_arready  => open, 
+       S_AXI_ARCACHE  => "0011",
+       S_AXI_ARPROT   => "000", 
+
+      -- s_axi_rid      => open,
+       s_axi_rdata    => open,
+       s_axi_rresp    => open,
+       s_axi_rlast    => open,
+       s_axi_rvalid   => open,
+       s_axi_rready   => '0', 
+
+
+      --I/O - Port A
+    BRAM_Rst_A          =>        BRAM_Rst_A,
+    BRAM_En_A           =>        BRAM_En_A,
+    BRAM_WE_A           =>        BRAM_WE_A,
+    BRAM_Addr_A         =>        BRAM_Addr_A,
+    BRAM_RdData_A       =>        BRAM_RdData_A,
+    BRAM_WrData_A       =>        BRAM_WrData_A,
+    BRAM_Clk_A          =>        BRAM_Clk_A
+);
+
+xpm_memory_spram_inst : xpm_memory_spram
+  generic map (
+
+    -- Common module generics
+    MEMORY_SIZE        => 4096,        --positive integer
+    MEMORY_PRIMITIVE   => "auto",      --string; "auto", "distributed", "block" or "ultra" ;
+    MEMORY_INIT_FILE   => "init_data.mem",      --string; "none" or "<filename>.mem" 
+    MEMORY_INIT_PARAM  => "",          --string;
+    USE_MEM_INIT       => 1,           --integer; 0,1
+    WAKEUP_TIME        => "disable_sleep",--string; "disable_sleep" or "use_sleep_pin" 
+    MESSAGE_CONTROL    => 0,           --integer; 0,1
+    ECC_MODE           => "no_ecc",    --string; "no_ecc", "encode_only", "decode_only" or "both_encode_and_decode" 
+    AUTO_SLEEP_TIME    => 0,           --Do not Change
+
+
+    -- Port A module generics
+    WRITE_DATA_WIDTH_A => 32,          --positive integer
+    READ_DATA_WIDTH_A  => 32,          --positive integer
+    BYTE_WRITE_WIDTH_A => 8,          --integer; 8, 9, or WRITE_DATA_WIDTH_A value
+    ADDR_WIDTH_A       => 7,           --positive integer
+    READ_RESET_VALUE_A => "0",         --string
+    READ_LATENCY_A     => 1,           --non-negative integer
+    WRITE_MODE_A       => "read_first" --string; "write_first", "read_first", "no_change" 
+  )
+  port map (
+
+    -- Common module ports
+    sleep          =>  '0',
+
+    -- Port A module ports
+    clka           =>  BRAM_Clk_A,
+    rsta           =>  BRAM_Rst_A,
+    ena            =>  BRAM_En_A,
+    regcea         =>  '1', --regcea,
+    wea            =>  BRAM_WE_A,
+    addra          =>  BRAM_Addr_A (8 downto 2),
+    dina           =>  BRAM_WrData_A,
+    injectsbiterra =>  '0',
+    injectdbiterra =>  '0',
+    douta          =>  BRAM_RdData_A,
+    sbiterra       =>  open,
+    dbiterra       =>  open
+  );
+
+
+
+
+
+
+
+---BMG : blk_mem_gen_0
+---  port map (
+---    s_aclk =>             axi_clk,
+---    s_aresetn =>          axi_aresetn,
+---    s_axi_awid =>         (others => '0'),
+---    s_axi_awaddr =>       bmg_axi_awaddr, 
+---    s_axi_awlen =>        bmg_axi_awlen,
+---    s_axi_awsize =>       bmg_axi_awsize, 
+---    s_axi_awburst =>      bmg_axi_awburst,
+---    s_axi_awvalid =>      bmg_axi_awvalid,
+---    s_axi_awready =>      bmg_axi_awready,
+---    s_axi_wdata =>        bmg_axi_wdata,
+---    s_axi_wstrb =>        bmg_axi_wstrb,
+---    s_axi_wlast =>        bmg_axi_wlast,
+---    s_axi_wvalid =>       bmg_axi_wvalid, 
+---    s_axi_wready =>       bmg_axi_wready,
+---    s_axi_bid =>          open, 
+---    s_axi_bresp =>        bmg_axi_bresp,
+---    s_axi_bvalid =>       bmg_axi_bvalid, 
+---    s_axi_bready =>       bmg_axi_bready, 
+---    s_axi_arid =>         (others => '0'),
+---    s_axi_araddr =>       (others => '0'), 
+---    s_axi_arlen =>        (others => '0'),
+---    s_axi_arsize =>       (others => '0'), 
+---    s_axi_arburst =>      (others => '0'),
+---    s_axi_arvalid =>      '0',
+---    s_axi_arready =>      open,
+---    s_axi_rid =>          open, 
+---    s_axi_rdata =>        open,
+---    s_axi_rresp =>        open,
+---    s_axi_rlast =>        open,
+---    s_axi_rvalid =>       open, 
+---    s_axi_rready =>       '0'
+---  );
+
+  
+  DUT : <=:$ComponentName:>
+  PORT MAP (
+    ext_spi_clk => axi_clk,
+    s_axi_aclk => axi_clk,
+    s_axi_aresetn => axi_aresetn,
+    s_axi4_aclk => axi_clk,
+    s_axi4_aresetn => axi_aresetn,
+    s_axi_awaddr => (others => '0'),
+    s_axi_awvalid => '0',
+    s_axi_awready => open,
+    s_axi_wdata => (others => '0'),
+    s_axi_wstrb => (others => '0'),
+    s_axi_wvalid => '0',
+    s_axi_wready => open,
+    s_axi_bresp => open,
+    s_axi_bvalid => open,
+    s_axi_bready => '0',
+    s_axi_araddr => (others => '0'),
+    s_axi_arvalid => '0',
+    s_axi_arready => open,
+    s_axi_rdata => open,
+    s_axi_rresp => open,
+    s_axi_rvalid => open,
+    s_axi_rready => '0',
+<: if {$C_S_AXI4_ID_WIDTH != 0} { :>
+    s_axi4_awid => (others => '0'),
+<: } :>	
+    s_axi4_awaddr => (others => '0'),
+    s_axi4_awlen => (others => '0'),
+    s_axi4_awsize => (others => '0'),
+    s_axi4_awburst => (others => '0'),
+    s_axi4_awlock => '0',
+    s_axi4_awcache => (others => '0'),
+    s_axi4_awprot => (others => '0'),
+    s_axi4_awvalid => '0',
+    s_axi4_awready => open,
+    s_axi4_wdata => (others => '0'),
+    s_axi4_wstrb => (others => '0'),
+    s_axi4_wlast => '0',
+    s_axi4_wvalid => '0',
+    s_axi4_wready => open,
+<: if {$C_S_AXI4_ID_WIDTH != 0} { :>
+    s_axi4_bid => open,
+<: } :>	
+    s_axi4_bresp => open,
+    s_axi4_bvalid => open,
+    s_axi4_bready => '0',
+<: if {$C_S_AXI4_ID_WIDTH != 0} { :>
+    s_axi4_arid => qspi_axi_arid,
+<: } :>	
+    s_axi4_araddr => qspi_axi_araddr(<=:$ADDR_WIDTH:> downto 0),
+    s_axi4_arlen => qspi_axi_arlen,
+    s_axi4_arsize => qspi_axi_arsize,
+    s_axi4_arburst => qspi_axi_arburst,
+    s_axi4_arlock => qspi_axi_arlock,
+    s_axi4_arcache => qspi_axi_arcache,
+    s_axi4_arprot => qspi_axi_arprot,
+    s_axi4_arvalid => qspi_axi_arvalid,
+    s_axi4_arready => qspi_axi_arready,
+<: if {$C_S_AXI4_ID_WIDTH != 0} { :>
+    s_axi4_rid => qspi_axi_rid,
+<: } :>	
+    s_axi4_rdata => qspi_axi_rdata,
+    s_axi4_rresp => qspi_axi_rresp,
+    s_axi4_rlast => qspi_axi_rlast,
+    s_axi4_rvalid => qspi_axi_rvalid,
+    s_axi4_rready => qspi_axi_rready,
+<: if {$C_USE_STARTUP == 1 && $UC_FAMILY == 1 && $C_USE_STARTUP_EXT == 0} { :>	
+    gsr => '0',
+    gts => '0',
+    keyclearb => '0',
+    usrcclkts => '0',
+    usrdoneo => '0',
+    usrdonets => '0',
+<: } else { :>	
+    io0_i => io0_i,
+    io0_o => io0_o,
+    io0_t => io0_t,
+    io1_i => io1_i,
+    io1_o => io1_o,
+    io1_t => io1_t,
+<: } :>	
+<: if {$C_SPI_MODE == 2} { :>	
+<: if {$C_USE_STARTUP == 1 && $UC_FAMILY == 1} { :>	
+<: if {$C_DUAL_QUAD_MODE == 1} { :>	
+    io0_1_i  =>io0_1_i ,
+    io0_1_o  =>io0_1_o ,
+    io0_1_t  =>io0_1_t ,
+    io1_1_i  =>io1_1_i ,
+    io1_1_o  =>io1_1_o ,
+    io1_1_t  =>io1_1_t ,
+    io2_1_i  =>io2_1_i ,
+    io2_1_o  =>io2_1_o ,
+    io2_1_t  =>io2_1_t ,
+    io3_1_i  =>io3_1_i ,
+    io3_1_o  =>io3_1_o ,
+    io3_1_t  =>io3_1_t ,
+    ss_1_i  => ss_1_i ,
+    ss_1_o  => ss_1_o ,
+    ss_1_t  => ss_1_t ,
+<: if {$C_USE_STARTUP == 1 && $UC_FAMILY == 1 && $C_USE_STARTUP_EXT == 1} { :>	
+	 io2_i => io2_i,
+    io2_o => io2_o,
+    io2_t => io2_t,
+    io3_i => io3_i,
+    io3_o => io3_o,
+    io3_t => io3_t,
+    sck_i => sck_i,
+    sck_o => sck_o,
+    sck_t => sck_t,
+<: } :>
+<: } else { :>	
+<: if {$C_USE_STARTUP_EXT == 1} { :>	
+    io2_i => io2_i,
+    io2_o => io2_o,
+    io2_t => io2_t,
+    io3_i => io3_i,
+    io3_o => io3_o,
+    io3_t => io3_t,
+    sck_i => sck_i,
+    sck_o => sck_o,
+    sck_t => sck_t,
+<: } :>
+<: } :>
+<: } else { :>	
+    io2_i => io2_i,
+    io2_o => io2_o,
+    io2_t => io2_t,
+    io3_i => io3_i,
+    io3_o => io3_o,
+    io3_t => io3_t,
+<: if {$C_USE_STARTUP == 0 || $C_USE_STARTUP_EXT == 1} { :>	
+    sck_i => sck_i,
+    sck_o => sck_o,
+    sck_t => sck_t,
+<: } :>	
+<: } :>	
+<: } :>	
+<: if {($C_USE_STARTUP == 0 || ($C_DUAL_QUAD_MODE == 0 && $C_USE_STARTUP_EXT == 1)) && $C_SPI_MODE < 2} { :>	
+    sck_i => sck_i,
+    sck_o => sck_o,
+    sck_t => sck_t,
+<: } :>	
+<: if {$C_USE_STARTUP == 1 && $UC_FAMILY == 1 && $C_DUAL_QUAD_MODE == 1} { :>	
+<: } else { :>	
+    ss_i => ss_i,
+    ss_o => ss_o,
+    ss_t => ss_t,
+<: } :>	
+    ip2intc_irpt => ip2intc_irpt
+  );
+<:} :>
+---------------Updated-----------------
+
+<: if {$UC_FAMILY == 0} { :>
+-------- 7 series family--------
+QSPI_IO0_0: IOBUF
+   port map (
+      O  => io0_i,
+      IO => IO0_IO,
+      I  => io0_o,
+      T  => io0_t
+   );
+QSPI_IO1_0: IOBUF
+   port map (
+      O  => io1_i,
+      IO => IO1_IO,
+      I  => io1_o,
+      T  => io1_t
+   );
+<: if {$C_USE_STARTUP == 0} { :>	
+QSPI_SCK_0: IOBUF
+   port map (
+      O  => sck_i,
+      IO => SCK_IO,
+      I  => sck_o,
+      T  => sck_t
+   );
+<: } :>
+<: if {$C_SPI_MODE == 2} { :>	
+QSPI_IO2_0: IOBUF
+   port map (
+      O  => io2_i,
+      IO => IO2_IO,
+      I  => io2_o,
+      T  => io2_t
+   );
+QSPI_IO3_0: IOBUF
+   port map (
+      O  => io3_i,
+      IO => IO3_IO,
+      I  => io3_o,
+      T  => io3_t
+   );
+<: } :>
+GEN_REG: 
+   for I in 0 to <=:$SLAVES:> generate
+      QSPI_SS_mem : IOBUF port map (
+      O  => ss_i(I),
+      IO => SS_IO(I),
+      I  => ss_o(I),
+      T  => ss_t
+		);
+end generate GEN_REG;
+-------- 7 series family--------
+<: } else { :>
+--------US devices-----------------
+<: if {$C_USE_STARTUP == 0} {:>
+-------Startup_disable------
+	QSPI_IO0_0: IOBUF
+	   port map (
+	      O  => io0_i,
+	      IO => IO0_IO,
+	      I  => io0_o,
+	      T  => io0_t
+	   );
+	QSPI_IO1_0: IOBUF
+	   port map (
+	      O  => io1_i,
+	      IO => IO1_IO,
+	      I  => io1_o,
+	      T  => io1_t
+	   );
+	QSPI_SCK_0: IOBUF
+	   port map (
+	      O  => sck_i,
+	      IO => SCK_IO,
+	      I  => sck_o,
+	      T  => sck_t
+	   );
+	<: if {$C_SPI_MODE == 2} { :>	
+	QSPI_IO2_0: IOBUF
+	   port map (
+	      O  => io2_i,
+	      IO => IO2_IO,
+	      I  => io2_o,
+	      T  => io2_t
+	   );
+	QSPI_IO3_0: IOBUF
+	   port map (
+	      O  => io3_i,
+	      IO => IO3_IO,
+	      I  => io3_o,
+	      T  => io3_t
+	   );
+	<: } :>
+	GEN_REG: 
+	   for I in 0 to <=:$SLAVES:> generate
+	      QSPI_SS_mem : IOBUF port map (
+	      O  => ss_i(I),
+	      IO => SS_IO(I),
+	      I  => ss_o(I),
+	      T  => ss_t
+			);
+	end generate GEN_REG;
+-------Startup_disable------
+<: } else { :>
+-------Startup_enable------
+<: if {$C_USE_STARTUP_EXT == 0} { :> 
+-------Startup_enable internal------
+<: if {$C_DUAL_QUAD_MODE == 0} { :>
+---Dual quad mode disable----- 
+	<: if {$C_NUM_SS_BITS > 1} { :> 
+	GEN_REG: 
+	   for I in 1 to <=:$SLAVES:> generate
+	      QSPI_SS_mem : IOBUF port map (
+	      O  => ss_i(I),
+	      IO => SS_IO(I),
+	      I  => ss_o(I),
+	      T  => ss_t
+			);
+	end generate GEN_REG;
+	<: } :>	
+---Dual quad mode disable----- 
+<: } else { :> 
+---Dual quad mode enable----- 
+	QSPI_IO0_0_1: IOBUF
+	   port map (
+	      O  => io0_1_i,
+	      IO => IO0_1_IO,
+	      I  => io0_1_o,
+	      T  => io0_1_t
+	   );
+	QSPI_IO0_1_1: IOBUF
+	   port map (
+	      O  => io1_1_i,
+	      IO => IO1_1_IO,
+	      I  => io1_1_o,
+	      T  => io1_1_t
+	   );
+	QSPI_IO0_2_1: IOBUF
+	   port map (
+	      O  => io2_1_i,
+	      IO => IO2_1_IO,
+	      I  => io2_1_o,
+	      T  => io2_1_t
+	   );
+	QSPI_IO0_3_1: IOBUF
+	   port map (
+	      O  => io3_1_i,
+	      IO => IO3_1_IO,
+	      I  => io3_1_o,
+	      T  => io3_1_t
+	   );
+	QSPI_SSO0_1_1: IOBUF
+	   port map (
+	      O  => ss_1_i,
+	      IO => SS_1_IO,
+	      I  => ss_1_o,
+	      T  => ss_1_t
+	   );
+---Dual quad mode enable----- 
+<: } :> 
+---Startup enable internal-----
+<: } else { :> 
+---Startup enable external-----
+	<: if {$C_DUAL_QUAD_MODE == 0} { :> 
+		<: if {$C_NUM_SS_BITS > 1} { :> 
+		GEN_REG: 
+		   for I in 1 to <=:$SLAVES:> generate
+		      QSPI_SS_mem : IOBUF port map (
+		      O  => ss_i(I),
+		      IO => SS_IO(I),
+		      I  => ss_o(I),
+		      T  => ss_t
+				);
+		end generate GEN_REG;
+		<: } :>	
+	<: } else { :>
+		--US+startup_external+DQMode
+		QSPI_IO0_0: IOBUF
+		   port map (
+		      O  => io0_1_i,
+		      IO => IO0_IO,
+		      I  => io0_1_o,
+		      T  => io0_1_t
+		   );
+		QSPI_IO1_0: IOBUF
+		   port map (
+		      O  => io1_1_i,
+		      IO => IO1_IO,
+		      I  => io1_1_o,
+		      T  => io1_1_t
+		   );
+		QSPI_IO2_0: IOBUF
+		   port map (
+		      O  => io2_1_i,
+		      IO => IO2_IO,
+		      I  => io2_1_o,
+		      T  => io2_1_t
+		   );
+		QSPI_IO3_0: IOBUF
+		   port map (
+		      O  => io3_1_i,
+		      IO => IO3_IO,
+		      I  => io3_1_o,
+		      T  => io3_1_t
+		   );
+		QSPI_SS_mem : IOBUF port map (
+		      O  => ss_1_i,
+		      IO => SS_IO(1),
+		      I  => ss_1_o,
+		      T  => ss_1_t
+				);
+	QSPI_SCK_0: IOBUF
+	   port map (
+	      O  => sck_i,
+	      IO => SCK_IO,
+	      I  => sck_o,
+	      T  => sck_t
+	   );
+
+	<: } :>
+
+	<: if {$C_SPI_MODE < 2} { :>	
+	   DO_int <= '0' & '0' & io1_o & io0_o;
+	   DTS_int <= '0' & '0' & io1_t & io0_t;
+	   io1_i <= DI_int(1);
+	   io0_i <= DI_int(0);
+	<: } else { :>
+	   DO_int <= io3_o & io2_o & io1_o & io0_o;
+	   DTS_int <= io3_t & io2_t & io1_t & io0_t;
+	   io3_i <= DI_int(3);
+	   io2_i <= DI_int(2);
+	   io1_i <= DI_int(1);
+	   io0_i <= DI_int(0);
+	<: } :>
+	
+	   STARTUP3_8SERIES_inst : component STARTUPE3
+	   -----------------------
+	   generic map
+	   (
+	           PROG_USR      => "FALSE", -- Activate program event security feature.
+	          SIM_CCLK_FREQ => 0.0      -- Set the Configuration Clock Frequency(ns) for simulation.
+	   )
+	   port map
+	   (
+	           USRCCLKO  => sck_o,      -- SRCCLKO      , -- 1-bit input: User CCLK input
+	           ----------
+	           CFGCLK    => CFGCLK,       -- FGCLK        , -- 1-bit output: Configuration main clock output
+	           CFGMCLK   => CFGMCLK,       -- FGMCLK       , -- 1-bit output: Configuration internal oscillator clock output
+	           EOS       => EOS,       -- OS           , -- 1-bit output: Active high output signal indicating the End Of Startup.
+	           PREQ      => PREQ,       -- REQ          , -- 1-bit output: PROGRAM request to fabric output
+	           ----------
+	           DO        => DO_int,      -- input
+	           DI        => DI_int,       -- output
+	           DTS       => DTS_int,        -- input
+	           FCSBO     => ss_o(0),        -- input
+	           FCSBTS    => ss_t,        -- input
+	           GSR       => GSR,        -- GSR           , -- 1-bit input: Global Set/Reset input (GSR cannot be used for the port name)
+	           GTS       => GTS,        -- GTS           , -- 1-bit input: Global 3-state input (GTS cannot be used for the port name)
+	           KEYCLEARB => KEYCLEARB,        -- KEYCLEARB     , -- 1-bit input: Clear AES Decrypter Key input from Battery-Backed RAM (BBRAM)
+	           PACK      => '1',        -- PACK          , -- 1-bit input: PROGRAM acknowledge input
+	           USRCCLKTS => USRCCLKTS,        -- USRCCLKTS     , -- 1-bit input: User CCLK 3-state enable input
+	           USRDONEO  => '1',--USRDONEO,        -- USRDONEO      , -- 1-bit input: User DONE pin output control
+	           USRDONETS => USRDONETS         -- USRDONETS       -- 1-bit input: User DONE 3-state enable output
+	   );
+ 
+---Startup enable external-----
+<: } :>
+----startup Enable-------
+<: } :>
+--------US devices-----------------
+<: } :>
+
+
+<: } else { :>
+------------slave mode----------------
+COMPONENT axi_traffic_gen_1
+  PORT (
+    s_axi_aclk : in std_logic;
+    s_axi_aresetn : in std_logic;
+    m_axi_lite_ch1_awaddr : out std_logic_vector(31 DOWNTO 0);
+    m_axi_lite_ch1_awprot : out std_logic_vector(2 DOWNTO 0);
+    m_axi_lite_ch1_awvalid : out std_logic;
+    m_axi_lite_ch1_awready : in std_logic;
+    m_axi_lite_ch1_wdata : out std_logic_vector(31 DOWNTO 0);
+    m_axi_lite_ch1_wstrb : out std_logic_vector(3 DOWNTO 0);
+    m_axi_lite_ch1_wvalid : out std_logic;
+    m_axi_lite_ch1_wready : in std_logic;
+    m_axi_lite_ch1_bresp : in std_logic_vector(1 DOWNTO 0);
+    m_axi_lite_ch1_bvalid : in std_logic;
+    m_axi_lite_ch1_bready : out std_logic;
+    m_axi_lite_ch1_araddr : out std_logic_vector(31 DOWNTO 0);
+    m_axi_lite_ch1_arvalid : out std_logic;
+    m_axi_lite_ch1_arready : in std_logic;
+    m_axi_lite_ch1_rdata : in std_logic_vector(31 DOWNTO 0);
+    m_axi_lite_ch1_rvalid : in std_logic;
+    m_axi_lite_ch1_rready : out std_logic;
+    m_axi_lite_ch1_rresp : in std_logic_vector(1 DOWNTO 0);
+    m_axi_lite_ch2_awaddr : out std_logic_vector(31 DOWNTO 0);
+    m_axi_lite_ch2_awprot : out std_logic_vector(2 DOWNTO 0);
+    m_axi_lite_ch2_awvalid : out std_logic;
+    m_axi_lite_ch2_awready : in std_logic;
+    m_axi_lite_ch2_wdata : out std_logic_vector(31 DOWNTO 0);
+    m_axi_lite_ch2_wstrb : out std_logic_vector(3 DOWNTO 0);
+    m_axi_lite_ch2_wvalid : out std_logic;
+    m_axi_lite_ch2_wready : in std_logic;
+    m_axi_lite_ch2_bresp : in std_logic_vector(1 DOWNTO 0);
+    m_axi_lite_ch2_bvalid : in std_logic;
+    m_axi_lite_ch2_bready : out std_logic;
+    m_axi_lite_ch2_araddr : out std_logic_vector(31 DOWNTO 0);
+    m_axi_lite_ch2_arvalid : out std_logic;
+    m_axi_lite_ch2_arready : in std_logic;
+    m_axi_lite_ch2_rdata : in std_logic_vector(31 DOWNTO 0);
+    m_axi_lite_ch2_rvalid : in std_logic;
+    m_axi_lite_ch2_rready : out std_logic;
+    m_axi_lite_ch2_rresp : in std_logic_vector(1 DOWNTO 0);
+    done : out std_logic;
+    status : out std_logic_vector(31 DOWNTO 0)
+  ); 
+END COMPONENT;
+
+------QSPI SLAVE -----------------
+COMPONENT <=:$ComponentName:>
+  PORT (
+    ext_spi_clk : IN STD_LOGIC;
+<: if {$C_AXI4 == 0} { :>
+    s_axi_aclk : IN STD_LOGIC;
+    s_axi_aresetn : IN STD_LOGIC;
+    s_axi_awaddr : IN STD_LOGIC_VECTOR(6 DOWNTO 0);
+    s_axi_awvalid : IN STD_LOGIC;
+    s_axi_awready : OUT STD_LOGIC;
+    s_axi_wdata : IN STD_LOGIC_VECTOR(31 DOWNTO 0);
+    s_axi_wstrb : IN STD_LOGIC_VECTOR(3 DOWNTO 0);
+    s_axi_wvalid : IN STD_LOGIC;
+    s_axi_wready : OUT STD_LOGIC;
+    s_axi_bresp : OUT STD_LOGIC_VECTOR(1 DOWNTO 0);
+    s_axi_bvalid : OUT STD_LOGIC;
+    s_axi_bready : IN STD_LOGIC;
+    s_axi_araddr : IN STD_LOGIC_VECTOR(6 DOWNTO 0);
+    s_axi_arvalid : IN STD_LOGIC;
+    s_axi_arready : OUT STD_LOGIC;
+    s_axi_rdata : OUT STD_LOGIC_VECTOR(31 DOWNTO 0);
+    s_axi_rresp : OUT STD_LOGIC_VECTOR(1 DOWNTO 0);
+    s_axi_rvalid : OUT STD_LOGIC;
+    s_axi_rready : IN STD_LOGIC;
+<: } :>
+<: if {$C_AXI4 == 1} { :>
+    s_axi4_aclk : IN STD_LOGIC;
+    s_axi4_aresetn : IN STD_LOGIC;
+<: if {$C_S_AXI4_ID_WIDTH != 0} { :>
+    s_axi4_awid : IN STD_LOGIC_VECTOR(<=:$ID_WIDTH:> DOWNTO 0);
+<: } :>
+    s_axi4_awaddr : IN STD_LOGIC_VECTOR(23 DOWNTO 0);
+    s_axi4_awlen : IN STD_LOGIC_VECTOR(7 DOWNTO 0);
+    s_axi4_awsize : IN STD_LOGIC_VECTOR(2 DOWNTO 0);
+    s_axi4_awburst : IN STD_LOGIC_VECTOR(1 DOWNTO 0);
+    s_axi4_awlock : IN STD_LOGIC;
+    s_axi4_awcache : IN STD_LOGIC_VECTOR(3 DOWNTO 0);
+    s_axi4_awprot : IN STD_LOGIC_VECTOR(2 DOWNTO 0);
+    s_axi4_awvalid : IN STD_LOGIC;
+    s_axi4_awready : OUT STD_LOGIC;
+    s_axi4_wdata : IN STD_LOGIC_VECTOR(31 DOWNTO 0);
+    s_axi4_wstrb : IN STD_LOGIC_VECTOR(3 DOWNTO 0);
+    s_axi4_wlast : IN STD_LOGIC;
+    s_axi4_wvalid : IN STD_LOGIC;
+    s_axi4_wready : OUT STD_LOGIC;
+<: if {$C_S_AXI4_ID_WIDTH != 0} { :>
+    s_axi4_bid : OUT STD_LOGIC_VECTOR(<=:$ID_WIDTH:> DOWNTO 0);
+<: } :>
+    s_axi4_bresp : OUT STD_LOGIC_VECTOR(1 DOWNTO 0);
+    s_axi4_bvalid : OUT STD_LOGIC;
+    s_axi4_bready : IN STD_LOGIC;
+<: if {$C_S_AXI4_ID_WIDTH != 0} { :>
+    s_axi4_arid : IN STD_LOGIC_VECTOR(<=:$ID_WIDTH:> DOWNTO 0);
+<: } :>
+    s_axi4_araddr : IN STD_LOGIC_VECTOR(23 DOWNTO 0);
+    s_axi4_arlen : IN STD_LOGIC_VECTOR(7 DOWNTO 0);
+    s_axi4_arsize : IN STD_LOGIC_VECTOR(2 DOWNTO 0);
+    s_axi4_arburst : IN STD_LOGIC_VECTOR(1 DOWNTO 0);
+    s_axi4_arlock : IN STD_LOGIC;
+    s_axi4_arcache : IN STD_LOGIC_VECTOR(3 DOWNTO 0);
+    s_axi4_arprot : IN STD_LOGIC_VECTOR(2 DOWNTO 0);
+    s_axi4_arvalid : IN STD_LOGIC;
+    s_axi4_arready : OUT STD_LOGIC;
+<: if {$C_S_AXI4_ID_WIDTH != 0} { :>
+    s_axi4_rid : OUT STD_LOGIC_VECTOR(<=:$ID_WIDTH:> DOWNTO 0);
+<: } :>
+    s_axi4_rdata : OUT STD_LOGIC_VECTOR(31 DOWNTO 0);
+    s_axi4_rresp : OUT STD_LOGIC_VECTOR(1 DOWNTO 0);
+    s_axi4_rlast : OUT STD_LOGIC;
+    s_axi4_rvalid : OUT STD_LOGIC;
+    s_axi4_rready : IN STD_LOGIC;
+<: } :>
+<: if {$C_USE_STARTUP == 1 && $UC_FAMILY == 1 && $C_USE_STARTUP_EXT == 0} { :>	
+    gsr : IN STD_LOGIC;
+    gts : IN STD_LOGIC;
+    keyclearb : IN STD_LOGIC;
+    usrcclkts : IN STD_LOGIC;
+    usrdoneo : IN STD_LOGIC;
+    usrdonets : IN STD_LOGIC;
+<: } else { :>	
+    io0_i : IN STD_LOGIC;
+    io0_o : OUT STD_LOGIC;
+    io0_t : OUT STD_LOGIC;
+    io1_i : IN STD_LOGIC;
+    io1_o : OUT STD_LOGIC;
+    io1_t : OUT STD_LOGIC;
+<: } :>	
+<: if {$C_SPI_MODE == 2} { :>	
+<: if {$C_USE_STARTUP == 1 && $UC_FAMILY == 1} { :>	
+<: if {$C_DUAL_QUAD_MODE == 1} { :>	
+    io0_1_i : IN STD_LOGIC;
+    io0_1_o : OUT STD_LOGIC;
+    io0_1_t : OUT STD_LOGIC;
+    io1_1_i : IN STD_LOGIC;
+    io1_1_o : OUT STD_LOGIC;
+    io1_1_t : OUT STD_LOGIC;
+    io2_1_i : IN STD_LOGIC;
+    io2_1_o : OUT STD_LOGIC;
+    io2_1_t : OUT STD_LOGIC;
+    io3_1_i : IN STD_LOGIC;
+    io3_1_o : OUT STD_LOGIC;
+    io3_1_t : OUT STD_LOGIC;
+    ss_1_i : IN STD_LOGIC;
+    ss_1_o : OUT STD_LOGIC;
+    ss_1_t : OUT STD_LOGIC;
+<: } else { :>	
+<: } :>	
+<: } else { :>	
+	io2_i : IN STD_LOGIC;
+    io2_o : OUT STD_LOGIC;
+    io2_t : OUT STD_LOGIC;
+    io3_i : IN STD_LOGIC;
+    io3_o : OUT STD_LOGIC;
+    io3_t : OUT STD_LOGIC;
+<: } :>	
+<: } :>	
+<: if {$C_USE_STARTUP == 0} { :>	
+    sck_i : IN STD_LOGIC;
+    sck_o : OUT STD_LOGIC;
+    sck_t : OUT STD_LOGIC;
+<: } :>	
+    spisel : IN STD_LOGIC;
+<: if {$C_USE_STARTUP == 1 && $UC_FAMILY == 1 && ($C_NUM_SS_BITS == 1 || ($C_DUAL_QUAD_MODE == 1 && $C_DUAL_QUAD_MODE == 0))} { :>	
+<: } else { :>	
+    ss_i : IN STD_LOGIC_VECTOR(0 DOWNTO 0);
+    ss_o : OUT STD_LOGIC_VECTOR(0 DOWNTO 0);
+    ss_t : OUT STD_LOGIC;
+<: } :>	
+    ip2intc_irpt : OUT STD_LOGIC
+  );
+END COMPONENT;
+
+----QSPI MASTER-------------
+COMPONENT axi_quad_spi_Master
+  PORT (
+    ext_spi_clk : IN STD_LOGIC;
+<: if {$C_AXI4 == 0} { :>
+    s_axi_aclk : IN STD_LOGIC;
+    s_axi_aresetn : IN STD_LOGIC;
+    s_axi_awaddr : IN STD_LOGIC_VECTOR(6 DOWNTO 0);
+    s_axi_awvalid : IN STD_LOGIC;
+    s_axi_awready : OUT STD_LOGIC;
+    s_axi_wdata : IN STD_LOGIC_VECTOR(31 DOWNTO 0);
+    s_axi_wstrb : IN STD_LOGIC_VECTOR(3 DOWNTO 0);
+    s_axi_wvalid : IN STD_LOGIC;
+    s_axi_wready : OUT STD_LOGIC;
+    s_axi_bresp : OUT STD_LOGIC_VECTOR(1 DOWNTO 0);
+    s_axi_bvalid : OUT STD_LOGIC;
+    s_axi_bready : IN STD_LOGIC;
+    s_axi_araddr : IN STD_LOGIC_VECTOR(6 DOWNTO 0);
+    s_axi_arvalid : IN STD_LOGIC;
+    s_axi_arready : OUT STD_LOGIC;
+    s_axi_rdata : OUT STD_LOGIC_VECTOR(31 DOWNTO 0);
+    s_axi_rresp : OUT STD_LOGIC_VECTOR(1 DOWNTO 0);
+    s_axi_rvalid : OUT STD_LOGIC;
+    s_axi_rready : IN STD_LOGIC;
+<: } :>
+<: if {$C_AXI4 == 1} { :>
+    s_axi4_aclk : IN STD_LOGIC;
+    s_axi4_aresetn : IN STD_LOGIC;
+<: if {$C_S_AXI4_ID_WIDTH != 0} { :>
+    s_axi4_awid : IN STD_LOGIC_VECTOR(<=:$ID_WIDTH:> DOWNTO 0);
+<: } :>
+    s_axi4_awaddr : IN STD_LOGIC_VECTOR(23 DOWNTO 0);
+    s_axi4_awlen : IN STD_LOGIC_VECTOR(7 DOWNTO 0);
+    s_axi4_awsize : IN STD_LOGIC_VECTOR(2 DOWNTO 0);
+    s_axi4_awburst : IN STD_LOGIC_VECTOR(1 DOWNTO 0);
+    s_axi4_awlock : IN STD_LOGIC;
+    s_axi4_awcache : IN STD_LOGIC_VECTOR(3 DOWNTO 0);
+    s_axi4_awprot : IN STD_LOGIC_VECTOR(2 DOWNTO 0);
+    s_axi4_awvalid : IN STD_LOGIC;
+    s_axi4_awready : OUT STD_LOGIC;
+    s_axi4_wdata : IN STD_LOGIC_VECTOR(31 DOWNTO 0);
+    s_axi4_wstrb : IN STD_LOGIC_VECTOR(3 DOWNTO 0);
+    s_axi4_wlast : IN STD_LOGIC;
+    s_axi4_wvalid : IN STD_LOGIC;
+    s_axi4_wready : OUT STD_LOGIC;
+<: if {$C_S_AXI4_ID_WIDTH != 0} { :>
+    s_axi4_bid : OUT STD_LOGIC_VECTOR(<=:$ID_WIDTH:> DOWNTO 0);
+<: } :>
+    s_axi4_bresp : OUT STD_LOGIC_VECTOR(1 DOWNTO 0);
+    s_axi4_bvalid : OUT STD_LOGIC;
+    s_axi4_bready : IN STD_LOGIC;
+<: if {$C_S_AXI4_ID_WIDTH != 0} { :>
+    s_axi4_arid : IN STD_LOGIC_VECTOR(<=:$ID_WIDTH:> DOWNTO 0);
+<: } :>
+    s_axi4_araddr : IN STD_LOGIC_VECTOR(23 DOWNTO 0);
+    s_axi4_arlen : IN STD_LOGIC_VECTOR(7 DOWNTO 0);
+    s_axi4_arsize : IN STD_LOGIC_VECTOR(2 DOWNTO 0);
+    s_axi4_arburst : IN STD_LOGIC_VECTOR(1 DOWNTO 0);
+    s_axi4_arlock : IN STD_LOGIC;
+    s_axi4_arcache : IN STD_LOGIC_VECTOR(3 DOWNTO 0);
+    s_axi4_arprot : IN STD_LOGIC_VECTOR(2 DOWNTO 0);
+    s_axi4_arvalid : IN STD_LOGIC;
+    s_axi4_arready : OUT STD_LOGIC;
+<: if {$C_S_AXI4_ID_WIDTH != 0} { :>
+    s_axi4_rid : OUT STD_LOGIC_VECTOR(<=:$ID_WIDTH:> DOWNTO 0);
+<: } :>
+    s_axi4_rdata : OUT STD_LOGIC_VECTOR(31 DOWNTO 0);
+    s_axi4_rresp : OUT STD_LOGIC_VECTOR(1 DOWNTO 0);
+    s_axi4_rlast : OUT STD_LOGIC;
+    s_axi4_rvalid : OUT STD_LOGIC;
+    s_axi4_rready : IN STD_LOGIC;
+<: } :>
+<: if {$C_USE_STARTUP == 1 && $UC_FAMILY == 1 && $C_USE_STARTUP_EXT == 0} { :>	
+    gsr : IN STD_LOGIC;
+    gts : IN STD_LOGIC;
+    keyclearb : IN STD_LOGIC;
+    usrcclkts : IN STD_LOGIC;
+    usrdoneo : IN STD_LOGIC;
+    usrdonets : IN STD_LOGIC;
+<: } else { :>
+    io0_i : IN STD_LOGIC;
+    io0_o : OUT STD_LOGIC;
+    io0_t : OUT STD_LOGIC;
+    io1_i : IN STD_LOGIC;
+    io1_o : OUT STD_LOGIC;
+    io1_t : OUT STD_LOGIC;
+<: } :>	
+<: if {$C_SPI_MODE == 2} { :>	
+<: if {$C_USE_STARTUP == 1 && $UC_FAMILY == 1} { :>	
+<: if {$C_DUAL_QUAD_MODE == 1} { :>	
+    io0_1_i : IN STD_LOGIC;
+    io0_1_o : OUT STD_LOGIC;
+    io0_1_t : OUT STD_LOGIC;
+    io1_1_i : IN STD_LOGIC;
+    io1_1_o : OUT STD_LOGIC;
+    io1_1_t : OUT STD_LOGIC;
+    io2_1_i : IN STD_LOGIC;
+    io2_1_o : OUT STD_LOGIC;
+    io2_1_t : OUT STD_LOGIC;
+    io3_1_i : IN STD_LOGIC;
+    io3_1_o : OUT STD_LOGIC;
+    io3_1_t : OUT STD_LOGIC;
+    ss_1_i : IN STD_LOGIC;
+    ss_1_o : OUT STD_LOGIC;
+    ss_1_t : OUT STD_LOGIC;
+<: } else { :>	
+<: } :>	
+<: } else { :>	
+	io2_i : IN STD_LOGIC;
+    io2_o : OUT STD_LOGIC;
+    io2_t : OUT STD_LOGIC;
+    io3_i : IN STD_LOGIC;
+    io3_o : OUT STD_LOGIC;
+    io3_t : OUT STD_LOGIC;
+<: } :>	
+<: } :>	
+<: if {$C_USE_STARTUP == 0} { :>	
+    sck_i : IN STD_LOGIC;
+    sck_o : OUT STD_LOGIC;
+    sck_t : OUT STD_LOGIC;
+<: } :>	
+<: if {$C_USE_STARTUP == 1 && $UC_FAMILY == 1 && ($C_NUM_SS_BITS == 1 || ($C_DUAL_QUAD_MODE == 1 && $C_DUAL_QUAD_MODE == 0))} { :>	
+<: } else { :>	
+    ss_i : IN STD_LOGIC_VECTOR(0 DOWNTO 0);
+    ss_o : OUT STD_LOGIC_VECTOR(0 DOWNTO 0);
+    ss_t : OUT STD_LOGIC;
+<: } :>	
+    ip2intc_irpt : OUT STD_LOGIC
+  );
+END COMPONENT;
+
+------------- Signal Declaration-----------------------
+   signal m_axi_lite_ch1_awaddr : STD_LOGIC_VECTOR(31 DOWNTO 0):=(others => '0');
+   signal m_axi_lite_ch1_awvalid : STD_LOGIC:= '0';
+   signal m_axi_lite_ch1_wdata : STD_LOGIC_VECTOR(31 DOWNTO 0):=(others => '0');
+   signal m_axi_lite_ch1_wstrb :  STD_LOGIC_VECTOR(3 DOWNTO 0):=(others => '0');
+   signal m_axi_lite_ch1_wvalid :  STD_LOGIC:= '0';
+   signal m_axi_lite_ch1_bready :  STD_LOGIC:= '0';
+   signal m_axi_lite_ch1_araddr :  STD_LOGIC_VECTOR(31 DOWNTO 0):=(others => '0');
+   signal m_axi_lite_ch1_arvalid :  STD_LOGIC:= '0';
+   signal m_axi_lite_ch1_rready :  STD_LOGIC:= '0';
+   
+  signal   s_axi_awready_master : STD_LOGIC:= '0';
+  signal   s_axi_wready_master : STD_LOGIC:= '0';
+  signal   s_axi_bresp_master : STD_LOGIC_VECTOR(1 DOWNTO 0):=(others => '0');
+  signal   s_axi_bvalid_master : STD_LOGIC:= '0';
+  signal   s_axi_arready_master : STD_LOGIC:= '0';
+  signal   s_axi_rdata_master : STD_LOGIC_VECTOR(31 DOWNTO 0):=(others => '0');
+  signal   s_axi_rresp_master : STD_LOGIC_VECTOR(1 DOWNTO 0):=(others => '0');
+  signal   s_axi_rvalid_master : STD_LOGIC:= '0';
+
+   signal m_axi_lite_ch2_awaddr : STD_LOGIC_VECTOR(31 DOWNTO 0):=(others => '0');
+   signal m_axi_lite_ch2_awvalid : STD_LOGIC:= '0';
+   signal m_axi_lite_ch2_wdata : STD_LOGIC_VECTOR(31 DOWNTO 0):=(others => '0');
+   signal m_axi_lite_ch2_wstrb :  STD_LOGIC_VECTOR(3 DOWNTO 0):=(others => '0');
+   signal m_axi_lite_ch2_wvalid :  STD_LOGIC:= '0';
+   signal m_axi_lite_ch2_bready :  STD_LOGIC:= '0';
+   signal m_axi_lite_ch2_araddr :  STD_LOGIC_VECTOR(31 DOWNTO 0):=(others => '0');
+   signal m_axi_lite_ch2_arvalid :  STD_LOGIC:= '0';
+   signal m_axi_lite_ch2_rready :  STD_LOGIC:= '0';
+   
+  signal   s_axi_awready_slave : STD_LOGIC:= '0';
+  signal   s_axi_wready_slave : STD_LOGIC:= '0';
+  signal   s_axi_bresp_slave : STD_LOGIC_VECTOR(1 DOWNTO 0):=(others => '0');
+  signal   s_axi_bvalid_slave : STD_LOGIC:= '0';
+  signal   s_axi_arready_slave : STD_LOGIC:= '0';
+  signal   s_axi_rdata_slave : STD_LOGIC_VECTOR(31 DOWNTO 0):=(others => '0');
+  signal   s_axi_rresp_slave : STD_LOGIC_VECTOR(1 DOWNTO 0):=(others => '0');
+  signal   s_axi_rvalid_slave : STD_LOGIC:= '0';
+
+  signal   io0_i_master : STD_LOGIC:= '0';
+  signal   io0_o_master : STD_LOGIC:= '0';
+  signal   io0_t_master : STD_LOGIC:= '0';
+  signal   io1_i_master :STD_LOGIC:= '0';
+  signal   io1_o_master : STD_LOGIC:= '0';
+  signal   io1_t_master : STD_LOGIC:= '0';
+<: if {$C_SPI_MODE == 2} { :>  
+  signal   io2_i_master : STD_LOGIC:= '0';
+  signal   io2_o_master : STD_LOGIC:= '0';
+  signal   io2_t_master : STD_LOGIC:= '0';
+  signal   io3_i_master :STD_LOGIC:= '0';
+  signal   io3_o_master : STD_LOGIC:= '0';
+  signal   io3_t_master : STD_LOGIC:= '0';
+<: } :>	
+  signal   sck_i_master : STD_LOGIC:= '0';
+  signal   sck_o_master : STD_LOGIC:= '0';
+  signal   sck_t_master : STD_LOGIC:= '0';
+  signal   ss_i_master : STD_LOGIC_VECTOR(<=:$SLAVES:> DOWNTO 0):=(others => '0');
+  signal   ss_o_master : STD_LOGIC_VECTOR(<=:$SLAVES:> DOWNTO 0):=(others => '0');
+  signal   ss_t_master : STD_LOGIC:= '0';
+  signal   ip2intc_irpt_master : STD_LOGIC;
+
+
+  signal   io0_i_slave : STD_LOGIC:= '0';
+  signal   io0_o_slave : STD_LOGIC:= '0';
+  signal   io0_t_slave : STD_LOGIC:= '0';
+  signal   io1_i_slave :STD_LOGIC:= '0';
+  signal   io1_o_slave : STD_LOGIC:= '0';
+  signal   io1_t_slave : STD_LOGIC:= '0';
+<: if {$C_SPI_MODE == 2} { :>  
+  signal   io2_i_slave : STD_LOGIC:= '0';
+  signal   io2_o_slave : STD_LOGIC:= '0';
+  signal   io2_t_slave : STD_LOGIC:= '0';
+  signal   io3_i_slave :STD_LOGIC:= '0';
+  signal   io3_o_slave : STD_LOGIC:= '0';
+  signal   io3_t_slave : STD_LOGIC:= '0';
+<: } :>	
+  signal   sck_i_slave : STD_LOGIC:= '0';
+  signal   sck_o_slave : STD_LOGIC:= '0';
+  signal   sck_t_slave : STD_LOGIC:= '0';
+  signal   ss_i_slave : STD_LOGIC_VECTOR(<=:$SLAVES:> DOWNTO 0):=(others => '0');
+  signal   ss_o_slave : STD_LOGIC_VECTOR(<=:$SLAVES:> DOWNTO 0):=(others => '0');
+  signal   ss_t_slave : STD_LOGIC:= '0';
+  signal   ip2intc_irpt_slave : STD_LOGIC:= '0';
+
+  
+  signal  axi_clk      :  std_logic:= '0';
+  signal  locked       :  std_logic:= '0';
+  signal  axi_aresetn  :  std_logic:= '0';
+
+
+
+begin
+
+CLK_GEN : clk_wiz_0
+   port map ( 
+   -- Clock in ports
+   clk_in1_p => clk_p,
+   clk_in1_n => clk_n,
+  -- Clock out ports  
+   clk_out1 => axi_clk,
+  -- Status and control signals                
+   reset => reset,
+   locked => locked            
+ );
+axi_aresetn <= locked;
+axi_aresetn_out <= locked;
+axi_clk_out <= axi_clk;
+
+
+Instance_ATG_1 : axi_traffic_gen_1
+  PORT MAP (
+    s_axi_aclk => axi_clk,
+    s_axi_aresetn => axi_aresetn,
+    m_axi_lite_ch1_awaddr => m_axi_lite_ch1_awaddr,
+    m_axi_lite_ch1_awprot => open,
+    m_axi_lite_ch1_awvalid => m_axi_lite_ch1_awvalid,
+    m_axi_lite_ch1_awready => s_axi_awready_master,
+    m_axi_lite_ch1_wdata => m_axi_lite_ch1_wdata,
+    m_axi_lite_ch1_wstrb => m_axi_lite_ch1_wstrb,
+    m_axi_lite_ch1_wvalid => m_axi_lite_ch1_wvalid,
+    m_axi_lite_ch1_wready => s_axi_wready_master,
+    m_axi_lite_ch1_bresp => s_axi_bresp_master,
+    m_axi_lite_ch1_bvalid => s_axi_bvalid_master,
+    m_axi_lite_ch1_bready => m_axi_lite_ch1_bready,
+    m_axi_lite_ch1_araddr => m_axi_lite_ch1_araddr,
+    m_axi_lite_ch1_arvalid => m_axi_lite_ch1_arvalid,
+    m_axi_lite_ch1_arready => s_axi_arready_master,
+    m_axi_lite_ch1_rdata => s_axi_rdata_master,
+    m_axi_lite_ch1_rvalid => s_axi_rvalid_master,
+    m_axi_lite_ch1_rready => m_axi_lite_ch1_rready,
+    m_axi_lite_ch1_rresp => s_axi_rresp_master,
+    m_axi_lite_ch2_awaddr => m_axi_lite_ch2_awaddr,
+    m_axi_lite_ch2_awprot => open,
+    m_axi_lite_ch2_awvalid => m_axi_lite_ch2_awvalid,
+    m_axi_lite_ch2_awready => s_axi_awready_slave,
+    m_axi_lite_ch2_wdata => m_axi_lite_ch2_wdata,
+    m_axi_lite_ch2_wstrb => m_axi_lite_ch2_wstrb,
+    m_axi_lite_ch2_wvalid => m_axi_lite_ch2_wvalid,
+    m_axi_lite_ch2_wready => s_axi_wready_slave,
+    m_axi_lite_ch2_bresp => s_axi_bresp_slave,
+    m_axi_lite_ch2_bvalid => s_axi_bvalid_slave,
+    m_axi_lite_ch2_bready => m_axi_lite_ch2_bready,
+    m_axi_lite_ch2_araddr => m_axi_lite_ch2_araddr,
+    m_axi_lite_ch2_arvalid => m_axi_lite_ch2_arvalid,
+    m_axi_lite_ch2_arready => s_axi_arready_slave,
+    m_axi_lite_ch2_rdata => s_axi_rdata_slave,
+    m_axi_lite_ch2_rvalid => s_axi_rvalid_slave,
+    m_axi_lite_ch2_rready => m_axi_lite_ch2_rready,
+    m_axi_lite_ch2_rresp => s_axi_rresp_slave,
+    done => atg_done,
+    status => atg_status
+  );
+
+  
+ QSPI_MASTER : axi_quad_spi_Master
+  PORT MAP (
+    ext_spi_clk => axi_clk,
+<: if {$C_AXI4 == 0} { :>
+    s_axi_aclk =>  axi_clk,
+    s_axi_aresetn => axi_aresetn,
+    s_axi_awaddr => m_axi_lite_ch1_awaddr(6 downto 0),
+    s_axi_awvalid => m_axi_lite_ch1_awvalid,
+    s_axi_awready => s_axi_awready_master,
+    s_axi_wdata => m_axi_lite_ch1_wdata,
+    s_axi_wstrb => m_axi_lite_ch1_wstrb,
+    s_axi_wvalid => m_axi_lite_ch1_wvalid,
+    s_axi_wready => s_axi_wready_master,
+    s_axi_bresp => s_axi_bresp_master,
+    s_axi_bvalid => s_axi_bvalid_master,
+    s_axi_bready => m_axi_lite_ch1_bready,
+    s_axi_araddr => m_axi_lite_ch1_araddr(6 downto 0),
+    s_axi_arvalid => m_axi_lite_ch1_arvalid,
+    s_axi_arready => s_axi_arready_master,
+    s_axi_rdata => s_axi_rdata_master,
+    s_axi_rresp => s_axi_rresp_master,
+    s_axi_rvalid => s_axi_rvalid_master,
+    s_axi_rready => m_axi_lite_ch1_rready,
+<: } :>	
+<: if {$C_AXI4 == 1} { :>
+    s_axi4_aclk     => axi_clk,
+    s_axi4_aresetn => axi_aresetn,
+<: if {$C_S_AXI4_ID_WIDTH != 0} { :>
+    s_axi4_awid => (others => '0'),
+<: } :>	
+    s_axi4_awaddr => m_axi_lite_ch1_awaddr(23 downto 0),
+    s_axi4_awlen => (others => '0'),
+    s_axi4_awsize => "010",
+    s_axi4_awburst => "01",
+    s_axi4_awlock => '0',
+    s_axi4_awcache => "0011",
+    s_axi4_awprot => (others => '0'),
+    s_axi4_awvalid => m_axi_lite_ch1_awvalid,
+    s_axi4_awready => s_axi_awready_master,
+    s_axi4_wdata => m_axi_lite_ch1_wdata,
+    s_axi4_wstrb => m_axi_lite_ch1_wstrb,
+    s_axi4_wlast => '1',
+    s_axi4_wvalid => m_axi_lite_ch1_wvalid,
+    s_axi4_wready => s_axi_wready_master,
+<: if {$C_S_AXI4_ID_WIDTH != 0} { :>
+    s_axi4_bid => open,
+<: } :>	
+    s_axi4_bresp => s_axi_bresp_master,
+    s_axi4_bvalid => s_axi_bvalid_master,
+    s_axi4_bready => m_axi_lite_ch1_bready,
+<: if {$C_S_AXI4_ID_WIDTH != 0} { :>
+    s_axi4_arid => (others => '0'),
+<: } :>	
+    s_axi4_araddr => m_axi_lite_ch1_araddr(23 downto 0),
+    s_axi4_arlen => (others => '0'),
+    s_axi4_arsize => "010",
+    s_axi4_arburst => "01",
+    s_axi4_arlock => '0',
+    s_axi4_arcache => "0011",
+    s_axi4_arprot => (others => '0'),
+    s_axi4_arvalid => m_axi_lite_ch1_arvalid,
+    s_axi4_arready => s_axi_arready_master,
+<: if {$C_S_AXI4_ID_WIDTH != 0} { :>
+    s_axi4_rid => open,
+<: } :>	
+    s_axi4_rdata => s_axi_rdata_master,
+    s_axi4_rresp => s_axi_rresp_master,
+    s_axi4_rlast => open,
+    s_axi4_rvalid => s_axi_rvalid_master,
+    s_axi4_rready => m_axi_lite_ch1_rready,
+<: } :>	
+<: if {$C_USE_STARTUP == 1 && $UC_FAMILY == 1 && $C_USE_STARTUP_EXT == 0} { :>	
+    gsr => '0',
+    gts => '0',
+    keyclearb => '0',
+    usrcclkts => '0',
+    usrdoneo => '0',
+    usrdonets => '0',
+<: } else { :>	
+    io0_i => io0_i_master,
+    io0_o => io0_o_master,
+    io0_t => io0_t_master,
+    io1_i => io1_i_master,
+    io1_o => io1_o_master,
+    io1_t => io1_t_master,
+<: } :>
+<: if {$C_SPI_MODE == 2} { :>	
+<: if {$C_USE_STARTUP == 1 && $UC_FAMILY == 1} { :>	
+<: if {$C_DUAL_QUAD_MODE == 1} { :>	
+    io0_1_i  =>io0_1_i ,
+    io0_1_o  =>io0_1_o ,
+    io0_1_t  =>io0_1_t ,
+    io1_1_i  =>io1_1_i ,
+    io1_1_o  =>io1_1_o ,
+    io1_1_t  =>io1_1_t ,
+    io2_1_i  =>io2_1_i ,
+    io2_1_o  =>io2_1_o ,
+    io2_1_t  =>io2_1_t ,
+    io3_1_i  =>io3_1_i ,
+    io3_1_o  =>io3_1_o ,
+    io3_1_t  =>io3_1_t ,
+    ss_1_i  => ss_1_i ,
+    ss_1_o  => ss_1_o ,
+    ss_1_t  => ss_1_t ,
+<: } else { :>	
+<: } :>
+<: } else { :>	
+    io2_i => io2_i_master,
+    io2_o => io2_o_master,
+    io2_t => io2_t_master,
+    io3_i => io3_i_master,
+    io3_o => io3_o_master,
+    io3_t => io3_t_master,
+<: } :>
+<: } :>
+<: if {$C_USE_STARTUP == 0} { :>	
+    sck_i => sck_i_master,
+    sck_o => sck_o_master,
+    sck_t => sck_t_master,
+<: } :>
+<: if {$C_USE_STARTUP == 1 && $UC_FAMILY == 1 && ($C_NUM_SS_BITS == 1 || $C_DUAL_QUAD_MODE == 1)} { :>	
+<: } else { :>	
+    ss_i => ss_i_master,
+    ss_o => ss_o_master,
+    ss_t => ss_t_master,
+<: } :>
+    ip2intc_irpt => ip2intc_irpt_master
+  );
+
+QSPI_IO0_0_Master: IOBUF
+   port map (
+      O  => io0_i_master,
+      IO => IO0_IO_Master,
+      I  => io0_o_master,
+      T  => io0_t_master
+   );
+           
+QSPI_IO1_0_Master: IOBUF
+   port map (
+      O  => io1_i_master,
+      IO => IO1_IO_Master,
+      I  => io1_o_master,
+      T  => io1_t_master
+   );
+<: if {$C_SPI_MODE == 2} { :>	
+          
+QSPI_IO2_0_Master: IOBUF
+   port map (
+      O  => io2_i_master,
+      IO => IO2_IO_Master,
+      I  => io2_o_master,
+      T  => io2_t_master
+   );
+           
+QSPI_IO3_0_Master: IOBUF
+   port map (
+      O  => io3_i_master,
+      IO => IO3_IO_Master,
+      I  => io3_o_master,
+      T  => io3_t_master
+   );
+<: } :>
+           
+QSPI_SS_0_Master: IOBUF
+   port map (
+      O  => ss_i_master(0),
+      IO => SS_IO_Master,
+      I  => ss_o_master(0),
+      T  => '0' 
+   );
+
+<: if {$C_USE_STARTUP == 0} { :>	
+QSPI_SCK_0_Master: IOBUF
+   port map (
+      O  => sck_i_master,
+      IO => SCK_IO_Master,
+      I  => sck_o_master,
+      T  => sck_t_master
+   );
+<: } :>
+  
+  
+  DUT : <=:$ComponentName:>
+  PORT MAP (
+    ext_spi_clk => axi_clk,
+<: if {$C_AXI4 == 0} { :>
+    s_axi_aclk =>  axi_clk,
+    s_axi_aresetn => axi_aresetn,
+    s_axi_awaddr => m_axi_lite_ch2_awaddr(6 downto 0),
+    s_axi_awvalid => m_axi_lite_ch2_awvalid,
+    s_axi_awready => s_axi_awready_slave,
+    s_axi_wdata => m_axi_lite_ch2_wdata,
+    s_axi_wstrb => m_axi_lite_ch2_wstrb,
+    s_axi_wvalid => m_axi_lite_ch2_wvalid,
+    s_axi_wready => s_axi_wready_slave,
+    s_axi_bresp => s_axi_bresp_slave,
+    s_axi_bvalid => s_axi_bvalid_slave,
+    s_axi_bready => m_axi_lite_ch2_bready,
+    s_axi_araddr => m_axi_lite_ch2_araddr(6 downto 0),
+    s_axi_arvalid => m_axi_lite_ch2_arvalid,
+    s_axi_arready => s_axi_arready_slave,
+    s_axi_rdata => s_axi_rdata_slave,
+    s_axi_rresp => s_axi_rresp_slave,
+    s_axi_rvalid => s_axi_rvalid_slave,
+    s_axi_rready => m_axi_lite_ch2_rready,
+<: } :>	
+<: if {$C_AXI4 == 1} { :>
+    s_axi4_aclk     => axi_clk,
+    s_axi4_aresetn => axi_aresetn,
+<: if {$C_S_AXI4_ID_WIDTH != 0} { :>
+    s_axi4_awid => (others => '0'),
+<: } :>	
+    s_axi4_awaddr => m_axi_lite_ch2_awaddr(23 downto 0),
+    s_axi4_awlen => (others => '0'),
+    s_axi4_awsize => "010",
+    s_axi4_awburst => "01",
+    s_axi4_awlock => '0',
+    s_axi4_awcache => "0011",
+    s_axi4_awprot => (others => '0'),
+    s_axi4_awvalid => m_axi_lite_ch2_awvalid,
+    s_axi4_awready => s_axi_awready_slave,
+    s_axi4_wdata => m_axi_lite_ch2_wdata,
+    s_axi4_wstrb => m_axi_lite_ch2_wstrb,
+    s_axi4_wlast => '1',
+    s_axi4_wvalid => m_axi_lite_ch2_wvalid,
+    s_axi4_wready => s_axi_wready_slave,
+<: if {$C_S_AXI4_ID_WIDTH != 0} { :>
+    s_axi4_bid => open,
+<: } :>	
+    s_axi4_bresp => s_axi_bresp_slave,
+    s_axi4_bvalid => s_axi_bvalid_slave,
+    s_axi4_bready => m_axi_lite_ch2_bready,
+<: if {$C_S_AXI4_ID_WIDTH != 0} { :>
+    s_axi4_arid => (others => '0'),
+<: } :>	
+    s_axi4_araddr => m_axi_lite_ch2_araddr(23 downto 0),
+    s_axi4_arlen => (others => '0'),
+    s_axi4_arsize => "010",
+    s_axi4_arburst => "01",
+    s_axi4_arlock => '0',
+    s_axi4_arcache => "0011",
+    s_axi4_arprot => (others => '0'),
+    s_axi4_arvalid => m_axi_lite_ch2_arvalid,
+    s_axi4_arready => s_axi_arready_slave,
+<: if {$C_S_AXI4_ID_WIDTH != 0} { :>
+    s_axi4_rid => open,
+<: } :>	
+    s_axi4_rdata => s_axi_rdata_slave,
+    s_axi4_rresp => s_axi_rresp_slave,
+    s_axi4_rlast => open,
+    s_axi4_rvalid => s_axi_rvalid_slave,
+    s_axi4_rready => m_axi_lite_ch2_rready,
+<: } :>	
+<: if {$C_USE_STARTUP == 1 && $UC_FAMILY == 1 && $C_USE_STARTUP_EXT == 0} { :>	
+    gsr => '0',
+    gts => '0',
+    keyclearb => '0',
+    usrcclkts => '0',
+    usrdoneo => '0',
+    usrdonets => '0',
+<: } else { :>	
+    io0_i => io0_i_slave,
+    io0_o => io0_o_slave,
+    io0_t => io0_t_slave,
+    io1_i => io1_i_slave,
+    io1_o => io1_o_slave,
+    io1_t => io1_t_slave,
+<: } :>	
+<: if {$C_SPI_MODE == 2} { :>	
+<: if {$C_USE_STARTUP == 1 && $UC_FAMILY == 1} { :>	
+<: if {$C_DUAL_QUAD_MODE == 1} { :>	
+    io0_1_i  =>io0_1_i ,
+    io0_1_o  =>io0_1_o ,
+    io0_1_t  =>io0_1_t ,
+    io1_1_i  =>io1_1_i ,
+    io1_1_o  =>io1_1_o ,
+    io1_1_t  =>io1_1_t ,
+    io2_1_i  =>io2_1_i ,
+    io2_1_o  =>io2_1_o ,
+    io2_1_t  =>io2_1_t ,
+    io3_1_i  =>io3_1_i ,
+    io3_1_o  =>io3_1_o ,
+    io3_1_t  =>io3_1_t ,
+    ss_1_i  => ss_1_i ,
+    ss_1_o  => ss_1_o ,
+    ss_1_t  => ss_1_t ,
+<: } else { :>	
+<: } :>
+<: } else { :>	
+    io2_i => io2_i_slave,
+    io2_o => io2_o_slave,
+    io2_t => io2_t_slave,
+    io3_i => io3_i_slave,
+    io3_o => io3_o_slave,
+    io3_t => io3_t_slave,
+<: } :>	
+<: } :>	
+<: if {$C_USE_STARTUP == 0} { :>	
+    sck_i => sck_i_slave,
+    sck_o => sck_o_slave,
+    sck_t => sck_t_slave,
+<: } :>	
+    spisel => SPISEL,
+<: if {$C_USE_STARTUP == 1 && $UC_FAMILY == 1 && ($C_NUM_SS_BITS == 1 || ($C_DUAL_QUAD_MODE == 1 && $C_DUAL_QUAD_MODE == 0))} { :>	
+<: } else { :>	
+    ss_i => ss_o_slave,
+    ss_o => ss_o_slave,
+    ss_t => ss_t_slave,
+<: } :>	
+    ip2intc_irpt => ip2intc_irpt_slave
+  );
+QSPI_IO0_0_slave: IOBUF
+   port map (
+      O  => io0_i_slave,
+      IO => IO0_IO,
+      I  => io0_o_slave,
+      T  => io0_t_slave
+   );
+           
+QSPI_IO1_0_slave: IOBUF
+   port map (
+      O  => io1_i_slave,
+      IO => IO1_IO,
+      I  => io1_o_slave,
+      T  => io1_t_slave
+   );
+<: if {$C_SPI_MODE == 2} { :>	
+          
+QSPI_IO2_0_slave: IOBUF
+   port map (
+      O  => io2_i_slave,
+      IO => IO2_IO,
+      I  => io2_o_slave,
+      T  => io2_t_slave
+   );
+           
+QSPI_IO3_0_slave: IOBUF
+   port map (
+      O  => io3_i_slave,
+      IO => IO3_IO,
+      I  => io3_o_slave,
+      T  => io3_t_slave
+   );
+<: } :>
+           
+<: if {$C_USE_STARTUP == 0} { :>	
+QSPI_SCK_0_slave: IOBUF
+   port map (
+      O  => sck_i_slave,
+      IO => SCK_IO,
+      I  => sck_o_slave,
+      T  => sck_t_slave
+   );
+<: } :>
+
+  
+<: } :>
+end impl;

@@ -1,0 +1,80 @@
+package require xilinx::board 1.0
+namespace import ::xilinx::board::*
+set instname [current_inst]
+set f_xdc [add_ipfile -usedIn  [list synthesis implementation board ] -force ${instname}_board.xdc]
+puts_ipfile $f_xdc "#--------------------Physical Constraints-----------------\n"
+if { [get_project_property BOARD] == "" } {
+    close_ipfile $f_xdc
+    return 
+}
+ 
+set instname [current_inst]
+set board_if [get_property PARAM_VALUE.QSPI_BOARD_INTERFACE]
+set use_dual_quad_mode [get_property PARAM_VALUE.C_DUAL_QUAD_MODE]
+set use_stup [get_property PARAM_VALUE.C_USE_STARTUP]
+if { $board_if ne "Custom"} {
+if { $use_dual_quad_mode eq 0} {
+    board_add_tri_state_port_constraints $f_xdc $board_if \
+     IO0_I io0_i\
+     IO0_O io0_o\
+     IO0_T io0_t
+    board_add_tri_state_port_constraints $f_xdc $board_if \
+     IO1_I io1_i\
+     IO1_O io1_o\
+     IO1_T io1_t
+}
+if { $use_dual_quad_mode eq 1} {
+    board_add_tri_state_port_constraints $f_xdc $board_if \
+     IO0_I io0_1_i\
+     IO0_O io0_1_o\
+     IO0_T io0_1_t
+    board_add_tri_state_port_constraints $f_xdc $board_if \
+     IO1_I io1_1_i\
+     IO1_O io1_1_o\
+     IO1_T io1_1_t
+    board_add_tri_state_port_constraints $f_xdc $board_if \
+     IO2_I io2_1_i\
+     IO2_O io2_1_o\
+     IO2_T io2_1_t
+    board_add_tri_state_port_constraints $f_xdc $board_if \
+     IO3_I io3_1_i\
+     IO3_O io3_1_o\
+     IO3_T io3_1_t 
+}
+
+    set spi_mode [get_property PARAM_VALUE.C_SPI_MODE]
+if { $use_dual_quad_mode eq 0} {
+    if { $spi_mode eq 2 } {
+        board_add_tri_state_port_constraints $f_xdc $board_if \
+         IO2_I io2_i\
+         IO2_O io2_o\
+         IO2_T io2_t
+        board_add_tri_state_port_constraints $f_xdc $board_if \
+         IO3_I io3_i\
+         IO3_O io3_o\
+         IO3_T io3_t 
+    }
+    }
+if { $use_dual_quad_mode eq 0} { 
+    board_add_tri_state_port_constraints $f_xdc $board_if \
+     SS_I ss_i\
+     SS_O ss_o\
+     SS_T ss_t
+}
+if { $use_dual_quad_mode eq 1} {
+   
+    board_add_tri_state_port_constraints $f_xdc $board_if \
+     SS_I ss_1_i\
+     SS_O ss_1_o\
+     SS_T ss_1_t
+}
+
+set use_startup [get_property PARAM_VALUE.C_USE_STARTUP]
+   if { $use_stup eq 0 } {
+   board_add_tri_state_port_constraints $f_xdc $board_if \
+     SCK_I sck_i\
+     SCK_O sck_o\
+     SCK_T sck_t
+   } 
+}
+close_ipfile $f_xdc

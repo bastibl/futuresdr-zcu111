@@ -1,0 +1,402 @@
+#-----------------------------------------------------------
+# Vivado v2022.2 (64-bit)
+# SW Build 3671981 on Fri Oct 14 04:59:54 MDT 2022
+# IP Build 3669848 on Fri Oct 14 08:30:02 MDT 2022
+# Start of session at: Fri Oct 14 13:24:39 2022
+# Process ID: 44990
+# Current directory: /tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.runs/project_1_llr_reinterpret_0_synth_1
+# Command line: vivado -log project_1_llr_reinterpret_0.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source project_1_llr_reinterpret_0.tcl
+# Log file: /tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.runs/project_1_llr_reinterpret_0_synth_1/project_1_llr_reinterpret_0.vds
+# Journal file: /tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.runs/project_1_llr_reinterpret_0_synth_1/vivado.jou
+# Running On: xcosswbld17, OS: Linux, CPU Frequency: 3300.000 MHz, CPU Physical cores: 32, Host memory: 404352 MB
+#-----------------------------------------------------------
+INFO: [Common 17-1239] XILINX_LOCAL_USER_DATA is set to 'NO'.
+Sourcing tcl script '/home/xbrbbot/.Xilinx/Vivado/Vivado_init.tcl'
+484 Beta devices matching pattern found, 484 enabled.
+enable_beta_device: Time (s): cpu = 00:00:15 ; elapsed = 00:00:32 . Memory (MB): peak = 2067.539 ; gain = 130.633 ; free physical = 251440 ; free virtual = 330391
+source project_1_llr_reinterpret_0.tcl -notrace
+INFO: [IP_Flow 19-234] Refreshing IP repositories
+WARNING: [IP_Flow 19-395] Problem validating against XML schema: see 'spirit:vendor' : Mandatory element missing or unexpected element found
+WARNING: [IP_Flow 19-395] Problem validating against XML schema: see 'spirit:vendor' : Mandatory element missing or unexpected element found
+INFO: [IP_Flow 19-1700] Loaded user IP repository '/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/ip'.
+INFO: [IP_Flow 19-2313] Loaded Vivado IP repository '/proj/xbuilds/2022.2_1014_2/installs/lin64/Vivado/2022.2/data/ip'.
+WARNING: [IP_Flow 19-1663] Duplicate IP found for 'xilinx.com:ip:axi_quad_spi:3.2'. The one found in IP location '/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/ip/axi_quad_spi' will take precedence over the same IP in the Xilinx installed IP.
+WARNING: [IP_Flow 19-4830] Duplicate Interface found for 'xilinx.com:display_startup_io:startup_io:1.0'. The one found in location '/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/ip/axi_quad_spi/startup_io.xml' will take precedence over the same Interface in location '/proj/xbuilds/2022.2_1014_2/installs/lin64/Vivado/2022.2/data/ip/xilinx/axi_quad_spi_v3_2/startup_io.xml'
+WARNING: [IP_Flow 19-4830] Duplicate Interface found for 'xilinx.com:display_usp_rf_data_converter:diff_pins:1.0'. The one found in location '/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/ip/usp_rf_data_converter/interfaces/diff_pins.xml' will take precedence over the same Interface in location '/proj/xbuilds/2022.2_1014_2/installs/lin64/Vivado/2022.2/data/ip/xilinx/usp_rf_data_converter_v2_6/interfaces/diff_pins.xml'
+WARNING: [IP_Flow 19-4830] Duplicate Interface found for 'xilinx.com:display_usp_rf_data_converter:rts_pins:1.0'. The one found in location '/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/ip/usp_rf_data_converter/interfaces/rts_pins.xml' will take precedence over the same Interface in location '/proj/xbuilds/2022.2_1014_2/installs/lin64/Vivado/2022.2/data/ip/xilinx/usp_rf_data_converter_v2_6/interfaces/rts_pins.xml'
+WARNING: [IP_Flow 19-4830] Duplicate Interface found for 'xilinx.com:display_usp_rf_data_converter:drp_mon_pins:1.0'. The one found in location '/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/ip/usp_rf_data_converter/interfaces/drp_mon_pins.xml' will take precedence over the same Interface in location '/proj/xbuilds/2022.2_1014_2/installs/lin64/Vivado/2022.2/data/ip/xilinx/usp_rf_data_converter_v2_6/interfaces/drp_mon_pins.xml'
+WARNING: [IP_Flow 19-4830] Duplicate Interface found for 'xilinx.com:display_usp_rf_data_converter:debug_pins:1.0'. The one found in location '/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/ip/usp_rf_data_converter/interfaces/debug_pins.xml' will take precedence over the same Interface in location '/proj/xbuilds/2022.2_1014_2/installs/lin64/Vivado/2022.2/data/ip/xilinx/usp_rf_data_converter_v2_6/interfaces/debug_pins.xml'
+WARNING: [IP_Flow 19-4830] Duplicate Interface found for 'xilinx.com:user:hsams_data_sink_ctrl:1.0'. The one found in location '/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/ip/usp_rf_data_converter/interfaces/hsams_data_sink_ctrl.xml' will take precedence over the same Interface in location '/proj/xbuilds/2022.2_1014_2/installs/lin64/Vivado/2022.2/data/ip/xilinx/usp_rf_data_converter_v2_6/interfaces/hsams_data_sink_ctrl.xml'
+WARNING: [IP_Flow 19-4830] Duplicate Interface found for 'xilinx.com:user:hsams_data_source_ctrl:1.0'. The one found in location '/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/ip/usp_rf_data_converter/interfaces/hsams_data_source_ctrl.xml' will take precedence over the same Interface in location '/proj/xbuilds/2022.2_1014_2/installs/lin64/Vivado/2022.2/data/ip/xilinx/usp_rf_data_converter_v2_6/interfaces/hsams_data_source_ctrl.xml'
+WARNING: [IP_Flow 19-4830] Duplicate Interface found for 'xilinx.com:display_usp_rf_data_converter:cal_freeze_pins:1.0'. The one found in location '/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/ip/usp_rf_data_converter/interfaces/cal_freeze_pins.xml' will take precedence over the same Interface in location '/proj/xbuilds/2022.2_1014_2/installs/lin64/Vivado/2022.2/data/ip/xilinx/usp_rf_data_converter_v2_6/interfaces/cal_freeze_pins.xml'
+WARNING: [IP_Flow 19-4830] Duplicate Interface found for 'xilinx.com:interface:gt_hsclk_debug:1.0'. The one found in location '/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/ip/ps_pmc/interfaces/gt_hsclk_debug_v1_0/gt_hsclk_debug.xml' will take precedence over the same Interface in location '/proj/xbuilds/2022.2_1014_2/installs/lin64/Vivado/2022.2/data/ip/xilinx/gt_quad_base_v1_1/interfaces/gt_hsclk_debug_v1_0/gt_hsclk_debug.xml'
+WARNING: [IP_Flow 19-4830] Duplicate Interface found for 'xilinx.com:display_pcie4:pcie4_cfg_external_msix:1.0'. The one found in location '/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/ip/ps_pmc/interfaces/pcie4_cfg_ext_msix.xml' will take precedence over the same Interface in location '/proj/xbuilds/2022.2_1014_2/installs/lin64/Vivado/2022.2/data/ip/xilinx/pcie4_uscale_plus_v1_3/interfaces/pcie4_cfg_ext_msix.xml'
+WARNING: [IP_Flow 19-4830] Duplicate Interface found for 'xilinx.com:interface:gt_rxmargin_intf:1.0'. The one found in location '/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/ip/ps_pmc/interfaces/gt_rxmargin_intf_v1_0/gt_rxmargin_intf.xml' will take precedence over the same Interface in location '/proj/xbuilds/2022.2_1014_2/installs/lin64/Vivado/2022.2/data/ip/xilinx/gt_quad_base_v1_1/interfaces/gt_rxmargin_intf_v1_0/gt_rxmargin_intf.xml'
+WARNING: [IP_Flow 19-4830] Duplicate Interface found for 'xilinx.com:user:acelite:1.0'. The one found in location '/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/ip/ps_pmc/interfaces/acelite.xml' will take precedence over the same Interface in location '/proj/xbuilds/2022.2_1014_2/installs/lin64/Vivado/2022.2/data/ip/xilinx/pspmc_v1_2/interfaces/acelite.xml'
+WARNING: [IP_Flow 19-4830] Duplicate Interface found for 'xilinx.com:interface:gt_debug:1.0'. The one found in location '/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/ip/ps_pmc/interfaces/gt_debug_v1_0/gt_debug.xml' will take precedence over the same Interface in location '/proj/xbuilds/2022.2_1014_2/installs/lin64/Vivado/2022.2/data/ip/xilinx/gt_quad_base_v1_1/interfaces/gt_debug_v1_0/gt_debug.xml'
+WARNING: [IP_Flow 19-4830] Duplicate Interface found for 'xilinx.com:display_pcie4:pcie4_cfg_mgmt:1.0'. The one found in location '/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/ip/ps_pmc/interfaces/pcie4_cfg_mgmt.xml' will take precedence over the same Interface in location '/proj/xbuilds/2022.2_1014_2/installs/lin64/Vivado/2022.2/data/ip/xilinx/pcie4_uscale_plus_v1_3/interfaces/pcie4_cfg_mgmt.xml'
+WARNING: [IP_Flow 19-4830] Duplicate Interface found for 'xilinx.com:display_pcie4c_uscaleplus:transceiver_debug:1.0'. The one found in location '/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/ip/ps_pmc/interfaces/transceiver_debug.xml' will take precedence over the same Interface in location '/proj/xbuilds/2022.2_1014_2/installs/lin64/Vivado/2022.2/data/ip/xilinx/pcie4c_uscale_plus_v1_0/interfaces/transceiver_debug.xml'
+WARNING: [IP_Flow 19-4830] Duplicate Interface found for 'xilinx.com:display_pcie4:pcie4_cfg_control:1.0'. The one found in location '/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/ip/ps_pmc/interfaces/pcie4_cfg_control.xml' will take precedence over the same Interface in location '/proj/xbuilds/2022.2_1014_2/installs/lin64/Vivado/2022.2/data/ip/xilinx/pcie4_uscale_plus_v1_3/interfaces/pcie4_cfg_control.xml'
+WARNING: [IP_Flow 19-4830] Duplicate Interface found for 'xilinx.com:interface:gt_channel_debug:1.0'. The one found in location '/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/ip/ps_pmc/interfaces/gt_channel_debug_v1_0/gt_channel_debug.xml' will take precedence over the same Interface in location '/proj/xbuilds/2022.2_1014_2/installs/lin64/Vivado/2022.2/data/ip/xilinx/gt_quad_base_v1_1/interfaces/gt_channel_debug_v1_0/gt_channel_debug.xml'
+WARNING: [IP_Flow 19-4830] Duplicate Interface found for 'xilinx.com:interface:gt_bufgt:1.0'. The one found in location '/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/ip/ps_pmc/interfaces/gt_bufgt_v1_0/gt_bufgt.xml' will take precedence over the same Interface in location '/proj/xbuilds/2022.2_1014_2/installs/lin64/Vivado/2022.2/data/ip/xilinx/gt_quad_base_v1_1/interfaces/gt_bufgt_v1_0/gt_bufgt.xml'
+WARNING: [IP_Flow 19-4830] Duplicate Interface found for 'xilinx.com:interface:gt_tx_interface:1.0'. The one found in location '/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/ip/ps_pmc/interfaces/gt_tx_interface_v1_0/gt_tx_interface.xml' will take precedence over the same Interface in location '/proj/xbuilds/2022.2_1014_2/installs/lin64/Vivado/2022.2/data/ip/interfaces/gt_tx_interface_v1_0/gt_tx_interface.xml'
+WARNING: [IP_Flow 19-4830] Duplicate Interface found for 'xilinx.com:display_pcie4:pcie4_cfg_pm:1.0'. The one found in location '/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/ip/ps_pmc/interfaces/pcie4_cfg_pm.xml' will take precedence over the same Interface in location '/proj/xbuilds/2022.2_1014_2/installs/lin64/Vivado/2022.2/data/ip/xilinx/pcie4_uscale_plus_v1_3/interfaces/pcie4_cfg_pm.xml'
+WARNING: [IP_Flow 19-4830] Duplicate Interface found for 'xilinx.com:display_pcie4:pcie4_cfg_status:1.0'. The one found in location '/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/ip/ps_pmc/interfaces/pcie4_cfg_status.xml' will take precedence over the same Interface in location '/proj/xbuilds/2022.2_1014_2/installs/lin64/Vivado/2022.2/data/ip/xilinx/pcie4_uscale_plus_v1_3/interfaces/pcie4_cfg_status.xml'
+WARNING: [IP_Flow 19-4830] Duplicate Interface found for 'xilinx.com:display_pcie4:pcie4_pl:1.0'. The one found in location '/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/ip/ps_pmc/interfaces/pcie4_pl.xml' will take precedence over the same Interface in location '/proj/xbuilds/2022.2_1014_2/installs/lin64/Vivado/2022.2/data/ip/xilinx/pcie4_uscale_plus_v1_3/interfaces/pcie4_pl.xml'
+WARNING: [IP_Flow 19-4830] Duplicate Interface found for 'xilinx.com:user:smmu:1.0'. The one found in location '/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/ip/ps_pmc/interfaces/smmu.xml' will take precedence over the same Interface in location '/proj/xbuilds/2022.2_1014_2/installs/lin64/Vivado/2022.2/data/ip/xilinx/pspmc_v1_2/interfaces/smmu.xml'
+WARNING: [IP_Flow 19-4830] Duplicate Interface found for 'xilinx.com:display_pcie4:pcie4_pcie_id:1.0'. The one found in location '/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/ip/ps_pmc/interfaces/pcie4_pcie_id.xml' will take precedence over the same Interface in location '/proj/xbuilds/2022.2_1014_2/installs/lin64/Vivado/2022.2/data/ip/xilinx/pcie4_uscale_plus_v1_3/interfaces/pcie4_pcie_id.xml'
+WARNING: [IP_Flow 19-4830] Duplicate Interface found for 'xilinx.com:interface:gt_rx_interface:1.0'. The one found in location '/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/ip/ps_pmc/interfaces/gt_rx_interface_v1_0/gt_rx_interface.xml' will take precedence over the same Interface in location '/proj/xbuilds/2022.2_1014_2/installs/lin64/Vivado/2022.2/data/ip/interfaces/gt_rx_interface_v1_0/gt_rx_interface.xml'
+WARNING: [IP_Flow 19-4830] Duplicate Interface found for 'xilinx.com:display_pcie4:pcie4_cfg_msix_external:1.0'. The one found in location '/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/ip/ps_pmc/interfaces/pcie4_cfg_msix.xml' will take precedence over the same Interface in location '/proj/xbuilds/2022.2_1014_2/installs/lin64/Vivado/2022.2/data/ip/xilinx/pcie4_uscale_plus_v1_3/interfaces/pcie4_cfg_msix.xml'
+WARNING: [IP_Flow 19-4830] Duplicate Interface found for 'xilinx.com:display_pcie4:pcie4_cfg_msix_internal:1.0'. The one found in location '/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/ip/ps_pmc/interfaces/pcie4_cfg_msix_int.xml' will take precedence over the same Interface in location '/proj/xbuilds/2022.2_1014_2/installs/lin64/Vivado/2022.2/data/ip/xilinx/pcie4_uscale_plus_v1_3/interfaces/pcie4_cfg_msix_int.xml'
+INFO: [IP_Flow 19-6924] IPCACHE: Running cache check for IP inst: project_1_llr_reinterpret_0
+Command: synth_design -top project_1_llr_reinterpret_0 -part xczu28dr-ffvg1517-2-e -incremental_mode off -mode out_of_context
+Starting synth_design
+Attempting to get a license for feature 'Synthesis' and/or device 'xczu28dr'
+INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xczu28dr'
+INFO: [Device 21-403] Loading part xczu28dr-ffvg1517-2-e
+INFO: [Synth 8-7079] Multithreading enabled for synth_design using a maximum of 4 processes.
+INFO: [Synth 8-7078] Launching helper process for spawning children vivado processes
+INFO: [Synth 8-7075] Helper process launched with PID 45906
+INFO: [Synth 8-11241] undeclared symbol 'REGCCE', assumed default net type 'wire' [/proj/xbuilds/2022.2_1014_2/installs/lin64/Vivado/2022.2/data/verilog/src/unimacro/BRAM_SINGLE_MACRO.v:2170]
+---------------------------------------------------------------------------------
+Starting RTL Elaboration : Time (s): cpu = 00:00:05 ; elapsed = 00:00:06 . Memory (MB): peak = 3428.465 ; gain = 322.770 ; free physical = 214031 ; free virtual = 292979
+Synthesis current peak Physical Memory [PSS] (MB): peak = 2587.594; parent = 2468.374; children = 119.220
+Synthesis current peak Virtual Memory [VSS] (MB): peak = 4440.312; parent = 3434.406; children = 1005.906
+---------------------------------------------------------------------------------
+INFO: [Synth 8-6157] synthesizing module 'project_1_llr_reinterpret_0' [/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.gen/sources_1/bd/project_1/ip/project_1_llr_reinterpret_0/synth/project_1_llr_reinterpret_0.v:53]
+INFO: [Synth 8-6157] synthesizing module 'top_project_1_llr_reinterpret_0' [/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.gen/sources_1/bd/project_1/ip/project_1_llr_reinterpret_0/hdl/top_project_1_llr_reinterpret_0.v:60]
+INFO: [Synth 8-6157] synthesizing module 'axis_subset_converter_v1_1_27_core' [/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.gen/sources_1/bd/project_1/ipshared/40cb/hdl/axis_subset_converter_v1_1_vl_rfs.v:62]
+INFO: [Synth 8-6155] done synthesizing module 'axis_subset_converter_v1_1_27_core' (0#1) [/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.gen/sources_1/bd/project_1/ipshared/40cb/hdl/axis_subset_converter_v1_1_vl_rfs.v:62]
+INFO: [Synth 8-6157] synthesizing module 'tdata_project_1_llr_reinterpret_0' [/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.gen/sources_1/bd/project_1/ip/project_1_llr_reinterpret_0/hdl/tdata_project_1_llr_reinterpret_0.v:48]
+INFO: [Synth 8-6155] done synthesizing module 'tdata_project_1_llr_reinterpret_0' (0#1) [/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.gen/sources_1/bd/project_1/ip/project_1_llr_reinterpret_0/hdl/tdata_project_1_llr_reinterpret_0.v:48]
+INFO: [Synth 8-6157] synthesizing module 'tuser_project_1_llr_reinterpret_0' [/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.gen/sources_1/bd/project_1/ip/project_1_llr_reinterpret_0/hdl/tuser_project_1_llr_reinterpret_0.v:48]
+INFO: [Synth 8-6155] done synthesizing module 'tuser_project_1_llr_reinterpret_0' (0#1) [/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.gen/sources_1/bd/project_1/ip/project_1_llr_reinterpret_0/hdl/tuser_project_1_llr_reinterpret_0.v:48]
+INFO: [Synth 8-6157] synthesizing module 'tid_project_1_llr_reinterpret_0' [/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.gen/sources_1/bd/project_1/ip/project_1_llr_reinterpret_0/hdl/tid_project_1_llr_reinterpret_0.v:48]
+INFO: [Synth 8-6155] done synthesizing module 'tid_project_1_llr_reinterpret_0' (0#1) [/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.gen/sources_1/bd/project_1/ip/project_1_llr_reinterpret_0/hdl/tid_project_1_llr_reinterpret_0.v:48]
+INFO: [Synth 8-6157] synthesizing module 'tdest_project_1_llr_reinterpret_0' [/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.gen/sources_1/bd/project_1/ip/project_1_llr_reinterpret_0/hdl/tdest_project_1_llr_reinterpret_0.v:48]
+INFO: [Synth 8-6155] done synthesizing module 'tdest_project_1_llr_reinterpret_0' (0#1) [/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.gen/sources_1/bd/project_1/ip/project_1_llr_reinterpret_0/hdl/tdest_project_1_llr_reinterpret_0.v:48]
+INFO: [Synth 8-6157] synthesizing module 'tstrb_project_1_llr_reinterpret_0' [/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.gen/sources_1/bd/project_1/ip/project_1_llr_reinterpret_0/hdl/tstrb_project_1_llr_reinterpret_0.v:48]
+INFO: [Synth 8-6155] done synthesizing module 'tstrb_project_1_llr_reinterpret_0' (0#1) [/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.gen/sources_1/bd/project_1/ip/project_1_llr_reinterpret_0/hdl/tstrb_project_1_llr_reinterpret_0.v:48]
+INFO: [Synth 8-6157] synthesizing module 'tkeep_project_1_llr_reinterpret_0' [/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.gen/sources_1/bd/project_1/ip/project_1_llr_reinterpret_0/hdl/tkeep_project_1_llr_reinterpret_0.v:48]
+INFO: [Synth 8-6155] done synthesizing module 'tkeep_project_1_llr_reinterpret_0' (0#1) [/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.gen/sources_1/bd/project_1/ip/project_1_llr_reinterpret_0/hdl/tkeep_project_1_llr_reinterpret_0.v:48]
+INFO: [Synth 8-6157] synthesizing module 'tlast_project_1_llr_reinterpret_0' [/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.gen/sources_1/bd/project_1/ip/project_1_llr_reinterpret_0/hdl/tlast_project_1_llr_reinterpret_0.v:48]
+INFO: [Synth 8-6155] done synthesizing module 'tlast_project_1_llr_reinterpret_0' (0#1) [/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.gen/sources_1/bd/project_1/ip/project_1_llr_reinterpret_0/hdl/tlast_project_1_llr_reinterpret_0.v:48]
+INFO: [Synth 8-6155] done synthesizing module 'top_project_1_llr_reinterpret_0' (0#1) [/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.gen/sources_1/bd/project_1/ip/project_1_llr_reinterpret_0/hdl/top_project_1_llr_reinterpret_0.v:60]
+INFO: [Synth 8-6155] done synthesizing module 'project_1_llr_reinterpret_0' (0#1) [/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.gen/sources_1/bd/project_1/ip/project_1_llr_reinterpret_0/synth/project_1_llr_reinterpret_0.v:53]
+WARNING: [Synth 8-7129] Port tid[0] in module tlast_project_1_llr_reinterpret_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port tdata[255] in module tlast_project_1_llr_reinterpret_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port tdata[254] in module tlast_project_1_llr_reinterpret_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port tdata[253] in module tlast_project_1_llr_reinterpret_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port tdata[252] in module tlast_project_1_llr_reinterpret_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port tdata[251] in module tlast_project_1_llr_reinterpret_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port tdata[250] in module tlast_project_1_llr_reinterpret_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port tdata[249] in module tlast_project_1_llr_reinterpret_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port tdata[248] in module tlast_project_1_llr_reinterpret_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port tdata[247] in module tlast_project_1_llr_reinterpret_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port tdata[246] in module tlast_project_1_llr_reinterpret_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port tdata[245] in module tlast_project_1_llr_reinterpret_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port tdata[244] in module tlast_project_1_llr_reinterpret_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port tdata[243] in module tlast_project_1_llr_reinterpret_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port tdata[242] in module tlast_project_1_llr_reinterpret_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port tdata[241] in module tlast_project_1_llr_reinterpret_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port tdata[240] in module tlast_project_1_llr_reinterpret_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port tdata[239] in module tlast_project_1_llr_reinterpret_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port tdata[238] in module tlast_project_1_llr_reinterpret_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port tdata[237] in module tlast_project_1_llr_reinterpret_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port tdata[236] in module tlast_project_1_llr_reinterpret_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port tdata[235] in module tlast_project_1_llr_reinterpret_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port tdata[234] in module tlast_project_1_llr_reinterpret_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port tdata[233] in module tlast_project_1_llr_reinterpret_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port tdata[232] in module tlast_project_1_llr_reinterpret_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port tdata[231] in module tlast_project_1_llr_reinterpret_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port tdata[230] in module tlast_project_1_llr_reinterpret_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port tdata[229] in module tlast_project_1_llr_reinterpret_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port tdata[228] in module tlast_project_1_llr_reinterpret_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port tdata[227] in module tlast_project_1_llr_reinterpret_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port tdata[226] in module tlast_project_1_llr_reinterpret_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port tdata[225] in module tlast_project_1_llr_reinterpret_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port tdata[224] in module tlast_project_1_llr_reinterpret_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port tdata[223] in module tlast_project_1_llr_reinterpret_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port tdata[222] in module tlast_project_1_llr_reinterpret_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port tdata[221] in module tlast_project_1_llr_reinterpret_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port tdata[220] in module tlast_project_1_llr_reinterpret_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port tdata[219] in module tlast_project_1_llr_reinterpret_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port tdata[218] in module tlast_project_1_llr_reinterpret_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port tdata[217] in module tlast_project_1_llr_reinterpret_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port tdata[216] in module tlast_project_1_llr_reinterpret_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port tdata[215] in module tlast_project_1_llr_reinterpret_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port tdata[214] in module tlast_project_1_llr_reinterpret_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port tdata[213] in module tlast_project_1_llr_reinterpret_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port tdata[212] in module tlast_project_1_llr_reinterpret_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port tdata[211] in module tlast_project_1_llr_reinterpret_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port tdata[210] in module tlast_project_1_llr_reinterpret_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port tdata[209] in module tlast_project_1_llr_reinterpret_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port tdata[208] in module tlast_project_1_llr_reinterpret_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port tdata[207] in module tlast_project_1_llr_reinterpret_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port tdata[206] in module tlast_project_1_llr_reinterpret_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port tdata[205] in module tlast_project_1_llr_reinterpret_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port tdata[204] in module tlast_project_1_llr_reinterpret_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port tdata[203] in module tlast_project_1_llr_reinterpret_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port tdata[202] in module tlast_project_1_llr_reinterpret_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port tdata[201] in module tlast_project_1_llr_reinterpret_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port tdata[200] in module tlast_project_1_llr_reinterpret_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port tdata[199] in module tlast_project_1_llr_reinterpret_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port tdata[198] in module tlast_project_1_llr_reinterpret_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port tdata[197] in module tlast_project_1_llr_reinterpret_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port tdata[196] in module tlast_project_1_llr_reinterpret_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port tdata[195] in module tlast_project_1_llr_reinterpret_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port tdata[194] in module tlast_project_1_llr_reinterpret_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port tdata[193] in module tlast_project_1_llr_reinterpret_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port tdata[192] in module tlast_project_1_llr_reinterpret_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port tdata[191] in module tlast_project_1_llr_reinterpret_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port tdata[190] in module tlast_project_1_llr_reinterpret_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port tdata[189] in module tlast_project_1_llr_reinterpret_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port tdata[188] in module tlast_project_1_llr_reinterpret_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port tdata[187] in module tlast_project_1_llr_reinterpret_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port tdata[186] in module tlast_project_1_llr_reinterpret_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port tdata[185] in module tlast_project_1_llr_reinterpret_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port tdata[184] in module tlast_project_1_llr_reinterpret_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port tdata[183] in module tlast_project_1_llr_reinterpret_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port tdata[182] in module tlast_project_1_llr_reinterpret_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port tdata[181] in module tlast_project_1_llr_reinterpret_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port tdata[180] in module tlast_project_1_llr_reinterpret_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port tdata[179] in module tlast_project_1_llr_reinterpret_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port tdata[178] in module tlast_project_1_llr_reinterpret_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port tdata[177] in module tlast_project_1_llr_reinterpret_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port tdata[176] in module tlast_project_1_llr_reinterpret_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port tdata[175] in module tlast_project_1_llr_reinterpret_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port tdata[174] in module tlast_project_1_llr_reinterpret_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port tdata[173] in module tlast_project_1_llr_reinterpret_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port tdata[172] in module tlast_project_1_llr_reinterpret_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port tdata[171] in module tlast_project_1_llr_reinterpret_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port tdata[170] in module tlast_project_1_llr_reinterpret_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port tdata[169] in module tlast_project_1_llr_reinterpret_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port tdata[168] in module tlast_project_1_llr_reinterpret_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port tdata[167] in module tlast_project_1_llr_reinterpret_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port tdata[166] in module tlast_project_1_llr_reinterpret_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port tdata[165] in module tlast_project_1_llr_reinterpret_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port tdata[164] in module tlast_project_1_llr_reinterpret_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port tdata[163] in module tlast_project_1_llr_reinterpret_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port tdata[162] in module tlast_project_1_llr_reinterpret_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port tdata[161] in module tlast_project_1_llr_reinterpret_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port tdata[160] in module tlast_project_1_llr_reinterpret_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port tdata[159] in module tlast_project_1_llr_reinterpret_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port tdata[158] in module tlast_project_1_llr_reinterpret_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port tdata[157] in module tlast_project_1_llr_reinterpret_0 is either unconnected or has no load
+INFO: [Common 17-14] Message 'Synth 8-7129' appears 100 times and further instances of the messages will be disabled. Use the Tcl command set_msg_config to change the current settings.
+---------------------------------------------------------------------------------
+Finished RTL Elaboration : Time (s): cpu = 00:00:06 ; elapsed = 00:00:07 . Memory (MB): peak = 3486.371 ; gain = 380.676 ; free physical = 214199 ; free virtual = 293149
+Synthesis current peak Physical Memory [PSS] (MB): peak = 2587.594; parent = 2468.374; children = 119.220
+Synthesis current peak Virtual Memory [VSS] (MB): peak = 4492.281; parent = 3486.375; children = 1005.906
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Handling Custom Attributes
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:07 ; elapsed = 00:00:08 . Memory (MB): peak = 3504.184 ; gain = 398.488 ; free physical = 213709 ; free virtual = 292659
+Synthesis current peak Physical Memory [PSS] (MB): peak = 2587.594; parent = 2468.374; children = 119.220
+Synthesis current peak Virtual Memory [VSS] (MB): peak = 4510.094; parent = 3504.188; children = 1005.906
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:07 ; elapsed = 00:00:08 . Memory (MB): peak = 3504.184 ; gain = 398.488 ; free physical = 213633 ; free virtual = 292583
+Synthesis current peak Physical Memory [PSS] (MB): peak = 2587.594; parent = 2468.374; children = 119.220
+Synthesis current peak Virtual Memory [VSS] (MB): peak = 4510.094; parent = 3504.188; children = 1005.906
+---------------------------------------------------------------------------------
+Netlist sorting complete. Time (s): cpu = 00:00:00.01 ; elapsed = 00:00:00.01 . Memory (MB): peak = 3504.184 ; gain = 0.000 ; free physical = 213408 ; free virtual = 292358
+INFO: [Project 1-570] Preparing netlist for logic optimization
+
+Processing XDC Constraints
+Initializing timing engine
+Parsing XDC File [/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.gen/sources_1/bd/project_1/ip/project_1_llr_reinterpret_0/project_1_llr_reinterpret_0_ooc.xdc] for cell 'inst'
+create_clock: Time (s): cpu = 00:00:06 ; elapsed = 00:00:06 . Memory (MB): peak = 3544.965 ; gain = 0.000 ; free physical = 205194 ; free virtual = 284167
+Finished Parsing XDC File [/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.gen/sources_1/bd/project_1/ip/project_1_llr_reinterpret_0/project_1_llr_reinterpret_0_ooc.xdc] for cell 'inst'
+Parsing XDC File [/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.runs/project_1_llr_reinterpret_0_synth_1/dont_touch.xdc]
+Finished Parsing XDC File [/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.runs/project_1_llr_reinterpret_0_synth_1/dont_touch.xdc]
+Completed Processing XDC Constraints
+
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 3544.965 ; gain = 0.000 ; free physical = 205186 ; free virtual = 284158
+INFO: [Project 1-111] Unisim Transformation Summary:
+No Unisim elements were transformed.
+
+Constraint Validation Runtime : Time (s): cpu = 00:00:00.04 ; elapsed = 00:00:00.04 . Memory (MB): peak = 3544.965 ; gain = 0.000 ; free physical = 205121 ; free virtual = 284093
+INFO: [Designutils 20-5008] Incremental synthesis strategy off
+INFO: [Synth 8-11241] undeclared symbol 'REGCCE', assumed default net type 'wire' [/proj/xbuilds/2022.2_1014_2/installs/lin64/Vivado/2022.2/data/verilog/src/unimacro/BRAM_SINGLE_MACRO.v:2170]
+---------------------------------------------------------------------------------
+Finished Constraint Validation : Time (s): cpu = 00:00:20 ; elapsed = 00:00:21 . Memory (MB): peak = 3544.965 ; gain = 439.270 ; free physical = 203924 ; free virtual = 282911
+Synthesis current peak Physical Memory [PSS] (MB): peak = 2606.667; parent = 2488.898; children = 119.220
+Synthesis current peak Virtual Memory [VSS] (MB): peak = 4550.875; parent = 3544.969; children = 1005.906
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Loading Part and Timing Information
+---------------------------------------------------------------------------------
+Loading part: xczu28dr-ffvg1517-2-e
+INFO: [Synth 8-6742] Reading net delay rules and data
+---------------------------------------------------------------------------------
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:20 ; elapsed = 00:00:22 . Memory (MB): peak = 3544.965 ; gain = 439.270 ; free physical = 203847 ; free virtual = 282833
+Synthesis current peak Physical Memory [PSS] (MB): peak = 2606.667; parent = 2488.898; children = 119.220
+Synthesis current peak Virtual Memory [VSS] (MB): peak = 4550.875; parent = 3544.969; children = 1005.906
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Applying 'set_property' XDC Constraints
+---------------------------------------------------------------------------------
+Applied set_property KEEP_HIERARCHY = SOFT for inst. (constraint file  /tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.runs/project_1_llr_reinterpret_0_synth_1/dont_touch.xdc, line 9).
+---------------------------------------------------------------------------------
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:20 ; elapsed = 00:00:22 . Memory (MB): peak = 3544.965 ; gain = 439.270 ; free physical = 203778 ; free virtual = 282764
+Synthesis current peak Physical Memory [PSS] (MB): peak = 2606.667; parent = 2488.898; children = 119.220
+Synthesis current peak Virtual Memory [VSS] (MB): peak = 4550.875; parent = 3544.969; children = 1005.906
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:20 ; elapsed = 00:00:22 . Memory (MB): peak = 3544.965 ; gain = 439.270 ; free physical = 203720 ; free virtual = 282707
+Synthesis current peak Physical Memory [PSS] (MB): peak = 2606.667; parent = 2488.898; children = 119.220
+Synthesis current peak Virtual Memory [VSS] (MB): peak = 4550.875; parent = 3544.969; children = 1005.906
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start RTL Component Statistics 
+---------------------------------------------------------------------------------
+Detailed RTL Component Info : 
+---------------------------------------------------------------------------------
+Finished RTL Component Statistics 
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Part Resource Summary
+---------------------------------------------------------------------------------
+Part Resources:
+DSPs: 4272 (col length:192)
+BRAMs: 2160 (col length: RAMB18 192 RAMB36 96)
+---------------------------------------------------------------------------------
+Finished Part Resource Summary
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Cross Boundary and Area Optimization
+---------------------------------------------------------------------------------
+WARNING: [Synth 8-7080] Parallel synthesis criteria is not met
+---------------------------------------------------------------------------------
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:21 ; elapsed = 00:00:23 . Memory (MB): peak = 3544.965 ; gain = 439.270 ; free physical = 204226 ; free virtual = 283240
+Synthesis current peak Physical Memory [PSS] (MB): peak = 2606.667; parent = 2488.898; children = 119.220
+Synthesis current peak Virtual Memory [VSS] (MB): peak = 4550.875; parent = 3544.969; children = 1005.906
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Applying XDC Timing Constraints
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:31 ; elapsed = 00:00:35 . Memory (MB): peak = 3895.113 ; gain = 789.418 ; free physical = 199284 ; free virtual = 278463
+Synthesis current peak Physical Memory [PSS] (MB): peak = 3003.810; parent = 2885.941; children = 119.220
+Synthesis current peak Virtual Memory [VSS] (MB): peak = 4901.023; parent = 3895.117; children = 1005.906
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Timing Optimization
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Timing Optimization : Time (s): cpu = 00:00:31 ; elapsed = 00:00:36 . Memory (MB): peak = 3895.113 ; gain = 789.418 ; free physical = 199051 ; free virtual = 278230
+Synthesis current peak Physical Memory [PSS] (MB): peak = 3003.976; parent = 2886.111; children = 119.220
+Synthesis current peak Virtual Memory [VSS] (MB): peak = 4901.023; parent = 3895.117; children = 1005.906
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Technology Mapping
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Technology Mapping : Time (s): cpu = 00:00:31 ; elapsed = 00:00:36 . Memory (MB): peak = 3914.145 ; gain = 808.449 ; free physical = 198888 ; free virtual = 278070
+Synthesis current peak Physical Memory [PSS] (MB): peak = 3004.261; parent = 2886.396; children = 119.220
+Synthesis current peak Virtual Memory [VSS] (MB): peak = 4920.055; parent = 3914.148; children = 1005.906
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished IO Insertion : Time (s): cpu = 00:00:35 ; elapsed = 00:00:39 . Memory (MB): peak = 3920.082 ; gain = 814.387 ; free physical = 196762 ; free virtual = 275956
+Synthesis current peak Physical Memory [PSS] (MB): peak = 3004.435; parent = 2886.492; children = 119.220
+Synthesis current peak Virtual Memory [VSS] (MB): peak = 4925.992; parent = 3920.086; children = 1005.906
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Instances
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Instances : Time (s): cpu = 00:00:35 ; elapsed = 00:00:39 . Memory (MB): peak = 3920.082 ; gain = 814.387 ; free physical = 196707 ; free virtual = 275902
+Synthesis current peak Physical Memory [PSS] (MB): peak = 3004.435; parent = 2886.492; children = 119.220
+Synthesis current peak Virtual Memory [VSS] (MB): peak = 4925.992; parent = 3920.086; children = 1005.906
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Rebuilding User Hierarchy
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:35 ; elapsed = 00:00:39 . Memory (MB): peak = 3920.082 ; gain = 814.387 ; free physical = 196643 ; free virtual = 275837
+Synthesis current peak Physical Memory [PSS] (MB): peak = 3004.435; parent = 2886.492; children = 119.220
+Synthesis current peak Virtual Memory [VSS] (MB): peak = 4925.992; parent = 3920.086; children = 1005.906
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Ports
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Ports : Time (s): cpu = 00:00:35 ; elapsed = 00:00:40 . Memory (MB): peak = 3920.082 ; gain = 814.387 ; free physical = 196659 ; free virtual = 275848
+Synthesis current peak Physical Memory [PSS] (MB): peak = 3004.435; parent = 2886.492; children = 119.220
+Synthesis current peak Virtual Memory [VSS] (MB): peak = 4925.992; parent = 3920.086; children = 1005.906
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Handling Custom Attributes
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:35 ; elapsed = 00:00:40 . Memory (MB): peak = 3920.082 ; gain = 814.387 ; free physical = 196621 ; free virtual = 275811
+Synthesis current peak Physical Memory [PSS] (MB): peak = 3004.435; parent = 2886.492; children = 119.220
+Synthesis current peak Virtual Memory [VSS] (MB): peak = 4925.992; parent = 3920.086; children = 1005.906
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Nets
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Nets : Time (s): cpu = 00:00:35 ; elapsed = 00:00:40 . Memory (MB): peak = 3920.082 ; gain = 814.387 ; free physical = 196553 ; free virtual = 275742
+Synthesis current peak Physical Memory [PSS] (MB): peak = 3004.453; parent = 2886.509; children = 119.220
+Synthesis current peak Virtual Memory [VSS] (MB): peak = 4925.992; parent = 3920.086; children = 1005.906
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Writing Synthesis Report
+---------------------------------------------------------------------------------
+
+Report BlackBoxes: 
++-+--------------+----------+
+| |BlackBox name |Instances |
++-+--------------+----------+
++-+--------------+----------+
+
+Report Cell Usage: 
++-+-----+------+
+| |Cell |Count |
++-+-----+------+
++-+-----+------+
+---------------------------------------------------------------------------------
+Finished Writing Synthesis Report : Time (s): cpu = 00:00:35 ; elapsed = 00:00:40 . Memory (MB): peak = 3920.082 ; gain = 814.387 ; free physical = 196488 ; free virtual = 275663
+Synthesis current peak Physical Memory [PSS] (MB): peak = 3004.456; parent = 2886.512; children = 119.220
+Synthesis current peak Virtual Memory [VSS] (MB): peak = 4925.992; parent = 3920.086; children = 1005.906
+---------------------------------------------------------------------------------
+Synthesis finished with 0 errors, 0 critical warnings and 39 warnings.
+Synthesis Optimization Runtime : Time (s): cpu = 00:00:27 ; elapsed = 00:00:32 . Memory (MB): peak = 3920.082 ; gain = 773.605 ; free physical = 196424 ; free virtual = 275600
+Synthesis Optimization Complete : Time (s): cpu = 00:00:35 ; elapsed = 00:00:40 . Memory (MB): peak = 3920.090 ; gain = 814.387 ; free physical = 196401 ; free virtual = 275577
+INFO: [Project 1-571] Translating synthesized netlist
+Netlist sorting complete. Time (s): cpu = 00:00:00.01 ; elapsed = 00:00:00 . Memory (MB): peak = 3920.090 ; gain = 0.000 ; free physical = 196374 ; free virtual = 275550
+INFO: [Project 1-570] Preparing netlist for logic optimization
+INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 3968.676 ; gain = 0.000 ; free physical = 196290 ; free virtual = 275467
+INFO: [Project 1-111] Unisim Transformation Summary:
+No Unisim elements were transformed.
+
+Synth Design complete, checksum: 201824d2
+INFO: [Common 17-83] Releasing license: Synthesis
+41 Infos, 131 Warnings, 0 Critical Warnings and 0 Errors encountered.
+synth_design completed successfully
+synth_design: Time (s): cpu = 00:00:55 ; elapsed = 00:00:59 . Memory (MB): peak = 3982.613 ; gain = 1816.262 ; free physical = 196415 ; free virtual = 275592
+INFO: [Common 17-1381] The checkpoint '/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.runs/project_1_llr_reinterpret_0_synth_1/project_1_llr_reinterpret_0.dcp' has been generated.
+INFO: [Coretcl 2-1648] Added synthesis output to IP cache for IP project_1_llr_reinterpret_0, cache-ID = 4a35ccc191486c5e
+INFO: [Common 17-1381] The checkpoint '/tmp/tmp.rJl7ZfSWDC/temp/hwflow/hwflow_project_1/project_1.runs/project_1_llr_reinterpret_0_synth_1/project_1_llr_reinterpret_0.dcp' has been generated.
+INFO: [runtcl-4] Executing : report_utilization -file project_1_llr_reinterpret_0_utilization_synth.rpt -pb project_1_llr_reinterpret_0_utilization_synth.pb
+INFO: [Common 17-206] Exiting Vivado at Fri Oct 14 13:26:30 2022...
