@@ -1,9 +1,0 @@
-<: setFileUsedIn { out_of_context synthesis implementation } :>
-<: ;#Component and file information :>
-<: set ComponentName [getComponentNameString] :>
-<: setOutputDirectory "./" :>
-<: setFileName $ComponentName :>
-<: setFileExtension "_ooc.xdc" :>
-#<: set CompName [getComponentNameString] :>
-#<: setOutputDirectory "./" :>
-#<: setFileUsedIn { out_of_context synthesis implementation } :>

@@ -1,2 +1,0 @@
-# This file is automatically written.  Do not modify.
-proc gen_USERPARAMETER_HAS_TSTRB_VALUE {HAS_TKEEP } {expr !$HAS_TKEEP}

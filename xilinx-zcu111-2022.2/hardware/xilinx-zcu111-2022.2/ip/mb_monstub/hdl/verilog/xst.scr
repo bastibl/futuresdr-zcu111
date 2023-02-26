@@ -1,1 +1,0 @@
-run -ifn mb_monstub.v -ifmt verilog -p virtex5 -ofn delme.ngc -top mb_monstub
