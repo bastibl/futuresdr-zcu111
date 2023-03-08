@@ -4138,7 +4138,7 @@ CONFIG_sdfec=y
 #
 # PetaLinux RootFS Settings
 #
-CONFIG_ADD_EXTRA_USERS="root:root;petalinux::passwd-expire;"
+CONFIG_ADD_EXTRA_USERS="root:root;petalinux:foo;"
 CONFIG_CREATE_NEW_GROUPS="aie;"
 CONFIG_ADD_USERS_TO_GROUPS="petalinux:audio,video,aie;"
 CONFIG_ADD_USERS_TO_SUDOERS="petalinux"
