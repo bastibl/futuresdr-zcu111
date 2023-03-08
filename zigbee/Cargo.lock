@@ -444,8 +444,6 @@ dependencies = [
 [[package]]
 name = "futuredsp"
 version = "0.0.6"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "0f7672eb033261d8a9cff356d0373c831e853ea11dbeeb9100ffb6bea7a49189"
 dependencies = [
  "log",
  "num-complex",
@@ -559,9 +557,7 @@ dependencies = [
 
 [[package]]
 name = "futuresdr"
-version = "0.0.32"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "be9542631fd5e8c8a785f1db854bb6316243b9401eae6f43527e4bf76d3c48e4"
+version = "0.0.31"
 dependencies = [
  "android_logger",
  "anyhow",
@@ -612,8 +608,6 @@ dependencies = [
 [[package]]
 name = "futuresdr-macros"
 version = "0.0.4"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "660deb00cb7054b6ca79d011107fe13b0411ea8c9ed4ad3462d377d4ef39929e"
 dependencies = [
  "proc-macro2",
  "quote",
@@ -623,8 +617,6 @@ dependencies = [
 [[package]]
 name = "futuresdr-types"
 version = "0.0.9"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "29ba9e07125e58b7ce8af4a8e57c7acc79410b25c1691fc471c4f329265957a5"
 dependencies = [
  "dyn-clone",
  "serde",
@@ -1835,8 +1827,6 @@ checksum = "447660ad36a13288b1db4d4248e857b510e8c3a225c822ba4fb748c0aafecffd"
 [[package]]
 name = "xilinx-dma"
 version = "0.0.7"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "6f2a9c0468aebc03258bd195364dcc4751f8cff0f69dfb5164d91fec525f21b6"
 dependencies = [
  "anyhow",
  "async-io",

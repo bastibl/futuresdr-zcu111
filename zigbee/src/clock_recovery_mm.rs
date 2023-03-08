@@ -10,6 +10,7 @@ use futuresdr::runtime::StreamIo;
 use futuresdr::runtime::StreamIoBuilder;
 use futuresdr::runtime::WorkIo;
 
+#[derive(Debug)]
 pub struct ClockRecoveryMm {
     omega: f32,
     omega_mid: f32,
@@ -70,6 +71,17 @@ impl Kernel for ClockRecoveryMm {
         let i = sio.input(0).slice::<f32>();
         let o = sio.output(0).slice::<f32>();
 
+        // println!("mm work()  in {}   out {}", i.len(), o.len());
+        // println!("block {:?}", &self);
+
+        if self.omega.is_nan() {
+            self.omega = self.omega_mid;
+        }
+
+        if self.mu.is_nan() {
+            self.mu = 0.5;
+        }
+
         let mut ii = 0;
         let mut oo = 0;
 
@@ -87,6 +99,8 @@ impl Kernel for ClockRecoveryMm {
             self.mu -= self.mu.floor();
             oo += 1;
         }
+
+        // println!("mm process()  in {}   out {}", ii, oo);
 
         sio.input(0).consume(ii);
         sio.output(0).produce(oo);

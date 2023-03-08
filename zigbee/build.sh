@@ -8,4 +8,6 @@ SCRIPTPATH="$( cd -- "$(dirname "$0")" >/dev/null 2>&1 ; pwd -P )"
 source ${SCRIPTPATH}/env.sh
 source ${SDK}/environment-setup-cortexa72-cortexa53-xilinx-linux
 
-cargo build --release
+cargo build --release --bin spectrum
+cargo build --release --bin zigbee_rx
+

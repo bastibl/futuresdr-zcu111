@@ -117,7 +117,7 @@ impl Mac {
         match p {
             Pmt::Blob(data) => {
                 if Self::check_crc(&data) && data.len() > 2 {
-                    debug!("received frame, crc correct, payload length {}", data.len());
+                    println!("received frame, crc correct, payload length {}", data.len());
                     #[cfg(target_arch = "wasm32")]
                     rxed_frame(data.clone());
 
@@ -142,7 +142,7 @@ impl Mac {
                                 }
                             }),
                     );
-                    debug!("{}", s);
+                    println!("{}", s);
                     mio.output_mut(0).post(Pmt::Blob(data)).await;
                 } else {
                     debug!("received frame, crc wrong");

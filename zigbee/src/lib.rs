@@ -8,6 +8,9 @@ pub use decoder::Decoder;
 mod iq_delay;
 pub use iq_delay::IqDelay;
 
+mod keep_1_in_n;
+pub use keep_1_in_n::Keep1InN;
+
 mod mac;
 pub use mac::Mac;
 
@@ -33,4 +36,20 @@ pub fn parse_channel(s: &str) -> Result<f64, String> {
         .map_err(|_| format!("`{s}` isn't a ZigBee channel number"))?;
 
     channel_to_freq(channel).map_err(|_| format!("`{s}` isn't a ZigBee channel number"))
+}
+
+use futuresdr::blocks::Apply;
+use futuresdr::num_complex::Complex32;
+use futuresdr::runtime::Block;
+
+pub fn lin2db_block() -> Block {
+    Apply::new(|x: &f32| 10.0 * x.log10())
+}
+
+pub fn power_block() -> Block {
+    Apply::new(|x: &Complex32| x.norm())
+}
+
+pub fn lin2power_db() -> Block {
+    Apply::new(|x: &Complex32| 10.0 * x.norm().log10())
 }

@@ -1,0 +1,3 @@
+log_level = "debug"
+ctrlport_enable = true
+ctrlport_bind = "0.0.0.0:1337"
