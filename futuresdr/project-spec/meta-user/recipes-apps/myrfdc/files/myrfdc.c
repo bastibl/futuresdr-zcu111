@@ -59,7 +59,7 @@ int main() {
 
     printf("## Configuring the Clock\n");
     LMK04208ClockConfig(11, LMK04208_CKin);
-    LMX2594ClockConfig(11, 3932160);
+    LMX2594ClockConfig(11, 2048000);
 
     printf("## XRFdc_GetIPStatus\n");
     Status = XRFdc_GetIPStatus(RFdcInstPtr, &myIPStatus);
@@ -102,34 +102,51 @@ int main() {
            "  FineMixerScale: %u\n",
             0, 0, MixerSettings.Freq, MixerSettings.FineMixerScale);
 
-    MixerSettings.Freq = -400;
-    MixerSettings.FineMixerScale = XRFDC_MIXER_SCALE_1P0;
-    MixerSettings.EventSource = XRFDC_EVNT_SRC_TILE;
-
-    Status = XRFdc_SetMixerSettings(
-            RFdcInstPtr, XRFDC_ADC_TILE, 0, 0, &MixerSettings);
+    u8 GetFIFOEnable = 0;
+    Status = XRFdc_GetFIFOStatus(RFdcInstPtr, XRFDC_ADC_TILE, 0, &GetFIFOEnable);
     if (Status != XRFDC_SUCCESS) {
         return XRFDC_FAILURE;
     }
-
-    /*generate a tile Event to apply it*/
-    Status = XRFdc_UpdateEvent(
-            RFdcInstPtr, XRFDC_ADC_TILE, 0, 0, XRFDC_EVENT_MIXER);
+    printf("FIFO enable %u\n", GetFIFOEnable);
+    u8 SetFIFOEnable = 0x1;
+    Status = XRFdc_SetupFIFO(RFdcInstPtr, XRFDC_ADC_TILE, 0, SetFIFOEnable);
     if (Status != XRFDC_SUCCESS) {
         return XRFDC_FAILURE;
     }
-
-    Status = XRFdc_GetMixerSettings(
-            RFdcInstPtr, XRFDC_ADC_TILE, 0, 0, &MixerSettings);
+    Status = XRFdc_GetFIFOStatus(RFdcInstPtr, XRFDC_ADC_TILE, 0, &GetFIFOEnable);
     if (Status != XRFDC_SUCCESS) {
         return XRFDC_FAILURE;
     }
+    printf("FIFO enable %u\n", GetFIFOEnable);
 
-    printf("ADC%d%d New Mixer Settings\n"
-           "======================\n"
-           "  Frequency: %f\n"
-           "  FineMixerScale: %u\n",
-            0, 0, MixerSettings.Freq, MixerSettings.FineMixerScale);
+    /* MixerSettings.Freq = -400; */
+    /* MixerSettings.FineMixerScale = XRFDC_MIXER_SCALE_1P0; */
+    /* MixerSettings.EventSource = XRFDC_EVNT_SRC_TILE; */
+    /*  */
+    /* Status = XRFdc_SetMixerSettings( */
+    /*         RFdcInstPtr, XRFDC_ADC_TILE, 0, 0, &MixerSettings); */
+    /* if (Status != XRFDC_SUCCESS) { */
+    /*     return XRFDC_FAILURE; */
+    /* } */
+    /*  */
+    /* // generate a tile Event to apply it */
+    /* Status = XRFdc_UpdateEvent( */
+    /*         RFdcInstPtr, XRFDC_ADC_TILE, 0, 0, XRFDC_EVENT_MIXER); */
+    /* if (Status != XRFDC_SUCCESS) { */
+    /*     return XRFDC_FAILURE; */
+    /* } */
+    /*  */
+    /* Status = XRFdc_GetMixerSettings( */
+    /*         RFdcInstPtr, XRFDC_ADC_TILE, 0, 0, &MixerSettings); */
+    /* if (Status != XRFDC_SUCCESS) { */
+    /*     return XRFDC_FAILURE; */
+    /* } */
+    /*  */
+    /* printf("ADC%d%d New Mixer Settings\n" */
+    /*        "======================\n" */
+    /*        "  Frequency: %f\n" */
+    /*        "  FineMixerScale: %u\n", */
+    /*         0, 0, MixerSettings.Freq, MixerSettings.FineMixerScale); */
 
     printf("## XFRdc_StartUp... ");
     Status = XRFdc_StartUp(RFdcInstPtr, 0, 0);

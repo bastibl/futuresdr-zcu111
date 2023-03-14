@@ -23,8 +23,8 @@ fn main() -> Result<()> {
     let mut iir: f32 = 0.0;
     let alpha = 0.00016;
     let avg = Apply::new(move |i: &Complex<i16>| -> f32 {
-        let re = i.re as f32 / 2.0_f32.powf(14.0);
-        let imag = i.im as f32 / 2.0_f32.powf(14.0);
+        let re = i.re as f32; // / 2.0_f32.powf(10.0);
+        let imag = i.im as f32; // / 2.0_f32.powf(10.0);
         let i = Complex32::new(re, imag);
         let phase = (last.conj() * i).arg();
         last = i;
@@ -39,7 +39,7 @@ fn main() -> Result<()> {
     let omega_relative_limit = 0.0002;
     let mm = ClockRecoveryMm::new(omega, gain_omega, mu, gain_mu, omega_relative_limit);
 
-    let decoder = Decoder::new(6);
+    let decoder = Decoder::new(10);
     let mac = Mac::new();
     let snk = NullSink::<u8>::new();
 

@@ -17,10 +17,14 @@ fn main() -> Result<()> {
     let mut fg = Flowgraph::new();
 
     let src = zigbee::Source::<Complex<i16>>::new("uio0", vec!["udmabuf0", "udmabuf1"])?;
-    let conv = Apply::new(|x: &Complex<i16>| {
-        let re = x.re as f32 / 2.0_f32.powf(14.0);
-        let im = x.im as f32 / 2.0_f32.powf(14.0);
-        Complex32::new(re, im)
+    let mut avg = Complex::new(0.0, 0.0);
+    let alpha = 0.005;
+    let conv = Apply::new(move |x: &Complex<i16>| {
+        let re = x.re as f32 / 2.0_f32.powf(10.0);
+        let im = x.im as f32 / 2.0_f32.powf(10.0);
+        let i = Complex32::new(re, im);
+        avg = (1.0 - alpha) * avg + alpha * i;
+        i - avg
     });
     let fft = Fft::with_options(FFT_SIZE, FftDirection::Forward, true, None);
     let power = zigbee::lin2power_db();

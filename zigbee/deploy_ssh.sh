@@ -10,3 +10,4 @@ scp ${HOME}/.ssh/id_rsa.pub zcu:.ssh/authorized_keys
 scp ${SCRIPTPATH}/config.toml zcu:
 scp ${SCRIPTPATH}/target/aarch64-xilinx-linux/release/zigbee_rx zcu:
 scp ${SCRIPTPATH}/target/aarch64-xilinx-linux/release/spectrum zcu:
+scp ${SCRIPTPATH}/target/aarch64-xilinx-linux/release/dump zcu:
