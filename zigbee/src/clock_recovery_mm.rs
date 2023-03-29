@@ -74,13 +74,13 @@ impl Kernel for ClockRecoveryMm {
         // println!("mm work()  in {}   out {}", i.len(), o.len());
         // println!("block {:?}", &self);
 
-        if self.omega.is_nan() {
-            self.omega = self.omega_mid;
-        }
-
-        if self.mu.is_nan() {
-            self.mu = 0.5;
-        }
+        // if self.omega.is_nan() {
+        //     self.omega = self.omega_mid;
+        // }
+        //
+        // if self.mu.is_nan() {
+        //     self.mu = 0.5;
+        // }
 
         let mut ii = 0;
         let mut oo = 0;

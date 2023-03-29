@@ -4,7 +4,7 @@ version = "0.0.1"
 edition = "2021"
 
 [dependencies]
-futuresdr = { version = "0.0.32", features = ["zynq"], path = "/home/basti/src/futuresdr/" }
+futuresdr = { version = "0.0.32", features = ["flow_scheduler", "zynq"], path = "/home/basti/src/futuresdr/" }
 xilinx-dma = "0.0.7"
 
 [patch.crates-io]

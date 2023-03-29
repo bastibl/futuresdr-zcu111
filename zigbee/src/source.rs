@@ -94,12 +94,13 @@ where
         while !self.output_buffers.is_empty() {
             let outbuff = self.output_buffers.pop().unwrap().buffer;
 
-            // let size = 800000;
             let size = outbuff.size() / 8;
             self.dma_d2h.start_d2h(&outbuff, size).unwrap();
             self.dma_d2h.wait_d2h().unwrap();
             // print!(".");
-            // println!("dma transfers finished {}", self.dma_d2h.size_d2h());
+            let actual = self.dma_d2h.size_d2h();
+            // println!("dma transfers finished {}", actual);
+            // self.dma_d2h.status_d2h();
 
             // let s = unsafe {std::slice::from_raw_parts(outbuff.buffer() as *const i16, 2000)};
             // let min = s.iter().map(|i| i.abs()).min();
@@ -107,7 +108,7 @@ where
             // println!("samples min {:?}   max {:?}", min, max);
             o(sio, 0).submit(BufferFull {
                 buffer: outbuff,
-                used_bytes: size,
+                used_bytes: actual,
             });
         }
 

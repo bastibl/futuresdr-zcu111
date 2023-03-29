@@ -1,3 +1,4 @@
-log_level = "debug"
-ctrlport_enable = true
-ctrlport_bind = "0.0.0.0:1337"
+buffer_size = 131072
+#log_level = "debug"
+#ctrlport_enable = true
+#ctrlport_bind = "0.0.0.0:1337"
