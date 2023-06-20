@@ -11,4 +11,5 @@ source ${SDK}/environment-setup-cortexa72-cortexa53-xilinx-linux
 cargo build --release --bin spectrum --target aarch64-xilinx-linux
 cargo build --release --bin zigbee_rx --target aarch64-xilinx-linux
 cargo build --release --bin dump --target aarch64-xilinx-linux
+cargo build --release --bin dma --target aarch64-xilinx-linux
 
