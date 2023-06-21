@@ -26,3 +26,19 @@
 &axi_dma_0{
     compatible = "generic-uio";
 };
+
+&axi_dma_1{
+    compatible = "generic-uio";
+};
+
+&axi_dma_2{
+    compatible = "generic-uio";
+};
+
+&axi_dma_3{
+    compatible = "generic-uio";
+};
+
+&axi_dma_4{
+    compatible = "generic-uio";
+};
