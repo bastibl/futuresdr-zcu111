@@ -17,7 +17,7 @@ fn main() -> Result<()> {
     futuresdr::runtime::init();
     let mut fg = Flowgraph::new();
 
-    let src = Source::<Complex<i16>>::new("uio0", vec!["udmabuf0", "udmabuf1"])?;
+    let src = Source::<Complex<i16>>::new(true, "uio0", vec!["udmabuf0", "udmabuf1"])?;
 
     let conv = Apply::new(|i: &Complex<i16>| -> Complex32 {
         let re = i.re as f32; // / 2.0_f32.powf(10.0);

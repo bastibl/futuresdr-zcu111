@@ -17,6 +17,9 @@ pub use mac::Mac;
 mod modulator;
 pub use modulator::modulator;
 
+mod packet_source;
+pub use packet_source::PacketSource;
+
 mod source;
 pub use source::Source;
 

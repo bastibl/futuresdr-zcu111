@@ -1,13 +1,11 @@
-use std::marker::PhantomData;
 use xilinx_dma::AxiDma;
 use xilinx_dma::DmaBuffer;
 
 use futuresdr::anyhow::Result;
 use futuresdr::async_trait::async_trait;
-use futuresdr::macros::message_handler;
 use futuresdr::log::warn;
+use futuresdr::macros::message_handler;
 use futuresdr::runtime::buffer::zynq::BufferEmpty;
-use futuresdr::runtime::buffer::zynq::BufferFull;
 use futuresdr::runtime::buffer::zynq::WriterD2H;
 use futuresdr::runtime::Block;
 use futuresdr::runtime::BlockMeta;
@@ -20,21 +18,14 @@ use futuresdr::runtime::StreamIo;
 use futuresdr::runtime::StreamIoBuilder;
 use futuresdr::runtime::WorkIo;
 
-pub struct Source<O>
-where
-    O: std::fmt::Debug + Send + 'static,
-{
+pub struct PacketSource {
     dma_d2h: AxiDma,
     dma_bufs: Vec<String>,
     output_buffers: Vec<BufferEmpty>,
-    output_data: PhantomData<O>,
     enable: bool,
 }
 
-impl<O> Source<O>
-where
-    O: std::fmt::Debug + Send + 'static,
-{
+impl PacketSource {
     pub fn new<S: Into<String>>(
         enable: bool,
         dma_d2h: impl AsRef<str>,
@@ -44,16 +35,16 @@ where
         let dma_bufs: _ = dma_bufs.into_iter().map(Into::into).collect();
 
         Ok(Block::new(
-            BlockMetaBuilder::new("Source").blocking().build(),
-            StreamIoBuilder::new().add_output::<O>("out").build(),
+            BlockMetaBuilder::new("PacketSource").blocking().build(),
+            StreamIoBuilder::new().build(),
             MessageIoBuilder::<Self>::new()
                 .add_input("enable", Self::enable)
+                .add_output("packet")
                 .build(),
-            Source {
+            PacketSource {
                 dma_d2h: AxiDma::new(dma_d2h.as_ref())?,
                 dma_bufs,
                 output_buffers: Vec::new(),
-                output_data: PhantomData,
                 enable,
             },
         ))
@@ -71,7 +62,7 @@ where
             Pmt::Bool(b) => {
                 self.enable = *b;
             }
-            _ => warn!("Source::enable received unhandled Pmt {:?}", &p),
+            _ => warn!("PacketSource::enable received unhandled Pmt {:?}", &p),
         }
         Ok(Pmt::Ok)
     }
@@ -84,10 +75,7 @@ fn o(sio: &mut StreamIo, id: usize) -> &mut WriterD2H {
 
 #[doc(hidden)]
 #[async_trait]
-impl<O> Kernel for Source<O>
-where
-    O: std::fmt::Debug + Send + 'static,
-{
+impl Kernel for PacketSource {
     async fn init(
         &mut self,
         _sio: &mut StreamIo,
@@ -111,41 +99,37 @@ where
 
     async fn work(
         &mut self,
-        _io: &mut WorkIo,
+        io: &mut WorkIo,
         sio: &mut StreamIo,
-        _mio: &mut MessageIo<Self>,
+        mio: &mut MessageIo<Self>,
         _meta: &mut BlockMeta,
     ) -> Result<()> {
-
         if !self.enable {
             return Ok(());
         }
 
-        // println!("work()");
         self.output_buffers.extend(o(sio, 0).buffers());
 
-        while !self.output_buffers.is_empty() {
+        if self.output_buffers.is_empty() {
+            return Ok(());
+
+        } else {
             let outbuff = self.output_buffers.pop().unwrap().buffer;
 
             let size = outbuff.size();
             self.dma_d2h.start_d2h(&outbuff, size).unwrap();
             self.dma_d2h.wait_d2h().unwrap();
-            // print!(".");
             let actual = self.dma_d2h.size_d2h();
-            // println!("dma transfers finished {}", actual);
-            // self.dma_d2h.status_d2h();
 
-            // let s = unsafe {std::slice::from_raw_parts(outbuff.buffer() as *const i16, 2000)};
-            // let min = s.iter().map(|i| i.abs()).min();
-            // let max = s.iter().map(|i| i.abs()).max();
-            // println!("samples min {:?}   max {:?}", min, max);
-            o(sio, 0).submit(BufferFull {
-                buffer: outbuff,
-                used_bytes: actual,
-            });
+            let slice = &outbuff.slice::<u8>()[0..actual];
+            let pmt = Pmt::Blob(slice.to_vec());
+            mio.post(0, pmt).await;
+
+            if !self.output_buffers.is_empty() {
+                io.call_again = true;
+            }
         }
 
-        // println!("work() done");
         Ok(())
     }
 }

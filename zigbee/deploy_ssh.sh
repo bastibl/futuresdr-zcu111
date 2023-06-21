@@ -12,3 +12,4 @@ scp ${SCRIPTPATH}/target/aarch64-xilinx-linux/release/zigbee_rx zcu:
 scp ${SCRIPTPATH}/target/aarch64-xilinx-linux/release/spectrum zcu:
 scp ${SCRIPTPATH}/target/aarch64-xilinx-linux/release/dump zcu:
 scp ${SCRIPTPATH}/target/aarch64-xilinx-linux/release/dma zcu:
+scp ${SCRIPTPATH}/target/aarch64-xilinx-linux/release/demo zcu:

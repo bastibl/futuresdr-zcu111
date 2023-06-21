@@ -11,7 +11,7 @@ use futuresdr::runtime::Runtime;
 fn main() -> Result<()> {
     let mut fg = Flowgraph::new();
 
-    let src = zigbee::Source::<Complex<i16>>::new("uio0", vec!["udmabuf0", "udmabuf1"])?;
+    let src = zigbee::Source::<Complex<i16>>::new(true, "uio0", vec!["udmabuf0", "udmabuf1"])?;
     let conv = Apply::new(|x: &Complex<i16>| {
         let re = x.re as f32 / 2.0_f32.powf(10.0);
         let im = x.im as f32 / 2.0_f32.powf(10.0);

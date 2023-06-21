@@ -16,7 +16,7 @@ const FFT_SIZE: usize = 4096;
 fn main() -> Result<()> {
     let mut fg = Flowgraph::new();
 
-    let src = zigbee::Source::<Complex<i16>>::new("uio0", vec!["udmabuf0", "udmabuf1"])?;
+    let src = zigbee::Source::<Complex<i16>>::new(true, "uio0", vec!["udmabuf0", "udmabuf1"])?;
     let mut avg = Complex::new(0.0, 0.0);
     let alpha = 0.005;
     let conv = Apply::new(move |x: &Complex<i16>| {

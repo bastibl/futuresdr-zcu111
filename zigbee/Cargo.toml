@@ -5,8 +5,5 @@ edition = "2021"
 
 [dependencies]
 clap = { version = "4.0.27", features = ["derive"] }
-futuresdr = { version = "0.0.32", features = ["flow_scheduler", "zynq"], path = "/home/basti/src/futuresdr/" }
+futuresdr = { version = "0.0.34", features = ["zynq"] }
 xilinx-dma = "0.0.7"
-
-[patch.crates-io]
-xilinx-dma = { path = "/home/basti/src/xilinx-dma/" }
