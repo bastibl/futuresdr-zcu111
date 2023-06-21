@@ -98,14 +98,10 @@ where
 
         for n in self.dma_bufs.iter() {
             let buffer = DmaBuffer::new(n)?;
-            println!("dma buffer: {:?}", &buffer);
             self.output_buffers.push(BufferEmpty { buffer });
         }
 
-        println!("dma: {:?}", &self.dma_d2h);
-        println!("resetting dma");
         self.dma_d2h.reset();
-        println!("init done");
         Ok(())
     }
 
@@ -121,31 +117,21 @@ where
             return Ok(());
         }
 
-        // println!("work()");
         self.output_buffers.extend(o(sio, 0).buffers());
 
         while !self.output_buffers.is_empty() {
             let outbuff = self.output_buffers.pop().unwrap().buffer;
 
             let size = outbuff.size();
-            self.dma_d2h.start_d2h(&outbuff, size).unwrap();
+            self.dma_d2h.start_d2h(&outbuff, size / 8).unwrap();
             self.dma_d2h.wait_d2h().unwrap();
-            // print!(".");
             let actual = self.dma_d2h.size_d2h();
-            // println!("dma transfers finished {}", actual);
-            // self.dma_d2h.status_d2h();
-
-            // let s = unsafe {std::slice::from_raw_parts(outbuff.buffer() as *const i16, 2000)};
-            // let min = s.iter().map(|i| i.abs()).min();
-            // let max = s.iter().map(|i| i.abs()).max();
-            // println!("samples min {:?}   max {:?}", min, max);
             o(sio, 0).submit(BufferFull {
                 buffer: outbuff,
                 used_bytes: actual,
             });
         }
 
-        // println!("work() done");
         Ok(())
     }
 }

@@ -11,6 +11,7 @@ use futuresdr::runtime::Runtime;
 use zigbee::ClockRecoveryMm;
 use zigbee::Decoder;
 use zigbee::Mac;
+use zigbee::PacketSource;
 use zigbee::Source;
 
 fn main() -> Result<()> {
@@ -22,13 +23,13 @@ fn main() -> Result<()> {
     connect!(fg, mac > snk);
 
     // CPU
-    let mut src = Source::<Complex<i16>>::new(true, "uio0", vec!["udmabuf0", "udmabuf1"])?;
+    let mut src = Source::<Complex<i16>>::new(false, "uio0", vec!["udmabuf0", "udmabuf1"])?;
     src.set_instance_name("iq_src");
 
     let conv = Apply::new(|i: &Complex<i16>| -> Complex32 {
         let re = i.re as f32;
         let imag = i.im as f32;
-        Complex32::new(re, imag)
+        Complex32::new(imag, re)
     });
 
     let mut last: Complex32 = Complex32::new(0.0, 0.0);
@@ -53,7 +54,7 @@ fn main() -> Result<()> {
              decoder | mac.rx);
 
     // TAN FPGA
-    let mut src = Source::<f32>::new(false, "uio1", vec!["udmabuf0", "udmabuf1"])?;
+    let mut src = Source::<i16>::new(true, "uio1", vec!["udmabuf0", "udmabuf1"])?;
     src.set_instance_name("tan_src");
 
     let conv = Apply::new(move |i: &i16| -> f32 {
@@ -72,23 +73,28 @@ fn main() -> Result<()> {
     connect!(fg, src [D2H::new()] conv > mm > decoder;
              decoder | mac.rx);
 
-
     // MM FPGA
-    let mut src = Source::<u8>::new(false, "uio2", vec!["udmabuf0", "udmabuf1"])?;
+    let mut src = Source::<i8>::new(false, "uio2", vec!["udmabuf0", "udmabuf1"])?;
     src.set_instance_name("mm_src");
 
-    let conv = Apply::new(move |i: &i16| -> f32 {
-        let x = *i as f32;
-        x / 8192.0
-    });
+    let conv = Apply::new(move |i: &i8| -> f32 { *i as f32 });
 
     let decoder = Decoder::new(11);
 
     connect!(fg, src [D2H::new()] conv > decoder;
              decoder | mac.rx);
 
+    // DECODER FPGA
+    let mut src = PacketSource::new(false, "uio3", "udmabuf0")?;
+    src.set_instance_name("decoder_src");
+    connect!(fg, src.packet | mac.rx);
 
-    println!("running");
+    // MAC FPGA
+    let mut src = PacketSource::new(false, "uio4", "udmabuf0")?;
+    src.set_instance_name("mac_src");
+    connect!(fg, src.packet | mac.rx);
+
+    println!("FutureSDR: Starting Flowgraph");
     let rt = Runtime::new();
     rt.run(fg)?;
 
