@@ -29,7 +29,7 @@ fn main() -> Result<()> {
     let conv = Apply::new(|i: &Complex<i16>| -> Complex32 {
         let re = i.re as f32;
         let imag = i.im as f32;
-        Complex32::new(imag, re)
+        Complex32::new(re, imag)
     });
 
     let mut last: Complex32 = Complex32::new(0.0, 0.0);

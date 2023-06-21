@@ -19,12 +19,12 @@ use futuresdr::runtime::WorkIo;
 pub struct PacketSource {
     dma_d2h: AxiDma,
     dma_buf: DmaBuffer,
-    enable: bool,
+    enabled: bool,
 }
 
 impl PacketSource {
     pub fn new(
-        enable: bool,
+        enabled: bool,
         dma_d2h: impl AsRef<str>,
         dma_buf: impl AsRef<str>,
     ) -> Result<Block> {
@@ -35,12 +35,13 @@ impl PacketSource {
             StreamIoBuilder::new().build(),
             MessageIoBuilder::<Self>::new()
                 .add_input("enable", Self::enable)
+                .add_input("enabled", Self::enabled)
                 .add_output("packet")
                 .build(),
             PacketSource {
                 dma_d2h: AxiDma::new(dma_d2h.as_ref())?,
                 dma_buf,
-                enable,
+                enabled,
             },
         ))
     }
@@ -55,11 +56,22 @@ impl PacketSource {
     ) -> Result<Pmt> {
         match &p {
             Pmt::Bool(b) => {
-                self.enable = *b;
+                self.enabled = *b;
             }
             _ => warn!("PacketSource::enable received unhandled Pmt {:?}", &p),
         }
         Ok(Pmt::Ok)
+    }
+
+    #[message_handler]
+    fn enabled(
+        &mut self,
+        _io: &mut WorkIo,
+        _mio: &mut MessageIo<Self>,
+        _meta: &mut BlockMeta,
+        _p: Pmt,
+    ) -> Result<Pmt> {
+        Ok(Pmt::Bool(self.enabled))
     }
 }
 
@@ -84,7 +96,7 @@ impl Kernel for PacketSource {
         mio: &mut MessageIo<Self>,
         _meta: &mut BlockMeta,
     ) -> Result<()> {
-        if !self.enable {
+        if !self.enabled {
             println!("packet src not enabled");
             return Ok(());
         }

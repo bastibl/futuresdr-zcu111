@@ -28,7 +28,7 @@ where
     dma_bufs: Vec<String>,
     output_buffers: Vec<BufferEmpty>,
     output_data: PhantomData<O>,
-    enable: bool,
+    enabled: bool,
 }
 
 impl<O> Source<O>
@@ -36,7 +36,7 @@ where
     O: std::fmt::Debug + Send + 'static,
 {
     pub fn new<S: Into<String>>(
-        enable: bool,
+        enabled: bool,
         dma_d2h: impl AsRef<str>,
         dma_bufs: Vec<S>,
     ) -> Result<Block> {
@@ -48,13 +48,14 @@ where
             StreamIoBuilder::new().add_output::<O>("out").build(),
             MessageIoBuilder::<Self>::new()
                 .add_input("enable", Self::enable)
+                .add_input("enabled", Self::enabled)
                 .build(),
             Source {
                 dma_d2h: AxiDma::new(dma_d2h.as_ref())?,
                 dma_bufs,
                 output_buffers: Vec::new(),
                 output_data: PhantomData,
-                enable,
+                enabled,
             },
         ))
     }
@@ -69,11 +70,22 @@ where
     ) -> Result<Pmt> {
         match &p {
             Pmt::Bool(b) => {
-                self.enable = *b;
+                self.enabled = *b;
             }
             _ => warn!("Source::enable received unhandled Pmt {:?}", &p),
         }
         Ok(Pmt::Ok)
+    }
+
+    #[message_handler]
+    fn enabled(
+        &mut self,
+        _io: &mut WorkIo,
+        _mio: &mut MessageIo<Self>,
+        _meta: &mut BlockMeta,
+        _p: Pmt,
+    ) -> Result<Pmt> {
+        Ok(Pmt::Bool(self.enabled))
     }
 }
 
@@ -113,7 +125,7 @@ where
         _meta: &mut BlockMeta,
     ) -> Result<()> {
 
-        if !self.enable {
+        if !self.enabled {
             return Ok(());
         }
 
